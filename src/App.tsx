@@ -38,6 +38,12 @@ export default function App() {
   const [showContactForm, setShowContactForm] = useState(false);
   const [isFolding, setIsFolding] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    service: 'Brand Identity',
+    message: ''
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,20 +81,39 @@ export default function App() {
     if (modal) modal.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsFolding(true);
     
-    // Smooth transition sequence
-    setTimeout(() => {
-      setIsSent(true);
-      setIsFolding(false);
-      
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send email');
+      }
+
+      // Smooth transition sequence
       setTimeout(() => {
-        setShowContactForm(false);
-        setIsSent(false);
-      }, 5000);
-    }, 2000); // Match the plane flight duration
+        setIsSent(true);
+        setIsFolding(false);
+        setFormData({ name: '', email: '', service: 'Brand Identity', message: '' });
+        
+        setTimeout(() => {
+          setShowContactForm(false);
+          setIsSent(false);
+        }, 5000);
+      }, 2000); // Match the plane flight duration
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Failed to send inquiry. Please try again later.');
+      setIsFolding(false);
+    }
   };
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -518,6 +543,8 @@ export default function App() {
                                 required
                                 type="text" 
                                 placeholder="Your Name"
+                                value={formData.name}
+                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 className="w-full bg-transparent border-b border-white/10 py-4 focus:border-accent outline-none transition-colors font-light text-lg"
                               />
                             </div>
@@ -527,6 +554,8 @@ export default function App() {
                                 required
                                 type="email" 
                                 placeholder="your@email.com"
+                                value={formData.email}
+                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                 className="w-full bg-transparent border-b border-white/10 py-4 focus:border-accent outline-none transition-colors font-light text-lg"
                               />
                             </div>
@@ -534,7 +563,11 @@ export default function App() {
 
                           <div className="space-y-2 group">
                             <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/30 group-focus-within:text-accent transition-colors">Service</label>
-                            <select className="w-full bg-transparent border-b border-white/10 py-4 focus:border-accent outline-none transition-colors font-light text-lg appearance-none cursor-pointer">
+                            <select 
+                              value={formData.service}
+                              onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                              className="w-full bg-transparent border-b border-white/10 py-4 focus:border-accent outline-none transition-colors font-light text-lg appearance-none cursor-pointer"
+                            >
                               <option className="bg-[#1a1a1a]">Brand Identity</option>
                               <option className="bg-[#1a1a1a]">Digital Design</option>
                               <option className="bg-[#1a1a1a]">Art Direction</option>
@@ -548,6 +581,8 @@ export default function App() {
                               required
                               rows={4}
                               placeholder="Tell us about your project..."
+                              value={formData.message}
+                              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                               className="w-full bg-transparent border-b border-white/10 py-4 focus:border-accent outline-none transition-colors font-light text-lg resize-none"
                             />
                           </div>
