@@ -1,12 +1,17 @@
 import express from "express";
 import { createServer as createViteServer } from "vite";
 import path from "path";
-import { Resend } from "resend";
+import Mailgun from "mailgun.js";
+import formData from "form-data";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const mailgun = new Mailgun(formData);
+const mg = mailgun.client({
+  username: "api",
+  key: process.env.MAILGUN_API_KEY || "",
+});
 
 async function startServer() {
   const app = express();
@@ -18,16 +23,23 @@ async function startServer() {
   app.post("/api/send-email", async (req, res) => {
     const { name, email, service, message } = req.body;
 
-    if (!process.env.RESEND_API_KEY) {
-      console.error("RESEND_API_KEY is not set");
+    if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
+      console.error("Mailgun configuration is missing");
       return res.status(500).json({ error: "Email service not configured" });
     }
 
     try {
-      const data = await resend.emails.send({
-        from: "OneUp Contact <onboarding@resend.dev>",
+      const result = await mg.messages.create(process.env.MAILGUN_DOMAIN, {
+        from: `OneUp Contact <postmaster@${process.env.MAILGUN_DOMAIN}>`,
         to: ["urbanstructure@gmail.com"],
         subject: `New Inquiry from ${name} - ${service}`,
+        text: `
+New Project Inquiry
+Name: ${name}
+Email: ${email}
+Service: ${service}
+Message: ${message}
+        `,
         html: `
           <h2>New Project Inquiry</h2>
           <p><strong>Name:</strong> ${name}</p>
@@ -38,9 +50,9 @@ async function startServer() {
         `,
       });
 
-      res.status(200).json({ success: true, data });
+      res.status(200).json({ success: true, data: result });
     } catch (error) {
-      console.error("Error sending email:", error);
+      console.error("Error sending email via Mailgun:", error);
       res.status(500).json({ error: "Failed to send email" });
     }
   });
