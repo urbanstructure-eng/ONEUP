@@ -38,21 +38,6 @@ export default function App() {
   const [showContactForm, setShowContactForm] = useState(false);
   const [isFolding, setIsFolding] = useState(false);
   const [isSent, setIsSent] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-
-  useEffect(() => {
-    // Global load state
-    const timer = setTimeout(() => setIsLoaded(true), 2000);
-    
-    // Video fallback timer - force show after 4 seconds if video hasn't loaded
-    const videoTimer = setTimeout(() => setIsVideoLoaded(true), 4000);
-    
-    return () => {
-      clearTimeout(timer);
-      clearTimeout(videoTimer);
-    };
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,6 +79,7 @@ export default function App() {
     e.preventDefault();
     setIsFolding(true);
     
+    // Smooth transition sequence
     setTimeout(() => {
       setIsSent(true);
       setIsFolding(false);
@@ -101,8 +87,8 @@ export default function App() {
       setTimeout(() => {
         setShowContactForm(false);
         setIsSent(false);
-      }, 6000);
-    }, 2500);
+      }, 5000);
+    }, 2000); // Match the plane flight duration
   };
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -125,41 +111,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#1a1a1a] text-white selection:bg-accent selection:text-black font-sans overflow-x-hidden relative">
-      <AnimatePresence>
-        {!isLoaded && (
-          <motion.div 
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1, ease: "easeInOut" }}
-            className="fixed inset-0 z-[100] bg-[#1a1a1a] flex flex-col items-center justify-center"
-          >
-            <div className="relative w-24 h-24">
-              <motion.div 
-                animate={{ rotate: 360 }}
-                transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-                className="absolute inset-0 border-2 border-accent/20 rounded-full"
-              />
-              <motion.div 
-                animate={{ rotate: -360 }}
-                transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-                className="absolute inset-2 border-t-2 border-accent rounded-full"
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-[8px] font-bold tracking-[0.3em] uppercase text-accent animate-pulse">oneup</span>
-              </div>
-            </div>
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="mt-8 text-[10px] uppercase tracking-[0.5em] text-white/40"
-            >
-              Loading Experience
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Navigation (Static/Fixed) */}
       <nav className="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center backdrop-blur-md border-b border-white/10 bg-[#1a1a1a]/80">
         <div 
@@ -186,40 +137,62 @@ export default function App() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex flex-col justify-center overflow-hidden border-b border-white/10">
-        {/* Background Video */}
+      <section className="relative h-screen flex flex-col justify-center px-6 md:px-12 pt-20 overflow-hidden border-b border-white/10">
+        {/* Animated Background Image */}
         <div className="absolute inset-0 z-0">
           <motion.div
             style={{ y: heroImageY }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isVideoLoaded ? 1 : 0 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
+            initial={{ scale: 1.1, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 2, ease: "easeOut" }}
             className="w-full h-full"
           >
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              onLoadedData={() => setIsVideoLoaded(true)}
-              onCanPlay={() => setIsVideoLoaded(true)}
-              onError={(e) => {
-                console.error("Video failed to load:", e);
-                setIsVideoLoaded(true); // Show poster/fallback if error
+            <motion.img
+              src="https://lh3.googleusercontent.com/d/1cRgnMzlCeBFa0zsTzaUV5l3aSg1wy4l_"
+              alt="Hero Background"
+              referrerPolicy="no-referrer"
+              className="w-full h-full object-cover"
+              animate={{
+                scale: [1, 1.05, 1],
               }}
-              className="w-full h-full object-cover grayscale brightness-[0.6]"
-              poster="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&q=80&w=1920"
-            >
-              <source src="https://drive.google.com/uc?id=1tBsHta7H2PLfgAcB4YXjUCiDf0ZzaFJa" type="video/mp4" />
-              <source src="https://assets.mixkit.co/videos/preview/mixkit-city-traffic-at-night-1003-large.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+              transition={{
+                duration: 30,
+                ease: "linear",
+                repeat: Infinity,
+                repeatType: "reverse"
+              }}
+            />
           </motion.div>
-          {!isVideoLoaded && (
-            <div className="absolute inset-0 bg-[#1a1a1a] flex items-center justify-center">
-              <div className="w-full h-full bg-linear-to-b from-[#1a1a1a] via-[#262626] to-[#1a1a1a] animate-pulse" />
+        </div>
+        
+        <div className="relative z-20 max-w-5xl p-0">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="inline-block px-3 py-1 bg-white/10 border border-white/20 text-white text-[10px] font-bold tracking-widest uppercase mb-8">
+              Design & Technology
             </div>
-          )}
+            <h1 className="text-[10vw] md:text-[7vw] font-bold leading-[0.85] tracking-tighter mb-12 text-accent">
+              INNOVATIVE <br /> DIGITAL <br /> EXPERIENCES.
+            </h1>
+            <p className="max-w-md text-lg md:text-xl text-white/70 leading-relaxed mb-12 font-light">
+              We create innovative digital experiences tailored for the modern market, focusing on experimental concepts and effective branding strategies.
+            </p>
+            <div className="flex gap-6 items-center">
+              <button 
+                onClick={() => setShowContactForm(true)}
+                className="px-8 py-4 bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-accent transition-all"
+              >
+                Start a Project
+              </button>
+              <div className="flex gap-2 items-center text-[10px] uppercase tracking-[0.4em] font-bold text-white/30">
+                <div className="w-12 h-px bg-white/10" />
+                Scroll to explore
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -488,26 +461,41 @@ export default function App() {
                     exit={{ opacity: 0 }}
                     className="relative"
                   >
-                    {isFolding && (
-                      <motion.div 
-                        initial={{ opacity: 0, scale: 0, rotate: -45 }}
-                        animate={{ 
-                          opacity: [0, 1, 1], 
-                          scale: [0, 4, 3],
-                          rotate: [-45, -12, -12],
-                          x: [0, 0, 0],
-                          y: [0, 0, 0]
-                        }}
-                        transition={{ duration: 1.5, times: [0, 0.4, 1] }}
-                        className="absolute inset-0 flex items-center justify-center z-50 text-accent pointer-events-none"
-                      >
-                        <Send className="w-16 h-16" />
-                      </motion.div>
-                    )}
+                    <AnimatePresence>
+                      {isFolding && (
+                        <motion.div 
+                          initial={{ opacity: 0, scale: 0, rotate: -45, x: 0, y: 0 }}
+                          animate={{ 
+                            opacity: [0, 1, 1, 0], 
+                            scale: [0, 1.5, 1.5, 0.5],
+                            rotate: [-45, -12, -12, -12],
+                            x: [0, 0, 0, 500],
+                            y: [0, 0, 0, -500]
+                          }}
+                          exit={{ opacity: 0 }}
+                          transition={{ 
+                            duration: 2, 
+                            times: [0, 0.2, 0.7, 1],
+                            ease: "easeInOut"
+                          }}
+                          className="absolute inset-0 flex items-center justify-center z-50 text-accent pointer-events-none"
+                        >
+                          <Send className="w-24 h-24" />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                     
                     <motion.div
-                      animate={isFolding ? { opacity: 0, scale: 0.8, filter: 'blur(10px)' } : { opacity: 1 }}
-                      transition={{ duration: 0.5 }}
+                      animate={isFolding ? { 
+                        opacity: 0, 
+                        scale: 0.9, 
+                        filter: 'blur(20px)',
+                        transition: { duration: 0.8, ease: "easeIn" }
+                      } : { 
+                        opacity: 1,
+                        scale: 1,
+                        filter: 'blur(0px)'
+                      }}
                     >
                       <button 
                         onClick={() => setShowContactForm(false)}
