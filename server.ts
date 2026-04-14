@@ -8,10 +8,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const mailgun = new Mailgun(formData);
-const mg = mailgun.client({
-  username: "api",
-  key: process.env.MAILGUN_API_KEY || "",
-});
 
 async function startServer() {
   const app = express();
@@ -25,10 +21,15 @@ async function startServer() {
 
     if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
       console.error("Mailgun configuration is missing");
-      return res.status(500).json({ error: "Email service not configured" });
+      return res.status(500).json({ error: "Email service not configured. Please add MAILGUN_API_KEY and MAILGUN_DOMAIN to your environment variables." });
     }
 
     try {
+      const mg = mailgun.client({
+        username: "api",
+        key: process.env.MAILGUN_API_KEY,
+      });
+
       const result = await mg.messages.create(process.env.MAILGUN_DOMAIN, {
         from: `OneUp Contact <postmaster@${process.env.MAILGUN_DOMAIN}>`,
         to: ["urbanstructure@gmail.com"],
