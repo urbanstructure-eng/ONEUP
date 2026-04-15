@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, animate } from 'motion/react';
-import { Instagram, Twitter, Linkedin, Mail, ChevronUp, X, ChevronLeft, ChevronRight, Send } from 'lucide-react';
+import { Instagram, Twitter, Linkedin, Mail, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile } from 'lucide-react';
 
 const PROJECTS = [
   { id: 1, title: "Aura Identity", category: "Branding", image: "https://picsum.photos/seed/aura/1200/800", colSpan: "md:col-span-8" },
@@ -34,6 +34,7 @@ export default function App() {
   const floatingElement2Y = useTransform(smoothScrollY, [0, 2000], [0, -400]);
   
   const [showTopBtn, setShowTopBtn] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
   const [selectedProject, setSelectedProject] = useState<typeof PROJECTS[0] | null>(null);
   const [showContactForm, setShowContactForm] = useState(false);
   const [isFolding, setIsFolding] = useState(false);
@@ -41,7 +42,6 @@ export default function App() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
     service: 'Brand Identity',
     message: ''
   });
@@ -53,6 +53,23 @@ export default function App() {
       } else {
         setShowTopBtn(false);
       }
+
+      // Track active section
+      const sections = ['work', 'services', 'about', 'contact'];
+      const scrollPosition = window.scrollY + 150;
+
+      let currentSection = 'hero';
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetHeight = element.offsetHeight;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            currentSection = section;
+          }
+        }
+      }
+      setActiveSection(currentSection);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -104,7 +121,7 @@ export default function App() {
       setTimeout(() => {
         setIsSent(true);
         setIsFolding(false);
-        setFormData({ name: '', email: '', phone: '', service: 'Brand Identity', message: '' });
+        setFormData({ name: '', email: '', service: 'Brand Identity', message: '' });
         
         setTimeout(() => {
           setShowContactForm(false);
@@ -120,6 +137,7 @@ export default function App() {
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
+    setActiveSection(id);
     const element = document.getElementById(id);
     if (element) {
       const offset = 80; // Account for fixed nav height
@@ -155,11 +173,26 @@ export default function App() {
             }}
           />
         </div>
-        <div className="flex gap-12 text-[10px] uppercase tracking-[0.4em] font-bold text-white/40">
-          <a href="#work" onClick={(e) => scrollToSection(e, 'work')} className="hover:text-accent transition-colors">Work</a>
-          <a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="hover:text-accent transition-colors">Services</a>
-          <a href="#about" onClick={(e) => scrollToSection(e, 'about')} className="hover:text-accent transition-colors">About</a>
-          <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className="hover:text-accent transition-colors">Contact</a>
+        <div className="flex gap-8 md:gap-12 text-[10px] uppercase tracking-[0.4em] font-bold text-white/40">
+          {['work', 'services', 'about', 'contact'].map((id) => (
+            <a 
+              key={id}
+              href={`#${id}`} 
+              onClick={(e) => scrollToSection(e, id)} 
+              className={`hover:text-accent transition-colors relative flex items-center gap-2 ${activeSection === id ? 'text-white' : ''}`}
+            >
+              {activeSection === id && (
+                <motion.div 
+                  layoutId="nav-arrow"
+                  className="text-white"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                >
+                  <ArrowUpRight className="w-3 h-3" strokeWidth={3} />
+                </motion.div>
+              )}
+              {id.charAt(0).toUpperCase() + id.slice(1)}
+            </a>
+          ))}
         </div>
       </nav>
 
@@ -303,13 +336,13 @@ export default function App() {
               transition={{ delay: i * 0.1 }}
               className="p-8 md:p-16 border-r border-b border-white/10 hover:bg-white/[0.02] transition-colors group bg-[#262626]/50"
             >
-              <div className="w-16 h-16 border border-accent/30 flex items-center justify-center text-accent mb-12 group-hover:border-accent transition-all relative overflow-hidden">
+              <div className="w-16 h-16 flex items-center justify-center mb-12 relative overflow-hidden">
                 <motion.img 
                   src="https://lh3.googleusercontent.com/d/1Qm0emmiJjUXmvP1LDjXdL7JRkU1yotIf"
                   alt="service icon"
-                  className="w-10 h-10 object-contain"
-                  initial={{ y: 0 }}
-                  whileHover={{ y: -8 }}
+                  className="w-12 h-12 object-contain"
+                  initial={{ scale: 1, x: 0, y: 0 }}
+                  whileHover={{ scale: 1.1, x: 5, y: -5 }}
                   transition={{ 
                     type: "spring",
                     stiffness: 300,
@@ -318,7 +351,7 @@ export default function App() {
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <h3 className="text-2xl font-bold mb-6 uppercase tracking-tight">{service.title}</h3>
+              <h3 className="text-2xl font-bold mb-6 uppercase tracking-tight group-hover:text-accent transition-colors">{service.title}</h3>
               <p className="text-white/40 text-base leading-relaxed">{service.desc}</p>
             </motion.div>
           ))}
@@ -328,31 +361,25 @@ export default function App() {
       {/* Philosophy Section */}
       <section id="about" className="relative z-10 px-6 md:px-12 py-32 md:py-56 border-b border-white/10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-0 border-t border-l border-white/10">
-          <div className="md:col-span-8 p-12 md:p-24 border-r border-b border-white/10">
-            <span className="text-accent text-[10px] font-bold tracking-[0.5em] uppercase mb-12 block">Our Approach</span>
-            <h2 className="text-4xl md:text-7xl font-bold tracking-tighter leading-[0.9]">
+          <div className="md:col-span-8 pt-8 pb-12 md:pt-16 md:pb-24 px-12 md:px-24 border-r border-b border-white/10">
+            <span className="text-accent text-[14px] font-black tracking-[0.7em] uppercase mb-12 block">Our Approach</span>
+            <h2 className="text-4xl md:text-7xl font-black tracking-tighter leading-[0.9]">
               WE COMBINE <span className="text-accent">CREATIVITY</span> AND TECHNOLOGY TO ELEVATE BRAND PRESENCE.
             </h2>
           </div>
-          <div className="md:col-span-4 p-12 border-r border-b border-white/10 flex flex-col justify-between bg-[#262626]/30">
+          <div className="md:col-span-4 pt-8 pb-12 md:pt-16 md:pb-24 px-12 border-r border-b border-white/10 flex flex-col justify-between bg-[#262626]/30">
             <p className="text-xl text-white/40 leading-relaxed font-light mb-12">
               Our approach combines creativity and technology to engage audiences and elevate brand presence in a competitive landscape.
             </p>
             <div className="space-y-12">
-              <div className="space-y-6">
-                <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/20">Our Approach</span>
-                <div className="space-y-4">
-                  {['Research Driven', 'Aesthetic Precision', 'Technical Excellence'].map((item) => (
-                    <div key={item} className="flex items-center gap-4 text-sm font-medium uppercase tracking-widest">
-                      <div className="w-1.5 h-1.5 bg-accent" />
-                      {item}
-                    </div>
-                  ))}
-                </div>
+              <div className="space-y-4">
+                {['Our Approach', 'Research Driven', 'Aesthetic Precision', 'Technical Excellence'].map((item) => (
+                  <div key={item} className="flex items-center gap-4 text-sm font-medium uppercase tracking-widest">
+                    <div className="w-1.5 h-1.5 bg-accent" />
+                    {item}
+                  </div>
+                ))}
               </div>
-              <button className="text-[10px] uppercase tracking-[0.4em] font-bold text-accent border-b border-accent/20 pb-4 self-start hover:border-accent transition-all">
-                Discover our story
-              </button>
             </div>
           </div>
         </div>
@@ -405,7 +432,10 @@ export default function App() {
           <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
           <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
         </div>
-        <div>Tokyo / Remote / Worldwide</div>
+        <div className="flex items-center gap-2 text-white/40">
+          globally yours!
+          <Smile className="w-4 h-4 text-white" />
+        </div>
       </footer>
 
       {/* Contact Form Modal */}
@@ -561,17 +591,6 @@ export default function App() {
                                 className="w-full bg-transparent border-b border-white/10 py-4 focus:border-accent outline-none transition-colors font-light text-lg"
                               />
                             </div>
-                          </div>
-
-                          <div className="space-y-2 group">
-                            <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/30 group-focus-within:text-accent transition-colors">Phone</label>
-                            <input 
-                              type="tel" 
-                              placeholder="Your Phone Number"
-                              value={formData.phone}
-                              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                              className="w-full bg-transparent border-b border-white/10 py-4 focus:border-accent outline-none transition-colors font-light text-lg"
-                            />
                           </div>
 
                           <div className="space-y-2 group">
