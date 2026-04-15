@@ -283,14 +283,14 @@ export default function App() {
                 <motion.img 
                   whileHover={{ scale: 1.05 }}
                   animate={project.title === "Padelux" ? {
-                    scale: [1, 1.08, 1],
-                    x: [0, -10, 0],
-                    y: [0, 5, 0]
+                    scale: [1.1, 1.15, 1.1],
+                    x: [0, -20, 20, 0],
+                    y: [0, 15, -15, 0]
                   } : {}}
                   transition={project.title === "Padelux" ? {
-                    duration: 20,
+                    duration: 25,
                     repeat: Infinity,
-                    ease: "linear"
+                    ease: "easeInOut"
                   } : { duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                   src={project.image} 
                   alt={project.title}
