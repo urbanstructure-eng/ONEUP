@@ -19,7 +19,18 @@ async function startServer() {
   app.post("/api/send-email", async (req, res) => {
     const { name, email, service, message } = req.body;
 
-    if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
+    const rawDomain = process.env.MAILGUN_DOMAIN || "";
+    const domain = rawDomain.replace(/^https?:\/\//, "").replace(/\/$/, "");
+    const apiKey = process.env.MAILGUN_API_KEY;
+    
+    // Validate MAILGUN_URL - must be a valid Mailgun API endpoint
+    let url = "https://api.mailgun.net";
+    const envUrl = process.env.MAILGUN_URL;
+    if (envUrl && envUrl.includes("mailgun.net") && envUrl.startsWith("http")) {
+      url = envUrl;
+    }
+
+    if (!apiKey || !domain) {
       console.error("Mailgun configuration is missing");
       return res.status(500).json({ error: "Email service not configured. Please add MAILGUN_API_KEY and MAILGUN_DOMAIN to your environment variables." });
     }
@@ -27,11 +38,12 @@ async function startServer() {
     try {
       const mg = mailgun.client({
         username: "api",
-        key: process.env.MAILGUN_API_KEY,
+        key: apiKey,
+        url: url,
       });
 
-      const result = await mg.messages.create(process.env.MAILGUN_DOMAIN, {
-        from: `OneUp Contact <postmaster@${process.env.MAILGUN_DOMAIN}>`,
+      const result = await mg.messages.create(domain, {
+        from: `OneUp Contact <mailgun@${domain}>`,
         to: ["urbanstructure@gmail.com"],
         subject: `New Inquiry from ${name} - ${service}`,
         text: `
@@ -42,19 +54,26 @@ Service: ${service}
 Message: ${message}
         `,
         html: `
-          <h2>New Project Inquiry</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Service:</strong> ${service}</p>
-          <p><strong>Message:</strong></p>
-          <p>${message}</p>
+          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+            <h2 style="color: #333; border-bottom: 2px solid #eee; padding-bottom: 10px;">New Project Inquiry</h2>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Service:</strong> ${service}</p>
+            <div style="margin-top: 20px; padding: 15px; background-color: #f9f9f9; border-radius: 5px;">
+              <strong>Message:</strong><br/>
+              <p style="white-space: pre-wrap;">${message}</p>
+            </div>
+          </div>
         `,
       });
 
       res.status(200).json({ success: true, data: result });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error sending email via Mailgun:", error);
-      res.status(500).json({ error: "Failed to send email" });
+      res.status(500).json({ 
+        error: "Failed to send email", 
+        details: error.message || "Unknown error"
+      });
     }
   });
 

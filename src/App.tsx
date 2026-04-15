@@ -95,7 +95,8 @@ export default function App() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to send email');
+        const errorData = await response.json();
+        throw new Error(errorData.details || 'Failed to send email');
       }
 
       // Smooth transition sequence
@@ -109,9 +110,9 @@ export default function App() {
           setIsSent(false);
         }, 5000);
       }, 2000); // Match the plane flight duration
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error:', error);
-      alert('Failed to send inquiry. Please try again later.');
+      alert(`Failed to send inquiry: ${error.message}. Please check your Mailgun configuration.`);
       setIsFolding(false);
     }
   };
