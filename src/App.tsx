@@ -10,7 +10,7 @@ import { Instagram, Twitter, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, 
 const PROJECTS = [
   { id: 1, title: "Aura Identity", category: "Branding", image: "https://picsum.photos/seed/aura/1200/800", colSpan: "md:col-span-8" },
   { id: 2, title: "Vortex Digital", category: "UI/UX", image: "https://picsum.photos/seed/vortex/800/800", colSpan: "md:col-span-4" },
-  { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1QUgg-LysxkcGFNW0K7F-DaYeU_F_H0cS", colSpan: "md:col-span-4" },
+  { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1VAN-GqZ2QduoqhcfJbiHR5nmT6ouaNti", colSpan: "md:col-span-4" },
   { id: 4, title: "Nova Campaign", category: "Art Direction", image: "https://picsum.photos/seed/nova/800/800", colSpan: "md:col-span-4" },
   { id: 5, title: "Zenith Web", category: "Development", image: "https://picsum.photos/seed/zenith/800/1000", colSpan: "md:col-span-4" },
   { id: 6, title: "Pulse Motion", category: "Animation", image: "https://picsum.photos/seed/pulse/1200/675", colSpan: "md:col-span-6" },
