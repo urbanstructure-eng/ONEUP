@@ -17,7 +17,7 @@ async function startServer() {
 
   // API routes
   app.post("/api/send-email", async (req, res) => {
-    const { name, email, service, message } = req.body;
+    const { name, email, phone, service, message } = req.body;
 
     const rawDomain = process.env.MAILGUN_DOMAIN || "";
     const domain = rawDomain.replace(/^https?:\/\//, "").replace(/\/$/, "");
@@ -50,6 +50,7 @@ async function startServer() {
 New Project Inquiry
 Name: ${name}
 Email: ${email}
+Phone: ${phone || 'Not provided'}
 Service: ${service}
 Message: ${message}
         `,
@@ -58,6 +59,7 @@ Message: ${message}
             <h2 style="color: #333; border-bottom: 2px solid #eee; padding-bottom: 10px;">New Project Inquiry</h2>
             <p><strong>Name:</strong> ${name}</p>
             <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
             <p><strong>Service:</strong> ${service}</p>
             <div style="margin-top: 20px; padding: 15px; background-color: #f9f9f9; border-radius: 5px;">
               <strong>Message:</strong><br/>

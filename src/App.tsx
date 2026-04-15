@@ -41,6 +41,7 @@ export default function App() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     service: 'Brand Identity',
     message: ''
   });
@@ -103,7 +104,7 @@ export default function App() {
       setTimeout(() => {
         setIsSent(true);
         setIsFolding(false);
-        setFormData({ name: '', email: '', service: 'Brand Identity', message: '' });
+        setFormData({ name: '', email: '', phone: '', service: 'Brand Identity', message: '' });
         
         setTimeout(() => {
           setShowContactForm(false);
@@ -560,6 +561,17 @@ export default function App() {
                                 className="w-full bg-transparent border-b border-white/10 py-4 focus:border-accent outline-none transition-colors font-light text-lg"
                               />
                             </div>
+                          </div>
+
+                          <div className="space-y-2 group">
+                            <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/30 group-focus-within:text-accent transition-colors">Phone</label>
+                            <input 
+                              type="tel" 
+                              placeholder="Your Phone Number"
+                              value={formData.phone}
+                              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                              className="w-full bg-transparent border-b border-white/10 py-4 focus:border-accent outline-none transition-colors font-light text-lg"
+                            />
                           </div>
 
                           <div className="space-y-2 group">
