@@ -38,6 +38,7 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState<typeof PROJECTS[0] | null>(null);
   const [showContactForm, setShowContactForm] = useState(false);
   const [showLegalModal, setShowLegalModal] = useState(false);
+  const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
   const [isFolding, setIsFolding] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [formData, setFormData] = useState({
@@ -835,7 +836,17 @@ export default function App() {
                     
                     <div className="space-y-6 pt-8 border-t border-black/10">
                       <p className="text-xl text-black/60 leading-relaxed font-light">
-                        A deep dive into the creative process for {selectedProject.title}. We focused on delivering a unique visual language that resonates with the target audience while maintaining technical excellence.
+                        {selectedProject.title === "Padelux" ? (
+                          <>
+                            The challenge for Padelux was to create a minimalist branding identity for an exclusive padel club with a global presence. The design emphasizes elegance and simplicity, ensuring that the brand stands out in a competitive market.
+                            <br /><br />
+                            Throughout the branding process, a consistent minimalist approach was maintained, reflecting the club's sophisticated image. This strategy not only enhances the club's appeal but also aligns with its vision of becoming a premier destination for padel enthusiasts worldwide.
+                            <br /><br />
+                            Padel, a sport that originated in Acapulco, Mexico, was created by Enrique Corcuera. This innovative game has since gained immense popularity, expanding its reach across the globe and establishing itself as a favored pastime in various countries. The branding of Padel emphasizes its roots in Acapulco, highlighting the significance of its birthplace in the sport's development and worldwide appeal.
+                          </>
+                        ) : (
+                          `A deep dive into the creative process for ${selectedProject.title}. We focused on delivering a unique visual language that resonates with the target audience while maintaining technical excellence.`
+                        )}
                       </p>
                       
                       <div className="grid grid-cols-2 gap-8 pt-8">
@@ -856,30 +867,50 @@ export default function App() {
                       initial={{ y: 40, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                      className="aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-black/5"
+                      className="aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-black/5 cursor-zoom-in"
+                      onClick={() => setFullscreenImage(selectedProject.image)}
                     >
                       <img 
                         src={selectedProject.image} 
                         alt={selectedProject.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                         referrerPolicy="no-referrer"
                       />
                     </motion.div>
                     
                     <div className="mt-12 space-y-12">
-                      <div className="aspect-video overflow-hidden bg-black/5">
+                      {selectedProject.title === "Padelux" && (
+                        <div 
+                          className="aspect-video overflow-hidden bg-black/5 cursor-zoom-in"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1UuVdgJLR2bxlEPiLaJUcliG_GbgloEgj")}
+                        >
+                          <img 
+                            src="https://lh3.googleusercontent.com/d/1UuVdgJLR2bxlEPiLaJUcliG_GbgloEgj" 
+                            alt="Padelux Detail"
+                            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                            referrerPolicy="no-referrer"
+                          />
+                        </div>
+                      )}
+                      <div 
+                        className="aspect-video overflow-hidden bg-black/5 cursor-zoom-in"
+                        onClick={() => setFullscreenImage(`https://picsum.photos/seed/${selectedProject.id + 100}/1200/800`)}
+                      >
                         <img 
                           src={`https://picsum.photos/seed/${selectedProject.id + 100}/1200/800`} 
                           alt="Detail 1"
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                           referrerPolicy="no-referrer"
                         />
                       </div>
-                      <div className="aspect-video overflow-hidden bg-black/5">
+                      <div 
+                        className="aspect-video overflow-hidden bg-black/5 cursor-zoom-in"
+                        onClick={() => setFullscreenImage(`https://picsum.photos/seed/${selectedProject.id + 200}/1200/800`)}
+                      >
                         <img 
                           src={`https://picsum.photos/seed/${selectedProject.id + 200}/1200/800`} 
                           alt="Detail 2"
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                           referrerPolicy="no-referrer"
                         />
                       </div>
@@ -905,6 +936,39 @@ export default function App() {
       </AnimatePresence>
 
       {/* Back to Top Button */}
+      <AnimatePresence>
+        {fullscreenImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setFullscreenImage(null)}
+            className="fixed inset-0 z-[300] bg-black/95 flex items-center justify-center p-4 md:p-12 cursor-zoom-out"
+          >
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                setFullscreenImage(null);
+              }}
+              className="absolute top-8 right-8 p-2 text-white/50 hover:text-white transition-colors group"
+            >
+              <X className="w-10 h-10 group-hover:rotate-90 transition-transform duration-300" />
+            </button>
+            <motion.img
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              src={fullscreenImage}
+              alt="Fullscreen view"
+              className="max-w-full max-h-full object-contain shadow-2xl"
+              referrerPolicy="no-referrer"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <AnimatePresence>
         {showTopBtn && (
           <motion.button
