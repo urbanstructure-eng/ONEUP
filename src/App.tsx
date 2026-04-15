@@ -10,7 +10,7 @@ import { Instagram, Twitter, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, 
 const PROJECTS = [
   { id: 1, title: "Aura Identity", category: "Branding", image: "https://picsum.photos/seed/aura/1200/800", colSpan: "md:col-span-8" },
   { id: 2, title: "Vortex Digital", category: "UI/UX", image: "https://picsum.photos/seed/vortex/800/800", colSpan: "md:col-span-4" },
-  { id: 3, title: "Lunar Editorial", category: "Print", image: "https://picsum.photos/seed/lunar/800/1000", colSpan: "md:col-span-4" },
+  { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1QUgg-LysxkcGFNW0K7F-DaYeU_F_H0cS", colSpan: "md:col-span-4" },
   { id: 4, title: "Nova Campaign", category: "Art Direction", image: "https://picsum.photos/seed/nova/800/800", colSpan: "md:col-span-4" },
   { id: 5, title: "Zenith Web", category: "Development", image: "https://picsum.photos/seed/zenith/800/1000", colSpan: "md:col-span-4" },
   { id: 6, title: "Pulse Motion", category: "Animation", image: "https://picsum.photos/seed/pulse/1200/675", colSpan: "md:col-span-6" },
@@ -265,7 +265,7 @@ export default function App() {
             <span className="text-accent text-[10px] font-bold tracking-[0.3em] uppercase mb-4 block">Portfolio</span>
             <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">SELECTED WORK</h2>
           </div>
-          <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-white/20 font-mono hidden md:block">2022 — 2024</span>
+          <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-white/20 font-mono hidden md:block">2022 — 2026</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-0 border-t border-l border-white/10">
@@ -831,7 +831,7 @@ export default function App() {
                       <div className="grid grid-cols-2 gap-8 pt-8">
                         <div>
                           <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">Year</span>
-                          <span className="text-sm font-medium">2024</span>
+                          <span className="text-sm font-medium">2026</span>
                         </div>
                         <div>
                           <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">Role</span>
