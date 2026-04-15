@@ -282,7 +282,16 @@ export default function App() {
               <div className="relative h-[320px] overflow-hidden bg-[#262626]">
                 <motion.img 
                   whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  animate={project.title === "Padelux" ? {
+                    scale: [1, 1.08, 1],
+                    x: [0, -10, 0],
+                    y: [0, 5, 0]
+                  } : {}}
+                  transition={project.title === "Padelux" ? {
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear"
+                  } : { duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                   src={project.image} 
                   alt={project.title}
                   referrerPolicy="no-referrer"
