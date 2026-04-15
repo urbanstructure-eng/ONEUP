@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, animate } from 'motion/react';
-import { Instagram, Twitter, Linkedin, Mail, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile } from 'lucide-react';
+import { Instagram, Twitter, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile } from 'lucide-react';
 
 const PROJECTS = [
   { id: 1, title: "Aura Identity", category: "Branding", image: "https://picsum.photos/seed/aura/1200/800", colSpan: "md:col-span-8" },
@@ -37,11 +37,13 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('hero');
   const [selectedProject, setSelectedProject] = useState<typeof PROJECTS[0] | null>(null);
   const [showContactForm, setShowContactForm] = useState(false);
+  const [showLegalModal, setShowLegalModal] = useState(false);
   const [isFolding, setIsFolding] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     service: 'Brand Identity',
     message: ''
   });
@@ -121,7 +123,7 @@ export default function App() {
       setTimeout(() => {
         setIsSent(true);
         setIsFolding(false);
-        setFormData({ name: '', email: '', service: 'Brand Identity', message: '' });
+        setFormData({ name: '', email: '', phone: '', service: 'Brand Identity', message: '' });
         
         setTimeout(() => {
           setShowContactForm(false);
@@ -163,9 +165,9 @@ export default function App() {
           className="cursor-pointer group flex items-center"
         >
           <img 
-            src="https://lh3.googleusercontent.com/d/1TWOKqxOlDfMr_JMa60cVmEFc-qdu42Iq" 
+            src="https://lh3.googleusercontent.com/d/17xzztOYQ2Sk3ZTlPOY0Pan1g0jfZikyP" 
             alt="oneup logo" 
-            className="h-11 w-auto transition-transform group-hover:scale-105"
+            className="h-12 w-auto transition-transform group-hover:scale-105"
             referrerPolicy="no-referrer"
             onError={(e) => {
               e.currentTarget.style.display = 'none';
@@ -397,18 +399,22 @@ export default function App() {
           <div className="p-12 md:p-24 border-r border-b border-white/10 flex flex-col justify-center items-center text-center bg-[#262626]/50">
             <div 
               onClick={() => setShowContactForm(true)}
-              className="group cursor-pointer mb-16"
+              className="group cursor-pointer mb-16 flex flex-col items-center"
             >
               <h2 className="text-5xl md:text-8xl font-bold tracking-tighter group-hover:text-accent transition-all">
                 SAY HELLO
               </h2>
-              <span className="text-accent text-[10px] uppercase tracking-[0.5em] font-bold mt-4 block">
-                Start a project
-              </span>
+              <div className="flex items-center gap-4 mt-8 group-hover:gap-6 transition-all">
+                <div className="h-[1px] w-12 bg-accent/30 group-hover:w-20 transition-all" />
+                <span className="text-accent text-xl md:text-3xl uppercase tracking-[0.2em] font-black whitespace-nowrap">
+                  START A PROJECT
+                </span>
+                <div className="h-[1px] w-12 bg-accent/30 group-hover:w-20 transition-all" />
+              </div>
             </div>
             
             <div className="flex gap-8 justify-center">
-              {[Instagram, Twitter, Linkedin, Mail].map((Icon, i) => (
+              {[Instagram, Twitter, Linkedin].map((Icon, i) => (
                 <motion.a 
                   key={i} 
                   href="#" 
@@ -426,11 +432,11 @@ export default function App() {
       {/* Footer */}
       <footer className="relative z-10 px-6 md:px-12 py-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] uppercase tracking-[0.3em] font-bold text-white/20 font-mono bg-[#1a1a1a]">
         <div className="flex items-center gap-4">
-          © 2024 oneup.
+          © 2026 oneup. Design studio / Atelier de création
         </div>
         <div className="flex gap-12">
-          <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+          <button onClick={() => setShowLegalModal(true)} className="hover:text-white transition-colors">Privacy Policy</button>
+          <button onClick={() => setShowLegalModal(true)} className="hover:text-white transition-colors">Terms of Service</button>
         </div>
         <div className="flex items-center gap-2 text-white/40">
           globally yours!
@@ -489,9 +495,9 @@ export default function App() {
                     <div className="space-y-6">
                       <div className="flex items-center justify-center opacity-40">
                         <img 
-                          src="https://lh3.googleusercontent.com/d/1TWOKqxOlDfMr_JMa60cVmEFc-qdu42Iq" 
+                          src="https://lh3.googleusercontent.com/d/17xzztOYQ2Sk3ZTlPOY0Pan1g0jfZikyP" 
                           alt="oneup logo" 
-                          className="h-11 w-auto"
+                          className="h-10 w-auto"
                           referrerPolicy="no-referrer"
                           onError={(e) => {
                             e.currentTarget.style.display = 'none';
@@ -562,7 +568,15 @@ export default function App() {
                       </button>
 
                       <div className="p-8 md:p-16">
-                        <div className="mb-12">
+                        <div className="mb-12 text-center">
+                          <div className="mb-10 flex justify-center opacity-90">
+                            <img 
+                              src="https://lh3.googleusercontent.com/d/17xzztOYQ2Sk3ZTlPOY0Pan1g0jfZikyP" 
+                              alt="oneup logo" 
+                              className="h-11 md:h-15 w-auto"
+                              referrerPolicy="no-referrer"
+                            />
+                          </div>
                           <span className="text-accent text-[10px] font-bold tracking-[0.5em] uppercase mb-4 block">Inquiry</span>
                           <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">START A PROJECT</h2>
                         </div>
@@ -588,6 +602,16 @@ export default function App() {
                                 placeholder="your@email.com"
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                className="w-full bg-transparent border-b border-white/10 py-4 focus:border-accent outline-none transition-colors font-light text-lg"
+                              />
+                            </div>
+                            <div className="space-y-2 group md:col-span-2 lg:col-span-1">
+                              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/30 group-focus-within:text-accent transition-colors">Phone (Optional)</label>
+                              <input 
+                                type="tel" 
+                                placeholder="+1 (555) 000-0000"
+                                value={formData.phone}
+                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                                 className="w-full bg-transparent border-b border-white/10 py-4 focus:border-accent outline-none transition-colors font-light text-lg"
                               />
                             </div>
@@ -637,6 +661,98 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      {/* Legal Modal */}
+      <AnimatePresence>
+        {showLegalModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] bg-black text-white overflow-y-auto"
+          >
+            <div className="min-h-screen flex flex-col">
+              <nav className="sticky top-0 w-full px-6 py-8 md:px-12 flex justify-between items-center bg-black/80 backdrop-blur-md z-10 border-b border-white/10">
+                <div className="flex items-center">
+                  <img 
+                    src="https://lh3.googleusercontent.com/d/17xzztOYQ2Sk3ZTlPOY0Pan1g0jfZikyP" 
+                    alt="oneup logo" 
+                    className="h-12 w-auto"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <button 
+                  onClick={() => setShowLegalModal(false)}
+                  className="p-2 hover:bg-white/10 rounded-full transition-colors group"
+                >
+                  <X className="w-8 h-8 group-hover:rotate-90 transition-transform duration-300" />
+                </button>
+              </nav>
+
+              <main className="flex-grow px-6 md:px-12 py-24 max-w-4xl mx-auto w-full">
+                <div className="space-y-32">
+                  {/* Privacy Policy */}
+                  <section>
+                    <span className="text-accent text-[10px] font-bold tracking-[0.5em] uppercase mb-8 block">Legal</span>
+                    <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-16">PRIVACY POLICY</h2>
+                    <div className="prose prose-invert prose-lg max-w-none text-white/60 font-light leading-relaxed space-y-8">
+                      <p>At oneup, we take your privacy seriously. This policy outlines how we collect, use, and protect your personal information when you interact with our design studio.</p>
+                      <div className="space-y-4">
+                        <h3 className="text-white font-bold text-xl uppercase tracking-tight">1. Information Collection</h3>
+                        <p>We collect information you provide directly to us, such as when you submit an inquiry through our contact form. This may include your name, email address, phone number, and project details.</p>
+                      </div>
+                      <div className="space-y-4">
+                        <h3 className="text-white font-bold text-xl uppercase tracking-tight">2. Use of Information</h3>
+                        <p>We use the information we collect to respond to your inquiries, provide our services, and improve our studio's offerings. We do not sell or share your personal information with third parties for marketing purposes.</p>
+                      </div>
+                      <div className="space-y-4">
+                        <h3 className="text-white font-bold text-xl uppercase tracking-tight">3. Data Security</h3>
+                        <p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, or destruction.</p>
+                      </div>
+                    </div>
+                  </section>
+
+                  {/* Divider */}
+                  <div className="h-px w-full bg-white/10" />
+
+                  {/* Terms of Service */}
+                  <section>
+                    <span className="text-accent text-[10px] font-bold tracking-[0.5em] uppercase mb-8 block">Legal</span>
+                    <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-16">TERMS OF SERVICE</h2>
+                    <div className="prose prose-invert prose-lg max-w-none text-white/60 font-light leading-relaxed space-y-8">
+                      <p>By accessing or using the services provided by oneup, you agree to be bound by these terms of service.</p>
+                      <div className="space-y-4">
+                        <h3 className="text-white font-bold text-xl uppercase tracking-tight">1. Services</h3>
+                        <p>oneup provides design and technology services, including branding, digital design, and art direction. The specific scope of work for each project will be outlined in a separate agreement.</p>
+                      </div>
+                      <div className="space-y-4">
+                        <h3 className="text-white font-bold text-xl uppercase tracking-tight">2. Intellectual Property</h3>
+                        <p>Unless otherwise agreed in writing, all intellectual property rights in the work created by oneup remain the property of the studio until full payment is received.</p>
+                      </div>
+                      <div className="space-y-4">
+                        <h3 className="text-white font-bold text-xl uppercase tracking-tight">3. Limitation of Liability</h3>
+                        <p>oneup shall not be liable for any indirect, incidental, or consequential damages arising out of or in connection with our services.</p>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </main>
+
+              <footer className="px-6 md:px-12 py-12 border-t border-white/10 flex flex-col items-center gap-8">
+                <button 
+                  onClick={() => setShowLegalModal(false)}
+                  className="text-[10px] uppercase tracking-[0.4em] font-bold hover:text-accent transition-colors"
+                >
+                  Close Legal
+                </button>
+                <div className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/20">
+                  oneup © 2026 Design studio / Atelier de création
+                </div>
+              </footer>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Project Detail Modal */}
       <AnimatePresence>
         {selectedProject && (
@@ -656,7 +772,7 @@ export default function App() {
                   <img 
                     src="https://lh3.googleusercontent.com/d/1N6Tfo4zos_u-SMF0PDBggzLPxjNA9XBG" 
                     alt="oneup logo" 
-                    className="h-11 w-auto transition-transform group-hover:scale-105"
+                    className="h-12 w-auto transition-transform group-hover:scale-105"
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
@@ -770,7 +886,7 @@ export default function App() {
                   Close Project
                 </button>
                 <div className="text-[10px] uppercase tracking-[0.4em] font-bold text-black/20">
-                  oneup © 2024
+                  oneup © 2026 Design studio / Atelier de création
                 </div>
               </footer>
             </div>
