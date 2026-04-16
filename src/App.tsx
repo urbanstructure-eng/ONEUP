@@ -266,7 +266,8 @@ export default function App() {
         project.image,
         "https://lh3.googleusercontent.com/d/1bfBeD1gkZHwMAtkjnWj5Tl5CjkDsHuJI",
         "https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI",
-        "https://lh3.googleusercontent.com/d/1fpYurGgn-hjRjtOVQN9bAVnEBKu_tkOD"
+        "https://lh3.googleusercontent.com/d/1fpYurGgn-hjRjtOVQN9bAVnEBKu_tkOD",
+        "https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv"
       ];
     }
     return [
@@ -1169,6 +1170,17 @@ export default function App() {
                             <img 
                               src="https://lh3.googleusercontent.com/d/1fpYurGgn-hjRjtOVQN9bAVnEBKu_tkOD" 
                               alt="Padelux Detail 3"
+                              className="w-full h-auto transition-transform duration-700 hover:scale-105"
+                              referrerPolicy="no-referrer"
+                            />
+                          </div>
+                          <div 
+                            className="overflow-hidden bg-black/5 cursor-zoom-in"
+                            onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv")}
+                          >
+                            <img 
+                              src="https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv" 
+                              alt="Padelux Detail 4"
                               className="w-full h-auto transition-transform duration-700 hover:scale-105"
                               referrerPolicy="no-referrer"
                             />
