@@ -1255,19 +1255,19 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Section 3 (Spot 3) - Wayfinding/Coordinates (Image 4) */}
+                      {/* Section 3 (Spot 4) - Wayfinding/Coordinates (Image 4) */}
                       <div 
                         className="relative overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video group"
                         onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI")}
                       >
                         <SubtleMotionImage 
                           src="https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI" 
-                          alt="Padelux Detail 4"
+                          alt="Padelux Wayfinding"
                           objectPosition="top"
                         />
                         
-                        {/* Coordinates Overlay */}
-                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        {/* Coordinates Overlay - Story View */}
+                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
                           <motion.div
                             initial={{ opacity: 0, scale: 0.95, letterSpacing: "0.2em" }}
                             whileInView={{ opacity: 1, scale: 1, letterSpacing: "1em" }}
@@ -1283,6 +1283,9 @@ export default function App() {
                           </motion.div>
                         </div>
 
+                        {/* Click feedback overlay */}
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 pointer-events-none" />
+                        
                         {/* Subtle Vignette for readability */}
                         <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-60 pointer-events-none" />
                       </div>
@@ -1295,7 +1298,7 @@ export default function App() {
                         >
                           <SubtleMotionImage 
                             src="https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv" 
-                            alt="Padelux Detail 3"
+                            alt="Padelux Heritage"
                           />
                         </div>
                         <p className="max-w-2xl text-sm text-black/40 leading-relaxed uppercase tracking-wider font-medium">
