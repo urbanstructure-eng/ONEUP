@@ -1195,32 +1195,7 @@ export default function App() {
                 <div className="space-y-24 md:space-y-48">
                   {selectedProject.title === "Padelux" ? (
                     <>
-                      {/* Section 1: Intro Text + Image */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
-                        <div className="space-y-6">
-                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">The Challenge</span>
-                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
-                            {lang === 'en' ? (
-                              "The challenge for Padelux was to create a minimalist branding identity for an exclusive padel club with a global presence. The design emphasizes elegance and simplicity, ensuring that the brand stands out in a competitive market."
-                            ) : lang === 'fr' ? (
-                              "Le défi pour Padelux était de créer une identité de marque minimaliste pour un club de padel exclusif avec une présence mondiale. Le design met l'accent sur l'élégance et la simplicité, garantissant que la marque se démarque sur un marché concurrentiel."
-                            ) : (
-                              "El desafío para Padelux fue crear una identidad de marca minimalista para un club de pádel exclusivo con presencia global. El diseño enfatiza la elegancia y la simplicidad, asegurando que la marca se destaque en un mercado competitivo."
-                            )}
-                          </p>
-                        </div>
-                        <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1p6uNNFVC96xiAjRJvtsiCn3MhA330SpH")}
-                        >
-                          <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/1p6uNNFVC96xiAjRJvtsiCn3MhA330SpH" 
-                            alt="Padelux Detail 1"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Section 2: Image + Text */}
+                      {/* Section 1: Image + Text (Process) */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
                           className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
@@ -1245,7 +1220,7 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Section 3: Large Image or Full Video grid */}
+                      {/* Section 2: Large Image or Full Video grid (History) */}
                       <div className="space-y-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
@@ -1267,7 +1242,7 @@ export default function App() {
                         </p>
                       </div>
 
-                      {/* Section 4: Final Image */}
+                      {/* Section 3 (Spot 3) - Wayfinding/Coordinates (Image 4) */}
                       <div 
                         className="relative overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video group"
                         onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI")}
@@ -1297,6 +1272,56 @@ export default function App() {
 
                         {/* Subtle Vignette for readability */}
                         <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-60 pointer-events-none" />
+                      </div>
+
+                      {/* Section 4: Vertical Mood Image (Identity) */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/169Pww9eoPuFuC3gU5bx9E02cOV7037zl")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/169Pww9eoPuFuC3gU5bx9E02cOV7037zl" 
+                            alt="Padelux Detail 5"
+                          />
+                        </div>
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Identity</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Visual cues and architectural references served as the foundation for the club's distinctive identity, bridging the gap between sport and lifestyle."
+                            ) : lang === 'fr' ? (
+                              "Les indices visuels et les références architecturales ont servi de base à l'identité distinctive du club, comblant le fossé entre le sport et le mode de vie."
+                            ) : (
+                              "Las pistas visuales y las referencias arquitectónicas sirvieron como base para la identidad distintiva del club, cerrando la brecha entre el deporte y el estilo de vida."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Section 5: Intro Text + Image (The Challenge) */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">The Challenge</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The challenge for Padelux was to create a minimalist branding identity for an exclusive padel club with a global presence. The design emphasizes elegance and simplicity, ensuring that the brand stands out in a competitive market."
+                            ) : lang === 'fr' ? (
+                              "Le défi pour Padelux était de créer une identité de marque minimaliste pour un club de padel exclusif avec une présence mondiale. Le design met l'accent sur l'élégance et la simplicité, garantissant que la marque se démarque sur un marché concurrentiel."
+                            ) : (
+                              "El desafío para Padelux fue crear una identidad de marca minimalista para un club de pádel exclusivo con presencia global. El diseño enfatiza la elegancia y la simplicidad, asegurando que la marca se destaque en un mercado competitivo."
+                            )}
+                          </p>
+                        </div>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1p6uNNFVC96xiAjRJvtsiCn3MhA330SpH")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1p6uNNFVC96xiAjRJvtsiCn3MhA330SpH" 
+                            alt="Padelux Detail 1"
+                          />
+                        </div>
                       </div>
                     </>
                   ) : (
