@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, animate } from 'motion/react';
-import { Instagram, Twitter, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu, Play, RotateCcw } from 'lucide-react';
+import { Instagram, Twitter, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu } from 'lucide-react';
 
 const PROJECTS = [
   { id: 1, title: "Aura Identity", category: "Branding", image: "https://picsum.photos/seed/aura/1200/800", colSpan: "md:col-span-8" },
@@ -20,111 +20,21 @@ const PROJECTS = [
   { id: 10, title: "Orbit Space", category: "Exhibition", image: "https://picsum.photos/seed/orbit/1200/750", colSpan: "md:col-span-6" },
 ];
 
-const MinimalVideoPlayer = ({ src }: { src: string }) => {
-  const videoRef = React.useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isEnded, setIsEnded] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const handlePlay = () => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(err => console.error("Play failed:", err));
-      setIsPlaying(true);
-      setIsEnded(false);
-    }
-  };
-
-  const handleReplay = () => {
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(err => console.error("Replay failed:", err));
-      setIsPlaying(true);
-      setIsEnded(false);
-    }
-  };
-
-  const onTimeUpdate = () => {
-    if (videoRef.current) {
-      const p = (videoRef.current.currentTime / videoRef.current.duration) * 100;
-      setProgress(p || 0);
-    }
-  };
-
-  const onEnded = () => {
-    setIsPlaying(false);
-    setIsEnded(true);
-    setProgress(100);
-  };
-
-  const onLoadedData = () => {
-    setIsLoading(false);
-  };
-
-  return (
-    <div className="relative aspect-video rounded-sm overflow-hidden bg-black group shadow-2xl">
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-[#1a1a1a] z-30">
-          <div className="flex flex-col items-center gap-4">
-            <div className="w-8 h-8 border-2 border-accent/20 border-t-accent rounded-full animate-spin" />
-            <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/20">Loading Sequence</span>
-          </div>
-        </div>
-      )}
-      <video 
-        ref={videoRef}
-        src={src}
-        className="w-full h-full object-cover"
-        onTimeUpdate={onTimeUpdate}
-        onEnded={onEnded}
-        onLoadedData={onLoadedData}
-        onPlay={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
-        playsInline
-        autoPlay
-        muted
-        preload="auto"
-        referrerPolicy="no-referrer"
-      />
-      
-      {/* Custom Overlay */}
-      <AnimatePresence>
-        {(!isPlaying || isEnded) && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[2px] cursor-pointer z-10"
-            onClick={isEnded ? handleReplay : handlePlay}
-          >
-            <div className="flex flex-col items-center gap-4">
-              <div className="w-20 h-20 rounded-full border border-white/20 flex items-center justify-center bg-white/10 hover:bg-accent hover:border-accent transition-all duration-500 overflow-hidden group/btn">
-                {isEnded ? (
-                  <RotateCcw className="w-8 h-8 text-white group-hover/btn:rotate-[-45deg] transition-transform duration-500" />
-                ) : (
-                  <Play className="w-8 h-8 text-white fill-white ml-1" />
-                )}
-              </div>
-              <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-white/60">
-                {isEnded ? 'Replay' : 'Play Story'}
-              </span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Progress Bar (Minimal) */}
-      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-white/10 z-20">
-        <motion.div 
-          className="h-full bg-accent"
-          initial={{ width: 0 }}
-          animate={{ width: `${progress}%` }}
-          transition={{ duration: 0.1 }}
-        />
-      </div>
-    </div>
-  );
-};
+const SubtleMotionImage = ({ src, alt, className, objectPosition = "center" }: { src: string, alt: string, className?: string, objectPosition?: string }) => (
+  <motion.img
+    src={src}
+    alt={alt}
+    className={`${className} w-full h-full object-cover`}
+    style={{ objectPosition }}
+    referrerPolicy="no-referrer"
+    animate={{ scale: [1, 1.05, 1] }}
+    transition={{
+      duration: 20,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+  />
+);
 
 export default function App() {
   const { scrollY } = useScroll();
@@ -672,10 +582,10 @@ export default function App() {
       <section id="work" className="relative z-10 px-6 md:px-12 py-24 md:py-40">
         <div className="flex justify-between items-end mb-24 border-b border-white/10 pb-12">
           <div>
-            <span className="text-accent text-[10px] font-bold tracking-[0.3em] uppercase mb-4 block">{t[lang].work.tag}</span>
+            <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase mb-4 block">{t[lang].work.tag}</span>
             <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">{t[lang].work.title}</h2>
           </div>
-          <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-white/20 font-mono hidden md:block">2022 — 2026</span>
+          <span className="text-[13px] uppercase tracking-[0.3em] font-bold text-white/20 font-mono hidden md:block">2022 — 2026</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-0 border-t border-l border-white/10">
@@ -740,7 +650,7 @@ export default function App() {
       <section id="services" className="relative z-10 px-6 md:px-12 py-24 md:py-40 border-y border-white/10">
         <div className="flex justify-between items-end mb-24 border-b border-white/10 pb-12">
           <div>
-            <span className="text-accent text-[10px] font-bold tracking-[0.3em] uppercase mb-4 block">{t[lang].services.tag}</span>
+            <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase mb-4 block">{t[lang].services.tag}</span>
             <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">{t[lang].services.title}</h2>
           </div>
         </div>
@@ -813,7 +723,7 @@ export default function App() {
       <section id="contact" className="relative z-10 px-6 md:px-12 py-32 md:py-56 border-b border-white/10">
         <div className="max-w-7xl mx-auto border-t border-l border-white/10 grid grid-cols-1 md:grid-cols-2 gap-0">
           <div className="p-12 md:p-24 border-r border-b border-white/10 flex flex-col justify-center">
-            <span className="text-accent text-[10px] uppercase tracking-[0.5em] font-bold mb-12 block">{t[lang].contact.tag}</span>
+            <span className="text-accent text-[13px] uppercase tracking-[0.5em] font-bold mb-12 block">{t[lang].contact.tag}</span>
             <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-12">
               {lang === 'en' ? (
                 <>READY TO BUILD SOMETHING <span className="text-accent">EXTRAORDINARY</span>?</>
@@ -1244,7 +1154,7 @@ export default function App() {
               <main className="flex-grow px-6 md:px-12 py-12 md:py-24 max-w-7xl mx-auto w-full">
                 {/* Project Header */}
                 <div className="mb-24">
-                  <span className="text-accent text-[10px] font-bold tracking-[0.3em] uppercase mb-4 block">
+                  <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase mb-4 block">
                     {selectedProject.category}
                   </span>
                   <h2 className="text-5xl md:text-8xl font-bold tracking-tighter leading-none mb-12">
@@ -1253,15 +1163,15 @@ export default function App() {
                   </h2>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8 border-t border-black/10">
                     <div>
-                      <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">{t[lang].modal.year}</span>
+                      <span className="text-[13px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">{t[lang].modal.year}</span>
                       <span className="text-sm font-medium">2026</span>
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">{t[lang].modal.role}</span>
+                      <span className="text-[13px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">{t[lang].modal.role}</span>
                       <span className="text-sm font-medium">Lead Design</span>
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">Location</span>
+                      <span className="text-[13px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">Location</span>
                       <span className="text-sm font-medium">Global</span>
                     </div>
                   </div>
@@ -1275,11 +1185,9 @@ export default function App() {
                   className="aspect-video overflow-hidden bg-black/5 cursor-zoom-in rounded-sm mb-24 md:mb-40"
                   onClick={() => setFullscreenImage(selectedProject.image)}
                 >
-                  <img 
+                  <SubtleMotionImage 
                     src={selectedProject.image} 
                     alt={selectedProject.title}
-                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                    referrerPolicy="no-referrer"
                   />
                 </motion.div>
 
@@ -1290,7 +1198,7 @@ export default function App() {
                       {/* Section 1: Intro Text + Image */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div className="space-y-6">
-                          <span className="text-accent text-[10px] font-bold tracking-[0.3em] uppercase block">The Challenge</span>
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">The Challenge</span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                             {lang === 'en' ? (
                               "The challenge for Padelux was to create a minimalist branding identity for an exclusive padel club with a global presence. The design emphasizes elegance and simplicity, ensuring that the brand stands out in a competitive market."
@@ -1305,11 +1213,9 @@ export default function App() {
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1p6uNNFVC96xiAjRJvtsiCn3MhA330SpH")}
                         >
-                          <img 
+                          <SubtleMotionImage 
                             src="https://lh3.googleusercontent.com/d/1p6uNNFVC96xiAjRJvtsiCn3MhA330SpH" 
                             alt="Padelux Detail 1"
-                            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                            referrerPolicy="no-referrer"
                           />
                         </div>
                       </div>
@@ -1320,15 +1226,13 @@ export default function App() {
                           className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1fpYurGgn-hjRjtOVQN9bAVnEBKu_tkOD")}
                         >
-                          <img 
+                          <SubtleMotionImage 
                             src="https://lh3.googleusercontent.com/d/1fpYurGgn-hjRjtOVQN9bAVnEBKu_tkOD" 
                             alt="Padelux Detail 2"
-                            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                            referrerPolicy="no-referrer"
                           />
                         </div>
                         <div className="order-1 md:order-2 space-y-6">
-                          <span className="text-accent text-[10px] font-bold tracking-[0.3em] uppercase block">Process</span>
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Process</span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                             {lang === 'en' ? (
                               "Throughout the branding process, a consistent minimalist approach was maintained, reflecting the club's sophisticated image. This strategy not only enhances the club's appeal but also aligns with its vision."
@@ -1347,11 +1251,9 @@ export default function App() {
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv")}
                         >
-                          <img 
+                          <SubtleMotionImage 
                             src="https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv" 
                             alt="Padelux Detail 3"
-                            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                            referrerPolicy="no-referrer"
                           />
                         </div>
                         <p className="max-w-2xl text-sm text-black/40 leading-relaxed uppercase tracking-wider font-medium">
@@ -1365,13 +1267,36 @@ export default function App() {
                         </p>
                       </div>
 
-                      {/* Section 4: Final Video */}
-                      <div className="space-y-8">
-                        <MinimalVideoPlayer src="https://drive.google.com/uc?id=12Pcr-TFAsRH_fmV6SJYfCPtIsK3JtB7z&export=media" />
-                        <div className="flex justify-between items-center text-black/40">
-                          <span className="text-[10px] font-bold tracking-[0.3em] uppercase">Cinematic Sequence 01</span>
-                          <span className="text-[10px] font-bold tracking-[0.3em] uppercase">4K / 24FPS</span>
+                      {/* Section 4: Final Image */}
+                      <div 
+                        className="relative overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video group"
+                        onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI")}
+                      >
+                        <SubtleMotionImage 
+                          src="https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI" 
+                          alt="Padelux Detail 4"
+                          objectPosition="top"
+                        />
+                        
+                        {/* Coordinates Overlay */}
+                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0.95, letterSpacing: "0.2em" }}
+                            whileInView={{ opacity: 1, scale: 1, letterSpacing: "1em" }}
+                            viewport={{ once: true }}
+                            transition={{ 
+                              duration: 3, 
+                              delay: 0.5, 
+                              ease: [0.16, 1, 0.3, 1] 
+                            }}
+                            className="text-white text-base md:text-2xl font-bold uppercase tracking-[1em] whitespace-nowrap drop-shadow-2xl"
+                          >
+                            40.7246° N, 74.0019° W
+                          </motion.div>
                         </div>
+
+                        {/* Subtle Vignette for readability */}
+                        <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-60 pointer-events-none" />
                       </div>
                     </>
                   ) : (
@@ -1393,11 +1318,9 @@ export default function App() {
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square md:aspect-[4/3]"
                           onClick={() => setFullscreenImage(`https://picsum.photos/seed/${selectedProject.id + 100}/1200/800`)}
                         >
-                          <img 
+                          <SubtleMotionImage 
                             src={`https://picsum.photos/seed/${selectedProject.id + 100}/1200/800`} 
                             alt="Detail 1"
-                            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                            referrerPolicy="no-referrer"
                           />
                         </div>
                       </div>
@@ -1407,11 +1330,9 @@ export default function App() {
                           className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square md:aspect-[4/3]"
                           onClick={() => setFullscreenImage(`https://picsum.photos/seed/${selectedProject.id + 200}/1200/800`)}
                         >
-                          <img 
+                          <SubtleMotionImage 
                             src={`https://picsum.photos/seed/${selectedProject.id + 200}/1200/800`} 
                             alt="Detail 2"
-                            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                            referrerPolicy="no-referrer"
                           />
                         </div>
                         <div className="order-1 md:order-2 space-y-6">
@@ -1466,21 +1387,40 @@ export default function App() {
             >
               <X className="w-10 h-10 group-hover:rotate-90 transition-transform duration-300" />
             </button>
-            <motion.img
-              key={fullscreenImage}
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              src={fullscreenImage}
-              alt="Fullscreen view"
-              className="max-w-full max-h-full object-contain shadow-2xl cursor-pointer"
-              referrerPolicy="no-referrer"
-              onClick={(e) => {
-                e.stopPropagation();
-                nextFullscreenImage();
-              }}
-            />
+            <div className="relative max-w-full max-h-full flex items-center justify-center">
+              <motion.img
+                key={fullscreenImage}
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                src={fullscreenImage}
+                alt="Fullscreen view"
+                className="max-w-full max-h-full object-contain shadow-2xl cursor-pointer"
+                referrerPolicy="no-referrer"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextFullscreenImage();
+                }}
+              />
+
+              {fullscreenImage === "https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI" && (
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.7, letterSpacing: "0.2em" }}
+                    animate={{ opacity: 1, scale: 1, letterSpacing: "1.2em" }}
+                    transition={{ 
+                      duration: 4, 
+                      delay: 0.6, 
+                      ease: [0.16, 1, 0.3, 1] 
+                    }}
+                    className="text-white text-4xl md:text-[10vw] font-black uppercase tracking-[1.2em] whitespace-nowrap drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] px-10 text-center w-full"
+                  >
+                    40.7246° N, 74.0019° W
+                  </motion.div>
+                </div>
+              )}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
