@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, animate } from 'motion/react';
 import { Instagram, Twitter, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 
 const PROJECTS = [
   { id: 1, title: "Aura Identity", category: "Branding", image: "https://picsum.photos/seed/aura/1200/800", colSpan: "md:col-span-8" },
@@ -1541,6 +1542,7 @@ export default function App() {
           </motion.button>
         )}
       </AnimatePresence>
+      <Analytics />
     </div>
   );
 }
