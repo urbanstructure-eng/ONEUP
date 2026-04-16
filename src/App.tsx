@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, animate } from 'motion/react';
-import { Instagram, Twitter, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile } from 'lucide-react';
+import { Instagram, Twitter, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu } from 'lucide-react';
 
 const PROJECTS = [
   { id: 1, title: "Aura Identity", category: "Branding", image: "https://picsum.photos/seed/aura/1200/800", colSpan: "md:col-span-8" },
@@ -50,6 +50,7 @@ export default function App() {
   });
 
   const [lang, setLang] = useState<'en' | 'fr' | 'es'>('en');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const t = {
     en: {
@@ -184,10 +185,10 @@ export default function App() {
         ]
       },
       about: {
-        tag: 'Nuestro Enfoque',
+        tag: 'Nuestra Filosofía',
         title: 'COMBINAMOS <span className="text-accent">CREATIVIDAD</span> Y TECNOLOGÍA PARA ELEVAR LA PRESENCIA DE MARCA.',
         desc: 'Nuestro enfoque combina creatividad y tecnología para involucrar a las audiencias y elevar la presencia de la marca en un panorama competitivo.',
-        points: ['Nuestro Enfoque', 'Basado en la Investigación', 'Precisión Estética', 'Excellence Técnica']
+        points: ['Nuestro Enfoque', 'Basado en la Investigación', 'Precisión Estética', 'Excelencia Técnica']
       },
       contact: {
         tag: 'Ponte en contacto',
@@ -358,24 +359,29 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#1a1a1a] text-white selection:bg-accent selection:text-black font-sans overflow-x-hidden relative">
       {/* Navigation (Static/Fixed) */}
-      <nav className="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center backdrop-blur-md border-b border-white/10 bg-[#1a1a1a]/80">
+      <nav className="fixed top-0 left-0 w-full z-50 px-4 py-4 md:px-12 md:py-6 flex justify-between items-center backdrop-blur-md border-b border-white/10 bg-[#1a1a1a]/80">
         <div 
-          onClick={scrollToTop}
-          className="cursor-pointer group flex items-center"
+          onClick={() => {
+            scrollToTop();
+            setIsMobileMenuOpen(false);
+          }}
+          className="cursor-pointer group flex items-center shrink-0"
         >
           <img 
             src="https://lh3.googleusercontent.com/d/17xzztOYQ2Sk3ZTlPOY0Pan1g0jfZikyP" 
             alt="oneup logo" 
-            className="h-12 w-auto transition-transform group-hover:scale-105"
+            className="h-8 md:h-12 w-auto transition-transform group-hover:scale-105"
             referrerPolicy="no-referrer"
             onError={(e) => {
               e.currentTarget.style.display = 'none';
-              e.currentTarget.parentElement!.innerHTML = '<span class="text-2xl font-bold tracking-tighter">oneup</span>';
+              e.currentTarget.parentElement!.innerHTML = '<span class="text-xl md:text-2xl font-bold tracking-tighter">oneup</span>';
             }}
           />
         </div>
-        <div className="flex items-center gap-8 md:gap-12">
-          <div className="flex gap-8 md:gap-12 text-[10px] uppercase tracking-[0.4em] font-bold text-white/40">
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-12">
+          <div className="flex gap-12 text-[10px] uppercase tracking-[0.4em] font-bold text-white/40">
             {['work', 'services', 'about', 'contact'].map((id) => (
               <a 
                 key={id}
@@ -421,7 +427,75 @@ export default function App() {
             </button>
           </div>
         </div>
+
+        {/* Mobile Nav Toggle */}
+        <div className="flex md:hidden items-center gap-4">
+          <div className="flex items-center gap-2 text-[10px] font-bold border-r border-white/10 pr-4 mr-2">
+            {(['en', 'fr', 'es'] as const).map((l, i) => (
+              <React.Fragment key={l}>
+                <button 
+                  onClick={() => setLang(l)}
+                  className={`transition-colors ${lang === l ? 'text-accent' : 'text-white/40'}`}
+                >
+                  {l.toUpperCase()}
+                </button>
+                {i < 2 && <span className="text-white/10">/</span>}
+              </React.Fragment>
+            ))}
+          </div>
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="p-2 text-white/60 hover:text-accent transition-colors"
+          >
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-40 bg-[#1a1a1a] flex flex-col pt-32 px-12 md:hidden"
+          >
+            <div className="flex flex-col gap-8">
+              {['work', 'services', 'about', 'contact'].map((id, index) => (
+                <motion.a 
+                  key={id}
+                  href={`#${id}`} 
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 + 0.2 }}
+                  onClick={(e) => {
+                    scrollToSection(e, id);
+                    setIsMobileMenuOpen(false);
+                  }} 
+                  className="text-4xl font-bold tracking-tighter hover:text-accent transition-colors uppercase"
+                >
+                  {t[lang].nav[id as keyof typeof t.en.nav]}
+                </motion.a>
+              ))}
+            </div>
+            
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="mt-auto mb-12"
+            >
+              <div className="flex gap-6">
+                <a href="#" className="p-3 border border-white/10 rounded-full hover:border-accent transition-colors"><Twitter className="w-5 h-5 text-white/40" /></a>
+                <a href="#" className="p-3 border border-white/10 rounded-full hover:border-accent transition-colors"><Instagram className="w-5 h-5 text-white/40" /></a>
+                <a href="#" className="p-3 border border-white/10 rounded-full hover:border-accent transition-colors"><Linkedin className="w-5 h-5 text-white/40" /></a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Hero Section */}
       <section className="relative h-screen flex flex-col justify-center px-6 md:px-12 pt-20 overflow-hidden border-b border-white/10">
@@ -650,7 +724,7 @@ export default function App() {
               className="group cursor-pointer mb-16 flex flex-col items-center"
             >
               <h2 className="text-5xl md:text-8xl font-bold tracking-tighter group-hover:text-accent transition-all">
-                {lang === 'en' ? 'SAY HELLO' : 'DITES BONJOUR'}
+                {lang === 'en' ? 'SAY HELLO' : lang === 'fr' ? 'DITES BONJOUR' : 'HOLA'}
               </h2>
               <div className="flex items-center gap-4 mt-8 group-hover:gap-6 transition-all">
                 <div className="h-[1px] w-12 bg-accent/30 group-hover:w-20 transition-all" />
@@ -680,14 +754,18 @@ export default function App() {
       {/* Footer */}
       <footer className="relative z-10 px-6 md:px-12 py-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] uppercase tracking-[0.3em] font-bold text-white/20 font-mono bg-[#1a1a1a]">
         <div className="flex items-center gap-4">
-          © 2026 oneup. {lang === 'en' ? 'Design studio / Atelier de création' : 'Studio de design / Atelier de création'}
+          © 2026 oneup. {lang === 'en' ? 'Design studio / Creative studio' : lang === 'fr' ? 'Studio de design / Atelier de création' : 'Estudio de diseño / Taller creativo'}
         </div>
         <div className="flex gap-12">
-          <button onClick={() => setShowLegalModal(true)} className="hover:text-white transition-colors">{lang === 'en' ? 'Privacy Policy' : 'Politique de Confidentialité'}</button>
-          <button onClick={() => setShowLegalModal(true)} className="hover:text-white transition-colors">{lang === 'en' ? 'Terms of Service' : 'Conditions d\'Utilisation'}</button>
+          <button onClick={() => setShowLegalModal(true)} className="hover:text-white transition-colors">
+            {lang === 'en' ? 'Privacy Policy' : lang === 'fr' ? 'Politique de Confidentialité' : 'Política de Privacidad'}
+          </button>
+          <button onClick={() => setShowLegalModal(true)} className="hover:text-white transition-colors">
+            {lang === 'en' ? 'Terms of Service' : lang === 'fr' ? 'Conditions d\'Utilisation' : 'Términos de Servicio'}
+          </button>
         </div>
         <div className="flex items-center gap-2 text-white/40">
-          {lang === 'en' ? 'globally yours!' : 'mondialement vôtre!'}
+          {lang === 'en' ? 'globally yours!' : lang === 'fr' ? 'mondialement vôtre!' : '¡globalmente tuyos!'}
           <Smile className="w-4 h-4 text-white" />
         </div>
       </footer>
@@ -1011,25 +1089,25 @@ export default function App() {
             className="fixed inset-0 z-[100] bg-white text-black overflow-y-auto"
           >
             <div className="min-h-screen flex flex-col">
-              <nav className="sticky top-0 w-full px-6 py-8 md:px-12 flex justify-between items-center bg-white/80 backdrop-blur-md z-10 border-b border-black/5">
+              <nav className="sticky top-0 w-full px-4 py-4 md:px-12 md:py-8 flex justify-between items-center bg-white/80 backdrop-blur-md z-10 border-b border-black/5">
                 <div 
                   onClick={() => setSelectedProject(null)}
-                  className="flex items-center cursor-pointer group"
+                  className="flex items-center cursor-pointer group shrink-0"
                 >
                   <img 
                     src="https://lh3.googleusercontent.com/d/1N6Tfo4zos_u-SMF0PDBggzLPxjNA9XBG" 
                     alt="oneup logo" 
-                    className="h-12 w-auto transition-transform group-hover:scale-105"
+                    className="h-8 md:h-12 w-auto transition-transform group-hover:scale-105"
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
-                      e.currentTarget.parentElement!.innerHTML = '<span class="text-2xl font-bold tracking-tighter">oneup</span>';
+                      e.currentTarget.parentElement!.innerHTML = '<span class="text-xl md:text-2xl font-bold tracking-tighter">oneup</span>';
                     }}
                   />
                 </div>
                 
-                <div className="flex items-center gap-4 md:gap-8">
-                  <div className="flex items-center border border-black/10 rounded-full p-1">
+                <div className="flex items-center gap-2 md:gap-8">
+                  <div className="flex items-center border border-black/10 rounded-full p-0.5 md:p-1 scale-90 md:scale-100">
                     <button 
                       onClick={() => navigateProject('prev')}
                       className="p-2 hover:bg-black/5 rounded-full transition-colors group"
@@ -1058,8 +1136,8 @@ export default function App() {
               </nav>
 
               <main className="flex-grow px-6 md:px-12 py-12 md:py-24 max-w-7xl mx-auto w-full">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24">
-                  <div className="md:col-span-5 space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 relative items-start">
+                  <div className="md:col-span-4 space-y-8 sticky top-32">
                     <div>
                       <span className="text-accent text-[10px] font-bold tracking-[0.3em] uppercase mb-4 block">
                         {selectedProject.category}
@@ -1071,7 +1149,7 @@ export default function App() {
                     </div>
                     
                     <div className="space-y-6 pt-8 border-t border-black/10">
-                      <p className="text-xl text-black/60 leading-relaxed font-light">
+                      <p className="text-lg text-black/60 leading-relaxed">
                         {selectedProject.title === "Padelux" ? (
                           lang === 'en' ? (
                             <>
@@ -1091,7 +1169,7 @@ export default function App() {
                             </>
                           ) : (
                             <>
-                              El desafío para Padelux fue crear una identidad de marca minimaliste para un club de pádel exclusivo con presencia global. El diseño enfatiza la elegancia y la simplicidad, asegurando que la marca se destaque en un mercado competitivo.
+                              El desafío para Padelux fue crear una identidad de marca minimalista para un club de pádel exclusivo con presencia global. El diseño enfatiza la elegancia y la simplicidad, asegurando que la marca se destaque en un mercado competitivo.
                               <br /><br />
                               A lo largo del proceso de branding, se mantuvo un enfoque minimalista constante, reflejando la imagen sofisticada del club. Esta estrategia no solo mejora el atractivo del club, sino que también se alinea con su visión de convertirse en un destino principal para los entusiastas del pádel en todo el mundo.
                               <br /><br />
@@ -1122,12 +1200,12 @@ export default function App() {
                     </div>
                   </div>
 
-                  <div className="md:col-span-7">
+                  <div className="md:col-span-8">
                     <motion.div 
                       initial={{ y: 40, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                      className="aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-black/5 cursor-zoom-in"
+                      className="aspect-video overflow-hidden bg-black/5 cursor-zoom-in rounded-sm"
                       onClick={() => setFullscreenImage(selectedProject.image)}
                     >
                       <img 
@@ -1138,11 +1216,11 @@ export default function App() {
                       />
                     </motion.div>
                     
-                    <div className="mt-12 space-y-12">
+                    <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
                       {selectedProject.title === "Padelux" ? (
                         <>
                           <div 
-                            className="overflow-hidden bg-black/5 cursor-zoom-in"
+                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm"
                             onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1p6uNNFVC96xiAjRJvtsiCn3MhA330SpH")}
                           >
                             <img 
@@ -1153,7 +1231,7 @@ export default function App() {
                             />
                           </div>
                           <div 
-                            className="overflow-hidden bg-black/5 cursor-zoom-in"
+                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm"
                             onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1fpYurGgn-hjRjtOVQN9bAVnEBKu_tkOD")}
                           >
                             <img 
@@ -1164,7 +1242,7 @@ export default function App() {
                             />
                           </div>
                           <div 
-                            className="overflow-hidden bg-black/5 cursor-zoom-in"
+                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm"
                             onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv")}
                           >
                             <img 
@@ -1175,7 +1253,7 @@ export default function App() {
                             />
                           </div>
                           <div 
-                            className="overflow-hidden bg-black/5 cursor-zoom-in"
+                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm"
                             onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI")}
                           >
                             <img 
@@ -1189,7 +1267,7 @@ export default function App() {
                       ) : (
                         <>
                           <div 
-                            className="overflow-hidden bg-black/5 cursor-zoom-in"
+                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm"
                             onClick={() => setFullscreenImage(`https://picsum.photos/seed/${selectedProject.id + 100}/1200/800`)}
                           >
                             <img 
@@ -1200,7 +1278,7 @@ export default function App() {
                             />
                           </div>
                           <div 
-                            className="overflow-hidden bg-black/5 cursor-zoom-in"
+                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm"
                             onClick={() => setFullscreenImage(`https://picsum.photos/seed/${selectedProject.id + 200}/1200/800`)}
                           >
                             <img 
