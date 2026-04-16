@@ -49,6 +49,179 @@ export default function App() {
     message: ''
   });
 
+  const [lang, setLang] = useState<'en' | 'fr' | 'es'>('en');
+
+  const t = {
+    en: {
+      nav: { work: 'work', services: 'services', about: 'about', contact: 'contact' },
+      hero: {
+        tag: 'Design & Technology',
+        title: 'INNOVATIVE DIGITAL EXPERIENCES.',
+        desc: 'We create innovative digital experiences tailored for the modern market, focusing on experimental concepts and effective branding strategies.',
+        cta: 'Start a Project',
+        scroll: 'Scroll to explore'
+      },
+      work: { tag: 'Portfolio', title: 'SELECTED WORK' },
+      services: { 
+        tag: 'Expertise', 
+        title: 'SERVICES',
+        items: [
+          { title: "Brand Identity", desc: "Crafting unique visual languages that define your brand's essence and resonance." },
+          { title: "Digital Design", desc: "Creating intuitive, high-performance interfaces for web and mobile platforms." },
+          { title: "Art Direction", desc: "Leading the creative vision to ensure consistency and impact across all media." }
+        ]
+      },
+      about: {
+        tag: 'Our Approach',
+        title: 'WE COMBINE <span className="text-accent">CREATIVITY</span> AND TECHNOLOGY TO ELEVATE BRAND PRESENCE.',
+        desc: 'Our approach combines creativity and technology to engage audiences and elevate brand presence in a competitive landscape.',
+        points: ['Our Approach', 'Research Driven', 'Aesthetic Precision', 'Technical Excellence']
+      },
+      contact: {
+        tag: 'Get in touch',
+        title: "LET'S CREATE SOMETHING EXTRAORDINARY.",
+        email: 'Email us',
+        follow: 'Follow us'
+      },
+      modal: {
+        category: 'Category',
+        year: 'Year',
+        role: 'Role',
+        close: 'Close Project'
+      },
+      form: {
+        tag: 'Inquiry',
+        title: 'START A PROJECT',
+        name: 'Name',
+        namePlaceholder: 'Your Name',
+        email: 'Email',
+        emailPlaceholder: 'your@email.com',
+        phone: 'Phone',
+        phonePlaceholder: '+1 (555) 000-0000',
+        service: 'Service',
+        message: 'Message',
+        messagePlaceholder: 'Tell us about your project...',
+        submit: 'Send Inquiry',
+        sending: 'Sending...',
+        thankYou: 'THANK YOU',
+        successMsg: 'Your inquiry has taken flight. We\'ll get back to you shortly.',
+        close: 'Close Window'
+      }
+    },
+    fr: {
+      nav: { work: 'projets', services: 'services', about: 'à propos', contact: 'contact' },
+      hero: {
+        tag: 'Design & Technologie',
+        title: 'EXPÉRIENCES DIGITALES INNOVANTES.',
+        desc: 'Nous créons des expériences numériques innovantes adaptées au marché moderne, en nous concentrant sur des concepts expérimentaux et des stratégies de marque efficaces.',
+        cta: 'Démarrer un Projet',
+        scroll: 'Défiler pour explorer'
+      },
+      work: { tag: 'Portfolio', title: 'TRAVAUX SÉLECTIONNÉS' },
+      services: { 
+        tag: 'Expertise', 
+        title: 'SERVICES',
+        items: [
+          { title: "Identité de Marque", desc: "Création de langages visuels uniques qui définissent l'essence et la résonance de votre marque." },
+          { title: "Design Numérique", desc: "Création d'interfaces intuitives et performantes pour les plateformes web et mobiles." },
+          { title: "Direction Artistique", desc: "Diriger la vision créative pour assurer la cohérence et l'impact sur tous les supports." }
+        ]
+      },
+      about: {
+        tag: 'Notre Approche',
+        title: 'NOUS COMBINONS <span className="text-accent">CRÉATIVITÉ</span> ET TECHNOLOGIE POUR ÉLEVER VOTRE PRÉSENCE.',
+        desc: 'Notre approche combine créativité et technologie pour engager les audiences et élever la présence de la marque dans un paysage concurrentiel.',
+        points: ['Notre Approche', 'Axé sur la Recherche', 'Précision Esthétique', 'Excellence Technique']
+      },
+      contact: {
+        tag: 'Contactez-nous',
+        title: "CRÉONS QUELQUE CHOSE D'EXTRAORDINAIRE.",
+        email: 'Écrivez-nous',
+        follow: 'Suivez-nous'
+      },
+      modal: {
+        category: 'Catégorie',
+        year: 'Année',
+        role: 'Rôle',
+        close: 'Fermer le Projet'
+      },
+      form: {
+        tag: 'Demande',
+        title: 'DÉMARRER UN PROJET',
+        name: 'Nom',
+        namePlaceholder: 'Votre Nom',
+        email: 'Email',
+        emailPlaceholder: 'votre@email.com',
+        phone: 'Téléphone',
+        phonePlaceholder: '+33 (0) 6 00 00 00 00',
+        service: 'Service',
+        message: 'Message',
+        messagePlaceholder: 'Parlez-nous de votre projet...',
+        submit: 'Envoyer la Demande',
+        sending: 'Envoi en cours...',
+        thankYou: 'MERCI',
+        successMsg: 'Votre demande a pris son envol. Nous vous répondrons sous peu.',
+        close: 'Fermer la Fenêtre'
+      }
+    },
+    es: {
+      nav: { work: 'proyectos', services: 'servicios', about: 'nosotros', contact: 'contacto' },
+      hero: {
+        tag: 'Diseño y Tecnología',
+        title: 'EXPERIENCIAS DIGITALES INNOVADORAS.',
+        desc: 'Creamos experiencias digitales innovadoras adaptadas al mercado moderno, centrándonos en conceptos experimentales y estrategias de marca efectivas.',
+        cta: 'Iniciar un Proyecto',
+        scroll: 'Deslizar para explorar'
+      },
+      work: { tag: 'Portafolio', title: 'TRABAJOS SELECCIONADOS' },
+      services: { 
+        tag: 'Experiencia', 
+        title: 'SERVICIOS',
+        items: [
+          { title: "Identidad de Marca", desc: "Creación de lenguajes visuales únicos que definen la esencia y resonancia de su marca." },
+          { title: "Diseño Digital", desc: "Creación de interfaces intuitivas y de alto rendimiento para plataformas web y móviles." },
+          { title: "Dirección de Arte", desc: "Liderando la visión creativa para asegurar la consistencia y el impacto en todos los medios." }
+        ]
+      },
+      about: {
+        tag: 'Nuestro Enfoque',
+        title: 'COMBINAMOS <span className="text-accent">CREATIVIDAD</span> Y TECNOLOGÍA PARA ELEVAR LA PRESENCIA DE MARCA.',
+        desc: 'Nuestro enfoque combina creatividad y tecnología para involucrar a las audiencias y elevar la presencia de la marca en un panorama competitivo.',
+        points: ['Nuestro Enfoque', 'Basado en la Investigación', 'Precisión Estética', 'Excellence Técnica']
+      },
+      contact: {
+        tag: 'Ponte en contacto',
+        title: "CREEMOS ALGO EXTRAORDINARIO.",
+        email: 'Envíanos un correo',
+        follow: 'Síguenos'
+      },
+      modal: {
+        category: 'Categoría',
+        year: 'Año',
+        role: 'Rol',
+        close: 'Cerrar Proyecto'
+      },
+      form: {
+        tag: 'Consulta',
+        title: 'INICIAR UN PROYECTO',
+        name: 'Nombre',
+        namePlaceholder: 'Tu Nombre',
+        email: 'Correo electrónico',
+        emailPlaceholder: 'tu@email.com',
+        phone: 'Teléfono',
+        phonePlaceholder: '+1 (555) 000-0000',
+        service: 'Servicio',
+        message: 'Mensaje',
+        messagePlaceholder: 'Cuéntanos sobre tu proyecto...',
+        submit: 'Enviar Consulta',
+        sending: 'Enviando...',
+        thankYou: 'GRACIAS',
+        successMsg: 'Tu consulta ha tomado vuelo. Nos pondremos en contacto contigo pronto.',
+        close: 'Cerrar Ventana'
+      }
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 400) {
@@ -200,26 +373,52 @@ export default function App() {
             }}
           />
         </div>
-        <div className="flex gap-8 md:gap-12 text-[10px] uppercase tracking-[0.4em] font-bold text-white/40">
-          {['work', 'services', 'about', 'contact'].map((id) => (
-            <a 
-              key={id}
-              href={`#${id}`} 
-              onClick={(e) => scrollToSection(e, id)} 
-              className={`hover:text-accent transition-colors relative flex items-center gap-2 ${activeSection === id ? 'text-white' : ''}`}
+        <div className="flex items-center gap-8 md:gap-12">
+          <div className="flex gap-8 md:gap-12 text-[10px] uppercase tracking-[0.4em] font-bold text-white/40">
+            {['work', 'services', 'about', 'contact'].map((id) => (
+              <a 
+                key={id}
+                href={`#${id}`} 
+                onClick={(e) => scrollToSection(e, id)} 
+                className={`hover:text-accent transition-colors relative flex items-center gap-2 ${activeSection === id ? 'text-white' : ''}`}
+              >
+                {activeSection === id && (
+                  <motion.div 
+                    layoutId="nav-arrow"
+                    className="text-white"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  >
+                    <ArrowUpRight className="w-3 h-3" strokeWidth={3} />
+                  </motion.div>
+                )}
+                {t[lang].nav[id as keyof typeof t.en.nav]}
+              </a>
+            ))}
+          </div>
+
+          {/* Language Toggle */}
+          <div className="flex items-center gap-3 border-l border-white/10 pl-8 h-4">
+            <button 
+              onClick={() => setLang('en')}
+              className={`text-[9px] font-bold tracking-widest transition-colors ${lang === 'en' ? 'text-accent' : 'text-white/20 hover:text-white/40'}`}
             >
-              {activeSection === id && (
-                <motion.div 
-                  layoutId="nav-arrow"
-                  className="text-white"
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                >
-                  <ArrowUpRight className="w-3 h-3" strokeWidth={3} />
-                </motion.div>
-              )}
-              {id.charAt(0).toUpperCase() + id.slice(1)}
-            </a>
-          ))}
+              EN
+            </button>
+            <div className="w-px h-2 bg-white/10" />
+            <button 
+              onClick={() => setLang('fr')}
+              className={`text-[9px] font-bold tracking-widest transition-colors ${lang === 'fr' ? 'text-accent' : 'text-white/20 hover:text-white/40'}`}
+            >
+              FR
+            </button>
+            <div className="w-px h-2 bg-white/10" />
+            <button 
+              onClick={() => setLang('es')}
+              className={`text-[9px] font-bold tracking-widest transition-colors ${lang === 'es' ? 'text-accent' : 'text-white/20 hover:text-white/40'}`}
+            >
+              ES
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -259,24 +458,29 @@ export default function App() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="inline-block px-3 py-1 bg-white/10 border border-white/20 text-white text-[10px] font-bold tracking-widest uppercase mb-8">
-              Design & Technology
+              {t[lang].hero.tag}
             </div>
             <h1 className="text-[10vw] md:text-[7vw] font-bold leading-[0.85] tracking-tighter mb-12 text-accent">
-              INNOVATIVE <br /> DIGITAL <br /> EXPERIENCES.
+              {t[lang].hero.title.split('<br />').map((line, i) => (
+                <React.Fragment key={i}>
+                  {line}
+                  {i < t[lang].hero.title.split('<br />').length - 1 && <br />}
+                </React.Fragment>
+              ))}
             </h1>
             <p className="max-w-md text-lg md:text-xl text-white/70 leading-relaxed mb-12 font-light">
-              We create innovative digital experiences tailored for the modern market, focusing on experimental concepts and effective branding strategies.
+              {t[lang].hero.desc}
             </p>
             <div className="flex gap-6 items-center">
               <button 
                 onClick={() => setShowContactForm(true)}
                 className="px-8 py-4 bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-accent transition-all"
               >
-                Start a Project
+                {t[lang].hero.cta}
               </button>
               <div className="flex gap-2 items-center text-[10px] uppercase tracking-[0.4em] font-bold text-white/30">
                 <div className="w-12 h-px bg-white/10" />
-                Scroll to explore
+                {t[lang].hero.scroll}
               </div>
             </div>
           </motion.div>
@@ -287,8 +491,8 @@ export default function App() {
       <section id="work" className="relative z-10 px-6 md:px-12 py-24 md:py-40">
         <div className="flex justify-between items-end mb-24 border-b border-white/10 pb-12">
           <div>
-            <span className="text-accent text-[10px] font-bold tracking-[0.3em] uppercase mb-4 block">Portfolio</span>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">SELECTED WORK</h2>
+            <span className="text-accent text-[10px] font-bold tracking-[0.3em] uppercase mb-4 block">{t[lang].work.tag}</span>
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">{t[lang].work.title}</h2>
           </div>
           <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-white/20 font-mono hidden md:block">2022 — 2026</span>
         </div>
@@ -355,16 +559,12 @@ export default function App() {
       <section id="services" className="relative z-10 px-6 md:px-12 py-24 md:py-40 border-y border-white/10">
         <div className="flex justify-between items-end mb-24 border-b border-white/10 pb-12">
           <div>
-            <span className="text-accent text-[10px] font-bold tracking-[0.3em] uppercase mb-4 block">Expertise</span>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">SERVICES</h2>
+            <span className="text-accent text-[10px] font-bold tracking-[0.3em] uppercase mb-4 block">{t[lang].services.tag}</span>
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">{t[lang].services.title}</h2>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-l border-white/10">
-          {[
-            { title: "Brand Identity", desc: "Crafting unique visual languages that define your brand's essence and resonance." },
-            { title: "Digital Design", desc: "Creating intuitive, high-performance interfaces for web and mobile platforms." },
-            { title: "Art Direction", desc: "Leading the creative vision to ensure consistency and impact across all media." }
-          ].map((service, i) => (
+          {t[lang].services.items.map((service, i) => (
             <motion.div 
               key={i}
               initial={{ opacity: 0 }}
@@ -399,18 +599,24 @@ export default function App() {
       <section id="about" className="relative z-10 px-6 md:px-12 py-32 md:py-56 border-b border-white/10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-0 border-t border-l border-white/10">
           <div className="md:col-span-8 pt-8 pb-12 md:pt-16 md:pb-24 px-12 md:px-24 border-r border-b border-white/10">
-            <span className="text-accent text-[14px] font-black tracking-[0.7em] uppercase mb-12 block">Our Approach</span>
+            <span className="text-accent text-[14px] font-black tracking-[0.7em] uppercase mb-12 block">{t[lang].about.tag}</span>
             <h2 className="text-4xl md:text-7xl font-black tracking-tighter leading-[0.9]">
-              WE COMBINE <span className="text-accent">CREATIVITY</span> AND TECHNOLOGY TO ELEVATE BRAND PRESENCE.
+              {lang === 'en' ? (
+                <>WE COMBINE <span className="text-accent">CREATIVITY</span> AND TECHNOLOGY TO ELEVATE BRAND PRESENCE.</>
+              ) : lang === 'fr' ? (
+                <>NOUS COMBINONS <span className="text-accent">CRÉATIVITÉ</span> ET TECHNOLOGIE POUR ÉLEVER VOTRE PRÉSENCE.</>
+              ) : (
+                <>COMBINAMOS <span className="text-accent">CREATIVIDAD</span> Y TECNOLOGÍA PARA ELEVAR LA PRESENCIA DE MARCA.</>
+              )}
             </h2>
           </div>
           <div className="md:col-span-4 pt-8 pb-12 md:pt-16 md:pb-24 px-12 border-r border-b border-white/10 flex flex-col justify-between bg-[#262626]/30">
             <p className="text-xl text-white/40 leading-relaxed font-light mb-12">
-              Our approach combines creativity and technology to engage audiences and elevate brand presence in a competitive landscape.
+              {t[lang].about.desc}
             </p>
             <div className="space-y-12">
               <div className="space-y-4">
-                {['Our Approach', 'Research Driven', 'Aesthetic Precision', 'Technical Excellence'].map((item) => (
+                {t[lang].about.points.map((item) => (
                   <div key={item} className="flex items-center gap-4 text-sm font-medium uppercase tracking-widest">
                     <div className="w-1.5 h-1.5 bg-accent" />
                     {item}
@@ -426,9 +632,15 @@ export default function App() {
       <section id="contact" className="relative z-10 px-6 md:px-12 py-32 md:py-56 border-b border-white/10">
         <div className="max-w-7xl mx-auto border-t border-l border-white/10 grid grid-cols-1 md:grid-cols-2 gap-0">
           <div className="p-12 md:p-24 border-r border-b border-white/10 flex flex-col justify-center">
-            <span className="text-accent text-[10px] uppercase tracking-[0.5em] font-bold mb-12 block">Get in touch</span>
+            <span className="text-accent text-[10px] uppercase tracking-[0.5em] font-bold mb-12 block">{t[lang].contact.tag}</span>
             <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-12">
-              READY TO BUILD SOMETHING <span className="text-accent">EXTRAORDINARY</span>?
+              {lang === 'en' ? (
+                <>READY TO BUILD SOMETHING <span className="text-accent">EXTRAORDINARY</span>?</>
+              ) : lang === 'fr' ? (
+                <>PRÊT À CONSTRUIRE QUELQUE CHOSE D'<span className="text-accent">EXTRAORDINAIRE</span>?</>
+              ) : (
+                <>¿LISTO PARA CONSTRUIR ALGO <span className="text-accent">EXTRAORDINARIO</span>?</>
+              )}
             </h2>
           </div>
           <div className="p-12 md:p-24 border-r border-b border-white/10 flex flex-col justify-center items-center text-center bg-[#262626]/50">
@@ -437,12 +649,12 @@ export default function App() {
               className="group cursor-pointer mb-16 flex flex-col items-center"
             >
               <h2 className="text-5xl md:text-8xl font-bold tracking-tighter group-hover:text-accent transition-all">
-                SAY HELLO
+                {lang === 'en' ? 'SAY HELLO' : 'DITES BONJOUR'}
               </h2>
               <div className="flex items-center gap-4 mt-8 group-hover:gap-6 transition-all">
                 <div className="h-[1px] w-12 bg-accent/30 group-hover:w-20 transition-all" />
                 <span className="text-accent text-xl md:text-3xl uppercase tracking-[0.2em] font-black whitespace-nowrap">
-                  START A PROJECT
+                  {t[lang].hero.cta}
                 </span>
                 <div className="h-[1px] w-12 bg-accent/30 group-hover:w-20 transition-all" />
               </div>
@@ -467,14 +679,14 @@ export default function App() {
       {/* Footer */}
       <footer className="relative z-10 px-6 md:px-12 py-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] uppercase tracking-[0.3em] font-bold text-white/20 font-mono bg-[#1a1a1a]">
         <div className="flex items-center gap-4">
-          © 2026 oneup. Design studio / Atelier de création
+          © 2026 oneup. {lang === 'en' ? 'Design studio / Atelier de création' : 'Studio de design / Atelier de création'}
         </div>
         <div className="flex gap-12">
-          <button onClick={() => setShowLegalModal(true)} className="hover:text-white transition-colors">Privacy Policy</button>
-          <button onClick={() => setShowLegalModal(true)} className="hover:text-white transition-colors">Terms of Service</button>
+          <button onClick={() => setShowLegalModal(true)} className="hover:text-white transition-colors">{lang === 'en' ? 'Privacy Policy' : 'Politique de Confidentialité'}</button>
+          <button onClick={() => setShowLegalModal(true)} className="hover:text-white transition-colors">{lang === 'en' ? 'Terms of Service' : 'Conditions d\'Utilisation'}</button>
         </div>
         <div className="flex items-center gap-2 text-white/40">
-          globally yours!
+          {lang === 'en' ? 'globally yours!' : 'mondialement vôtre!'}
           <Smile className="w-4 h-4 text-white" />
         </div>
       </footer>
@@ -540,17 +752,16 @@ export default function App() {
                           }}
                         />
                       </div>
-                      <h2 className="text-4xl md:text-6xl font-bold tracking-tighter">THANK YOU</h2>
+                      <h2 className="text-4xl md:text-6xl font-bold tracking-tighter">{t[lang].form.thankYou}</h2>
                       <p className="text-white/40 text-lg md:text-xl font-light max-w-md mx-auto leading-relaxed">
-                        Your inquiry has taken flight. <br /> 
-                        We'll get back to you shortly.
+                        {t[lang].form.successMsg}
                       </p>
                     </div>
                     <button 
                       onClick={() => setShowContactForm(false)}
                       className="text-[10px] uppercase tracking-[0.4em] font-bold text-accent hover:text-white transition-colors pt-8"
                     >
-                      Close Window
+                      {t[lang].form.close}
                     </button>
                   </motion.div>
                 ) : (
@@ -612,39 +823,39 @@ export default function App() {
                               referrerPolicy="no-referrer"
                             />
                           </div>
-                          <span className="text-accent text-[10px] font-bold tracking-[0.5em] uppercase mb-4 block">Inquiry</span>
-                          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">START A PROJECT</h2>
+                          <span className="text-accent text-[10px] font-bold tracking-[0.5em] uppercase mb-4 block">{t[lang].form.tag}</span>
+                          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">{t[lang].form.title}</h2>
                         </div>
 
                         <form className="space-y-8" onSubmit={handleFormSubmit}>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="space-y-2 group">
-                              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/30 group-focus-within:text-accent transition-colors">Name</label>
+                              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/30 group-focus-within:text-accent transition-colors">{t[lang].form.name}</label>
                               <input 
                                 required
                                 type="text" 
-                                placeholder="Your Name"
+                                placeholder={t[lang].form.namePlaceholder}
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 className="w-full bg-transparent border-b border-white/10 py-4 focus:border-accent outline-none transition-colors font-light text-lg"
                               />
                             </div>
                             <div className="space-y-2 group">
-                              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/30 group-focus-within:text-accent transition-colors">Email</label>
+                              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/30 group-focus-within:text-accent transition-colors">{t[lang].form.email}</label>
                               <input 
                                 required
                                 type="email" 
-                                placeholder="your@email.com"
+                                placeholder={t[lang].form.emailPlaceholder}
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                 className="w-full bg-transparent border-b border-white/10 py-4 focus:border-accent outline-none transition-colors font-light text-lg"
                               />
                             </div>
                             <div className="space-y-2 group md:col-span-2 lg:col-span-1">
-                              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/30 group-focus-within:text-accent transition-colors">Phone (Optional)</label>
+                              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/30 group-focus-within:text-accent transition-colors">{t[lang].form.phone}</label>
                               <input 
                                 type="tel" 
-                                placeholder="+1 (555) 000-0000"
+                                placeholder={t[lang].form.phonePlaceholder}
                                 value={formData.phone}
                                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                                 className="w-full bg-transparent border-b border-white/10 py-4 focus:border-accent outline-none transition-colors font-light text-lg"
@@ -653,7 +864,7 @@ export default function App() {
                           </div>
 
                           <div className="space-y-2 group">
-                            <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/30 group-focus-within:text-accent transition-colors">Service</label>
+                            <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/30 group-focus-within:text-accent transition-colors">{t[lang].form.service}</label>
                             <select 
                               value={formData.service}
                               onChange={(e) => setFormData({ ...formData, service: e.target.value })}
@@ -667,11 +878,11 @@ export default function App() {
                           </div>
 
                           <div className="space-y-2 group">
-                            <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/30 group-focus-within:text-accent transition-colors">Message</label>
+                            <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/30 group-focus-within:text-accent transition-colors">{t[lang].form.message}</label>
                             <textarea 
                               required
                               rows={4}
-                              placeholder="Tell us about your project..."
+                              placeholder={t[lang].form.messagePlaceholder}
                               value={formData.message}
                               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                               className="w-full bg-transparent border-b border-white/10 py-4 focus:border-accent outline-none transition-colors font-light text-lg resize-none"
@@ -683,7 +894,7 @@ export default function App() {
                             disabled={isFolding}
                             className="w-full py-6 bg-accent text-black font-bold text-xs uppercase tracking-[0.4em] hover:bg-white transition-all mt-8 disabled:opacity-50"
                           >
-                            {isFolding ? 'SENDING...' : 'Send Inquiry'}
+                            {isFolding ? t[lang].form.sending : t[lang].form.submit}
                           </button>
                         </form>
                       </div>
@@ -861,25 +1072,49 @@ export default function App() {
                     <div className="space-y-6 pt-8 border-t border-black/10">
                       <p className="text-xl text-black/60 leading-relaxed font-light">
                         {selectedProject.title === "Padelux" ? (
-                          <>
-                            The challenge for Padelux was to create a minimalist branding identity for an exclusive padel club with a global presence. The design emphasizes elegance and simplicity, ensuring that the brand stands out in a competitive market.
-                            <br /><br />
-                            Throughout the branding process, a consistent minimalist approach was maintained, reflecting the club's sophisticated image. This strategy not only enhances the club's appeal but also aligns with its vision of becoming a premier destination for padel enthusiasts worldwide.
-                            <br /><br />
-                            Padel, a sport that originated in Acapulco, Mexico, was created by Enrique Corcuera. This innovative game has since gained immense popularity, expanding its reach across the globe and establishing itself as a favored pastime in various countries. The branding of Padel emphasizes its roots in Acapulco, highlighting the significance of its birthplace in the sport's development and worldwide appeal.
-                          </>
+                          lang === 'en' ? (
+                            <>
+                              The challenge for Padelux was to create a minimalist branding identity for an exclusive padel club with a global presence. The design emphasizes elegance and simplicity, ensuring that the brand stands out in a competitive market.
+                              <br /><br />
+                              Throughout the branding process, a consistent minimalist approach was maintained, reflecting the club's sophisticated image. This strategy not only enhances the club's appeal but also aligns with its vision of becoming a premier destination for padel enthusiasts worldwide.
+                              <br /><br />
+                              Padel, a sport that originated in Acapulco, Mexico, was created by Enrique Corcuera. This innovative game has since gained immense popularity, expanding its reach across the globe and establishing itself as a favored pastime in various countries. The branding of Padel emphasizes its roots in Acapulco, highlighting the significance of its birthplace in the sport's development and worldwide appeal.
+                            </>
+                          ) : lang === 'fr' ? (
+                            <>
+                              Le défi pour Padelux était de créer une identité de marque minimaliste pour un club de padel exclusif avec une présence mondiale. Le design met l'accent sur l'élégance et la simplicité, garantissant que la marque se démarque sur un marché concurrentiel.
+                              <br /><br />
+                              Tout au long du processus de branding, une approche minimaliste cohérente a été maintenue, reflétant l'image sophistiquée du club. Cette stratégie renforce non seulement l'attrait du club, mais s'aligne également sur sa vision de devenir une destination de premier plan pour les passionnés de padel du monde entier.
+                              <br /><br />
+                              Le Padel, un sport originaire d'Acapulco, au Mexique, a été créé par Enrique Corcuera. Ce jeu innovant a depuis acquis une immense popularité, étendant sa portée à travers le monde et s'imposant comme un passe-temps favori dans divers pays. Le branding de Padel souligne ses racines à Acapulco, mettant en évidence l'importance de son lieu de naissance dans le développement du sport et son attrait mondial.
+                            </>
+                          ) : (
+                            <>
+                              El desafío para Padelux fue crear una identidad de marca minimaliste para un club de pádel exclusivo con presencia global. El diseño enfatiza la elegancia y la simplicidad, asegurando que la marca se destaque en un mercado competitivo.
+                              <br /><br />
+                              A lo largo del proceso de branding, se mantuvo un enfoque minimalista constante, reflejando la imagen sofisticada del club. Esta estrategia no solo mejora el atractivo del club, sino que también se alinea con su visión de convertirse en un destino principal para los entusiastas del pádel en todo el mundo.
+                              <br /><br />
+                              El pádel, un deporte que se originó en Acapulco, México, fue creado por Enrique Corcuera. Este juego innovador ha ganado desde entonces una inmensa popularidad, expandiendo su alcance por todo el mundo y estableciéndose como un pasatiempo favorito en varios países. El branding de Padel enfatiza sus raíces en Acapulco, resaltando la importancia de su lugar de nacimiento en el desarrollo del deporte y su atractivo mundial.
+                            </>
+                          )
                         ) : (
-                          `A deep dive into the creative process for ${selectedProject.title}. We focused on delivering a unique visual language that resonates with the target audience while maintaining technical excellence.`
+                          lang === 'en' ? (
+                            `A deep dive into the creative process for ${selectedProject.title}. We focused on delivering a unique visual language that resonates with the target audience while maintaining technical excellence.`
+                          ) : lang === 'fr' ? (
+                            `Une plongée profonde dans le processus créatif pour ${selectedProject.title}. Nous nous sommes concentrés sur la création d'un langage visuel unique qui résonne avec le public cible tout en maintenant l'excellence technique.`
+                          ) : (
+                            `Una inmersión profunda en el proceso creativo para ${selectedProject.title}. Nos enfocamos en ofrecer un lenguaje visual único que resuene con el público objetivo mientras mantenemos la excelencia técnica.`
+                          )
                         )}
                       </p>
                       
                       <div className="grid grid-cols-2 gap-8 pt-8">
                         <div>
-                          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">Year</span>
+                          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">{t[lang].modal.year}</span>
                           <span className="text-sm font-medium">2026</span>
                         </div>
                         <div>
-                          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">Role</span>
+                          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">{t[lang].modal.role}</span>
                           <span className="text-sm font-medium">Lead Design</span>
                         </div>
                       </div>
@@ -975,10 +1210,10 @@ export default function App() {
                   onClick={() => setSelectedProject(null)}
                   className="text-[10px] uppercase tracking-[0.4em] font-bold hover:text-accent transition-colors"
                 >
-                  Close Project
+                  {t[lang].modal.close}
                 </button>
                 <div className="text-[10px] uppercase tracking-[0.4em] font-bold text-black/20">
-                  oneup © 2026 Design studio / Atelier de création
+                  oneup © 2026 {lang === 'en' ? 'Design studio / Atelier de création' : 'Studio de design / Atelier de création'}
                 </div>
               </footer>
             </div>
