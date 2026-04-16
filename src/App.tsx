@@ -10,7 +10,7 @@ import { Instagram, Twitter, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, 
 const PROJECTS = [
   { id: 1, title: "Aura Identity", category: "Branding", image: "https://picsum.photos/seed/aura/1200/800", colSpan: "md:col-span-8" },
   { id: 2, title: "Vortex Digital", category: "UI/UX", image: "https://picsum.photos/seed/vortex/800/800", colSpan: "md:col-span-4" },
-  { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1VAN-GqZ2QduoqhcfJbiHR5nmT6ouaNti", colSpan: "md:col-span-4" },
+  { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1l4lV4DJ1v17tOBJxEC3l32mjxqTjTdH-", colSpan: "md:col-span-4" },
   { id: 4, title: "Nova Campaign", category: "Art Direction", image: "https://picsum.photos/seed/nova/800/800", colSpan: "md:col-span-4" },
   { id: 5, title: "Zenith Web", category: "Development", image: "https://picsum.photos/seed/zenith/800/1000", colSpan: "md:col-span-4" },
   { id: 6, title: "Pulse Motion", category: "Animation", image: "https://picsum.photos/seed/pulse/1200/675", colSpan: "md:col-span-6" },
@@ -85,6 +85,30 @@ export default function App() {
       ease: [0.16, 1, 0.3, 1],
       onUpdate: (latest) => window.scrollTo(0, latest)
     });
+  };
+
+  const getProjectImages = (project: typeof PROJECTS[0]) => {
+    if (project.title === "Padelux") {
+      return [
+        project.image,
+        "https://lh3.googleusercontent.com/d/1bfBeD1gkZHwMAtkjnWj5Tl5CjkDsHuJI",
+        "https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI",
+        "https://lh3.googleusercontent.com/d/1fpYurGgn-hjRjtOVQN9bAVnEBKu_tkOD"
+      ];
+    }
+    return [
+      project.image,
+      `https://picsum.photos/seed/${project.id + 100}/1200/800`,
+      `https://picsum.photos/seed/${project.id + 200}/1200/800`
+    ];
+  };
+
+  const nextFullscreenImage = () => {
+    if (!selectedProject || !fullscreenImage) return;
+    const images = getProjectImages(selectedProject);
+    const currentIndex = images.indexOf(fullscreenImage);
+    const nextIndex = (currentIndex + 1) % images.length;
+    setFullscreenImage(images[nextIndex]);
   };
 
   const navigateProject = (direction: 'next' | 'prev') => {
@@ -879,41 +903,68 @@ export default function App() {
                     </motion.div>
                     
                     <div className="mt-12 space-y-12">
-                      {selectedProject.title === "Padelux" && (
-                        <div 
-                          className="aspect-video overflow-hidden bg-black/5 cursor-zoom-in"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1UuVdgJLR2bxlEPiLaJUcliG_GbgloEgj")}
-                        >
-                          <img 
-                            src="https://lh3.googleusercontent.com/d/1UuVdgJLR2bxlEPiLaJUcliG_GbgloEgj" 
-                            alt="Padelux Detail"
-                            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                            referrerPolicy="no-referrer"
-                          />
-                        </div>
+                      {selectedProject.title === "Padelux" ? (
+                        <>
+                          <div 
+                            className="overflow-hidden bg-black/5 cursor-zoom-in"
+                            onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1bfBeD1gkZHwMAtkjnWj5Tl5CjkDsHuJI")}
+                          >
+                            <img 
+                              src="https://lh3.googleusercontent.com/d/1bfBeD1gkZHwMAtkjnWj5Tl5CjkDsHuJI" 
+                              alt="Padelux Detail 1"
+                              className="w-full h-auto transition-transform duration-700 hover:scale-105"
+                              referrerPolicy="no-referrer"
+                            />
+                          </div>
+                          <div 
+                            className="overflow-hidden bg-black/5 cursor-zoom-in"
+                            onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI")}
+                          >
+                            <img 
+                              src="https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI" 
+                              alt="Padelux Detail 2"
+                              className="w-full h-auto transition-transform duration-700 hover:scale-105"
+                              referrerPolicy="no-referrer"
+                            />
+                          </div>
+                          <div 
+                            className="overflow-hidden bg-black/5 cursor-zoom-in"
+                            onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1fpYurGgn-hjRjtOVQN9bAVnEBKu_tkOD")}
+                          >
+                            <img 
+                              src="https://lh3.googleusercontent.com/d/1fpYurGgn-hjRjtOVQN9bAVnEBKu_tkOD" 
+                              alt="Padelux Detail 3"
+                              className="w-full h-auto transition-transform duration-700 hover:scale-105"
+                              referrerPolicy="no-referrer"
+                            />
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div 
+                            className="overflow-hidden bg-black/5 cursor-zoom-in"
+                            onClick={() => setFullscreenImage(`https://picsum.photos/seed/${selectedProject.id + 100}/1200/800`)}
+                          >
+                            <img 
+                              src={`https://picsum.photos/seed/${selectedProject.id + 100}/1200/800`} 
+                              alt="Detail 1"
+                              className="w-full h-auto transition-transform duration-700 hover:scale-105"
+                              referrerPolicy="no-referrer"
+                            />
+                          </div>
+                          <div 
+                            className="overflow-hidden bg-black/5 cursor-zoom-in"
+                            onClick={() => setFullscreenImage(`https://picsum.photos/seed/${selectedProject.id + 200}/1200/800`)}
+                          >
+                            <img 
+                              src={`https://picsum.photos/seed/${selectedProject.id + 200}/1200/800`} 
+                              alt="Detail 2"
+                              className="w-full h-auto transition-transform duration-700 hover:scale-105"
+                              referrerPolicy="no-referrer"
+                            />
+                          </div>
+                        </>
                       )}
-                      <div 
-                        className="aspect-video overflow-hidden bg-black/5 cursor-zoom-in"
-                        onClick={() => setFullscreenImage(`https://picsum.photos/seed/${selectedProject.id + 100}/1200/800`)}
-                      >
-                        <img 
-                          src={`https://picsum.photos/seed/${selectedProject.id + 100}/1200/800`} 
-                          alt="Detail 1"
-                          className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                          referrerPolicy="no-referrer"
-                        />
-                      </div>
-                      <div 
-                        className="aspect-video overflow-hidden bg-black/5 cursor-zoom-in"
-                        onClick={() => setFullscreenImage(`https://picsum.photos/seed/${selectedProject.id + 200}/1200/800`)}
-                      >
-                        <img 
-                          src={`https://picsum.photos/seed/${selectedProject.id + 200}/1200/800`} 
-                          alt="Detail 2"
-                          className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                          referrerPolicy="no-referrer"
-                        />
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -955,15 +1006,19 @@ export default function App() {
               <X className="w-10 h-10 group-hover:rotate-90 transition-transform duration-300" />
             </button>
             <motion.img
+              key={fullscreenImage}
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               src={fullscreenImage}
               alt="Fullscreen view"
-              className="max-w-full max-h-full object-contain shadow-2xl"
+              className="max-w-full max-h-full object-contain shadow-2xl cursor-pointer"
               referrerPolicy="no-referrer"
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.stopPropagation();
+                nextFullscreenImage();
+              }}
             />
           </motion.div>
         )}
