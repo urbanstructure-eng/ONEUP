@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, animate } from 'motion/react';
-import { Instagram, Twitter, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu } from 'lucide-react';
+import { Instagram, Twitter, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu, Play, RotateCcw } from 'lucide-react';
 
 const PROJECTS = [
   { id: 1, title: "Aura Identity", category: "Branding", image: "https://picsum.photos/seed/aura/1200/800", colSpan: "md:col-span-8" },
@@ -19,6 +19,112 @@ const PROJECTS = [
   { id: 9, title: "Flux Brand", category: "Strategy", image: "https://picsum.photos/seed/flux/800/800", colSpan: "md:col-span-6" },
   { id: 10, title: "Orbit Space", category: "Exhibition", image: "https://picsum.photos/seed/orbit/1200/750", colSpan: "md:col-span-6" },
 ];
+
+const MinimalVideoPlayer = ({ src }: { src: string }) => {
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isEnded, setIsEnded] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handlePlay = () => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(err => console.error("Play failed:", err));
+      setIsPlaying(true);
+      setIsEnded(false);
+    }
+  };
+
+  const handleReplay = () => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(err => console.error("Replay failed:", err));
+      setIsPlaying(true);
+      setIsEnded(false);
+    }
+  };
+
+  const onTimeUpdate = () => {
+    if (videoRef.current) {
+      const p = (videoRef.current.currentTime / videoRef.current.duration) * 100;
+      setProgress(p || 0);
+    }
+  };
+
+  const onEnded = () => {
+    setIsPlaying(false);
+    setIsEnded(true);
+    setProgress(100);
+  };
+
+  const onLoadedData = () => {
+    setIsLoading(false);
+  };
+
+  return (
+    <div className="relative aspect-video rounded-sm overflow-hidden bg-black group shadow-2xl">
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-[#1a1a1a] z-30">
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-8 h-8 border-2 border-accent/20 border-t-accent rounded-full animate-spin" />
+            <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/20">Loading Sequence</span>
+          </div>
+        </div>
+      )}
+      <video 
+        ref={videoRef}
+        src={src}
+        className="w-full h-full object-cover"
+        onTimeUpdate={onTimeUpdate}
+        onEnded={onEnded}
+        onLoadedData={onLoadedData}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+        playsInline
+        autoPlay
+        muted
+        preload="auto"
+        referrerPolicy="no-referrer"
+      />
+      
+      {/* Custom Overlay */}
+      <AnimatePresence>
+        {(!isPlaying || isEnded) && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[2px] cursor-pointer z-10"
+            onClick={isEnded ? handleReplay : handlePlay}
+          >
+            <div className="flex flex-col items-center gap-4">
+              <div className="w-20 h-20 rounded-full border border-white/20 flex items-center justify-center bg-white/10 hover:bg-accent hover:border-accent transition-all duration-500 overflow-hidden group/btn">
+                {isEnded ? (
+                  <RotateCcw className="w-8 h-8 text-white group-hover/btn:rotate-[-45deg] transition-transform duration-500" />
+                ) : (
+                  <Play className="w-8 h-8 text-white fill-white ml-1" />
+                )}
+              </div>
+              <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-white/60">
+                {isEnded ? 'Replay' : 'Play Story'}
+              </span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Progress Bar (Minimal) */}
+      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-white/10 z-20">
+        <motion.div 
+          className="h-full bg-accent"
+          initial={{ width: 0 }}
+          animate={{ width: `${progress}%` }}
+          transition={{ duration: 0.1 }}
+        />
+      </div>
+    </div>
+  );
+};
 
 export default function App() {
   const { scrollY } = useScroll();
@@ -1136,162 +1242,192 @@ export default function App() {
               </nav>
 
               <main className="flex-grow px-6 md:px-12 py-12 md:py-24 max-w-7xl mx-auto w-full">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 relative items-start">
-                  <div className="md:col-span-4 space-y-8 sticky top-32">
+                {/* Project Header */}
+                <div className="mb-24">
+                  <span className="text-accent text-[10px] font-bold tracking-[0.3em] uppercase mb-4 block">
+                    {selectedProject.category}
+                  </span>
+                  <h2 className="text-5xl md:text-8xl font-bold tracking-tighter leading-none mb-12">
+                    {selectedProject.title.split(' ')[0]} <br />
+                    <span className="text-black/10">{selectedProject.title.split(' ')[1] || ''}</span>
+                  </h2>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8 border-t border-black/10">
                     <div>
-                      <span className="text-accent text-[10px] font-bold tracking-[0.3em] uppercase mb-4 block">
-                        {selectedProject.category}
-                      </span>
-                      <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-none">
-                        {selectedProject.title.split(' ')[0]} <br />
-                        <span className="text-black/20">{selectedProject.title.split(' ')[1]}</span>
-                      </h2>
+                      <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">{t[lang].modal.year}</span>
+                      <span className="text-sm font-medium">2026</span>
                     </div>
-                    
-                    <div className="space-y-6 pt-8 border-t border-black/10">
-                      <p className="text-lg text-black/60 leading-relaxed">
-                        {selectedProject.title === "Padelux" ? (
-                          lang === 'en' ? (
-                            <>
-                              The challenge for Padelux was to create a minimalist branding identity for an exclusive padel club with a global presence. The design emphasizes elegance and simplicity, ensuring that the brand stands out in a competitive market.
-                              <br /><br />
-                              Throughout the branding process, a consistent minimalist approach was maintained, reflecting the club's sophisticated image. This strategy not only enhances the club's appeal but also aligns with its vision of becoming a premier destination for padel enthusiasts worldwide.
-                              <br /><br />
-                              Padel, a sport that originated in Acapulco, Mexico, was created by Enrique Corcuera. This innovative game has since gained immense popularity, expanding its reach across the globe and establishing itself as a favored pastime in various countries. The branding of Padel emphasizes its roots in Acapulco, highlighting the significance of its birthplace in the sport's development and worldwide appeal.
-                            </>
-                          ) : lang === 'fr' ? (
-                            <>
-                              Le défi pour Padelux était de créer une identité de marque minimaliste pour un club de padel exclusif avec une présence mondiale. Le design met l'accent sur l'élégance et la simplicité, garantissant que la marque se démarque sur un marché concurrentiel.
-                              <br /><br />
-                              Tout au long du processus de branding, une approche minimaliste cohérente a été maintenue, reflétant l'image sophistiquée du club. Cette stratégie renforce non seulement l'attrait du club, mais s'aligne également sur sa vision de devenir une destination de premier plan pour les passionnés de padel du monde entier.
-                              <br /><br />
-                              Le Padel, un sport originaire d'Acapulco, au Mexique, a été créé par Enrique Corcuera. Ce jeu innovant a depuis acquis une immense popularité, étendant sa portée à travers le monde et s'imposant comme un passe-temps favori dans divers pays. Le branding de Padel souligne ses racines à Acapulco, mettant en évidence l'importance de son lieu de naissance dans le développement du sport et son attrait mondial.
-                            </>
-                          ) : (
-                            <>
-                              El desafío para Padelux fue crear una identidad de marca minimalista para un club de pádel exclusivo con presencia global. El diseño enfatiza la elegancia y la simplicidad, asegurando que la marca se destaque en un mercado competitivo.
-                              <br /><br />
-                              A lo largo del proceso de branding, se mantuvo un enfoque minimalista constante, reflejando la imagen sofisticada del club. Esta estrategia no solo mejora el atractivo del club, sino que también se alinea con su visión de convertirse en un destino principal para los entusiastas del pádel en todo el mundo.
-                              <br /><br />
-                              El pádel, un deporte que se originó en Acapulco, México, fue creado por Enrique Corcuera. Este juego innovador ha ganado desde entonces una inmensa popularidad, expandiendo su alcance por todo el mundo y estableciéndose como un pasatiempo favorito en varios países. El branding de Padel enfatiza sus raíces en Acapulco, resaltando la importancia de su lugar de nacimiento en el desarrollo del deporte y su atractivo mundial.
-                            </>
-                          )
-                        ) : (
-                          lang === 'en' ? (
-                            `A deep dive into the creative process for ${selectedProject.title}. We focused on delivering a unique visual language that resonates with the target audience while maintaining technical excellence.`
-                          ) : lang === 'fr' ? (
-                            `Une plongée profonde dans le processus créatif pour ${selectedProject.title}. Nous nous sommes concentrés sur la création d'un langage visuel unique qui résonne avec le public cible tout en maintenant l'excellence technique.`
-                          ) : (
-                            `Una inmersión profunda en el proceso creativo para ${selectedProject.title}. Nos enfocamos en ofrecer un lenguaje visual único que resuene con el público objetivo mientras mantenemos la excelencia técnica.`
-                          )
-                        )}
-                      </p>
-                      
-                      <div className="grid grid-cols-2 gap-8 pt-8">
-                        <div>
-                          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">{t[lang].modal.year}</span>
-                          <span className="text-sm font-medium">2026</span>
+                    <div>
+                      <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">{t[lang].modal.role}</span>
+                      <span className="text-sm font-medium">Lead Design</span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">Location</span>
+                      <span className="text-sm font-medium">Global</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Hero Image */}
+                <motion.div 
+                  initial={{ y: 40, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="aspect-video overflow-hidden bg-black/5 cursor-zoom-in rounded-sm mb-24 md:mb-40"
+                  onClick={() => setFullscreenImage(selectedProject.image)}
+                >
+                  <img 
+                    src={selectedProject.image} 
+                    alt={selectedProject.title}
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                </motion.div>
+
+                {/* Alternating Content Sections */}
+                <div className="space-y-24 md:space-y-48">
+                  {selectedProject.title === "Padelux" ? (
+                    <>
+                      {/* Section 1: Intro Text + Image */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[10px] font-bold tracking-[0.3em] uppercase block">The Challenge</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The challenge for Padelux was to create a minimalist branding identity for an exclusive padel club with a global presence. The design emphasizes elegance and simplicity, ensuring that the brand stands out in a competitive market."
+                            ) : lang === 'fr' ? (
+                              "Le défi pour Padelux était de créer une identité de marque minimaliste pour un club de padel exclusif avec une présence mondiale. Le design met l'accent sur l'élégance et la simplicité, garantissant que la marque se démarque sur un marché concurrentiel."
+                            ) : (
+                              "El desafío para Padelux fue crear una identidad de marca minimalista para un club de pádel exclusivo con presencia global. El diseño enfatiza la elegancia y la simplicidad, asegurando que la marca se destaque en un mercado competitivo."
+                            )}
+                          </p>
                         </div>
-                        <div>
-                          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">{t[lang].modal.role}</span>
-                          <span className="text-sm font-medium">Lead Design</span>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1p6uNNFVC96xiAjRJvtsiCn3MhA330SpH")}
+                        >
+                          <img 
+                            src="https://lh3.googleusercontent.com/d/1p6uNNFVC96xiAjRJvtsiCn3MhA330SpH" 
+                            alt="Padelux Detail 1"
+                            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                            referrerPolicy="no-referrer"
+                          />
                         </div>
                       </div>
-                    </div>
-                  </div>
 
-                  <div className="md:col-span-8">
-                    <motion.div 
-                      initial={{ y: 40, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                      className="aspect-video overflow-hidden bg-black/5 cursor-zoom-in rounded-sm"
-                      onClick={() => setFullscreenImage(selectedProject.image)}
-                    >
-                      <img 
-                        src={selectedProject.image} 
-                        alt={selectedProject.title}
-                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                        referrerPolicy="no-referrer"
-                      />
-                    </motion.div>
-                    
-                    <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-                      {selectedProject.title === "Padelux" ? (
-                        <>
-                          <div 
-                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm"
-                            onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1p6uNNFVC96xiAjRJvtsiCn3MhA330SpH")}
-                          >
-                            <img 
-                              src="https://lh3.googleusercontent.com/d/1p6uNNFVC96xiAjRJvtsiCn3MhA330SpH" 
-                              alt="Padelux Detail 1"
-                              className="w-full h-auto transition-transform duration-700 hover:scale-105"
-                              referrerPolicy="no-referrer"
-                            />
-                          </div>
-                          <div 
-                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm"
-                            onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1fpYurGgn-hjRjtOVQN9bAVnEBKu_tkOD")}
-                          >
-                            <img 
-                              src="https://lh3.googleusercontent.com/d/1fpYurGgn-hjRjtOVQN9bAVnEBKu_tkOD" 
-                              alt="Padelux Detail 2"
-                              className="w-full h-auto transition-transform duration-700 hover:scale-105"
-                              referrerPolicy="no-referrer"
-                            />
-                          </div>
-                          <div 
-                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm"
-                            onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv")}
-                          >
-                            <img 
-                              src="https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv" 
-                              alt="Padelux Detail 3"
-                              className="w-full h-auto transition-transform duration-700 hover:scale-105"
-                              referrerPolicy="no-referrer"
-                            />
-                          </div>
-                          <div 
-                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm"
-                            onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI")}
-                          >
-                            <img 
-                              src="https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI" 
-                              alt="Padelux Detail 4"
-                              className="w-full h-auto transition-transform duration-700 hover:scale-105"
-                              referrerPolicy="no-referrer"
-                            />
-                          </div>
-                        </>
-                      ) : (
-                        <>
-                          <div 
-                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm"
-                            onClick={() => setFullscreenImage(`https://picsum.photos/seed/${selectedProject.id + 100}/1200/800`)}
-                          >
-                            <img 
-                              src={`https://picsum.photos/seed/${selectedProject.id + 100}/1200/800`} 
-                              alt="Detail 1"
-                              className="w-full h-auto transition-transform duration-700 hover:scale-105"
-                              referrerPolicy="no-referrer"
-                            />
-                          </div>
-                          <div 
-                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm"
-                            onClick={() => setFullscreenImage(`https://picsum.photos/seed/${selectedProject.id + 200}/1200/800`)}
-                          >
-                            <img 
-                              src={`https://picsum.photos/seed/${selectedProject.id + 200}/1200/800`} 
-                              alt="Detail 2"
-                              className="w-full h-auto transition-transform duration-700 hover:scale-105"
-                              referrerPolicy="no-referrer"
-                            />
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  </div>
+                      {/* Section 2: Image + Text */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div 
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1fpYurGgn-hjRjtOVQN9bAVnEBKu_tkOD")}
+                        >
+                          <img 
+                            src="https://lh3.googleusercontent.com/d/1fpYurGgn-hjRjtOVQN9bAVnEBKu_tkOD" 
+                            alt="Padelux Detail 2"
+                            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                            referrerPolicy="no-referrer"
+                          />
+                        </div>
+                        <div className="order-1 md:order-2 space-y-6">
+                          <span className="text-accent text-[10px] font-bold tracking-[0.3em] uppercase block">Process</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Throughout the branding process, a consistent minimalist approach was maintained, reflecting the club's sophisticated image. This strategy not only enhances the club's appeal but also aligns with its vision."
+                            ) : lang === 'fr' ? (
+                              "Tout au long du processus de branding, une approche minimaliste cohérente a été maintenue, reflétant l'image sophistiquée du club. Cette stratégie renforce l'attrait du club."
+                            ) : (
+                              "A lo largo del proceso de branding, se mantuvo un enfoque minimalista constante, reflejando la imagen sofisticada del club. Esta estrategia no solo mejora el atractivo del club."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Section 3: Large Image or Full Video grid */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv")}
+                        >
+                          <img 
+                            src="https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv" 
+                            alt="Padelux Detail 3"
+                            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                            referrerPolicy="no-referrer"
+                          />
+                        </div>
+                        <p className="max-w-2xl text-sm text-black/40 leading-relaxed uppercase tracking-wider font-medium">
+                          {lang === 'en' ? (
+                            "Padel, a sport that originated in Acapulco, Mexico, was created by Enrique Corcuera. This innovative game has since gained immense popularity, expanding its reach across the globe."
+                          ) : lang === 'fr' ? (
+                            "Le Padel, un sport originaire d'Acapulco, au Mexique, a été créé par Enrique Corcuera. Ce jeu innovant a depuis acquis une immense popularité."
+                          ) : (
+                            "El pádel, un deporte que se originó en Acapulco, México, fue creado por Enrique Corcuera. Este juego innovador ha ganado desde entonces una inmensa popularidad."
+                          )}
+                        </p>
+                      </div>
+
+                      {/* Section 4: Final Video */}
+                      <div className="space-y-8">
+                        <MinimalVideoPlayer src="https://drive.google.com/uc?id=12Pcr-TFAsRH_fmV6SJYfCPtIsK3JtB7z&export=media" />
+                        <div className="flex justify-between items-center text-black/40">
+                          <span className="text-[10px] font-bold tracking-[0.3em] uppercase">Cinematic Sequence 01</span>
+                          <span className="text-[10px] font-bold tracking-[0.3em] uppercase">4K / 24FPS</span>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      {/* Generic Project Alternating Layout */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                            <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                              {lang === 'en' ? (
+                                `A deep dive into the creative process for ${selectedProject.title}. We focused on delivering a unique visual language that resonates with the target audience while maintaining technical excellence.`
+                              ) : lang === 'fr' ? (
+                                `Une plongée profonde dans le processus créatif pour ${selectedProject.title}. Nous nous sommes concentrés sur la création d'un langage visuel unique qui résonne avec le public cible.`
+                              ) : (
+                                `Una inmersión profunda en el proceso creativo para ${selectedProject.title}. Nos enfocamos en ofrecer un lenguaje visual único que resuene con el público objetivo.`
+                              )}
+                            </p>
+                        </div>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square md:aspect-[4/3]"
+                          onClick={() => setFullscreenImage(`https://picsum.photos/seed/${selectedProject.id + 100}/1200/800`)}
+                        >
+                          <img 
+                            src={`https://picsum.photos/seed/${selectedProject.id + 100}/1200/800`} 
+                            alt="Detail 1"
+                            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                            referrerPolicy="no-referrer"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div 
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square md:aspect-[4/3]"
+                          onClick={() => setFullscreenImage(`https://picsum.photos/seed/${selectedProject.id + 200}/1200/800`)}
+                        >
+                          <img 
+                            src={`https://picsum.photos/seed/${selectedProject.id + 200}/1200/800`} 
+                            alt="Detail 2"
+                            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                            referrerPolicy="no-referrer"
+                          />
+                        </div>
+                        <div className="order-1 md:order-2 space-y-6">
+                          <p className="text-lg text-black/60 leading-relaxed italic">
+                            {lang === 'en' ? (
+                              "The integration of modern design principles allowed us to achieve a seamless user experience that feels both familiar and avant-garde."
+                            ) : lang === 'fr' ? (
+                              "L'intégration de principes de design modernes nous a permis d'atteindre une expérience utilisateur fluide."
+                            ) : (
+                              "La integración de principios de diseño modernos nos permitió lograr una experiencia de usuario fluida."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </main>
 
