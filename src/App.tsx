@@ -283,8 +283,10 @@ export default function App() {
         project.image,
         "https://lh3.googleusercontent.com/d/1p6uNNFVC96xiAjRJvtsiCn3MhA330SpH",
         "https://lh3.googleusercontent.com/d/1fpYurGgn-hjRjtOVQN9bAVnEBKu_tkOD",
+        "https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI",
         "https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv",
-        "https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI"
+        "https://lh3.googleusercontent.com/d/169Pww9eoPuFuC3gU5bx9E02cOV7037zl",
+        "https://lh3.googleusercontent.com/d/1y9wQIsH49gkhtf3mqIwpG8XE3h6Kg-RJ"
       ];
     }
     return [
@@ -300,6 +302,14 @@ export default function App() {
     const currentIndex = images.indexOf(fullscreenImage);
     const nextIndex = (currentIndex + 1) % images.length;
     setFullscreenImage(images[nextIndex]);
+  };
+
+  const prevFullscreenImage = () => {
+    if (!selectedProject || !fullscreenImage) return;
+    const images = getProjectImages(selectedProject);
+    const currentIndex = images.indexOf(fullscreenImage);
+    const prevIndex = (currentIndex - 1 + images.length) % images.length;
+    setFullscreenImage(images[prevIndex]);
   };
 
   const navigateProject = (direction: 'next' | 'prev') => {
@@ -1195,7 +1205,32 @@ export default function App() {
                 <div className="space-y-24 md:space-y-48">
                   {selectedProject.title === "Padelux" ? (
                     <>
-                      {/* Section 1: Image + Text (Process) */}
+                      {/* Section 1: Intro Text + Image (The Challenge) */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">The Challenge</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The challenge for Padelux was to create a minimalist branding identity for an exclusive padel club with a global presence. The design emphasizes elegance and simplicity, ensuring that the brand stands out in a competitive market."
+                            ) : lang === 'fr' ? (
+                              "Le défi pour Padelux était de créer une identité de marque minimaliste pour un club de padel exclusif avec une présence mondiale. Le design met l'accent sur l'élégance et la simplicité, garantissant que la marque se démarque sur un marché concurrentiel."
+                            ) : (
+                              "El desafío para Padelux fue crear una identidad de marca minimalista para un club de pádel exclusivo con presencia global. El diseño enfatiza la elegancia y la simplicidad, asegurando que la marca se destaque en un mercado competitivo."
+                            )}
+                          </p>
+                        </div>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1p6uNNFVC96xiAjRJvtsiCn3MhA330SpH")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1p6uNNFVC96xiAjRJvtsiCn3MhA330SpH" 
+                            alt="Padelux Detail 1"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Section 2: Image + Text (Process) */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
                           className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
@@ -1218,28 +1253,6 @@ export default function App() {
                             )}
                           </p>
                         </div>
-                      </div>
-
-                      {/* Section 2: Large Image or Full Video grid (History) */}
-                      <div className="space-y-12">
-                        <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv")}
-                        >
-                          <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv" 
-                            alt="Padelux Detail 3"
-                          />
-                        </div>
-                        <p className="max-w-2xl text-sm text-black/40 leading-relaxed uppercase tracking-wider font-medium">
-                          {lang === 'en' ? (
-                            "Padel, a sport that originated in Acapulco, Mexico, was created by Enrique Corcuera. This innovative game has since gained immense popularity, expanding its reach across the globe."
-                          ) : lang === 'fr' ? (
-                            "Le Padel, un sport originaire d'Acapulco, au Mexique, a été créé par Enrique Corcuera. Ce jeu innovant a depuis acquis une immense popularité."
-                          ) : (
-                            "El pádel, un deporte que se originó en Acapulco, México, fue creado por Enrique Corcuera. Este juego innovador ha ganado desde entonces una inmensa popularidad."
-                          )}
-                        </p>
                       </div>
 
                       {/* Section 3 (Spot 3) - Wayfinding/Coordinates (Image 4) */}
@@ -1274,7 +1287,29 @@ export default function App() {
                         <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-60 pointer-events-none" />
                       </div>
 
-                      {/* Section 4: Vertical Mood Image (Identity) */}
+                      {/* Section 4: Large Image or Full Video grid (History) */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv" 
+                            alt="Padelux Detail 3"
+                          />
+                        </div>
+                        <p className="max-w-2xl text-sm text-black/40 leading-relaxed uppercase tracking-wider font-medium">
+                          {lang === 'en' ? (
+                            "Padel, a sport that originated in Acapulco, Mexico, was created by Enrique Corcuera. This innovative game has since gained immense popularity, expanding its reach across the globe."
+                          ) : lang === 'fr' ? (
+                            "Le Padel, un sport originaire d'Acapulco, au Mexique, a été créé par Enrique Corcuera. Ce jeu innovant a depuis acquis une immense popularité."
+                          ) : (
+                            "El pádel, un deporte que se originó en Acapulco, México, fue creado por Enrique Corcuera. Este juego innovador ha ganado desde entonces una inmensa popularidad."
+                          )}
+                        </p>
+                      </div>
+
+                      {/* Section 5: Vertical Mood Image (Identity) */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
@@ -1299,28 +1334,28 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Section 5: Intro Text + Image (The Challenge) */}
+                      {/* Section 6: Image + Text (Lifestyle) */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
-                        <div className="space-y-6">
-                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">The Challenge</span>
-                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
-                            {lang === 'en' ? (
-                              "The challenge for Padelux was to create a minimalist branding identity for an exclusive padel club with a global presence. The design emphasizes elegance and simplicity, ensuring that the brand stands out in a competitive market."
-                            ) : lang === 'fr' ? (
-                              "Le défi pour Padelux était de créer une identité de marque minimaliste pour un club de padel exclusif avec une présence mondiale. Le design met l'accent sur l'élégance et la simplicité, garantissant que la marque se démarque sur un marché concurrentiel."
-                            ) : (
-                              "El desafío para Padelux fue crear una identidad de marca minimalista para un club de pádel exclusivo con presencia global. El diseño enfatiza la elegancia y la simplicidad, asegurando que la marca se destaque en un mercado competitivo."
-                            )}
-                          </p>
-                        </div>
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1p6uNNFVC96xiAjRJvtsiCn3MhA330SpH")}
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1y9wQIsH49gkhtf3mqIwpG8XE3h6Kg-RJ")}
                         >
                           <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/1p6uNNFVC96xiAjRJvtsiCn3MhA330SpH" 
-                            alt="Padelux Detail 1"
+                            src="https://lh3.googleusercontent.com/d/1y9wQIsH49gkhtf3mqIwpG8XE3h6Kg-RJ" 
+                            alt="Padelux Lifestyle"
                           />
+                        </div>
+                        <div className="order-1 md:order-2 space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Experience</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Padelux is more than a sport; it's a social destination. We curated a lifestyle experience that resonates with a community of enthusiasts who value both performance and social connection."
+                            ) : lang === 'fr' ? (
+                              "Padelux est plus qu'un sport ; c'est une destination sociale. Nous avons organisé une expérience de style de vie qui résonne avec une communauté de passionnés."
+                            ) : (
+                              "Padelux es más que un deporte; es un destino social. Curamos una experiencia de estilo de vida que resuena con una comunidad de entusiastas."
+                            )}
+                          </p>
                         </div>
                       </div>
                     </>
@@ -1400,25 +1435,57 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setFullscreenImage(null)}
-            className="fixed inset-0 z-[300] bg-black/95 flex items-center justify-center p-4 md:p-12 cursor-zoom-out"
+            className="fixed inset-0 z-[300] bg-black/95 flex items-center justify-center p-4 md:p-12"
+            onKeyDown={(e) => {
+              if (e.key === 'ArrowRight') nextFullscreenImage();
+              if (e.key === 'ArrowLeft') prevFullscreenImage();
+              if (e.key === 'Escape') setFullscreenImage(null);
+            }}
           >
+            {/* Background Overlay to close */}
+            <div 
+              className="absolute inset-0 cursor-zoom-out" 
+              onClick={() => setFullscreenImage(null)} 
+            />
+
             <button 
               onClick={(e) => {
                 e.stopPropagation();
                 setFullscreenImage(null);
               }}
-              className="absolute top-8 right-8 p-2 text-white/50 hover:text-white transition-colors group"
+              className="absolute top-8 right-8 z-50 p-2 text-white/50 hover:text-white transition-colors group"
             >
               <X className="w-10 h-10 group-hover:rotate-90 transition-transform duration-300" />
             </button>
-            <div className="relative max-w-full max-h-full flex items-center justify-center">
+
+            {/* Navigation Buttons */}
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                prevFullscreenImage();
+              }}
+              className="absolute left-4 md:left-8 z-50 p-4 text-white/30 hover:text-white transition-all bg-white/5 hover:bg-white/10 rounded-full backdrop-blur-md"
+            >
+              <ChevronLeft className="w-8 h-8 md:w-12 md:h-12" />
+            </button>
+
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                nextFullscreenImage();
+              }}
+              className="absolute right-4 md:right-8 z-50 p-4 text-white/30 hover:text-white transition-all bg-white/5 hover:bg-white/10 rounded-full backdrop-blur-md"
+            >
+              <ChevronRight className="w-8 h-8 md:w-12 md:h-12" />
+            </button>
+
+            <div className="relative max-w-full max-h-full flex items-center justify-center select-none">
               <motion.img
                 key={fullscreenImage}
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
                 src={fullscreenImage}
                 alt="Fullscreen view"
                 className="max-w-full max-h-full object-contain shadow-2xl cursor-pointer"
@@ -1428,6 +1495,13 @@ export default function App() {
                   nextFullscreenImage();
                 }}
               />
+
+              {/* Counter Overlay */}
+              {selectedProject && (
+                <div className="absolute bottom-[-40px] left-1/2 -translate-x-1/2 text-white/50 text-xs font-mono tracking-widest uppercase">
+                  {getProjectImages(selectedProject).indexOf(fullscreenImage) + 1} / {getProjectImages(selectedProject).length}
+                </div>
+              )}
 
               {fullscreenImage === "https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI" && (
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
