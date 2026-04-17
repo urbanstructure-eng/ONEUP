@@ -514,9 +514,9 @@ export default function App() {
               className="mt-auto mb-12"
             >
               <div className="flex gap-6">
-                <a href="#" className="p-3 border border-white/10 rounded-full hover:border-accent transition-colors"><Twitter className="w-5 h-5 text-white/40" /></a>
-                <a href="#" className="p-3 border border-white/10 rounded-full hover:border-accent transition-colors"><Instagram className="w-5 h-5 text-white/40" /></a>
-                <a href="#" className="p-3 border border-white/10 rounded-full hover:border-accent transition-colors"><Linkedin className="w-5 h-5 text-white/40" /></a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-3 border border-white/10 rounded-full hover:border-accent transition-colors"><Twitter className="w-5 h-5 text-white/40" /></a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-3 border border-white/10 rounded-full hover:border-accent transition-colors"><Instagram className="w-5 h-5 text-white/40" /></a>
+                <a href="https://www.linkedin.com/company/112942100/" target="_blank" rel="noopener noreferrer" className="p-3 border border-white/10 rounded-full hover:border-accent transition-colors"><Linkedin className="w-5 h-5 text-white/40" /></a>
               </div>
             </motion.div>
           </motion.div>
@@ -762,10 +762,16 @@ export default function App() {
             </div>
             
             <div className="flex gap-8 justify-center">
-              {[Instagram, Twitter, Linkedin].map((Icon, i) => (
+              {[
+                { Icon: Instagram, href: "https://instagram.com" },
+                { Icon: Twitter, href: "https://twitter.com" },
+                { Icon: Linkedin, href: "https://www.linkedin.com/company/112942100/" }
+              ].map(({ Icon, href }, i) => (
                 <motion.a 
                   key={i} 
-                  href="#" 
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ y: -4, transition: { type: "spring", stiffness: 400, damping: 25 } }}
                   className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-black hover:border-white transition-all duration-300"
                 >
