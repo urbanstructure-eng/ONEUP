@@ -284,9 +284,9 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1p6uNNFVC96xiAjRJvtsiCn3MhA330SpH",
         "https://lh3.googleusercontent.com/d/1fpYurGgn-hjRjtOVQN9bAVnEBKu_tkOD",
         "https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI",
-        "https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv",
+        "https://lh3.googleusercontent.com/d/1Zr9R_Z3bMjuCJo5xykDJIPVcxvgVeFar",
         "https://lh3.googleusercontent.com/d/169Pww9eoPuFuC3gU5bx9E02cOV7037zl",
-        "https://lh3.googleusercontent.com/d/1y9wQIsH49gkhtf3mqIwpG8XE3h6Kg-RJ"
+        "https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv"
       ];
     }
     return [
@@ -1294,11 +1294,11 @@ export default function App() {
                       <div className="space-y-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv")}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1Zr9R_Z3bMjuCJo5xykDJIPVcxvgVeFar")}
                         >
                           <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv" 
-                            alt="Padelux Heritage"
+                            src="https://lh3.googleusercontent.com/d/1Zr9R_Z3bMjuCJo5xykDJIPVcxvgVeFar" 
+                            alt="Padelux Lifestyle"
                           />
                         </div>
                         <p className="max-w-2xl text-sm text-black/40 leading-relaxed uppercase tracking-wider font-medium">
@@ -1341,11 +1341,11 @@ export default function App() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
                           className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1y9wQIsH49gkhtf3mqIwpG8XE3h6Kg-RJ")}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv")}
                         >
                           <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/1y9wQIsH49gkhtf3mqIwpG8XE3h6Kg-RJ" 
-                            alt="Padelux Lifestyle"
+                            src="https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv" 
+                            alt="Padelux Heritage"
                           />
                         </div>
                         <div className="order-1 md:order-2 space-y-6">
@@ -1461,27 +1461,6 @@ export default function App() {
               <X className="w-10 h-10 group-hover:rotate-90 transition-transform duration-300" />
             </button>
 
-            {/* Navigation Buttons */}
-            <button 
-              onClick={(e) => {
-                e.stopPropagation();
-                prevFullscreenImage();
-              }}
-              className="absolute left-4 md:left-8 z-50 p-4 text-white/30 hover:text-white transition-all bg-white/5 hover:bg-white/10 rounded-full backdrop-blur-md"
-            >
-              <ChevronLeft className="w-8 h-8 md:w-12 md:h-12" />
-            </button>
-
-            <button 
-              onClick={(e) => {
-                e.stopPropagation();
-                nextFullscreenImage();
-              }}
-              className="absolute right-4 md:right-8 z-50 p-4 text-white/30 hover:text-white transition-all bg-white/5 hover:bg-white/10 rounded-full backdrop-blur-md"
-            >
-              <ChevronRight className="w-8 h-8 md:w-12 md:h-12" />
-            </button>
-
             <div className="relative max-w-full max-h-full flex items-center justify-center select-none">
               <motion.img
                 key={fullscreenImage}
@@ -1498,13 +1477,6 @@ export default function App() {
                   nextFullscreenImage();
                 }}
               />
-
-              {/* Counter Overlay */}
-              {selectedProject && (
-                <div className="absolute bottom-[-40px] left-1/2 -translate-x-1/2 text-white/50 text-xs font-mono tracking-widest uppercase">
-                  {getProjectImages(selectedProject).indexOf(fullscreenImage) + 1} / {getProjectImages(selectedProject).length}
-                </div>
-              )}
 
               {fullscreenImage === "https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI" && (
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
