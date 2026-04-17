@@ -515,7 +515,7 @@ export default function App() {
             >
               <div className="flex gap-6">
                 <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-3 border border-white/10 rounded-full hover:border-accent transition-colors"><Twitter className="w-5 h-5 text-white/40" /></a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-3 border border-white/10 rounded-full hover:border-accent transition-colors"><Instagram className="w-5 h-5 text-white/40" /></a>
+                <a href="https://www.instagram.com/onecx2026/" target="_blank" rel="noopener noreferrer" className="p-3 border border-white/10 rounded-full hover:border-accent transition-colors"><Instagram className="w-5 h-5 text-white/40" /></a>
                 <a href="https://www.linkedin.com/company/112942100/" target="_blank" rel="noopener noreferrer" className="p-3 border border-white/10 rounded-full hover:border-accent transition-colors"><Linkedin className="w-5 h-5 text-white/40" /></a>
               </div>
             </motion.div>
@@ -763,7 +763,7 @@ export default function App() {
             
             <div className="flex gap-8 justify-center">
               {[
-                { Icon: Instagram, href: "https://instagram.com" },
+                { Icon: Instagram, href: "https://www.instagram.com/onecx2026/" },
                 { Icon: Twitter, href: "https://twitter.com" },
                 { Icon: Linkedin, href: "https://www.linkedin.com/company/112942100/" }
               ].map(({ Icon, href }, i) => (
