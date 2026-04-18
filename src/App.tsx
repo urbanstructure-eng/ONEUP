@@ -7,7 +7,17 @@ import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, animate } from 'motion/react';
 import { Instagram, Twitter, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu } from 'lucide-react';
 
-const PROJECTS = [
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  image: string;
+  colSpan: string;
+  contain?: boolean;
+}
+
+const PROJECTS: Project[] = [
+  { id: 11, title: "Voltique", category: "Service Design", image: "https://lh3.googleusercontent.com/d/1gusf69CAd1am1JcsIyc1qiGekzmZLEUP", colSpan: "md:col-span-12" },
   { id: 1, title: "Aura Identity", category: "Branding", image: "https://picsum.photos/seed/aura/1200/800", colSpan: "md:col-span-8" },
   { id: 2, title: "Vortex Digital", category: "UI/UX", image: "https://picsum.photos/seed/vortex/800/800", colSpan: "md:col-span-4" },
   { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1l4lV4DJ1v17tOBJxEC3l32mjxqTjTdH-", colSpan: "md:col-span-4" },
@@ -20,18 +30,19 @@ const PROJECTS = [
   { id: 10, title: "Orbit Space", category: "Exhibition", image: "https://picsum.photos/seed/orbit/1200/750", colSpan: "md:col-span-6" },
 ];
 
-const SubtleMotionImage = ({ src, alt, className, objectPosition = "center" }: { src: string, alt: string, className?: string, objectPosition?: string }) => (
+const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", contain = false }: { src: string, alt: string, className?: string, objectPosition?: string, contain?: boolean }) => (
   <motion.img
     src={src}
     alt={alt}
-    className={`${className} w-full h-full object-cover`}
+    className={`${className} w-full h-full ${contain ? 'object-contain p-8' : 'object-cover'}`}
     style={{ objectPosition }}
     referrerPolicy="no-referrer"
-    animate={{ scale: [1, 1.05, 1] }}
+    initial={{ scale: 1 }}
+    whileInView={{ scale: 1.05 }}
+    viewport={{ once: true }}
     transition={{
-      duration: 20,
-      repeat: Infinity,
-      ease: "easeInOut"
+      duration: 10,
+      ease: [0.16, 1, 0.3, 1]
     }}
   />
 );
@@ -289,6 +300,15 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv"
       ];
     }
+    if (project.title === "Voltique") {
+      return [
+        project.image,
+        "https://lh3.googleusercontent.com/d/1_eaR-o_KXYFcKzWKtBlA92PU_IhrE9td",
+        "https://lh3.googleusercontent.com/d/1l7KZzvV9DPsRkzHu9UfKzNp-aX_j5JJH",
+        "https://lh3.googleusercontent.com/d/1gWtv-mx0T4XaX473NP036QTtEzhWnjyh",
+        "https://lh3.googleusercontent.com/d/1_n47-Xe02B1dCF3_3XJ6nHBkbLHVZWgL"
+      ];
+    }
     return [
       project.image,
       `https://picsum.photos/seed/${project.id + 100}/1200/800`,
@@ -539,14 +559,11 @@ export default function App() {
               alt="Hero Background"
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover"
-              animate={{
-                scale: [1, 1.05, 1],
-              }}
+              initial={{ scale: 1 }}
+              animate={{ scale: 1.08 }}
               transition={{
-                duration: 30,
-                ease: "linear",
-                repeat: Infinity,
-                repeatType: "reverse"
+                duration: 15,
+                ease: "easeOut"
               }}
             />
           </motion.div>
@@ -611,22 +628,23 @@ export default function App() {
             >
               <div className="relative h-[320px] overflow-hidden bg-[#262626]">
                 <motion.img 
-                  whileHover={{ scale: 1.05 }}
-                  animate={{
-                    scale: [1.1, 1.15, 1.1],
-                    x: index % 2 === 0 ? [0, -20, 20, 0] : [0, 20, -20, 0],
-                    y: index % 3 === 0 ? [0, 15, -15, 0] : [0, -15, 15, 0]
+                  whileHover={{ scale: project.contain ? 1 : 1.05 }}
+                  initial={{ scale: 1, x: 0, y: 0 }}
+                  whileInView={project.contain ? { scale: 1 } : {
+                    scale: 1.08,
+                    x: index % 2 === 0 ? -10 : 10,
+                    y: index % 3 === 0 ? 8 : -8
                   }}
+                  viewport={{ once: true }}
                   transition={{
-                    duration: 25 + (index % 5),
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: index * 0.2
+                    duration: 12,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: index * 0.05
                   }}
                   src={project.image} 
                   alt={project.title}
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700"
+                  className={`w-full h-full ${project.contain ? 'object-contain p-8' : 'object-cover'} grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700`}
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
@@ -638,14 +656,11 @@ export default function App() {
                     src="https://lh3.googleusercontent.com/d/1Qm0emmiJjUXmvP1LDjXdL7JRkU1yotIf"
                     alt="arrow"
                     className="w-14 h-14 object-contain"
-                    animate={{ 
-                      opacity: [1, 0.6, 1],
-                      scale: [1, 1.05, 1]
-                    }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileHover={{ scale: 1.1 }}
                     transition={{ 
-                      repeat: Infinity, 
-                      duration: 1.5, 
-                      ease: "easeInOut" 
+                      duration: 0.5, 
+                      ease: "easeOut" 
                     }}
                     referrerPolicy="no-referrer"
                   />
@@ -1363,6 +1378,142 @@ export default function App() {
                               "Padelux est plus qu'un sport ; c'est une destination sociale. Nous avons organisé une expérience de style de vie qui résonne avec une communauté de passionnés."
                             ) : (
                               "Padelux es más que un deporte; es un destino social. Curamos una experiencia de estilo de vida que resuena con una comunidad de entusiastas."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  ) : selectedProject.title === "Voltique" ? (
+                    <>
+                      {/* Voltique Story Section 1: The Challenge */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">The Challenge</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light italic">
+                            {lang === 'en' ? (
+                              "The primary branding challenge was to create an identity that felt modern, clean, futuristic, and high-end—positioning Voltique as the definitive future of electric car service stations while maintaining the familiarity of traditional infrastructure."
+                            ) : lang === 'fr' ? (
+                              "Le principal défi de branding était de créer une identité à la fois moderne, épurée, futuriste et haut de gamme."
+                            ) : (
+                              "El principal desafío de marca fue crear una identidad que se sintiera moderna, limpia, futurista y de alta gama."
+                            )}
+                          </p>
+                        </div>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1gusf69CAd1am1JcsIyc1qiGekzmZLEUP")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1gusf69CAd1am1JcsIyc1qiGekzmZLEUP" 
+                            alt="Voltique Architectural Language"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Voltique Story Section 2: The Revolution (User Text Part 1) */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div 
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1_eaR-o_KXYFcKzWKtBlA92PU_IhrE9td")}
+                        >
+                          <motion.img 
+                            src="https://lh3.googleusercontent.com/d/1_eaR-o_KXYFcKzWKtBlA92PU_IhrE9td" 
+                            alt="Voltique High-End Charging"
+                            className="w-full h-full object-cover"
+                            initial={{ scale: 1.15, x: -10, y: -5 }}
+                            whileInView={{ scale: 1, x: 0, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{
+                              duration: 15,
+                              ease: [0.16, 1, 0.3, 1]
+                            }}
+                            referrerPolicy="no-referrer"
+                          />
+                        </div>
+                        <div className="order-1 md:order-2 space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Revolutionizing EV</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Voltique is revolutionizing the electric vehicle (EV) experience by creating a new generation of high-end charging stations that resemble traditional gas stations but are designed for the future."
+                            ) : lang === 'fr' ? (
+                              "Voltique révolutionne l'expérience des véhicules électriques (VE) en créant une nouvelle génération de stations de recharge haut de gamme."
+                            ) : (
+                              "Voltique está revolucionando la experiencia de los vehículos eléctricos (EV) al crear una nueva generación de estaciones de carga de alta gama."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Voltique Story Section 3: Premium Amenities (User Text Part 2) */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1l7KZzvV9DPsRkzHu9UfKzNp-aX_j5JJH")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1l7KZzvV9DPsRkzHu9UfKzNp-aX_j5JJH" 
+                            alt="Voltique Lifestyle Lounge"
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Lifestyle Sanctuary</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "These state-of-the-art facilities offer a range of amenities, including specialized car washes tailored for electric vehicles and comfortable lounges where customers can relax and enjoy coffee while they wait."
+                            ) : lang === 'fr' ? (
+                              "Ces installations de pointe offrent une gamme d'équipements, notamment des lave-autos spécialisés et des salons confortables."
+                            ) : (
+                              "Estas instalaciones de última generación ofrecen una gama de servicios, incluidos lavados de autos especializados y salones cómodos."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Voltique Story Section 4: Experience & Convenience (User Text Part 3 & 4) */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Total Service Experience</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Voltique locations are equipped with multiple EV charging stations, ensuring convenience for drivers. This comprehensive electric service experience is aimed at enhancing the overall journey for EV owners, making charging not just a necessity but a pleasurable part of their travel routine."
+                            ) : lang === 'fr' ? (
+                              "Les sites Voltique sont équipés de plusieurs bornes de recharge pour VE, garantissant ainsi la commodité des conducteurs."
+                            ) : (
+                              "Las ubicaciones de Voltique están equipadas con múltiples estaciones de carga de vehículos eléctricos, lo que garantiza la comodidad de los conductores."
+                            )}
+                          </p>
+                        </div>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1gWtv-mx0T4XaX473NP036QTtEzhWnjyh")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1gWtv-mx0T4XaX473NP036QTtEzhWnjyh" 
+                            alt="Voltique EV Infrastructure"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Voltique Story Section 5: Brand Identity & Ecosystem */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div 
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1_n47-Xe02B1dCF3_3XJ6nHBkbLHVZWgL")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1_n47-Xe02B1dCF3_3XJ6nHBkbLHVZWgL" 
+                            alt="Voltique Brand Identity"
+                          />
+                        </div>
+                        <div className="order-1 md:order-2 space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Brand Ecosystem</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Our brand ecosystem unites digital and physical touchpoints, creating a seamless high-end experience that defines the future of premium electric vehicle infrastructure."
+                            ) : lang === 'fr' ? (
+                              "Notre écosystème de marque unit les points de contact numériques et physiques, créant une expérience haut de gamme fluide."
+                            ) : (
+                              "Nuestro ecosistema de marca une los puntos de contacto digitales y físicos, creando una experiencia fluida de alta gama."
                             )}
                           </p>
                         </div>
