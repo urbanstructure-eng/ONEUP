@@ -47,6 +47,177 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
   />
 );
 
+const VoltIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M13 3L4 14H11V21L20 10H13V3Z" fill="currentColor" />
+  </svg>
+);
+
+const SubtleMotionGif = ({ src, alt, className, objectPosition = "center" }: { src: string, alt: string, className?: string, objectPosition?: string }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
+
+  useEffect(() => {
+    setIsLoaded(false);
+    setError(false);
+    setShowLoader(true);
+    
+    const timer = setTimeout(() => {
+      if (isLoaded || error) {
+        setShowLoader(false);
+      }
+    }, 1000); // Minimum 1s visibility
+
+    return () => clearTimeout(timer);
+  }, [src]);
+
+  useEffect(() => {
+    if (isLoaded) {
+      const timer = setTimeout(() => {
+        setShowLoader(false);
+      }, 800);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoaded]);
+
+  return (
+    <div className="relative w-full h-full flex items-center justify-center">
+      <AnimatePresence>
+        {showLoader && !error && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 flex items-center justify-center bg-white z-10"
+          >
+            <motion.div
+              animate={{ 
+                scale: [1, 1.1, 1],
+                opacity: [0, 1, 0] 
+              }}
+              transition={{ 
+                duration: 1,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="text-[#fbbf24]"
+            >
+              <VoltIcon className="w-12 h-12" />
+            </motion.div>
+          </motion.div>
+        )}
+        {error && (
+          <div className="absolute inset-0 flex items-center justify-center bg-white text-[10px] uppercase tracking-widest text-black/20 z-10">
+            Preview unavailable
+          </div>
+        )}
+      </AnimatePresence>
+      <motion.img
+        src={src}
+        alt={alt}
+        onLoad={() => setIsLoaded(true)}
+        onError={() => setError(true)}
+        className={`${className} w-full h-full object-cover`}
+        style={{ objectPosition }}
+        referrerPolicy="no-referrer"
+        initial={{ opacity: 0, scale: 1 }}
+        animate={{ opacity: (isLoaded && !showLoader) ? 1 : 0 }}
+        whileInView={{ scale: 1.05 }}
+        viewport={{ once: true }}
+        transition={{
+          opacity: { duration: 1 },
+          scale: { duration: 10, ease: [0.16, 1, 0.3, 1] }
+        }}
+      />
+    </div>
+  );
+};
+
+const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: string, onNext: () => void }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
+
+  useEffect(() => {
+    setIsLoaded(false);
+    setError(false);
+    setShowLoader(true);
+    
+    const timer = setTimeout(() => {
+      if (isLoaded || error) {
+        setShowLoader(false);
+      }
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  }, [src]);
+
+  useEffect(() => {
+    if (isLoaded) {
+      const timer = setTimeout(() => {
+        setShowLoader(false);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoaded]);
+
+  return (
+    <div className="relative w-full h-full flex items-center justify-center select-none">
+      <AnimatePresence>
+        {showLoader && !error && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 flex items-center justify-center bg-white z-10"
+          >
+            <motion.div
+              animate={{ 
+                scale: [1, 1.1, 1],
+                opacity: [0, 1, 0] 
+              }}
+              transition={{ 
+                duration: 1,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="text-[#fbbf24]"
+            >
+              <VoltIcon className="w-16 h-16" />
+            </motion.div>
+          </motion.div>
+        )}
+        {error && (
+          <div className="absolute inset-0 flex items-center justify-center bg-white text-[10px] uppercase tracking-[0.4em] text-black/20 z-10">
+            Preview unavailable
+          </div>
+        )}
+      </AnimatePresence>
+      <motion.img
+        key={src}
+        src={src}
+        alt={alt}
+        onLoad={() => setIsLoaded(true)}
+        onError={() => setError(true)}
+        className={`max-w-full max-h-full object-contain shadow-2xl cursor-pointer`}
+        referrerPolicy="no-referrer"
+        initial={{ opacity: 0.8, scale: 0.98 }}
+        animate={{ 
+          opacity: (isLoaded && !showLoader) ? 1 : 0, 
+          scale: (isLoaded && !showLoader) ? 1 : 0.98
+        }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        onClick={(e) => {
+          e.stopPropagation();
+          onNext();
+        }}
+      />
+    </div>
+  );
+};
+
 export default function App() {
   const { scrollY } = useScroll();
   const smoothScrollY = useSpring(scrollY, {
@@ -308,7 +479,7 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1Ad-O2_nnkJHtfNLqVneCvzqufYPEpP-t",
         "https://lh3.googleusercontent.com/d/1C6c6M2Sf0EchjHqKsylmecO9Z__707lY",
         "https://lh3.googleusercontent.com/d/1tJkKFKLTwo-zkp6K_EVdVRz7rCviD-F0",
-        "https://lh3.googleusercontent.com/d/14t_z2txNInHBmGqDwZ3q9PkkqRaxgXib"
+        "https://lh3.googleusercontent.com/d/1DLARWfGgz7jNd8o--3dlFel8KFejesC9"
       ];
     }
     return [
@@ -652,20 +823,6 @@ export default function App() {
                 <div className="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
                   <span className="text-accent text-[8px] font-bold tracking-[0.3em] uppercase">{project.category}</span>
                   <h3 className="text-xl font-bold tracking-tight text-white mt-1">{project.title}</h3>
-                </div>
-                <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <motion.img 
-                    src="https://lh3.googleusercontent.com/d/1Qm0emmiJjUXmvP1LDjXdL7JRkU1yotIf"
-                    alt="arrow"
-                    className="w-14 h-14 object-contain"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ 
-                      duration: 0.5, 
-                      ease: "easeOut" 
-                    }}
-                    referrerPolicy="no-referrer"
-                  />
                 </div>
               </div>
             </motion.div>
@@ -1405,7 +1562,7 @@ export default function App() {
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/18okrA2Rgsx9gzhggIOu89nuz6QcWu-Hi")}
                         >
-                          <SubtleMotionImage 
+                          <SubtleMotionGif 
                             src="https://lh3.googleusercontent.com/d/18okrA2Rgsx9gzhggIOu89nuz6QcWu-Hi" 
                             alt="Voltique Architectural Language"
                           />
@@ -1418,7 +1575,7 @@ export default function App() {
                           className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1LP7r24WA012N3hkibYdehCPnKasGT4jB")}
                         >
-                          <SubtleMotionImage 
+                          <SubtleMotionGif 
                             src="https://lh3.googleusercontent.com/d/1LP7r24WA012N3hkibYdehCPnKasGT4jB" 
                             alt="Voltique Innovation"
                           />
@@ -1443,7 +1600,7 @@ export default function App() {
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1Ad-O2_nnkJHtfNLqVneCvzqufYPEpP-t")}
                         >
-                          <SubtleMotionImage 
+                          <SubtleMotionGif 
                             src="https://lh3.googleusercontent.com/d/1Ad-O2_nnkJHtfNLqVneCvzqufYPEpP-t" 
                             alt="Voltique Lifestyle Lounge"
                           />
@@ -1480,7 +1637,7 @@ export default function App() {
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1C6c6M2Sf0EchjHqKsylmecO9Z__707lY")}
                         >
-                          <SubtleMotionImage 
+                          <SubtleMotionGif 
                             src="https://lh3.googleusercontent.com/d/1C6c6M2Sf0EchjHqKsylmecO9Z__707lY" 
                             alt="Voltique EV Infrastructure"
                           />
@@ -1493,7 +1650,7 @@ export default function App() {
                           className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1tJkKFKLTwo-zkp6K_EVdVRz7rCviD-F0")}
                         >
-                          <SubtleMotionImage 
+                          <SubtleMotionGif 
                             src="https://lh3.googleusercontent.com/d/1tJkKFKLTwo-zkp6K_EVdVRz7rCviD-F0" 
                             alt="Voltique Brand Identity"
                           />
@@ -1516,10 +1673,10 @@ export default function App() {
                       <div className="space-y-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/14t_z2txNInHBmGqDwZ3q9PkkqRaxgXib")}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1DLARWfGgz7jNd8o--3dlFel8KFejesC9")}
                         >
-                          <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/14t_z2txNInHBmGqDwZ3q9PkkqRaxgXib" 
+                          <SubtleMotionGif 
+                            src="https://lh3.googleusercontent.com/d/1DLARWfGgz7jNd8o--3dlFel8KFejesC9" 
                             alt="Voltique Future Vision"
                           />
                         </div>
@@ -1636,21 +1793,11 @@ export default function App() {
               <X className="w-10 h-10 group-hover:rotate-90 transition-transform duration-300" />
             </button>
 
-            <div className="relative max-w-full max-h-full flex items-center justify-center select-none">
-              <motion.img
-                key={fullscreenImage}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-                src={fullscreenImage}
-                alt="Fullscreen view"
-                className="max-w-full max-h-full object-contain shadow-2xl cursor-pointer"
-                referrerPolicy="no-referrer"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  nextFullscreenImage();
-                }}
+            <div className="relative w-full h-full flex items-center justify-center select-none">
+              <FullscreenPreloaderImage 
+                src={fullscreenImage} 
+                alt="Fullscreen view" 
+                onNext={nextFullscreenImage} 
               />
 
               {fullscreenImage === "https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI" && (
