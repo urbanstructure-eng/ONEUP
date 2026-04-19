@@ -48,33 +48,12 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
   />
 );
 
-const VoltIcon = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M13 3L4 14H11V21L20 10H13V3Z" fill="currentColor" />
-  </svg>
-);
-
 const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string, className?: string }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [showLoader, setShowLoader] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const isYouTube = src.includes('youtube.com') || src.includes('youtu.be');
-
-  useEffect(() => {
-    setIsLoaded(false);
-    setError(false);
-    setShowLoader(true);
-    
-    const timer = setTimeout(() => {
-      if (isLoaded || error) {
-        setShowLoader(false);
-      }
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, [src]);
 
   const togglePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -91,62 +70,40 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
   };
 
   return (
-    <div className="relative w-full h-full flex items-center justify-center bg-black group cursor-default">
-      <AnimatePresence>
-        {showLoader && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 flex items-center justify-center bg-white z-20"
-          >
-            <motion.div
-              animate={{ 
-                scale: [1, 1.1, 1],
-                opacity: [0, 1, 0] 
-              }}
-              transition={{ 
-                duration: 1,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="text-[#fbbf24]"
-            >
-              <VoltIcon className="w-16 h-16" />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <div className={`w-full h-full transition-opacity duration-1000 ${isLoaded && !showLoader ? 'opacity-100' : 'opacity-0'}`}>
+    <div className="relative w-full h-full flex items-center justify-center bg-black group cursor-default overflow-hidden">
+      <div className={`w-full h-full transition-opacity duration-700 ${isYouTube || isLoaded ? 'opacity-100' : 'opacity-0'}`}>
         {!error ? (
           isYouTube ? (
             (() => {
               const Player = ReactPlayer as any;
               return (
-                <Player
-                  url={src}
-                  playing={isPlaying}
-                  loop
-                  muted
-                  controls={false}
-                  width="100%"
-                  height="100%"
-                  onReady={() => setIsLoaded(true)}
-                  onStart={() => setShowLoader(false)}
-                  onError={() => setError(true)}
-                  config={{
-                    youtube: {
-                      playerVars: {
-                        rel: 0, 
-                        iv_load_policy: 3, 
-                        modestbranding: 1,
-                        disablekb: 1
+                <div className="absolute inset-0 pointer-events-none scale-[1.01]">
+                  <Player
+                    url={src}
+                    playing={isPlaying}
+                    loop
+                    muted
+                    width="100%"
+                    height="100%"
+                    onReady={() => setIsLoaded(true)}
+                    onError={() => setError(true)}
+                    config={{
+                      youtube: {
+                        playerVars: {
+                          rel: 0, 
+                          iv_load_policy: 3, 
+                          modestbranding: 1,
+                          disablekb: 1,
+                          controls: 0,
+                          showinfo: 0,
+                          autohide: 1,
+                          playsinline: 1
+                        }
                       }
-                    }
-                  }}
-                  style={{ objectFit: 'cover' }}
-                />
+                    }}
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
               );
             })()
           ) : (
@@ -158,11 +115,6 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
               muted
               playsInline
               onLoadedData={() => setIsLoaded(true)}
-              onCanPlay={() => setIsLoaded(true)}
-              onPlaying={() => {
-                setIsLoaded(true);
-                setShowLoader(false);
-              }}
               onError={() => setError(true)}
               className={`${className} w-full h-full object-cover`}
             >
@@ -175,10 +127,7 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
           <motion.img
             src={src}
             alt={alt}
-            onLoad={() => {
-              setIsLoaded(true);
-              setShowLoader(false);
-            }}
+            onLoad={() => setIsLoaded(true)}
             className={`${className} w-full h-full object-cover`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -192,7 +141,7 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
           onClick={togglePlay}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ 
-            opacity: (!isPlaying || isLoaded) ? (isPlaying ? 0 : 1) : 0,
+            opacity: isPlaying ? 0 : 1,
             scale: isPlaying ? 0.8 : 1 
           }}
           whileHover={{ scale: 1.1, opacity: 1 }}
@@ -206,7 +155,7 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
         </motion.div>
       </div>
 
-      {/* Floating Status Indicator */}
+      {/* Status Indicator */}
       <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-30">
          <div className="bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 flex items-center gap-2">
             <div className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse" />
@@ -222,73 +171,24 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
 const SubtleMotionGif = ({ src, alt, className, objectPosition = "center" }: { src: string, alt: string, className?: string, objectPosition?: string }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
-  const [showLoader, setShowLoader] = useState(true);
-
-  useEffect(() => {
-    setIsLoaded(false);
-    setError(false);
-    setShowLoader(true);
-    
-    const timer = setTimeout(() => {
-      if (isLoaded || error) {
-        setShowLoader(false);
-      }
-    }, 1000); // Minimum 1s visibility
-
-    return () => clearTimeout(timer);
-  }, [src]);
-
-  useEffect(() => {
-    if (isLoaded) {
-      const timer = setTimeout(() => {
-        setShowLoader(false);
-      }, 800);
-      return () => clearTimeout(timer);
-    }
-  }, [isLoaded]);
 
   return (
-    <div className="relative w-full h-full flex items-center justify-center">
-      <AnimatePresence>
-        {showLoader && !error && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 flex items-center justify-center bg-white z-10"
-          >
-            <motion.div
-              animate={{ 
-                scale: [1, 1.1, 1],
-                opacity: [0, 1, 0] 
-              }}
-              transition={{ 
-                duration: 1,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="text-[#fbbf24]"
-            >
-              <VoltIcon className="w-12 h-12" />
-            </motion.div>
-          </motion.div>
-        )}
-        {error && (
-          <div className="absolute inset-0 flex items-center justify-center bg-white text-[10px] uppercase tracking-widest text-black/20 z-10">
-            Preview unavailable
-          </div>
-        )}
-      </AnimatePresence>
+    <div className="relative w-full h-full flex items-center justify-center bg-black/5">
+      {error && (
+        <div className="absolute inset-0 flex items-center justify-center text-[10px] uppercase tracking-widest text-black/20 z-10">
+          Preview unavailable
+        </div>
+      )}
       <motion.img
         src={src}
         alt={alt}
         onLoad={() => setIsLoaded(true)}
         onError={() => setError(true)}
-        className={`${className} w-full h-full object-cover`}
+        className={`${className} w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700`}
         style={{ objectPosition }}
         referrerPolicy="no-referrer"
         initial={{ opacity: 0, scale: 1 }}
-        animate={{ opacity: (isLoaded && !showLoader) ? 1 : 0 }}
+        animate={{ opacity: isLoaded ? 1 : 0 }}
         whileInView={{ scale: 1.05 }}
         viewport={{ once: true }}
         transition={{
@@ -303,78 +203,31 @@ const SubtleMotionGif = ({ src, alt, className, objectPosition = "center" }: { s
 const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: string, onNext: () => void }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
-  const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
     setIsLoaded(false);
     setError(false);
-    setShowLoader(true);
-    
-    const timer = setTimeout(() => {
-      if (isLoaded || error) {
-        setShowLoader(false);
-      }
-    }, 1200);
-
-    return () => clearTimeout(timer);
   }, [src]);
 
-  useEffect(() => {
-    if (isLoaded) {
-      const timer = setTimeout(() => {
-        setShowLoader(false);
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [isLoaded]);
-
   return (
-    <div className="relative w-full h-full flex items-center justify-center select-none">
-      <AnimatePresence>
-        {showLoader && !error && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 flex items-center justify-center bg-white z-10"
-          >
-            <motion.div
-              animate={{ 
-                scale: [1, 1.1, 1],
-                opacity: [0, 1, 0] 
-              }}
-              transition={{ 
-                duration: 1,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="text-[#fbbf24]"
-            >
-              <VoltIcon className="w-16 h-16" />
-            </motion.div>
-          </motion.div>
-        )}
-        {error && (
-          <div className="absolute inset-0 flex items-center justify-center bg-white text-[10px] uppercase tracking-[0.4em] text-black/20 z-10">
-            Preview unavailable
-          </div>
-        )}
-      </AnimatePresence>
+    <div className="relative w-full h-full flex items-center justify-center select-none bg-black/90">
+      {error && (
+        <div className="absolute inset-0 flex items-center justify-center text-[10px] uppercase tracking-[0.4em] text-white/20 z-10">
+          Preview unavailable
+        </div>
+      )}
       <motion.img
         key={src}
         src={src}
         alt={alt}
         onLoad={() => setIsLoaded(true)}
         onError={() => setError(true)}
-        className={`max-w-full max-h-full object-contain shadow-2xl cursor-pointer`}
+        className={`max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer`}
         referrerPolicy="no-referrer"
-        initial={{ opacity: 0.8, scale: 0.98 }}
-        animate={{ 
-          opacity: (isLoaded && !showLoader) ? 1 : 0, 
-          scale: (isLoaded && !showLoader) ? 1 : 0.98
-        }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 0.95 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         onClick={(e) => {
           e.stopPropagation();
           onNext();
