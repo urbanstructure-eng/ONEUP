@@ -5,7 +5,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, animate } from 'motion/react';
-import { Instagram, Twitter, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu } from 'lucide-react';
+import { Instagram, Twitter, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu, Play, Pause } from 'lucide-react';
+import ReactPlayer from 'react-player';
 
 interface Project {
   id: number;
@@ -52,6 +53,171 @@ const VoltIcon = ({ className }: { className?: string }) => (
     <path d="M13 3L4 14H11V21L20 10H13V3Z" fill="currentColor" />
   </svg>
 );
+
+const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string, className?: string }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [showLoader, setShowLoader] = useState(true);
+  const [error, setError] = useState(false);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  const isYouTube = src.includes('youtube.com') || src.includes('youtu.be');
+
+  useEffect(() => {
+    setIsLoaded(false);
+    setError(false);
+    setShowLoader(true);
+    
+    const timer = setTimeout(() => {
+      if (isLoaded || error) {
+        setShowLoader(false);
+      }
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [src]);
+
+  const togglePlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isYouTube) {
+      setIsPlaying(!isPlaying);
+    } else if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  return (
+    <div className="relative w-full h-full flex items-center justify-center bg-black group cursor-default">
+      <AnimatePresence>
+        {showLoader && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 flex items-center justify-center bg-white z-20"
+          >
+            <motion.div
+              animate={{ 
+                scale: [1, 1.1, 1],
+                opacity: [0, 1, 0] 
+              }}
+              transition={{ 
+                duration: 1,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="text-[#fbbf24]"
+            >
+              <VoltIcon className="w-16 h-16" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className={`w-full h-full transition-opacity duration-1000 ${isLoaded && !showLoader ? 'opacity-100' : 'opacity-0'}`}>
+        {!error ? (
+          isYouTube ? (
+            (() => {
+              const Player = ReactPlayer as any;
+              return (
+                <Player
+                  url={src}
+                  playing={isPlaying}
+                  loop
+                  muted
+                  controls={false}
+                  width="100%"
+                  height="100%"
+                  onReady={() => setIsLoaded(true)}
+                  onStart={() => setShowLoader(false)}
+                  onError={() => setError(true)}
+                  config={{
+                    youtube: {
+                      playerVars: {
+                        rel: 0, 
+                        iv_load_policy: 3, 
+                        modestbranding: 1,
+                        disablekb: 1
+                      }
+                    }
+                  }}
+                  style={{ objectFit: 'cover' }}
+                />
+              );
+            })()
+          ) : (
+            <video
+              ref={videoRef}
+              key={src}
+              autoPlay
+              loop
+              muted
+              playsInline
+              onLoadedData={() => setIsLoaded(true)}
+              onCanPlay={() => setIsLoaded(true)}
+              onPlaying={() => {
+                setIsLoaded(true);
+                setShowLoader(false);
+              }}
+              onError={() => setError(true)}
+              className={`${className} w-full h-full object-cover`}
+            >
+              <source src={src} type="video/mp4" />
+              <source src={src} type="video/webm" />
+              <source src={src} type="video/ogg" />
+            </video>
+          )
+        ) : (
+          <motion.img
+            src={src}
+            alt={alt}
+            onLoad={() => {
+              setIsLoaded(true);
+              setShowLoader(false);
+            }}
+            className={`${className} w-full h-full object-cover`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          />
+        )}
+      </div>
+
+      {/* Modern Minimalist Controls */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <motion.div 
+          onClick={togglePlay}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ 
+            opacity: (!isPlaying || isLoaded) ? (isPlaying ? 0 : 1) : 0,
+            scale: isPlaying ? 0.8 : 1 
+          }}
+          whileHover={{ scale: 1.1, opacity: 1 }}
+          className="w-20 h-20 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-white/20 group/btn opacity-0 group-hover:opacity-100 pointer-events-auto z-30"
+        >
+          {isPlaying ? (
+            <Pause className="w-8 h-8 text-white fill-current" />
+          ) : (
+            <Play className="w-8 h-8 text-white fill-current translate-x-1" />
+          )}
+        </motion.div>
+      </div>
+
+      {/* Floating Status Indicator */}
+      <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-30">
+         <div className="bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 flex items-center gap-2">
+            <div className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse" />
+            <span className="text-[10px] font-bold tracking-widest uppercase text-white/60">
+              {isPlaying ? 'Live Motion' : 'Paused'}
+            </span>
+         </div>
+      </div>
+    </div>
+  );
+};
 
 const SubtleMotionGif = ({ src, alt, className, objectPosition = "center" }: { src: string, alt: string, className?: string, objectPosition?: string }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -1672,11 +1838,10 @@ export default function App() {
                       {/* Voltique Story Section 6: Future Vision */}
                       <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1DLARWfGgz7jNd8o--3dlFel8KFejesC9")}
+                          className="overflow-hidden bg-black/10 rounded-sm aspect-video md:aspect-[21/9]"
                         >
-                          <SubtleMotionGif 
-                            src="https://lh3.googleusercontent.com/d/1DLARWfGgz7jNd8o--3dlFel8KFejesC9" 
+                          <CompactVideoPlayer 
+                            src="https://www.youtube.com/watch?v=1QOZoj0Z1Xc" 
                             alt="Voltique Future Vision"
                           />
                         </div>
