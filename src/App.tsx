@@ -303,10 +303,12 @@ export default function App() {
     if (project.title === "Voltique") {
       return [
         project.image,
-        "https://lh3.googleusercontent.com/d/1_eaR-o_KXYFcKzWKtBlA92PU_IhrE9td",
-        "https://lh3.googleusercontent.com/d/1l7KZzvV9DPsRkzHu9UfKzNp-aX_j5JJH",
-        "https://lh3.googleusercontent.com/d/1gWtv-mx0T4XaX473NP036QTtEzhWnjyh",
-        "https://lh3.googleusercontent.com/d/1_n47-Xe02B1dCF3_3XJ6nHBkbLHVZWgL"
+        "https://lh3.googleusercontent.com/d/18okrA2Rgsx9gzhggIOu89nuz6QcWu-Hi",
+        "https://lh3.googleusercontent.com/d/1LP7r24WA012N3hkibYdehCPnKasGT4jB",
+        "https://lh3.googleusercontent.com/d/1Ad-O2_nnkJHtfNLqVneCvzqufYPEpP-t",
+        "https://lh3.googleusercontent.com/d/1C6c6M2Sf0EchjHqKsylmecO9Z__707lY",
+        "https://lh3.googleusercontent.com/d/1tJkKFKLTwo-zkp6K_EVdVRz7rCviD-F0",
+        "https://lh3.googleusercontent.com/d/14t_z2txNInHBmGqDwZ3q9PkkqRaxgXib"
       ];
     }
     return [
@@ -1401,57 +1403,48 @@ export default function App() {
                         </div>
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1gusf69CAd1am1JcsIyc1qiGekzmZLEUP")}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/18okrA2Rgsx9gzhggIOu89nuz6QcWu-Hi")}
                         >
                           <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/1gusf69CAd1am1JcsIyc1qiGekzmZLEUP" 
+                            src="https://lh3.googleusercontent.com/d/18okrA2Rgsx9gzhggIOu89nuz6QcWu-Hi" 
                             alt="Voltique Architectural Language"
                           />
                         </div>
                       </div>
 
-                      {/* Voltique Story Section 2: The Revolution (User Text Part 1) */}
+                      {/* Voltique Story Section 2: Future Infrastructure */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
                           className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1_eaR-o_KXYFcKzWKtBlA92PU_IhrE9td")}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1LP7r24WA012N3hkibYdehCPnKasGT4jB")}
                         >
-                          <motion.img 
-                            src="https://lh3.googleusercontent.com/d/1_eaR-o_KXYFcKzWKtBlA92PU_IhrE9td" 
-                            alt="Voltique High-End Charging"
-                            className="w-full h-full object-cover"
-                            initial={{ scale: 1.15, x: -10, y: -5 }}
-                            whileInView={{ scale: 1, x: 0, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{
-                              duration: 15,
-                              ease: [0.16, 1, 0.3, 1]
-                            }}
-                            referrerPolicy="no-referrer"
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1LP7r24WA012N3hkibYdehCPnKasGT4jB" 
+                            alt="Voltique Innovation"
                           />
                         </div>
                         <div className="order-1 md:order-2 space-y-6">
-                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Revolutionizing EV</span>
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Innovation</span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                             {lang === 'en' ? (
-                              "Voltique is revolutionizing the electric vehicle (EV) experience by creating a new generation of high-end charging stations that resemble traditional gas stations but are designed for the future."
+                              "Defining the visual language of next-generation service hubs, blending sustainable technology with premium architectural aesthetics."
                             ) : lang === 'fr' ? (
-                              "Voltique révolutionne l'expérience des véhicules électriques (VE) en créant une nouvelle génération de stations de recharge haut de gamme."
+                              "Définir le langage visuel des hubs de services de nouvelle génération, alliant technologie durable et esthétique architecturale haut de gamme."
                             ) : (
-                              "Voltique está revolucionando la experiencia de los vehículos eléctricos (EV) al crear una nueva generación de estaciones de carga de alta gama."
+                              "Definiendo el lenguaje visual de los centros de servicio de próxima generación, combinando tecnología sostenible con estética arquitectónica de alta gama."
                             )}
                           </p>
                         </div>
                       </div>
 
-                      {/* Voltique Story Section 3: Premium Amenities (User Text Part 2) */}
+                      {/* Voltique Story Section 3: Lifestyle Sanctuary */}
                       <div className="space-y-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1l7KZzvV9DPsRkzHu9UfKzNp-aX_j5JJH")}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1Ad-O2_nnkJHtfNLqVneCvzqufYPEpP-t")}
                         >
                           <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/1l7KZzvV9DPsRkzHu9UfKzNp-aX_j5JJH" 
+                            src="https://lh3.googleusercontent.com/d/1Ad-O2_nnkJHtfNLqVneCvzqufYPEpP-t" 
                             alt="Voltique Lifestyle Lounge"
                           />
                         </div>
@@ -1469,13 +1462,13 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Voltique Story Section 4: Experience & Convenience (User Text Part 3 & 4) */}
+                      {/* Voltique Story Section 4: Experience & Convenience */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div className="space-y-6">
                           <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Total Service Experience</span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                             {lang === 'en' ? (
-                              "Voltique locations are equipped with multiple EV charging stations, ensuring convenience for drivers. This comprehensive electric service experience is aimed at enhancing the overall journey for EV owners, making charging not just a necessity but a pleasurable part of their travel routine."
+                              "Voltique locations are equipped with multiple EV charging stations, ensuring convenience for drivers. This comprehensive electric service experience is aimed at enhancing the overall journey for EV owners."
                             ) : lang === 'fr' ? (
                               "Les sites Voltique sont équipés de plusieurs bornes de recharge pour VE, garantissant ainsi la commodité des conducteurs."
                             ) : (
@@ -1485,23 +1478,23 @@ export default function App() {
                         </div>
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1gWtv-mx0T4XaX473NP036QTtEzhWnjyh")}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1C6c6M2Sf0EchjHqKsylmecO9Z__707lY")}
                         >
                           <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/1gWtv-mx0T4XaX473NP036QTtEzhWnjyh" 
+                            src="https://lh3.googleusercontent.com/d/1C6c6M2Sf0EchjHqKsylmecO9Z__707lY" 
                             alt="Voltique EV Infrastructure"
                           />
                         </div>
                       </div>
 
-                      {/* Voltique Story Section 5: Brand Identity & Ecosystem */}
+                      {/* Voltique Story Section 5: Brand Ecosystem */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
                           className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1_n47-Xe02B1dCF3_3XJ6nHBkbLHVZWgL")}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1tJkKFKLTwo-zkp6K_EVdVRz7rCviD-F0")}
                         >
                           <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/1_n47-Xe02B1dCF3_3XJ6nHBkbLHVZWgL" 
+                            src="https://lh3.googleusercontent.com/d/1tJkKFKLTwo-zkp6K_EVdVRz7rCviD-F0" 
                             alt="Voltique Brand Identity"
                           />
                         </div>
@@ -1514,6 +1507,31 @@ export default function App() {
                               "Notre écosystème de marque unit les points de contact numériques et physiques, créant une expérience haut de gamme fluide."
                             ) : (
                               "Nuestro ecosistema de marca une los puntos de contacto digitales y físicos, creando una experiencia fluida de alta gama."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Voltique Story Section 6: Future Vision */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/14t_z2txNInHBmGqDwZ3q9PkkqRaxgXib")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/14t_z2txNInHBmGqDwZ3q9PkkqRaxgXib" 
+                            alt="Voltique Future Vision"
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Future Vision</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Looking forward, Voltique continues to push boundaries, evolving the aesthetics of energy into a global standard for clean, premium transportation infrastructure."
+                            ) : lang === 'fr' ? (
+                              "À l'avenir, Voltique continue de repousser les limites, transformant l'esthétique de l'énergie en une norme mondiale pour les infrastructures de transport propres et haut de gamme."
+                            ) : (
+                              "Mirando hacia el futuro, Voltique continúa superando los límites, haciendo evolucionar la estética de la energía hacia un estándar global para infraestructuras de transporte limpias y de alta gama."
                             )}
                           </p>
                         </div>
