@@ -932,6 +932,23 @@ export default function App() {
         </div>
       </section>
 
+      {/* Post-Contact Signature Image */}
+      <div className="relative z-10 flex justify-center py-24 bg-[#1a1a1a] border-t border-white/5">
+        <a 
+          href="https://www.onenow.shop/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="block group"
+        >
+          <img 
+            src="https://lh3.googleusercontent.com/d/1M-EDoDT8Ex1EWXMUU8HaPfhECDSggPxq" 
+            alt="Studio Signature" 
+            className="h-32 md:h-48 w-auto transition-transform duration-700 group-hover:scale-105"
+            referrerPolicy="no-referrer"
+          />
+        </a>
+      </div>
+
       {/* Footer */}
       <footer className="relative z-10 px-6 md:px-12 py-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] uppercase tracking-[0.3em] font-bold text-white/20 font-mono bg-[#1a1a1a]">
         <div className="flex items-center gap-4">
