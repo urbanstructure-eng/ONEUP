@@ -19,8 +19,8 @@ interface Project {
 
 const PROJECTS: Project[] = [
   { id: 11, title: "Voltique", category: "Service Design", image: "https://lh3.googleusercontent.com/d/1gusf69CAd1am1JcsIyc1qiGekzmZLEUP", colSpan: "md:col-span-12" },
-  { id: 1, title: "Aura Identity", category: "Branding", image: "https://picsum.photos/seed/aura/1200/800", colSpan: "md:col-span-8" },
-  { id: 2, title: "Vortex Digital", category: "UI/UX", image: "https://picsum.photos/seed/vortex/800/800", colSpan: "md:col-span-4" },
+  { id: 12, title: "Pulso Health", category: "AI Health / Branding", image: "https://lh3.googleusercontent.com/d/1ONCooNfgYuYu5trUJrFZcZq1HxYSFZrr", colSpan: "md:col-span-4" },
+  { id: 1, title: "Aura Identity", category: "Branding", image: "https://picsum.photos/seed/aura/1200/800", colSpan: "md:col-span-4" },
   { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1l4lV4DJ1v17tOBJxEC3l32mjxqTjTdH-", colSpan: "md:col-span-4" },
   { id: 4, title: "Nova Campaign", category: "Art Direction", image: "https://picsum.photos/seed/nova/800/800", colSpan: "md:col-span-4" },
   { id: 5, title: "Zenith Web", category: "Development", image: "https://picsum.photos/seed/zenith/800/1000", colSpan: "md:col-span-4" },
@@ -434,6 +434,17 @@ export default function App() {
   };
 
   const getProjectImages = (project: typeof PROJECTS[0]) => {
+    if (project.title === "Pulso Health") {
+      return [
+        project.image,
+        "https://picsum.photos/seed/pulso1/800/1000",
+        "https://lh3.googleusercontent.com/d/1HV38KNGMYygGYoRFDoFe2P5v0By10sDC",
+        "https://lh3.googleusercontent.com/d/1C9aaZv2jODy3L2G_f70176rmthMvJ7y9",
+        "https://lh3.googleusercontent.com/d/1JclpfUaRLdnfi-Y8bFiYZjgMoumw4E_U",
+        "https://lh3.googleusercontent.com/d/11ZHkvKzZm3jjj9ijwxaeayNrPvBVqwn9",
+        "https://lh3.googleusercontent.com/d/16PjI9KDz2z6IFWutld9YKRkwVTNw5Htk"
+      ];
+    }
     if (project.title === "Padelux") {
       return [
         project.image,
@@ -1375,7 +1386,151 @@ export default function App() {
 
                 {/* Alternating Content Sections */}
                 <div className="space-y-24 md:space-y-48">
-                  {selectedProject.title === "Padelux" ? (
+                  {selectedProject.title === "Pulso Health" ? (
+                    <>
+                      {/* Pulso Health Section 1: The Vision */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">The Vision</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Developing a branding and marketing campaign for Pulso, an upcoming AI health platform with a global reach, requires a strategic approach that highlights its innovative features and benefits."
+                            ) : lang === 'fr' ? (
+                              "Développer une campagne de branding et de marketing pour Pulso, une plateforme de santé IA avec une portée mondiale."
+                            ) : (
+                              "Desarrollar una campaña de marca y marketing para Pulso, una plataforma de salud con IA de alcance global."
+                            )}
+                          </p>
+                        </div>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://picsum.photos/seed/pulso1/800/1000")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://picsum.photos/seed/pulso1/800/1000" 
+                            alt="Pulso Health Innovation"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Pulso Health Section 2: Visual Identity */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1HV38KNGMYygGYoRFDoFe2P5v0By10sDC")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1HV38KNGMYygGYoRFDoFe2P5v0By10sDC" 
+                            alt="Pulso Health Identity"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Identity</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The campaign focuses on establishing a strong brand identity that resonates with target audiences, emphasizing the platform's commitment to enhancing healthcare through advanced technology."
+                            ) : lang === 'fr' ? (
+                              "La campagne se concentre sur l'établissement d'une identité de marque forte qui résonne avec les publics cibles."
+                            ) : (
+                              "La campaña se centra en establecer una identidad de marca sólida que resuene con las audiencias objetivas."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Pulso Health Section 3: Engagement Strategy */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1C9aaZv2jODy3L2G_f70176rmthMvJ7y9")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1C9aaZv2jODy3L2G_f70176rmthMvJ7y9" 
+                            alt="Pulso Health Strategy Landscape"
+                            cinematic={true}
+                          />
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                          <div className="space-y-6">
+                            <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                              {lang === 'en' ? (
+                                "To effectively engage potential users and stakeholders, the marketing strategy leverages various channels, including digital advertising, social media, and partnerships with healthcare organizations."
+                              ) : lang === 'fr' ? (
+                                "Pour engager les utilisateurs, la stratégie s'appuie sur la publicité numérique et les médias sociaux."
+                              ) : (
+                                "Para involucrar a los usuarios, la estrategia aprovecha la publicidad digital y las redes sociales."
+                              )}
+                            </p>
+                          </div>
+                          <div 
+                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square"
+                            onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1JclpfUaRLdnfi-Y8bFiYZjgMoumw4E_U")}
+                          >
+                            <SubtleMotionImage 
+                              src="https://lh3.googleusercontent.com/d/1JclpfUaRLdnfi-Y8bFiYZjgMoumw4E_U" 
+                              alt="Pulso Health Strategy Square"
+                            />
+                          </div>
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Strategic Reach</span>
+                        </div>
+                      </div>
+
+                      {/* Pulso Health Section 4: Global Leadership */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/11ZHkvKzZm3jjj9ijwxaeayNrPvBVqwn9")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/11ZHkvKzZm3jjj9ijwxaeayNrPvBVqwn9" 
+                            alt="Pulso Health Global Leadership"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Global Leadership</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "By showcasing success stories and user testimonials, Pulso builds credibility and fosters trust, positioning itself as a leader in the AI health sector on a global scale."
+                            ) : lang === 'fr' ? (
+                              "En présentant des témoignages d'utilisateurs, Pulso renforce sa crédibilité et se positionne comme leader mondial."
+                            ) : (
+                              "Al mostrar testimonios de usuarios, Pulso genera credibilidad y se posiciona como líder mundial."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Pulso Health Section 5: Connectivity */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div 
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/16PjI9KDz2z6IFWutld9YKRkwVTNw5Htk")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/16PjI9KDz2z6IFWutld9YKRkwVTNw5Htk" 
+                            alt="Pulso Health Connectivity"
+                          />
+                        </div>
+                        <div className="order-1 md:order-2 space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Connectivity</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The platform's connectivity ensures a seamless flow of data, enabling real-time insights that improve patient outcomes and streamline healthcare delivery on a global scale."
+                            ) : lang === 'fr' ? (
+                              "La connectivité de la plateforme assure un flux de données transparent, permettant des informations en temps réel qui améliorent les résultats pour les patients."
+                            ) : (
+                              "La conectividad de la plataforma garantiza un flujo de datos continuo, permitiendo información en tiempo real que mejora los resultados de los pacientes."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  ) : selectedProject.title === "Padelux" ? (
                     <>
                       {/* Section 1: Intro Text + Image (The Challenge) */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
