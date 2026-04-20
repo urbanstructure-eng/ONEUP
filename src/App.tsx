@@ -31,20 +31,17 @@ const PROJECTS: Project[] = [
   { id: 10, title: "Orbit Space", category: "Exhibition", image: "https://picsum.photos/seed/orbit/1200/750", colSpan: "md:col-span-6" },
 ];
 
-const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", contain = false }: { src: string, alt: string, className?: string, objectPosition?: string, contain?: boolean }) => (
+const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", contain = false, cinematic = false }: { src: string, alt: string, className?: string, objectPosition?: string, contain?: boolean, cinematic?: boolean }) => (
   <motion.img
     src={src}
     alt={alt}
     className={`${className} w-full h-full ${contain ? 'object-contain p-8' : 'object-cover'}`}
     style={{ objectPosition }}
     referrerPolicy="no-referrer"
-    initial={{ scale: 1 }}
-    whileInView={{ scale: 1.05 }}
+    initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
+    whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true }}
-    transition={{
-      duration: 10,
-      ease: [0.16, 1, 0.3, 1]
-    }}
+    transition={{ duration: cinematic ? 2.5 : 1, ease: [0.22, 1, 0.36, 1] }}
   />
 );
 
@@ -154,48 +151,6 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
           )}
         </motion.div>
       </div>
-
-      {/* Status Indicator */}
-      <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-30">
-         <div className="bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 flex items-center gap-2">
-            <div className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse" />
-            <span className="text-[10px] font-bold tracking-widest uppercase text-white/60">
-              {isPlaying ? 'Live Motion' : 'Paused'}
-            </span>
-         </div>
-      </div>
-    </div>
-  );
-};
-
-const SubtleMotionGif = ({ src, alt, className, objectPosition = "center" }: { src: string, alt: string, className?: string, objectPosition?: string }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [error, setError] = useState(false);
-
-  return (
-    <div className="relative w-full h-full flex items-center justify-center bg-black/5">
-      {error && (
-        <div className="absolute inset-0 flex items-center justify-center text-[10px] uppercase tracking-widest text-black/20 z-10">
-          Preview unavailable
-        </div>
-      )}
-      <motion.img
-        src={src}
-        alt={alt}
-        onLoad={() => setIsLoaded(true)}
-        onError={() => setError(true)}
-        className={`${className} w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700`}
-        style={{ objectPosition }}
-        referrerPolicy="no-referrer"
-        initial={{ opacity: 0, scale: 1 }}
-        animate={{ opacity: isLoaded ? 1 : 0 }}
-        whileInView={{ scale: 1.05 }}
-        viewport={{ once: true }}
-        transition={{
-          opacity: { duration: 1 },
-          scale: { duration: 10, ease: [0.16, 1, 0.3, 1] }
-        }}
-      />
     </div>
   );
 };
@@ -1581,7 +1536,7 @@ export default function App() {
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/18okrA2Rgsx9gzhggIOu89nuz6QcWu-Hi")}
                         >
-                          <SubtleMotionGif 
+                          <SubtleMotionImage 
                             src="https://lh3.googleusercontent.com/d/18okrA2Rgsx9gzhggIOu89nuz6QcWu-Hi" 
                             alt="Voltique Architectural Language"
                           />
@@ -1594,7 +1549,7 @@ export default function App() {
                           className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1LP7r24WA012N3hkibYdehCPnKasGT4jB")}
                         >
-                          <SubtleMotionGif 
+                          <SubtleMotionImage 
                             src="https://lh3.googleusercontent.com/d/1LP7r24WA012N3hkibYdehCPnKasGT4jB" 
                             alt="Voltique Innovation"
                           />
@@ -1619,7 +1574,7 @@ export default function App() {
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1Ad-O2_nnkJHtfNLqVneCvzqufYPEpP-t")}
                         >
-                          <SubtleMotionGif 
+                          <SubtleMotionImage 
                             src="https://lh3.googleusercontent.com/d/1Ad-O2_nnkJHtfNLqVneCvzqufYPEpP-t" 
                             alt="Voltique Lifestyle Lounge"
                           />
@@ -1656,7 +1611,7 @@ export default function App() {
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1C6c6M2Sf0EchjHqKsylmecO9Z__707lY")}
                         >
-                          <SubtleMotionGif 
+                          <SubtleMotionImage 
                             src="https://lh3.googleusercontent.com/d/1C6c6M2Sf0EchjHqKsylmecO9Z__707lY" 
                             alt="Voltique EV Infrastructure"
                           />
@@ -1669,7 +1624,7 @@ export default function App() {
                           className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1tJkKFKLTwo-zkp6K_EVdVRz7rCviD-F0")}
                         >
-                          <SubtleMotionGif 
+                          <SubtleMotionImage 
                             src="https://lh3.googleusercontent.com/d/1tJkKFKLTwo-zkp6K_EVdVRz7rCviD-F0" 
                             alt="Voltique Brand Identity"
                           />
@@ -1691,11 +1646,13 @@ export default function App() {
                       {/* Voltique Story Section 6: Future Vision */}
                       <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/10 rounded-sm aspect-video md:aspect-[21/9]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1RYRWf7_CSv27PD95PfnPPKLs534PhOQD")}
                         >
-                          <CompactVideoPlayer 
-                            src="https://www.youtube.com/watch?v=1QOZoj0Z1Xc" 
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1RYRWf7_CSv27PD95PfnPPKLs534PhOQD" 
                             alt="Voltique Future Vision"
+                            cinematic={true}
                           />
                         </div>
                         <div className="max-w-3xl">
@@ -1707,6 +1664,32 @@ export default function App() {
                               "À l'avenir, Voltique continue de repousser les limites, transformant l'esthétique de l'énergie en une norme mondiale pour les infrastructures de transport propres et haut de gamme."
                             ) : (
                               "Mirando hacia el futuro, Voltique continúa superando los límites, haciendo evolucionar la estética de la energía hacia un estándar global para infraestructuras de transporte limpias y de alta gama."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Voltique Story Section 7: Impact & Sustainability */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1IbhBUuJuXIiKMGleLfoHvwAlE78GdwG_")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1IbhBUuJuXIiKMGleLfoHvwAlE78GdwG_" 
+                            alt="Voltique Impact"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Global Impact</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Voltique's vision extends beyond mere utility, creating a sustainable benchmark for premium urban mobility and energy infrastructure worldwide."
+                            ) : lang === 'fr' ? (
+                              "La vision de Voltique dépasse la simple utilité, créant une référence durable pour la mobilité urbaine haut de gamme."
+                            ) : (
+                              "La visión de Voltique va más allá de la mera utilidad, creando un referente sostenible para la movilidad urbana de alta gama."
                             )}
                           </p>
                         </div>
