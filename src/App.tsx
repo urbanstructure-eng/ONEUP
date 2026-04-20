@@ -453,7 +453,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1Ad-O2_nnkJHtfNLqVneCvzqufYPEpP-t",
         "https://lh3.googleusercontent.com/d/1C6c6M2Sf0EchjHqKsylmecO9Z__707lY",
         "https://lh3.googleusercontent.com/d/1tJkKFKLTwo-zkp6K_EVdVRz7rCviD-F0",
-        "https://lh3.googleusercontent.com/d/1DLARWfGgz7jNd8o--3dlFel8KFejesC9"
+        "https://lh3.googleusercontent.com/d/1RYRWf7_CSv27PD95PfnPPKLs534PhOQD",
+        "https://lh3.googleusercontent.com/d/1IbhBUuJuXIiKMGleLfoHvwAlE78GdwG_"
       ];
     }
     return [
