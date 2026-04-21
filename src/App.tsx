@@ -20,6 +20,7 @@ interface Project {
 const PROJECTS: Project[] = [
   { id: 11, title: "Voltique", category: "Service Design", image: "https://lh3.googleusercontent.com/d/1gusf69CAd1am1JcsIyc1qiGekzmZLEUP", colSpan: "md:col-span-12" },
   { id: 12, title: "Pulso Health", category: "AI Health / Branding", image: "https://lh3.googleusercontent.com/d/1ONCooNfgYuYu5trUJrFZcZq1HxYSFZrr", colSpan: "md:col-span-4" },
+  { id: 13, title: "BuyDrop", category: "Logistic Company", image: "https://lh3.googleusercontent.com/d/1qpd246hL-TbgCSgf9j2qxBk15FMW2FuF", colSpan: "md:col-span-4" },
   { id: 1, title: "Aura Identity", category: "Branding", image: "https://picsum.photos/seed/aura/1200/800", colSpan: "md:col-span-4" },
   { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1l4lV4DJ1v17tOBJxEC3l32mjxqTjTdH-", colSpan: "md:col-span-4" },
   { id: 4, title: "Nova Campaign", category: "Art Direction", image: "https://picsum.photos/seed/nova/800/800", colSpan: "md:col-span-4" },
@@ -467,6 +468,16 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1tJkKFKLTwo-zkp6K_EVdVRz7rCviD-F0",
         "https://lh3.googleusercontent.com/d/1RYRWf7_CSv27PD95PfnPPKLs534PhOQD",
         "https://lh3.googleusercontent.com/d/1IbhBUuJuXIiKMGleLfoHvwAlE78GdwG_"
+      ];
+    }
+    if (project.title === "BuyDrop") {
+      return [
+        project.image,
+        "https://lh3.googleusercontent.com/d/1nZNLMGhECM67AST6qbGCmYiXUhN0RF-C",
+        "https://lh3.googleusercontent.com/d/1jxksiMAxUtLXBxGL8bNC7jcizLTyxXR0",
+        "https://lh3.googleusercontent.com/d/1NV4L745ah-lWi0pZtmULvNTiJHefN6J9",
+        "https://lh3.googleusercontent.com/d/16nVARSrN4RZielAgzspDx6mkKm6VUs_3",
+        "https://lh3.googleusercontent.com/d/1rxQVm2VX7vOD1Z0HPFx7DgVC1s5iwzXH"
       ];
     }
     return [
@@ -1914,6 +1925,124 @@ export default function App() {
                               "La vision de Voltique dépasse la simple utilité, créant une référence durable pour la mobilité urbaine haut de gamme."
                             ) : (
                               "La visión de Voltique va más allá de la mera utilidad, creando un referente sostenible para la movilidad urbana de alta gama."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  ) : selectedProject.title === "BuyDrop" ? (
+                    <>
+                      {/* BuyDrop Section 0: Header Image */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1nZNLMGhECM67AST6qbGCmYiXUhN0RF-C")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1nZNLMGhECM67AST6qbGCmYiXUhN0RF-C" 
+                            alt="BuyDrop Header"
+                            cinematic={true}
+                          />
+                        </div>
+                      </div>
+
+                      {/* BuyDrop Section 1: Intro Text + Image (The Concept) */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">The Concept</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "BuyDrop is an advanced logistics ecosystem designed for optimized global distribution and supply chain transparency. It redefines efficiency through real-time tracking and automated freight coordination."
+                            ) : lang === 'fr' ? (
+                              "BuyDrop est un écosystème logistique avancé conçu pour une distribution mondiale optimisée et la transparence de la chaîne d'approvisionnement."
+                            ) : (
+                              "BuyDrop es un ecosistema logístico avanzado diseñado para una distribución global optimizada y transparencia en la cadena de suministro."
+                            )}
+                          </p>
+                        </div>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1jxksiMAxUtLXBxGL8bNC7jcizLTyxXR0")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1jxksiMAxUtLXBxGL8bNC7jcizLTyxXR0" 
+                            alt="BuyDrop Environment"
+                          />
+                        </div>
+                      </div>
+
+                      {/* BuyDrop Section 2: Image + Text (System Architecture) */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div 
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1NV4L745ah-lWi0pZtmULvNTiJHefN6J9")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1NV4L745ah-lWi0pZtmULvNTiJHefN6J9" 
+                            alt="BuyDrop System"
+                          />
+                        </div>
+                        <div className="order-1 md:order-2 space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">System Architecture</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The backend infrastructure supports millions of concurrent transactions, ensuring that every 'drop' is executed with millisecond precision."
+                            ) : lang === 'fr' ? (
+                              "L'infrastructure backend prend en charge des millions de transactions simultanées."
+                            ) : (
+                              "La infraestructura backend soporta millones de transacciones simultáneas."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* BuyDrop Section 3: Cinematic / Precision Overlay (Full Width Image) */}
+                      <div className="space-y-12">
+                        <div 
+                          className="relative overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video group"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/16nVARSrN4RZielAgzspDx6mkKm6VUs_3")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/16nVARSrN4RZielAgzspDx6mkKm6VUs_3" 
+                            alt="BuyDrop Precision"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Visual DNA</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The visual identity emphasizes precision and reliability—utilizing structured grid systems and dynamic motion to represent the fluid movement of global trade."
+                            ) : lang === 'fr' ? (
+                              "L'identité visuelle met l'accent sur la précision et la fiabilité—en utilisant des systèmes de grille structurés."
+                            ) : (
+                              "La identidad visual enfatiza la precisión y confiabilidad, utilizando sistemas de cuadrícula estructurados."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* BuyDrop Section 4: Final Impact */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1rxQVm2VX7vOD1Z0HPFx7DgVC1s5iwzXH")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1rxQVm2VX7vOD1Z0HPFx7DgVC1s5iwzXH" 
+                            alt="BuyDrop Distribution"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Global Network</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Bridging continents through a unified digital layer, BuyDrop creates a seamless map of distribution that empowers local markets on a global scale."
+                            ) : lang === 'fr' ? (
+                              "Relier les continents via une couche numérique unifiée."
+                            ) : (
+                              "Conectando continentes a través de una capa digital unificada."
                             )}
                           </p>
                         </div>
