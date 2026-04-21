@@ -1563,14 +1563,14 @@ export default function App() {
                               src="https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez" 
                               alt="Pulso Health Panorama"
                               className="w-full h-auto object-cover flex-shrink-0 opacity-80"
-                              style={{ filter: 'brightness(1.1)' }}
+                              style={{ filter: 'brightness(1.05) blur(0.6px)' }}
                               referrerPolicy="no-referrer"
                             />
                             <img 
                               src="https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez" 
                               alt="Pulso Health Panorama Duplicate"
                               className="w-full h-auto object-cover flex-shrink-0 opacity-80"
-                              style={{ filter: 'brightness(1.1)' }}
+                              style={{ filter: 'brightness(1.05) blur(0.6px)' }}
                               referrerPolicy="no-referrer"
                             />
                           </motion.div>
@@ -2034,20 +2034,20 @@ export default function App() {
                       src="https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez" 
                       alt="Pulso Health Panorama Fullscreen"
                       className="w-full h-auto object-cover flex-shrink-0 opacity-80"
-                      style={{ filter: 'brightness(1.1)' }}
+                      style={{ filter: 'brightness(1.05) blur(0.6px)' }}
                       referrerPolicy="no-referrer"
                     />
                     <img 
                       src="https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez" 
                       alt="Pulso Health Panorama Duplicate Fullscreen"
                       className="w-full h-auto object-cover flex-shrink-0 opacity-80"
-                      style={{ filter: 'brightness(1.1)' }}
+                      style={{ filter: 'brightness(1.05) blur(0.6px)' }}
                       referrerPolicy="no-referrer"
                     />
                   </motion.div>
-                  {/* Subtle Gradients to fade edges */}
-                  <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-neutral-50/20 to-transparent pointer-events-none" />
-                  <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-neutral-50/20 to-transparent pointer-events-none" />
+                  {/* Subtle Gradients to fade edges - Softened */}
+                  <div className="absolute inset-x-0 top-0 h-80 bg-gradient-to-b from-neutral-50/40 via-neutral-50/10 to-transparent pointer-events-none" />
+                  <div className="absolute inset-x-0 bottom-0 h-80 bg-gradient-to-t from-neutral-50/40 via-neutral-50/10 to-transparent pointer-events-none" />
                   
                   {/* Click area to go next */}
                   <div 
