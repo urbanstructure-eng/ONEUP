@@ -13,6 +13,7 @@ interface Project {
   title: string;
   category: string;
   image: string;
+  heroImage?: string;
   colSpan: string;
   contain?: boolean;
 }
@@ -20,7 +21,8 @@ interface Project {
 const PROJECTS: Project[] = [
   { id: 11, title: "Voltique", category: "Service Design", image: "https://lh3.googleusercontent.com/d/1gusf69CAd1am1JcsIyc1qiGekzmZLEUP", colSpan: "md:col-span-12" },
   { id: 12, title: "Pulso Health", category: "AI Health / Branding", image: "https://lh3.googleusercontent.com/d/1ONCooNfgYuYu5trUJrFZcZq1HxYSFZrr", colSpan: "md:col-span-4" },
-  { id: 13, title: "BuyDrop", category: "Logistic Company", image: "https://lh3.googleusercontent.com/d/1qpd246hL-TbgCSgf9j2qxBk15FMW2FuF", colSpan: "md:col-span-4" },
+  { id: 13, title: "BuyDrop", category: "Logistic Company", image: "https://lh3.googleusercontent.com/d/1qpd246hL-TbgCSgf9j2qxBk15FMW2FuF", heroImage: "https://lh3.googleusercontent.com/d/1nZNLMGhECM67AST6qbGCmYiXUhN0RF-C", colSpan: "md:col-span-4" },
+  { id: 14, title: "UNITY Community Hub", category: "Community / Branding", image: "https://lh3.googleusercontent.com/d/1SaZAxfG-M0ouGb0w0wCRxmzKQ3U8S5uT", heroImage: "https://lh3.googleusercontent.com/d/1zBFr8LhCxzjxucFpkMMXeekayY2JLk9g", colSpan: "md:col-span-4" },
   { id: 1, title: "Aura Identity", category: "Branding", image: "https://picsum.photos/seed/aura/1200/800", colSpan: "md:col-span-4" },
   { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1l4lV4DJ1v17tOBJxEC3l32mjxqTjTdH-", colSpan: "md:col-span-4" },
   { id: 4, title: "Nova Campaign", category: "Art Direction", image: "https://picsum.photos/seed/nova/800/800", colSpan: "md:col-span-4" },
@@ -480,6 +482,16 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1rxQVm2VX7vOD1Z0HPFx7DgVC1s5iwzXH"
       ];
     }
+    if (project.title === "UNITY Community Hub") {
+      return [
+        project.image,
+        "https://lh3.googleusercontent.com/d/1zBFr8LhCxzjxucFpkMMXeekayY2JLk9g",
+        "https://lh3.googleusercontent.com/d/11wP3BfkI3AFIZP49UH1WSwpXPZEvmHc6",
+        "https://lh3.googleusercontent.com/d/1M-1AUscx9JJ7guyEjAeF1ziTjLxrnbWK",
+        "https://lh3.googleusercontent.com/d/1JL_vUWyn2sn9wFsdgCnL-XekDbMnzJ4t",
+        "https://lh3.googleusercontent.com/d/178fpIdVUsFAnFVgY89ztj_hRTVaxAWsw"
+      ];
+    }
     return [
       project.image,
       `https://picsum.photos/seed/${project.id + 100}/1200/800`,
@@ -783,7 +795,7 @@ export default function App() {
             <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase mb-4 block">{t[lang].work.tag}</span>
             <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">{t[lang].work.title}</h2>
           </div>
-          <span className="text-[13px] uppercase tracking-[0.3em] font-bold text-white/20 font-mono hidden md:block">2022 — 2026</span>
+          <span className="text-[13px] uppercase tracking-[0.3em] font-bold text-white/20 font-mono hidden md:block">2022 — 2024</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-0 border-t border-l border-white/10">
@@ -975,7 +987,7 @@ export default function App() {
       {/* Footer */}
       <footer className="relative z-10 px-6 md:px-12 py-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] uppercase tracking-[0.3em] font-bold text-white/20 font-mono bg-[#1a1a1a]">
         <div className="flex items-center gap-4">
-          © 2026 oneup. {lang === 'en' ? 'Design studio / Creative studio' : lang === 'fr' ? 'Studio de design / Atelier de création' : 'Estudio de diseño / Taller creativo'}
+          © 2024 oneup. {lang === 'en' ? 'Design studio / Creative studio' : lang === 'fr' ? 'Studio de design / Atelier de création' : 'Estudio de diseño / Taller creativo'}
         </div>
         <div className="flex gap-12">
           <button onClick={() => setShowLegalModal(true)} className="hover:text-white transition-colors">
@@ -1291,7 +1303,7 @@ export default function App() {
                   Close Legal
                 </button>
                 <div className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/20">
-                  oneup © 2026 Design studio / Atelier de création
+                  oneup © 2024 Design studio / Atelier de création
                 </div>
               </footer>
             </div>
@@ -1369,7 +1381,7 @@ export default function App() {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8 border-t border-black/10">
                     <div>
                       <span className="text-[13px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">{t[lang].modal.year}</span>
-                      <span className="text-sm font-medium">2026</span>
+                      <span className="text-sm font-medium">2024</span>
                     </div>
                     <div>
                       <span className="text-[13px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">{t[lang].modal.role}</span>
@@ -1388,10 +1400,10 @@ export default function App() {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                   className="aspect-video overflow-hidden bg-black/5 cursor-zoom-in rounded-sm mb-24 md:mb-40"
-                  onClick={() => setFullscreenImage(selectedProject.image)}
+                  onClick={() => setFullscreenImage(selectedProject.heroImage || selectedProject.image)}
                 >
                   <SubtleMotionImage 
-                    src={selectedProject.image} 
+                    src={selectedProject.heroImage || selectedProject.image} 
                     alt={selectedProject.title}
                   />
                 </motion.div>
@@ -1932,20 +1944,6 @@ export default function App() {
                     </>
                   ) : selectedProject.title === "BuyDrop" ? (
                     <>
-                      {/* BuyDrop Section 0: Header Image */}
-                      <div className="space-y-12">
-                        <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1nZNLMGhECM67AST6qbGCmYiXUhN0RF-C")}
-                        >
-                          <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/1nZNLMGhECM67AST6qbGCmYiXUhN0RF-C" 
-                            alt="BuyDrop Header"
-                            cinematic={true}
-                          />
-                        </div>
-                      </div>
-
                       {/* BuyDrop Section 1: Intro Text + Image (The Concept) */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div className="space-y-6">
@@ -2048,6 +2046,150 @@ export default function App() {
                         </div>
                       </div>
                     </>
+                  ) : selectedProject.title === "UNITY Community Hub" ? (
+                    <>
+                      {/* UNITY Section 1: Intro */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">The Mission</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "UNITY serves as a global mental health hub dedicated to supporting youth facing mental health challenges and anxiety. Its primary goal is to connect these individuals with the resources and assistance they need to navigate their struggles effectively."
+                            ) : lang === 'fr' ? (
+                              "UNITY sert de hub mondial pour la santé mentale dédié à soutenir les jeunes confrontés à des défis de santé mentale et à l'anxiété. Son objectif principal est de connecter ces individus aux ressources et à l'assistance dont ils ont besoin."
+                            ) : (
+                              "UNITY sirve como un hub global de salud mental dedicado a apoyar a los jóvenes que enfrentan desafíos de salud mental y ansiedad. Su objetivo principal es conectar a estas personas con los recursos y la asistencia que necesitan."
+                            )}
+                          </p>
+                        </div>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1SaZAxfG-M0ouGb0w0wCRxmzKQ3U8S5uT")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1SaZAxfG-M0ouGb0w0wCRxmzKQ3U8S5uT" 
+                            alt="UNITY Mission"
+                          />
+                        </div>
+                      </div>
+
+                      {/* UNITY Section 2: Branding Strategy */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/11wP3BfkI3AFIZP49UH1WSwpXPZEvmHc6")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/11wP3BfkI3AFIZP49UH1WSwpXPZEvmHc6" 
+                            alt="UNITY Branding"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Branding Strategy</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The branding strategy focuses on creating a clear and accessible identity that resonates with a wide audience. This approach emphasizes simplicity and cleanliness, ensuring that the branding is easily applicable across various collateral, websites, and environmental signage."
+                            ) : lang === 'fr' ? (
+                              "La stratégie de branding se concentre sur la création d'une identité claire et accessible qui résonne auprès d'un large public. Cette approche met l'accent sur la simplicité et la propreté."
+                            ) : (
+                              "La estrategia de marca se centra en crear una identidad clara y accesible que resuene con una audiencia amplia. Este enfoque enfatiza la simplicidad y la limpieza."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* UNITY Section 3: Visual Language */}
+                      <div className="max-w-3xl space-y-6">
+                        <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Visual Language</span>
+                        <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                          {lang === 'en' ? (
+                            "The visual system uses a soothing and optimistic palette, designed to provide a safe digital environment for users to explore and seek support."
+                          ) : lang === 'fr' ? (
+                            "Le système visuel utilise une palette apaisante et optimiste, conçue pour offrir un environnement numérique sûr."
+                          ) : (
+                            "El sistema visual utiliza una paleta relajante y optimista, diseñada para proporcionar un entorno digital seguro."
+                          )}
+                        </p>
+                      </div>
+
+                      {/* UNITY Section 4: Physical Touchpoints */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1M-1AUscx9JJ7guyEjAeF1ziTjLxrnbWK")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1M-1AUscx9JJ7guyEjAeF1ziTjLxrnbWK" 
+                            alt="UNITY Physical Touchpoints"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Environmental Presence</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Expanding beyond the digital realm, the identity seamlessly adapts to physical environments, creating a consistent and comforting presence in real-world safe spaces."
+                            ) : lang === 'fr' ? (
+                              "S'étendant au-delà du domaine numérique, l'identité s'adaptant parfaitement aux environnements physiques."
+                            ) : (
+                              "Expandiéndose más allá del ámbito digital, la identidad se adapta perfectamente a los entornos físicos."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* UNITY Section 5: Visual Detail */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Identity & Design</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Every visual element was meticulously crafted to ensure maximum impact and clarity, providing an essential resource for those navigating therapeutic journeys."
+                            ) : lang === 'fr' ? (
+                              "Chaque élément visuel a été méticuleusement conçu pour garantir un impact et une clarté maximum."
+                            ) : (
+                              "Cada elemento visual fue meticulosamente diseñado para garantizar el máximo impacto y claridad."
+                            )}
+                          </p>
+                        </div>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1JL_vUWyn2sn9wFsdgCnL-XekDbMnzJ4t")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1JL_vUWyn2sn9wFsdgCnL-XekDbMnzJ4t" 
+                            alt="UNITY Detail"
+                          />
+                        </div>
+                      </div>
+
+                      {/* UNITY Section 6: Community Connection */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/178fpIdVUsFAnFVgY89ztj_hRTVaxAWsw")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/178fpIdVUsFAnFVgY89ztj_hRTVaxAWsw" 
+                            alt="UNITY Community"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Community Reach</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The hub serves as a testament to the power of design in bridging gaps and building resilient support networks for youth across the globe."
+                            ) : lang === 'fr' ? (
+                              "Le hub témoigne du pouvoir du design pour combler les lacunes et construire des réseaux de soutien résilients."
+                            ) : (
+                              "El centro sirve como testimonio del poder del diseño para cerrar brechas y construir redes de apoyo resilientes."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                    </>
                   ) : (
                     <>
                       {/* Generic Project Alternating Layout */}
@@ -2109,7 +2251,7 @@ export default function App() {
                   {t[lang].modal.close}
                 </button>
                 <div className="text-[10px] uppercase tracking-[0.4em] font-bold text-black/20">
-                  oneup © 2026 {lang === 'en' ? 'Design studio / Atelier de création' : 'Studio de design / Atelier de création'}
+                  oneup © 2024 {lang === 'en' ? 'Design studio / Atelier de création' : 'Studio de design / Atelier de création'}
                 </div>
               </footer>
             </div>
