@@ -23,6 +23,7 @@ const PROJECTS: Project[] = [
   { id: 12, title: "Pulso Health", category: "AI Health / Branding", image: "https://lh3.googleusercontent.com/d/1ONCooNfgYuYu5trUJrFZcZq1HxYSFZrr", colSpan: "md:col-span-4" },
   { id: 13, title: "BuyDrop", category: "Logistic Company", image: "https://lh3.googleusercontent.com/d/1qpd246hL-TbgCSgf9j2qxBk15FMW2FuF", heroImage: "https://lh3.googleusercontent.com/d/1nZNLMGhECM67AST6qbGCmYiXUhN0RF-C", colSpan: "md:col-span-4" },
   { id: 14, title: "UNITY Community Hub", category: "Community / Branding", image: "https://lh3.googleusercontent.com/d/1SaZAxfG-M0ouGb0w0wCRxmzKQ3U8S5uT", heroImage: "https://lh3.googleusercontent.com/d/1zBFr8LhCxzjxucFpkMMXeekayY2JLk9g", colSpan: "md:col-span-4" },
+  { id: 15, title: "Atelier d'art", category: "Art Direction / Branding", image: "https://lh3.googleusercontent.com/d/1sAcH9tLsKt9mXswTCynb7bnRcS5qAYJT", colSpan: "md:col-span-12" },
   { id: 1, title: "Aura Identity", category: "Branding", image: "https://picsum.photos/seed/aura/1200/800", colSpan: "md:col-span-4" },
   { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1l4lV4DJ1v17tOBJxEC3l32mjxqTjTdH-", colSpan: "md:col-span-4" },
   { id: 4, title: "Nova Campaign", category: "Art Direction", image: "https://picsum.photos/seed/nova/800/800", colSpan: "md:col-span-4" },
@@ -491,6 +492,15 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1JL_vUWyn2sn9wFsdgCnL-XekDbMnzJ4t",
         "https://lh3.googleusercontent.com/d/178fpIdVUsFAnFVgY89ztj_hRTVaxAWsw",
         "https://lh3.googleusercontent.com/d/18gqdiRXLF7McIOK9DyD33TilFTV1OwYX"
+      ];
+    }
+    if (project.title === "Atelier d'art") {
+      return [
+        project.image,
+        "https://lh3.googleusercontent.com/d/1osUANG5WeR0Ww3n_OQtdiaNXBxQLIA7f",
+        "https://lh3.googleusercontent.com/d/1el8VLirLeFCbYzVJmjInCWc_1ndww9-9",
+        "https://lh3.googleusercontent.com/d/16PMa4p6HKCfzF56Ny_JoEGR6OBJqU-Jj",
+        "https://lh3.googleusercontent.com/d/1T9CIXul6wnGY6caACLxwvlW1gAR-EDzi"
       ];
     }
     return [
@@ -2237,6 +2247,110 @@ export default function App() {
                               "Le système visuel de la marque se définit par une précision et une clarté extrêmes, garantissant que chaque point de contact reflète les valeurs de fiabilité."
                             ) : (
                               "El sistema visual de la marca se define por una precisión y claridad extremas, asegurando que cada punto de contacto refleje los valores fundamentales."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  ) : selectedProject.title === "Atelier d'art" ? (
+                    <>
+                      {/* Atelier Section 1: Branding Strategy */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Branding Strategy</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The branding strategy aims to establish a cohesive identity for the festival, ensuring that all promotional elements resonate with the target audience. By emphasizing the rich cultural heritage of French art, the campaign seeks to attract a diverse audience and foster appreciation for artistic expression."
+                            ) : lang === 'fr' ? (
+                              "La stratégie de marque vise à établir une identité cohérente pour le festival, garantissant que tous les éléments promotionnels résonnent auprès du public cible."
+                            ) : (
+                              "La estrategia de branding busca establecer una identidad cohesiva para el festival, asegurando que todos los elementos promocionales resuenen con el público objetivo."
+                            )}
+                          </p>
+                        </div>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1osUANG5WeR0Ww3n_OQtdiaNXBxQLIA7f")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1osUANG5WeR0Ww3n_OQtdiaNXBxQLIA7f" 
+                            alt="Atelier Branding Strategy"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Atelier Section 2: Visual Language (Cinematic) */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1el8VLirLeFCbYzVJmjInCWc_1ndww9-9")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1el8VLirLeFCbYzVJmjInCWc_1ndww9-9" 
+                            alt="Atelier Visual Language"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Visual Language</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "A sophisticated visual system using minimalist typography and bold layouts to represent the duality of classical inspiration and modern execution."
+                            ) : lang === 'fr' ? (
+                              "Un système visuel sophistiqué utilisant une typographie minimaliste et des mises en page audacieuses."
+                            ) : (
+                              "Un sistema visual sofisticado que utiliza tipografía minimalista y diseños audaces."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Atelier Section 3: Artistic Precision */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div 
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/16PMa4p6HKCfzF56Ny_JoEGR6OBJqU-Jj")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/16PMa4p6HKCfzF56Ny_JoEGR6OBJqU-Jj" 
+                            alt="Atelier Precision"
+                          />
+                        </div>
+                        <div className="order-1 md:order-2 space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Artistic Precision</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Every detail of the campaign was crafted to honor the craftsmanship of the featured artists, ensuring that even the smallest promotional element carries the weight of the festival's artistic vision."
+                            ) : lang === 'fr' ? (
+                              "Chaque détail de la campagne a été conçu pour honorer le savoir-faire des artistes présentés."
+                            ) : (
+                              "Cada detalle de la campaña fue diseñado para honrar la artesanía de los artistas destacados."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Atelier Section 4: Cultural Heritage (Final Impact) */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1T9CIXul6wnGY6caACLxwvlW1gAR-EDzi")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1T9CIXul6wnGY6caACLxwvlW1gAR-EDzi" 
+                            alt="Atelier d'art Cultural Heritage"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Cultural Heritage</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "By emphasizing the rich cultural heritage of French art, the campaign fostered a deep appreciation for artistic expression across all generations."
+                            ) : lang === 'fr' ? (
+                              "En mettant l'accent sur le riche patrimoine culturel de l'art français, la campagne a favorisé une profonde appréciation pour l'expression artistique."
+                            ) : (
+                              "Al enfatizar el rico patrimonio cultural del arte francés, la campaña fomentó un profundo aprecio por la expresión artística."
                             )}
                           </p>
                         </div>
