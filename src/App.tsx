@@ -1547,14 +1547,14 @@ export default function App() {
                         </div>
                         
                         <div 
-                          className="relative overflow-hidden rounded-sm aspect-video md:aspect-[21/9] bg-black/5 cursor-zoom-in"
+                          className="relative overflow-hidden rounded-sm aspect-video md:aspect-[21/9] bg-transparent cursor-zoom-in"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez")}
                         >
                           <motion.div 
                             className="w-full flex flex-col"
                             animate={{ y: ["0%", "-50%"] }}
                             transition={{
-                              duration: 30,
+                              duration: 80,
                               repeat: Infinity,
                               ease: "linear",
                             }}
@@ -1562,20 +1562,22 @@ export default function App() {
                             <img 
                               src="https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez" 
                               alt="Pulso Health Panorama"
-                              className="w-full h-auto object-cover flex-shrink-0"
+                              className="w-full h-auto object-cover flex-shrink-0 opacity-80"
+                              style={{ filter: 'brightness(1.1)' }}
                               referrerPolicy="no-referrer"
                             />
                             <img 
                               src="https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez" 
                               alt="Pulso Health Panorama Duplicate"
-                              className="w-full h-auto object-cover flex-shrink-0"
+                              className="w-full h-auto object-cover flex-shrink-0 opacity-80"
+                              style={{ filter: 'brightness(1.1)' }}
                               referrerPolicy="no-referrer"
                             />
                           </motion.div>
                           
                           {/* Subtle Gradients to fade edges */}
-                          <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-neutral-50/80 to-transparent pointer-events-none" />
-                          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-neutral-50/80 to-transparent pointer-events-none" />
+                          <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-neutral-50/90 to-transparent pointer-events-none" />
+                          <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-neutral-50/90 to-transparent pointer-events-none" />
                         </div>
                       </div>
                     </>
@@ -2018,12 +2020,12 @@ export default function App() {
 
             <div className="relative w-full h-full flex items-center justify-center select-none">
               {fullscreenImage === "https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez" ? (
-                <div className="relative w-full max-w-[90vw] h-[90vh] overflow-hidden rounded-sm bg-black/5">
+                <div className="relative w-full max-w-[90vw] h-[90vh] overflow-hidden rounded-sm bg-transparent">
                   <motion.div 
                     className="w-full flex flex-col"
                     animate={{ y: ["0%", "-50%"] }}
                     transition={{
-                      duration: 30,
+                      duration: 80,
                       repeat: Infinity,
                       ease: "linear",
                     }}
@@ -2031,19 +2033,21 @@ export default function App() {
                     <img 
                       src="https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez" 
                       alt="Pulso Health Panorama Fullscreen"
-                      className="w-full h-auto object-cover flex-shrink-0"
+                      className="w-full h-auto object-cover flex-shrink-0 opacity-80"
+                      style={{ filter: 'brightness(1.1)' }}
                       referrerPolicy="no-referrer"
                     />
                     <img 
                       src="https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez" 
                       alt="Pulso Health Panorama Duplicate Fullscreen"
-                      className="w-full h-auto object-cover flex-shrink-0"
+                      className="w-full h-auto object-cover flex-shrink-0 opacity-80"
+                      style={{ filter: 'brightness(1.1)' }}
                       referrerPolicy="no-referrer"
                     />
                   </motion.div>
                   {/* Subtle Gradients to fade edges */}
-                  <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black to-transparent pointer-events-none" />
-                  <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none" />
+                  <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-neutral-50/20 to-transparent pointer-events-none" />
+                  <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-neutral-50/20 to-transparent pointer-events-none" />
                   
                   {/* Click area to go next */}
                   <div 
