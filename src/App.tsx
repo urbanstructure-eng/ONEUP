@@ -476,6 +476,7 @@ export default function App() {
       return [
         project.image,
         "https://lh3.googleusercontent.com/d/1nZNLMGhECM67AST6qbGCmYiXUhN0RF-C",
+        "https://lh3.googleusercontent.com/d/1qpd246hL-TbgCSgf9j2qxBk15FMW2FuF",
         "https://lh3.googleusercontent.com/d/1jxksiMAxUtLXBxGL8bNC7jcizLTyxXR0",
         "https://lh3.googleusercontent.com/d/1NV4L745ah-lWi0pZtmULvNTiJHefN6J9",
         "https://lh3.googleusercontent.com/d/16nVARSrN4RZielAgzspDx6mkKm6VUs_3",
@@ -1945,28 +1946,54 @@ export default function App() {
                     </>
                   ) : selectedProject.title === "BuyDrop" ? (
                     <>
-                      {/* BuyDrop Section 1: Intro Text + Image (The Concept) */}
+                      {/* BuyDrop Section 0: The Ecosystem (Square Detail) */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
-                        <div className="space-y-6">
-                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">The Concept</span>
+                        <div 
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1qpd246hL-TbgCSgf9j2qxBk15FMW2FuF")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1qpd246hL-TbgCSgf9j2qxBk15FMW2FuF" 
+                            alt="BuyDrop Ecosystem"
+                          />
+                        </div>
+                        <div className="order-1 md:order-2 space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Strategic Vision</span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                             {lang === 'en' ? (
-                              "BuyDrop is an advanced logistics ecosystem designed for optimized global distribution and supply chain transparency. It redefines efficiency through real-time tracking and automated freight coordination."
+                              "BuyDrop is an advanced logistics ecosystem designed for optimized global distribution and supply chain transparency."
                             ) : lang === 'fr' ? (
-                              "BuyDrop est un écosystème logistique avancé conçu pour une distribution mondiale optimisée et la transparence de la chaîne d'approvisionnement."
+                              "BuyDrop est un écosystème logistique avancé conçu pour une distribution mondiale optimisée."
                             ) : (
-                              "BuyDrop es un ecosistema logístico avanzado diseñado para una distribución global optimizada y transparencia en la cadena de suministro."
+                              "BuyDrop es un ecosistema logístico avanzado diseñado para una distribución global optimizada."
                             )}
                           </p>
                         </div>
+                      </div>
+
+                      {/* BuyDrop Section 1: Full-Width Cinematic (The Concept) */}
+                      <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1jxksiMAxUtLXBxGL8bNC7jcizLTyxXR0")}
                         >
                           <SubtleMotionImage 
                             src="https://lh3.googleusercontent.com/d/1jxksiMAxUtLXBxGL8bNC7jcizLTyxXR0" 
                             alt="BuyDrop Environment"
+                            cinematic={true}
                           />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">The Concept</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "It redefines efficiency through real-time tracking and automated freight coordination, ensuring seamless integration across all maritime and land-based networks."
+                            ) : lang === 'fr' ? (
+                              "Il redéfinit l'efficacité grâce au suivi en temps réel et à la coordination automatisée du fret."
+                            ) : (
+                              "Redefine la eficiencia a través del seguimiento en tiempo real y la coordinación automatizada de carga."
+                            )}
+                          </p>
                         </div>
                       </div>
 
