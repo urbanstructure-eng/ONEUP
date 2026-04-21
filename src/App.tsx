@@ -489,6 +489,7 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/11wP3BfkI3AFIZP49UH1WSwpXPZEvmHc6",
         "https://lh3.googleusercontent.com/d/1M-1AUscx9JJ7guyEjAeF1ziTjLxrnbWK",
         "https://lh3.googleusercontent.com/d/1JL_vUWyn2sn9wFsdgCnL-XekDbMnzJ4t",
+        "https://lh3.googleusercontent.com/d/18gqdiRXLF7McIOK9DyD33TilFTV1OwYX",
         "https://lh3.googleusercontent.com/d/178fpIdVUsFAnFVgY89ztj_hRTVaxAWsw"
       ];
     }
@@ -2185,6 +2186,31 @@ export default function App() {
                               "Le hub témoigne du pouvoir du design pour combler les lacunes et construire des réseaux de soutien résilients."
                             ) : (
                               "El centro sirve como testimonio del poder del diseño para cerrar brechas y construir redes de apoyo resilientes."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* UNITY Section 7: Brand Precision */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/18gqdiRXLF7McIOK9DyD33TilFTV1OwYX")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/18gqdiRXLF7McIOK9DyD33TilFTV1OwYX" 
+                            alt="UNITY Brand Precision"
+                          />
+                        </div>
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Brand Precision</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The brand's visual system is defined by extreme precision and clarity, ensuring that every touchpoint reflects the hub's core values of reliability and support."
+                            ) : lang === 'fr' ? (
+                              "Le système visuel de la marque se définit par une précision et une clarté extrêmes, garantissant que chaque point de contact reflète les valeurs de fiabilité."
+                            ) : (
+                              "El sistema visual de la marca se define por una precisión y claridad extremas, asegurando que cada punto de contacto refleje los valores fundamentales."
                             )}
                           </p>
                         </div>
