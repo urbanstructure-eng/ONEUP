@@ -16,6 +16,7 @@ interface Project {
   heroImage?: string;
   colSpan: string;
   contain?: boolean;
+  location?: string;
 }
 
 const PROJECTS: Project[] = [
@@ -23,7 +24,7 @@ const PROJECTS: Project[] = [
   { id: 12, title: "Pulso Health", category: "AI Health / Branding", image: "https://lh3.googleusercontent.com/d/1ONCooNfgYuYu5trUJrFZcZq1HxYSFZrr", colSpan: "md:col-span-4" },
   { id: 13, title: "BuyDrop", category: "Logistic Company", image: "https://lh3.googleusercontent.com/d/1qpd246hL-TbgCSgf9j2qxBk15FMW2FuF", heroImage: "https://lh3.googleusercontent.com/d/1nZNLMGhECM67AST6qbGCmYiXUhN0RF-C", colSpan: "md:col-span-4" },
   { id: 14, title: "UNITY Community Hub", category: "Community / Branding", image: "https://lh3.googleusercontent.com/d/1SaZAxfG-M0ouGb0w0wCRxmzKQ3U8S5uT", heroImage: "https://lh3.googleusercontent.com/d/1zBFr8LhCxzjxucFpkMMXeekayY2JLk9g", colSpan: "md:col-span-4" },
-  { id: 15, title: "Atelier d'art", category: "Art Direction / Branding", image: "https://lh3.googleusercontent.com/d/1sAcH9tLsKt9mXswTCynb7bnRcS5qAYJT", colSpan: "md:col-span-12" },
+  { id: 15, title: "Atelier d'art", category: "Art Direction / Branding", image: "https://lh3.googleusercontent.com/d/1sAcH9tLsKt9mXswTCynb7bnRcS5qAYJT", colSpan: "md:col-span-12", location: "Paris, France" },
   { id: 1, title: "Aura Identity", category: "Branding", image: "https://picsum.photos/seed/aura/1200/800", colSpan: "md:col-span-4" },
   { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1l4lV4DJ1v17tOBJxEC3l32mjxqTjTdH-", colSpan: "md:col-span-4" },
   { id: 4, title: "Nova Campaign", category: "Art Direction", image: "https://picsum.photos/seed/nova/800/800", colSpan: "md:col-span-4" },
@@ -1400,7 +1401,7 @@ export default function App() {
                     </div>
                     <div>
                       <span className="text-[13px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">Location</span>
-                      <span className="text-sm font-medium">Global</span>
+                      <span className="text-sm font-medium">{selectedProject.location || "Global"}</span>
                     </div>
                   </div>
                 </div>
