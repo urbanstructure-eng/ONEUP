@@ -437,12 +437,13 @@ export default function App() {
     if (project.title === "Pulso Health") {
       return [
         project.image,
-        "https://picsum.photos/seed/pulso1/800/1000",
+        "https://lh3.googleusercontent.com/d/1pWnjLekDDJw2nyvaITIkbyyYCyyVqhrN",
         "https://lh3.googleusercontent.com/d/1HV38KNGMYygGYoRFDoFe2P5v0By10sDC",
         "https://lh3.googleusercontent.com/d/1C9aaZv2jODy3L2G_f70176rmthMvJ7y9",
         "https://lh3.googleusercontent.com/d/1JclpfUaRLdnfi-Y8bFiYZjgMoumw4E_U",
-        "https://lh3.googleusercontent.com/d/11ZHkvKzZm3jjj9ijwxaeayNrPvBVqwn9",
-        "https://lh3.googleusercontent.com/d/16PjI9KDz2z6IFWutld9YKRkwVTNw5Htk"
+        "https://lh3.googleusercontent.com/d/14dOgWst9Yy4S-uenpiuTiJSF5owIrT6M",
+        "https://lh3.googleusercontent.com/d/16PjI9KDz2z6IFWutld9YKRkwVTNw5Htk",
+        "https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez"
       ];
     }
     if (project.title === "Padelux") {
@@ -1394,20 +1395,20 @@ export default function App() {
                           <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">The Vision</span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                             {lang === 'en' ? (
-                              "Developing a branding and marketing campaign for Pulso, an upcoming AI health platform with a global reach, requires a strategic approach that highlights its innovative features and benefits."
+                              "Pulso is focused on branding across various platforms, including web, email campaigns, and environmental design, for a global AI health company."
                             ) : lang === 'fr' ? (
-                              "Développer une campagne de branding et de marketing pour Pulso, une plateforme de santé IA avec une portée mondiale."
+                              "Pulso se concentre sur le branding multi-plateforme, incluant le web, l'e-mailing et le design environnemental pour une entreprise mondiale de santé IA."
                             ) : (
-                              "Desarrollar una campaña de marca y marketing para Pulso, una plataforma de salud con IA de alcance global."
+                              "Pulso se centra en el branding a través de diversas plataformas, incluyendo web, campañas de correo electrónico y diseño ambiental para una empresa global de salud con IA."
                             )}
                           </p>
                         </div>
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
-                          onClick={() => setFullscreenImage("https://picsum.photos/seed/pulso1/800/1000")}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1pWnjLekDDJw2nyvaITIkbyyYCyyVqhrN")}
                         >
                           <SubtleMotionImage 
-                            src="https://picsum.photos/seed/pulso1/800/1000" 
+                            src="https://lh3.googleusercontent.com/d/1pWnjLekDDJw2nyvaITIkbyyYCyyVqhrN" 
                             alt="Pulso Health Innovation"
                           />
                         </div>
@@ -1429,11 +1430,11 @@ export default function App() {
                           <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Identity</span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                             {lang === 'en' ? (
-                              "The campaign focuses on establishing a strong brand identity that resonates with target audiences, emphasizing the platform's commitment to enhancing healthcare through advanced technology."
+                              "This comprehensive approach ensures a cohesive and impactful brand presence that resonates with diverse audiences."
                             ) : lang === 'fr' ? (
-                              "La campagne se concentre sur l'établissement d'une identité de marque forte qui résonne avec les publics cibles."
+                              "Cette approche globale garantit une présence de marque cohérente et percutante qui résonne auprès de divers publics."
                             ) : (
-                              "La campaña se centra en establecer una identidad de marca sólida que resuene con las audiencias objetivas."
+                              "Este enfoque integral garantiza una presencia de marca cohesiva e impactante que resuena en diversas audiencias."
                             )}
                           </p>
                         </div>
@@ -1456,11 +1457,11 @@ export default function App() {
                           <div className="space-y-6">
                             <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                               {lang === 'en' ? (
-                                "To effectively engage potential users and stakeholders, the marketing strategy leverages various channels, including digital advertising, social media, and partnerships with healthcare organizations."
+                                "By integrating innovative design strategies and effective communication methods, Pulso aims to enhance the visibility and recognition of the AI health brand."
                               ) : lang === 'fr' ? (
-                                "Pour engager les utilisateurs, la stratégie s'appuie sur la publicité numérique et les médias sociaux."
+                                "En intégrant des stratégies de design innovantes, Pulso vise à renforcer la visibilité et la reconnaissance de la marque de santé IA."
                               ) : (
-                                "Para involucrar a los usuarios, la estrategia aprovecha la publicidad digital y las redes sociales."
+                                "Al integrar estrategias de diseño innovadoras y métodos de comunicación efectivos, Pulso busca mejorar la visibilidad y el reconocimiento de la marca."
                               )}
                             </p>
                           </div>
@@ -1475,7 +1476,7 @@ export default function App() {
                           </div>
                         </div>
                         <div className="max-w-3xl">
-                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Strategic Reach</span>
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Strategic Engagement</span>
                         </div>
                       </div>
 
@@ -1483,23 +1484,23 @@ export default function App() {
                       <div className="space-y-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/11ZHkvKzZm3jjj9ijwxaeayNrPvBVqwn9")}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/14dOgWst9Yy4S-uenpiuTiJSF5owIrT6M")}
                         >
                           <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/11ZHkvKzZm3jjj9ijwxaeayNrPvBVqwn9" 
+                            src="https://lh3.googleusercontent.com/d/14dOgWst9Yy4S-uenpiuTiJSF5owIrT6M" 
                             alt="Pulso Health Global Leadership"
                             cinematic={true}
                           />
                         </div>
                         <div className="max-w-3xl">
-                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Global Leadership</span>
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Market Position</span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                             {lang === 'en' ? (
-                              "By showcasing success stories and user testimonials, Pulso builds credibility and fosters trust, positioning itself as a leader in the AI health sector on a global scale."
+                              "This commitment to excellence in branding is essential for establishing a strong market position in the competitive landscape of global health technology."
                             ) : lang === 'fr' ? (
-                              "En présentant des témoignages d'utilisateurs, Pulso renforce sa crédibilité et se positionne comme leader mondial."
+                              "Cet engagement envers l'excellence du branding est essentiel pour établir une position de marché forte."
                             ) : (
-                              "Al mostrar testimonios de usuarios, Pulso genera credibilidad y se posiciona como líder mundial."
+                              "Este compromiso con la excelencia en el branding es esencial para establecer una posición de mercado sólida."
                             )}
                           </p>
                         </div>
@@ -1517,16 +1518,64 @@ export default function App() {
                           />
                         </div>
                         <div className="order-1 md:order-2 space-y-6">
-                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Connectivity</span>
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Ecosystem Presence</span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                             {lang === 'en' ? (
-                              "The platform's connectivity ensures a seamless flow of data, enabling real-time insights that improve patient outcomes and streamline healthcare delivery on a global scale."
+                               "Focusing on large-scale visibility through environmental design and digital ecosystems, Pulso ensures the brand remains recognizable across every touchpoint."
                             ) : lang === 'fr' ? (
-                              "La connectivité de la plateforme assure un flux de données transparent, permettant des informations en temps réel qui améliorent les résultats pour les patients."
+                               "En se concentrant sur une visibilité à grande échelle via le design environnemental, Pulso assure la reconnaissance de la marque."
                             ) : (
-                              "La conectividad de la plataforma garantiza un flujo de datos continuo, permitiendo información en tiempo real que mejora los resultados de los pacientes."
+                               "Centrándose en la visibilidad a gran escala a través del diseño ambiental, Pulso garantiza que la marca sea reconocible en cada punto de contacto."
                             )}
                           </p>
+                        </div>
+                      </div>
+
+                      {/* Pulso Health Section 6: Brand Panorama (Endless Scroller) */}
+                      <div className="space-y-12">
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Brand Panorama</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "A holistic brand journey spanning digital and physical environments, reflecting the commitment to excellence in the global health landscape."
+                            ) : lang === 'fr' ? (
+                              "Un parcours de marque complet couvrant les environnements numériques et physiques."
+                            ) : (
+                              "Un viaje de marca holístico que abarca entornos digitales y físicos."
+                            )}
+                          </p>
+                        </div>
+                        
+                        <div 
+                          className="relative overflow-hidden rounded-sm aspect-video md:aspect-[21/9] bg-black/5 cursor-zoom-in"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez")}
+                        >
+                          <motion.div 
+                            className="w-full flex flex-col"
+                            animate={{ y: ["0%", "-50%"] }}
+                            transition={{
+                              duration: 30,
+                              repeat: Infinity,
+                              ease: "linear",
+                            }}
+                          >
+                            <img 
+                              src="https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez" 
+                              alt="Pulso Health Panorama"
+                              className="w-full h-auto object-cover flex-shrink-0"
+                              referrerPolicy="no-referrer"
+                            />
+                            <img 
+                              src="https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez" 
+                              alt="Pulso Health Panorama Duplicate"
+                              className="w-full h-auto object-cover flex-shrink-0"
+                              referrerPolicy="no-referrer"
+                            />
+                          </motion.div>
+                          
+                          {/* Subtle Gradients to fade edges */}
+                          <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-neutral-50/80 to-transparent pointer-events-none" />
+                          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-neutral-50/80 to-transparent pointer-events-none" />
                         </div>
                       </div>
                     </>
@@ -1968,11 +2017,50 @@ export default function App() {
             </button>
 
             <div className="relative w-full h-full flex items-center justify-center select-none">
-              <FullscreenPreloaderImage 
-                src={fullscreenImage} 
-                alt="Fullscreen view" 
-                onNext={nextFullscreenImage} 
-              />
+              {fullscreenImage === "https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez" ? (
+                <div className="relative w-full max-w-[90vw] h-[90vh] overflow-hidden rounded-sm bg-black/5">
+                  <motion.div 
+                    className="w-full flex flex-col"
+                    animate={{ y: ["0%", "-50%"] }}
+                    transition={{
+                      duration: 30,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  >
+                    <img 
+                      src="https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez" 
+                      alt="Pulso Health Panorama Fullscreen"
+                      className="w-full h-auto object-cover flex-shrink-0"
+                      referrerPolicy="no-referrer"
+                    />
+                    <img 
+                      src="https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez" 
+                      alt="Pulso Health Panorama Duplicate Fullscreen"
+                      className="w-full h-auto object-cover flex-shrink-0"
+                      referrerPolicy="no-referrer"
+                    />
+                  </motion.div>
+                  {/* Subtle Gradients to fade edges */}
+                  <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black to-transparent pointer-events-none" />
+                  <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none" />
+                  
+                  {/* Click area to go next */}
+                  <div 
+                    className="absolute inset-0 z-10 cursor-pointer" 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      nextFullscreenImage();
+                    }} 
+                  />
+                </div>
+              ) : (
+                <FullscreenPreloaderImage 
+                  src={fullscreenImage} 
+                  alt="Fullscreen view" 
+                  onNext={nextFullscreenImage} 
+                />
+              )}
 
               {fullscreenImage === "https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI" && (
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
