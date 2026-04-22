@@ -34,6 +34,7 @@ const PROJECTS: Project[] = [
   { id: 8, title: "Stellar App", category: "Mobile", image: "https://picsum.photos/seed/stellar/1600/600", colSpan: "md:col-span-12" },
   { id: 9, title: "Flux Brand", category: "Strategy", image: "https://picsum.photos/seed/flux/800/800", colSpan: "md:col-span-6" },
   { id: 10, title: "Orbit Space", category: "Exhibition", image: "https://picsum.photos/seed/orbit/1200/750", colSpan: "md:col-span-6" },
+  { id: 16, title: "edere restaurant", category: "Culinary / Branding", image: "https://lh3.googleusercontent.com/d/1xwwm8qTPTaFktoSelqGyTUz5tYsOCK7W", colSpan: "md:col-span-12", location: "Global" },
 ];
 
 const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", contain = false, cinematic = false }: { src: string, alt: string, className?: string, objectPosition?: string, contain?: boolean, cinematic?: boolean }) => (
@@ -502,6 +503,17 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1el8VLirLeFCbYzVJmjInCWc_1ndww9-9",
         "https://lh3.googleusercontent.com/d/16PMa4p6HKCfzF56Ny_JoEGR6OBJqU-Jj",
         "https://lh3.googleusercontent.com/d/1T9CIXul6wnGY6caACLxwvlW1gAR-EDzi"
+      ];
+    }
+    if (project.title === "edere restaurant") {
+      return [
+        project.image,
+        "https://lh3.googleusercontent.com/d/19C-4W9Vpb5EgIzhZZO9jJB19_b10ejYO",
+        "https://lh3.googleusercontent.com/d/1GY7keTnEI3Jayucac9QegpwS8rk-vOMJ",
+        "https://lh3.googleusercontent.com/d/1Mux8yWx0pRNv-P3p1-92vHZH7nkO9rRh",
+        "https://lh3.googleusercontent.com/d/19Gt0niVC8EL5JdpHNmsRdCLTrBeeIbcu",
+        "https://lh3.googleusercontent.com/d/1KswSnGMZRZkyOOaVJXWTKkUqWwdzxTqB",
+        `https://picsum.photos/seed/edere-vision/1200/800`
       ];
     }
     return [
@@ -2261,11 +2273,11 @@ export default function App() {
                           <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Branding Strategy</span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                             {lang === 'en' ? (
-                              "The branding strategy aims to establish a cohesive identity for the festival, ensuring that all promotional elements resonate with the target audience. By emphasizing the rich cultural heritage of French art, the campaign seeks to attract a diverse audience and foster appreciation for artistic expression."
+                              "The branding strategy aims to establish a cohesive identity for the festival, ensuring that all promotional elements resonate with the target audience. The campaign conveys the specific identity of the 13 French regions: Auvergne-Rhône-Alpes, Bretagne, Bourgogne-Franche-Comté, Centre-Val de Loire, Corse, Grand Est, Hauts-de-France, Île-de-France (Paris), Normandie, Nouvelle-Aquitaine, Occitanie, Pays de la Loire, and Provence-Alpes-Côte d'Azur."
                             ) : lang === 'fr' ? (
-                              "La stratégie de marque vise à établir une identité cohérente pour le festival, garantissant que tous les éléments promotionnels résonnent auprès du public cible."
+                              "La stratégie de marque vise à établir une identité cohérente pour le festival, garantissant que tous les éléments promotionnels résonnent auprès du public cible. Elle véhicule l'identité des 13 régions françaises : Auvergne-Rhône-Alpes, Bretagne, Bourgogne-Franche-Comté, Centre-Val de Loire, Corse, Grand Est, Hauts-de-France, Île-de-France (Paris), Normandie, Nouvelle-Aquitaine, Occitanie, Pays de la Loire et Provence-Alpes-Côte d'Azur."
                             ) : (
-                              "La estrategia de branding busca establecer una identidad cohesiva para el festival, asegurando que todos los elementos promocionales resuenen con el público objetivo."
+                              "La estrategia de branding busca establecer una identidad cohesiva para el festival, asegurando que todos los elementos promocionales resuenen con el público objetivo. La campaña transmite la identidad de las 13 regiones francesas: Auvergne-Rhône-Alpes, Bretagne, Bourgogne-Franche-Comté, Centre-Val de Loire, Corse, Grand Est, Hauts-de-France, Île-de-France (Paris), Normandie, Nouvelle-Aquitaine, Occitanie, Pays de la Loire y Provence-Alpes-Côte d'Azur."
                             )}
                           </p>
                         </div>
@@ -2352,6 +2364,185 @@ export default function App() {
                               "En mettant l'accent sur le riche patrimoine culturel de l'art français, la campagne a favorisé une profonde appréciation pour l'expression artistique."
                             ) : (
                               "Al enfatizar el rico patrimonio cultural del arte francés, la campaña fomentó un profundo aprecio por la expresión artística."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  ) : selectedProject.title === "edere restaurant" ? (
+                    <>
+                      {/* Edere Restaurant Section 1: Culinary Identity */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Culinary Identity</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Edere restaurant redefines the culinary experience through a visual language that balances modern gastronomy with traditional warmth. The branding focuses on organic textures and a minimalist color palette."
+                            ) : lang === 'fr' ? (
+                              "Le restaurant Edere redéfinit l'expérience culinaire à travers un langage visuel qui équilibre gastronomie moderne et chaleur traditionnelle."
+                            ) : (
+                              "El restaurante Edere redefine la experiencia culinaria a través de un lenguaje visual que equilibra la gastronomía moderna con la calidez tradicional."
+                            )}
+                          </p>
+                        </div>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1xwwm8qTPTaFktoSelqGyTUz5tYsOCK7W")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1xwwm8qTPTaFktoSelqGyTUz5tYsOCK7W" 
+                            alt="Edere Restaurant Visual"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Edere Restaurant Section 2: Strategic Vision */}
+                      <div className="space-y-12 mb-24 md:mb-40">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://picsum.photos/seed/edere-vision/1200/800")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://picsum.photos/seed/edere-vision/1200/800" 
+                            alt="Edere Vision"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Strategic Vision</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The project aims to create a sensory journey for every guest, where the graphic design and environmental architecture work in harmony to elevate the dining experience."
+                            ) : lang === 'fr' ? (
+                              "Le projet vise à créer un voyage sensoriel pour chaque convive, où le design graphique et l'architecture environnementale travaillent en harmonie."
+                            ) : (
+                              "El proyecto busca crear un viaje sensorial para cada comensal, donde el diseño gráfico y la arquitectura ambiental trabajen en armonía."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Edere Restaurant Section 3: Visual Detail */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div 
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/19C-4W9Vpb5EgIzhZZO9jJB19_b10ejYO")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/19C-4W9Vpb5EgIzhZZO9jJB19_b10ejYO" 
+                            alt="Edere Visual Detail"
+                          />
+                        </div>
+                        <div className="order-1 md:order-2 space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Visual Detail</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Attentive to detail, every branding element of the restaurant creates a tactile and memorable connection with the guest, reinforcing the restaurant's commitment to excellence."
+                            ) : lang === 'fr' ? (
+                              "Attentif aux détails, chaque élément de branding du restaurant crée une connexion tactile et mémorable avec le client."
+                            ) : (
+                              "Atento a los detalles, cada elemento de branding del restaurante crea una conexión táctil y memorable con el comensal."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Edere Restaurant Section 4: Brand Legacy */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Brand Legacy</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The brand's legacy is built on a foundation of refined craftsmanship, where every visual element serves as a testament to the restaurant's commitment to culinary storytelling."
+                            ) : lang === 'fr' ? (
+                              "L'héritage de la marque repose sur un savoir-faire raffiné, où chaque élément visuel témoigne de l'engagement du restaurant."
+                            ) : (
+                              "El legado de la marca se basa en una artesanía refinada, donde cada elemento visual sirve como testimonio del compromiso del restaurante."
+                            )}
+                          </p>
+                        </div>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1GY7keTnEI3Jayucac9QegpwS8rk-vOMJ")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1GY7keTnEI3Jayucac9QegpwS8rk-vOMJ" 
+                            alt="Edere Brand Legacy"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Edere Restaurant Section 5: Material Connection */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div 
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1Mux8yWx0pRNv-P3p1-92vHZH7nkO9rRh")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1Mux8yWx0pRNv-P3p1-92vHZH7nkO9rRh" 
+                            alt="Edere Material Connection"
+                          />
+                        </div>
+                        <div className="order-1 md:order-2 space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Material Connection</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The selection of raw materials and organic textures establishes a tactile bridge between the space and the guest, grounding the high-end experience in natural authenticity."
+                            ) : lang === 'fr' ? (
+                              "La sélection de matières premières et de textures organiques établit un pont tactile entre l'espace et le client."
+                            ) : (
+                              "La selección de materias primas y texturas orgánicas establece un puente táctil entre el espacio y el comensal."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Edere Restaurant Section 6: Gastronomic Excellence */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Gastronomic Excellence</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Every plate is a canvas. The visual identity extends into the culinary presentation, where precision and creativity converge to define the new standard of modern fine dining."
+                            ) : lang === 'fr' ? (
+                              "Chaque assiette est une toile. L'identité visuelle s'étend jusqu'à la présentation culinaire."
+                            ) : (
+                              "Cada plato es un lienzo. La identidad visual se extiende hasta la presentación culinaria."
+                            )}
+                          </p>
+                        </div>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/19Gt0niVC8EL5JdpHNmsRdCLTrBeeIbcu")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/19Gt0niVC8EL5JdpHNmsRdCLTrBeeIbcu" 
+                            alt="Edere Gastronomic Excellence"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Edere Restaurant Section 7: Experiential Atmosphere */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1KswSnGMZRZkyOOaVJXWTKkUqWwdzxTqB")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1KswSnGMZRZkyOOaVJXWTKkUqWwdzxTqB" 
+                            alt="Edere Experiential Atmosphere"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Experiential Atmosphere</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The architectural integration of the brand ensures that the identity is felt in every corner of the space, creating an immersive atmosphere that transcends a standard dining experience."
+                            ) : lang === 'fr' ? (
+                              "L'intégration architecturale de la marque garantit que l'identité est ressentie dans chaque recoin de l'espace, créant une atmosphère immersive."
+                            ) : (
+                              "La integración arquitectónica de la marca asegura que la identidad se sienta en cada rincón del espacio, creando una atmósfera inmersiva."
                             )}
                           </p>
                         </div>
