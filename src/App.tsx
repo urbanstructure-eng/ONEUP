@@ -839,7 +839,7 @@ export default function App() {
                   src={project.image} 
                   alt={project.title}
                   referrerPolicy="no-referrer"
-                  className={`w-full h-full ${project.contain ? 'object-contain p-8' : 'object-cover'} grayscale-0 md:grayscale brightness-100 md:brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700`}
+                  className={`w-full h-full ${project.contain ? 'object-contain p-8' : 'object-cover'} grayscale-0 lg:grayscale brightness-100 lg:brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700`}
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
