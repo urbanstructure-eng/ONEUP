@@ -6,7 +6,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, animate } from 'motion/react';
 import { Instagram, Twitter, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu, Play, Pause } from 'lucide-react';
-import ReactPlayer from 'react-player';
 
 interface Project {
   id: number;
@@ -78,14 +77,18 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
   const [error, setError] = useState(false);
   const videoRef = React.useRef<HTMLVideoElement>(null);
   
-  const isYouTube = src.includes('youtube.com') || src.includes('youtu.be');
+  // Extract YouTube ID
+  const youtubeMatch = src.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|user\/\S+|live\/))([^\?&"'>]+)/);
+  const youtubeId = youtubeMatch ? youtubeMatch[1] : null;
+  const isYouTube = !!youtubeId;
+
   const driveMatch = src.match(/[-\w]{25,}/);
   const driveId = src.includes('drive.google.com') && driveMatch ? driveMatch[0] : null;
   const isDrive = !!driveId;
 
   const togglePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (isYouTube) {
+    if (isYouTube || isDrive) {
       setIsPlaying(!isPlaying);
     } else if (videoRef.current) {
       if (isPlaying) {
@@ -102,40 +105,14 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
       <div className={`w-full h-full transition-opacity duration-700 ${isYouTube || isDrive || isLoaded ? 'opacity-100' : 'opacity-0'}`}>
         {!error ? (
           isYouTube ? (
-            (() => {
-              const Player = ReactPlayer as any;
-              return (
-                <div className="absolute inset-0 pointer-events-none scale-[1.01]">
-                  <Player
-                    url={src}
-                    playing={isPlaying}
-                    loop
-                    muted
-                    width="100%"
-                    height="100%"
-                    onReady={() => setIsLoaded(true)}
-                    onError={() => setError(true)}
-                    config={{
-                      youtube: {
-                        playerVars: {
-                          rel: 0, 
-                          iv_load_policy: 3, 
-                          modestbranding: 1,
-                          disablekb: 1,
-                          controls: 0,
-                          showinfo: 0,
-                          autohide: 1,
-                          playsinline: 1,
-                          autoplay: 1,
-                          mute: 1
-                        }
-                      }
-                    }}
-                    style={{ objectFit: 'cover' }}
-                  />
-                </div>
-              );
-            })()
+            <div className="absolute inset-0 pointer-events-none scale-[1.05]">
+              <iframe
+                src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0&autohide=1&disablekb=1&playsinline=1`}
+                className="w-full h-full border-none"
+                allow="autoplay; encrypted-media; picture-in-picture"
+                onLoad={() => setIsLoaded(true)}
+              />
+            </div>
           ) : isDrive ? (
             <div className="absolute inset-0 pointer-events-auto">
               <iframe
@@ -660,7 +637,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] text-white selection:bg-accent selection:text-black font-sans relative">
+    <div className="min-h-[100dvh] bg-[#1a1a1a] text-white selection:bg-accent selection:text-black font-sans relative">
       {/* Navigation (Static/Fixed) */}
       <nav className="fixed top-0 left-0 w-full z-50 px-4 py-4 md:px-12 md:py-6 flex justify-between items-center backdrop-blur-md border-b border-white/10 bg-[#1a1a1a]/80 safe-top">
         <div 
@@ -801,7 +778,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex flex-col justify-center px-6 md:px-12 pt-20 overflow-hidden border-b border-white/10">
+      <section className="relative h-[100dvh] flex flex-col justify-center px-6 md:px-12 pt-20 overflow-hidden border-b border-white/10">
         {/* Animated Background Image */}
         <div className="absolute inset-0 z-0">
           <motion.div
@@ -901,7 +878,7 @@ export default function App() {
                   src={project.image} 
                   alt={project.title}
                   referrerPolicy="no-referrer"
-                  className={`w-full h-full ${project.contain ? 'object-contain p-8' : 'object-cover'} grayscale-0 lg:grayscale brightness-100 lg:brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700`}
+                  className={`w-full h-full transform-gpu ${project.contain ? 'object-contain p-8' : 'object-cover'} grayscale-0 lg:grayscale brightness-100 lg:brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700`}
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
@@ -1295,7 +1272,7 @@ export default function App() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[200] bg-black text-white overflow-y-auto"
           >
-            <div className="min-h-screen flex flex-col">
+            <div className="min-h-full flex flex-col">
               <nav className="sticky top-0 w-full px-6 py-8 md:px-12 flex justify-between items-center bg-black/80 backdrop-blur-md z-10 border-b border-white/10">
                 <div className="flex items-center">
                   <img 
@@ -1388,7 +1365,7 @@ export default function App() {
             id="project-modal"
             className="fixed inset-0 z-[100] bg-white text-black overflow-y-auto"
           >
-            <div className="min-h-screen flex flex-col">
+            <div className="min-h-full flex flex-col">
               <nav className="sticky top-0 w-full px-4 py-4 md:px-12 md:py-8 flex justify-between items-center bg-white/80 backdrop-blur-md z-10 border-b border-black/5 safe-top">
                 <div 
                   onClick={() => setSelectedProject(null)}
