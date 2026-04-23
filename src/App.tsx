@@ -77,7 +77,11 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
   const videoRef = React.useRef<HTMLVideoElement>(null);
+  
   const isYouTube = src.includes('youtube.com') || src.includes('youtu.be');
+  const driveMatch = src.match(/[-\w]{25,}/);
+  const driveId = src.includes('drive.google.com') && driveMatch ? driveMatch[0] : null;
+  const isDrive = !!driveId;
 
   const togglePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -95,7 +99,7 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
 
   return (
     <div className="relative w-full h-full flex items-center justify-center bg-black group cursor-default overflow-hidden">
-      <div className={`w-full h-full transition-opacity duration-700 ${isYouTube || isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`w-full h-full transition-opacity duration-700 ${isYouTube || isDrive || isLoaded ? 'opacity-100' : 'opacity-0'}`}>
         {!error ? (
           isYouTube ? (
             (() => {
@@ -130,6 +134,20 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
                 </div>
               );
             })()
+          ) : isDrive ? (
+            <div className="absolute inset-0 pointer-events-auto">
+              <iframe
+                src={`https://drive.google.com/file/d/${driveId}/preview`}
+                className="w-full h-full border-none"
+                allow="autoplay; encrypted-media"
+                onLoad={() => setIsLoaded(true)}
+              />
+              {/* Overlay to catch clicks and prevent interaction with Drive UI if desired */}
+              <div 
+                className="absolute inset-0 z-10 cursor-pointer"
+                onClick={togglePlay}
+              />
+            </div>
           ) : (
             <video
               ref={videoRef}
@@ -544,7 +562,8 @@ export default function App() {
     if (project.title === "Insurly") {
       return [
         project.image,
-        "https://lh3.googleusercontent.com/d/1TeSUFMoUj56pjCeP4PKvfrLC9QKIEnOg"
+        "https://lh3.googleusercontent.com/d/1TeSUFMoUj56pjCeP4PKvfrLC9QKIEnOg",
+        "https://lh3.googleusercontent.com/d/1WhPpMX954NfJUF-1ncQ5VfV__3Ao7FbX"
       ];
     }
     return [
@@ -2474,6 +2493,53 @@ export default function App() {
                               "Avec Insurly, les utilisateurs peuvent sécuriser leurs polices en déplacement. La conception épurée de l'application facilite l'accès à une assurance simple 24/7, partout et sans tracas."
                             ) : (
                               "Con Insurly, los usuarios pueden asegurar sus pólizas sobre la marcha. El diseño limpio de la aplicación facilita el acceso a un seguro sencillo las 24 horas, los 7 días de la semana, en cualquier lugar y sin complicaciones."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Insurly Section 3: Global Coverage */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-square"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1WhPpMX954NfJUF-1ncQ5VfV__3Ao7FbX")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1WhPpMX954NfJUF-1ncQ5VfV__3Ao7FbX" 
+                            alt="Insurly Global Coverage"
+                          />
+                        </div>
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Global Reach</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Providing a universal solution for international travelers, ensuring high-quality protection no matter where your journey takes you."
+                            ) : lang === 'fr' ? (
+                              "Fournir une solution universelle pour les voyageurs internationaux, garantissant une protection de haute qualité peu importe votre destination."
+                            ) : (
+                              "Brindando una solución universal para viajeros internacionales, asegurando una protección de alta calidad sin importar a dónde te lleve tu viaje."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Insurly Section 4: Cinematic Experience */}
+                      <div className="space-y-12">
+                        <div className="overflow-hidden bg-black rounded-2xl aspect-video">
+                          <CompactVideoPlayer 
+                            src="https://drive.google.com/uc?export=download&id=1GNwBWBHgy0kwubQtxtWOM4i4ez9l8a0G" 
+                            alt="Insurly Cinematic Brand Video"
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Visual Storytelling</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Our cinematic strategy captures the fast-paced nature of modern travel, translating reliable insurance into a dynamic visual narrative."
+                            ) : lang === 'fr' ? (
+                              "Notre stratégie cinématique capture la nature trépidante des voyages modernes."
+                            ) : (
+                              "Nuestra estrategia cinematográfica captura la naturaleza acelerada de los viajes modernos."
                             )}
                           </p>
                         </div>
