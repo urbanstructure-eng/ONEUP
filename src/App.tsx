@@ -211,7 +211,7 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
         alt={alt}
         onLoad={() => setIsLoaded(true)}
         onError={() => setError(true)}
-        className={`max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer`}
+        className={`max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl`}
         referrerPolicy="no-referrer"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 0.95 }}
@@ -477,7 +477,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1JclpfUaRLdnfi-Y8bFiYZjgMoumw4E_U",
         "https://lh3.googleusercontent.com/d/14dOgWst9Yy4S-uenpiuTiJSF5owIrT6M",
         "https://lh3.googleusercontent.com/d/16PjI9KDz2z6IFWutld9YKRkwVTNw5Htk",
-        "https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez"
+        "https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez",
+        "https://lh3.googleusercontent.com/d/1490HNQUNQowTbcizbN6YKqIw7YNr3gxG"
       ];
     }
     if (project.title === "Padelux") {
@@ -535,15 +536,16 @@ export default function App() {
     }
     if (project.title === "edere restaurant") {
       return [
-        project.image,
-        "https://lh3.googleusercontent.com/d/1k8q8V3zvS4uYnfp0s6unRNpWiaAbIqa9",
-        "https://lh3.googleusercontent.com/d/1Lg4ePRrMplc3GDzN8ixUcuL9MbPwqBxg",
-        "https://lh3.googleusercontent.com/d/19C-4W9Vpb5EgIzhZZO9jJB19_b10ejYO",
-        "https://lh3.googleusercontent.com/d/1GY7keTnEI3Jayucac9QegpwS8rk-vOMJ",
-        "https://lh3.googleusercontent.com/d/1Mux8yWx0pRNv-P3p1-92vHZH7nkO9rRh",
-        "https://lh3.googleusercontent.com/d/1KswSnGMZRZkyOOaVJXWTKkUqWwdzxTqB",
-        "https://lh3.googleusercontent.com/d/1xwwm8qTPTaFktoSelqGyTUz5tYsOCK7W",
-        "https://lh3.googleusercontent.com/d/1nzAd11wQwe07yeFdZdSLS2-xexHfCIsa"
+        project.image, // Hero
+        "https://lh3.googleusercontent.com/d/1k8q8V3zvS4uYnfp0s6unRNpWiaAbIqa9", // Sec 1
+        "https://lh3.googleusercontent.com/d/1Lg4ePRrMplc3GDzN8ixUcuL9MbPwqBxg", // Sec 2
+        "https://lh3.googleusercontent.com/d/19C-4W9Vpb5EgIzhZZO9jJB19_b10ejYO", // Sec 3
+        "https://lh3.googleusercontent.com/d/1GY7keTnEI3Jayucac9QegpwS8rk-vOMJ", // Sec 4
+        "https://lh3.googleusercontent.com/d/1Mux8yWx0pRNv-P3p1-92vHZH7nkO9rRh", // Sec 5
+        "https://lh3.googleusercontent.com/d/19Gt0niVC8EL5JdpHNmsRdCLTrBeeIbcu", // Sec 6 (Same as Hero)
+        "https://lh3.googleusercontent.com/d/1KswSnGMZRZkyOOaVJXWTKkUqWwdzxTqB", // Sec 7
+        "https://lh3.googleusercontent.com/d/1xwwm8qTPTaFktoSelqGyTUz5tYsOCK7W", // Sec 8
+        "https://lh3.googleusercontent.com/d/1nzAd11wQwe07yeFdZdSLS2-xexHfCIsa"  // Sec 9
       ];
     }
     return [
@@ -555,7 +557,7 @@ export default function App() {
 
   const nextFullscreenImage = () => {
     if (!selectedProject || !fullscreenImage) return;
-    const images = getProjectImages(selectedProject);
+    const images = Array.from(new Set(getProjectImages(selectedProject)));
     const currentIndex = images.indexOf(fullscreenImage);
     const nextIndex = (currentIndex + 1) % images.length;
     setFullscreenImage(images[nextIndex]);
@@ -563,7 +565,7 @@ export default function App() {
 
   const prevFullscreenImage = () => {
     if (!selectedProject || !fullscreenImage) return;
-    const images = getProjectImages(selectedProject);
+    const images = Array.from(new Set(getProjectImages(selectedProject)));
     const currentIndex = images.indexOf(fullscreenImage);
     const prevIndex = (currentIndex - 1 + images.length) % images.length;
     setFullscreenImage(images[prevIndex]);
@@ -1032,7 +1034,7 @@ export default function App() {
           <img 
             src="https://lh3.googleusercontent.com/d/1M-EDoDT8Ex1EWXMUU8HaPfhECDSggPxq" 
             alt="Studio Signature" 
-            className="h-32 md:h-48 w-auto transition-transform duration-700 group-hover:scale-105"
+            className="h-32 md:h-48 w-auto transition-transform duration-700 group-hover:scale-105 rounded-2xl"
             referrerPolicy="no-referrer"
           />
         </a>
@@ -1655,6 +1657,32 @@ export default function App() {
                           {/* Subtle Gradients to fade edges */}
                           <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-neutral-50/90 to-transparent pointer-events-none" />
                           <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-neutral-50/90 to-transparent pointer-events-none" />
+                        </div>
+                      </div>
+
+                      {/* Pulso Health Section 7: Future Intelligence */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1490HNQUNQowTbcizbN6YKqIw7YNr3gxG")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1490HNQUNQowTbcizbN6YKqIw7YNr3gxG" 
+                            alt="Pulso Health Future Intelligence"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Future Intelligence</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The integration of AI into health services demands a visual language that balances clinical precision with human empathy, paving the way for the next generation of medical care."
+                            ) : lang === 'fr' ? (
+                              "L'intégration de l'IA dans les services de santé exige un langage visuel qui équilibre précision clinique et empathie humaine, ouvrant la voie à la prochaine génération de soins médicaux."
+                            ) : (
+                              "La integración de la IA en los servicios de salud requiere un lenguaje visual que equilibre la precisión clínica con la empatía humana, allanando el camino para la próxima generación de atención médica."
+                            )}
+                          </p>
                         </div>
                       </div>
                     </>
