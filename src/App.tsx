@@ -53,6 +53,32 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
   />
 );
 
+const CinematicScrollImage = ({ src, alt, className }: { src: string, alt: string, className?: string }) => {
+  return (
+    <div className={`${className} overflow-hidden relative`}>
+      <motion.img
+        src={src}
+        alt={alt}
+        initial={{ scale: 1.1, x: "-2%", y: "-2%" }}
+        animate={{ 
+          scale: 1.18, 
+          x: "2%",
+          y: "2%" 
+        }}
+        transition={{ 
+          duration: 25, 
+          ease: "linear", 
+          repeat: Infinity, 
+          repeatType: "reverse" 
+        }}
+        referrerPolicy="no-referrer"
+        className="w-full h-full object-cover"
+      />
+      <div className="absolute inset-0 bg-black/15 pointer-events-none" />
+    </div>
+  );
+};
+
 const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string, className?: string }) => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -516,7 +542,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1GY7keTnEI3Jayucac9QegpwS8rk-vOMJ",
         "https://lh3.googleusercontent.com/d/1Mux8yWx0pRNv-P3p1-92vHZH7nkO9rRh",
         "https://lh3.googleusercontent.com/d/1KswSnGMZRZkyOOaVJXWTKkUqWwdzxTqB",
-        "https://lh3.googleusercontent.com/d/1xwwm8qTPTaFktoSelqGyTUz5tYsOCK7W"
+        "https://lh3.googleusercontent.com/d/1xwwm8qTPTaFktoSelqGyTUz5tYsOCK7W",
+        "https://lh3.googleusercontent.com/d/1nzAd11wQwe07yeFdZdSLS2-xexHfCIsa"
       ];
     }
     return [
@@ -2528,13 +2555,13 @@ export default function App() {
                       {/* Edere Restaurant Section 7: Experiential Atmosphere */}
                       <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          className="cursor-zoom-in"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1KswSnGMZRZkyOOaVJXWTKkUqWwdzxTqB")}
                         >
-                          <SubtleMotionImage 
+                          <CinematicScrollImage 
                             src="https://lh3.googleusercontent.com/d/1KswSnGMZRZkyOOaVJXWTKkUqWwdzxTqB" 
                             alt="Edere Experiential Atmosphere"
-                            cinematic={true}
+                            className="aspect-video md:aspect-[21/9] rounded-sm"
                           />
                         </div>
                         <div className="max-w-3xl">
@@ -2571,6 +2598,32 @@ export default function App() {
                               "Une attention méticuleuse à la narration visuelle et à l'intégrité des matériaux garantit que chaque détail de branding résonne avec l'excellence de Rome."
                             ) : (
                               "La atención meticulosa a la narrativa visual y la integridad de los materiales asegura que cada detalle de branding resuene con la excelencia artesanal de Roma."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Edere Restaurant Section 9: Brand Extension */}
+                      <div className="space-y-12 mb-24 md:mb-40">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1nzAd11wQwe07yeFdZdSLS2-xexHfCIsa")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1nzAd11wQwe07yeFdZdSLS2-xexHfCIsa" 
+                            alt="Edere Brand Extension"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Brand Extension</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Expanding the visual language across various touchpoints ensures a cohesive and powerful brand presence that resonates at every scale."
+                            ) : lang === 'fr' ? (
+                              "L'extension de l'identité visuelle sur différents supports garantit une présence de marque cohérente et puissante à chaque échelle."
+                            ) : (
+                              "Expandir el lenguaje visual a través de diversos puntos de contacto asegura una presencia de marca cohesiva y poderosa que resuena en cada escala."
                             )}
                           </p>
                         </div>
