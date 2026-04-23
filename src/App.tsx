@@ -47,7 +47,7 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
 
 const CinematicScrollImage = ({ src, alt, className }: { src: string, alt: string, className?: string }) => {
   return (
-    <div className={`${className} overflow-hidden relative`}>
+    <div className={`${className} overflow-hidden relative transform-gpu`}>
       <motion.img
         src={src}
         alt={alt}
@@ -64,7 +64,7 @@ const CinematicScrollImage = ({ src, alt, className }: { src: string, alt: strin
           repeatType: "reverse" 
         }}
         referrerPolicy="no-referrer"
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover transform-gpu"
       />
       <div className="absolute inset-0 bg-black/15 pointer-events-none" />
     </div>
@@ -75,6 +75,7 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
   const [isPlaying, setIsPlaying] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
+  const [isSectionVisible, setIsSectionVisible] = useState(true);
   const videoRef = React.useRef<HTMLVideoElement>(null);
   
   // Extract YouTube ID
@@ -85,6 +86,21 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
   const driveMatch = src.match(/[-\w]{25,}/);
   const driveId = src.includes('drive.google.com') && driveMatch ? driveMatch[0] : null;
   const isDrive = !!driveId;
+
+  // Cinematic 40-second presentation cycle
+  useEffect(() => {
+    const cycle = setInterval(() => {
+      // Fade out
+      setIsSectionVisible(false);
+      
+      // Elegant pause, then fade back in
+      setTimeout(() => {
+        setIsSectionVisible(true);
+      }, 3000);
+    }, 40000);
+
+    return () => clearInterval(cycle);
+  }, []);
 
   const togglePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -101,76 +117,86 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
   };
 
   return (
-    <div className="relative w-full h-full flex items-center justify-center bg-black group cursor-default overflow-hidden">
-      <div className={`w-full h-full transition-opacity duration-700 ${isYouTube || isDrive || isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-        {!error ? (
-          isYouTube ? (
-            <div className="absolute inset-0 pointer-events-none scale-[1.05]">
-              <iframe
-                src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0&autohide=1&disablekb=1&playsinline=1`}
-                className="w-full h-full border-none"
-                allow="autoplay; encrypted-media; picture-in-picture"
-                onLoad={() => setIsLoaded(true)}
-              />
-            </div>
-          ) : isDrive ? (
-            <div className="absolute inset-0 pointer-events-auto">
-              <iframe
-                src={`https://drive.google.com/file/d/${driveId}/preview?autoplay=1&mute=1`}
-                className="w-full h-full border-none"
-                allow="autoplay; encrypted-media"
-                onLoad={() => setIsLoaded(true)}
-              />
-              <div 
-                className="absolute inset-0 z-10 cursor-pointer"
-                onClick={togglePlay}
-              />
-            </div>
-          ) : (
-            <video
-              ref={videoRef}
-              key={src}
-              autoPlay
-              loop
-              muted
-              playsInline
-              onLoadedData={() => setIsLoaded(true)}
-              onError={() => setError(true)}
-              className={`${className} w-full h-full object-cover`}
-            >
-              <source src={src} type="video/mp4" />
-              <source src={src} type="video/webm" />
-              <source src={src} type="video/ogg" />
-            </video>
-          )
-        ) : (
-          <motion.img
-            src={src}
-            alt={alt}
-            onLoad={() => setIsLoaded(true)}
-            className={`${className} w-full h-full object-cover`}
+    <div className="relative w-full h-full flex items-center justify-center bg-black group cursor-default overflow-hidden transform-gpu">
+      <AnimatePresence mode="wait">
+        {isSectionVisible && (
+          <motion.div 
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          />
+            animate={{ opacity: isYouTube || isDrive || isLoaded ? 1 : 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+            className="w-full h-full"
+          >
+            {!error ? (
+              isYouTube ? (
+                <div className="absolute inset-0 pointer-events-none">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0&autohide=1&disablekb=1&playsinline=1&enablejsapi=1`}
+                    className="w-[100.5%] h-[100.5%] -translate-x-[0.25%] -translate-y-[0.25%] border-none"
+                    allow="autoplay; encrypted-media; picture-in-picture"
+                    onLoad={() => setIsLoaded(true)}
+                  />
+                </div>
+              ) : isDrive ? (
+                <div className="absolute inset-0 pointer-events-auto">
+                  <iframe
+                    src={`https://drive.google.com/file/d/${driveId}/preview?autoplay=1&mute=1`}
+                    className="w-full h-full border-none"
+                    allow="autoplay; encrypted-media"
+                    onLoad={() => setIsLoaded(true)}
+                  />
+                  <div 
+                    className="absolute inset-0 z-10 cursor-pointer"
+                    onClick={togglePlay}
+                  />
+                </div>
+              ) : (
+                <video
+                  ref={videoRef}
+                  key={src}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  onLoadedData={() => setIsLoaded(true)}
+                  onError={() => setError(true)}
+                  className={`${className} w-full h-full object-cover`}
+                >
+                  <source src={src} type="video/mp4" />
+                  <source src={src} type="video/webm" />
+                  <source src={src} type="video/ogg" />
+                </video>
+              )
+            ) : (
+              <motion.img
+                src={src}
+                alt={alt}
+                onLoad={() => setIsLoaded(true)}
+                className={`${className} w-full h-full object-cover`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              />
+            )}
+          </motion.div>
         )}
-      </div>
+      </AnimatePresence>
 
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <motion.div 
           onClick={togglePlay}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ 
-            opacity: isPlaying ? 0 : 1,
+            opacity: isPlaying ? 0 : (isYouTube ? 0 : 1),
             scale: isPlaying ? 0.8 : 1 
           }}
           whileHover={{ scale: 1.1, opacity: 1 }}
           className="w-20 h-20 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-white/20 group/btn opacity-0 group-hover:opacity-100 pointer-events-auto z-30"
         >
-          {isPlaying ? (
+          {!isYouTube && (isPlaying ? (
             <Pause className="w-8 h-8 text-white fill-current" />
           ) : (
             <Play className="w-8 h-8 text-white fill-current translate-x-1" />
-          )}
+          ))}
         </motion.div>
       </div>
     </div>
@@ -622,11 +648,9 @@ export default function App() {
     setActiveSection(id);
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80; // Account for fixed nav height
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
 
       animate(window.scrollY, offsetPosition, {
         duration: 1.5,
@@ -1061,11 +1085,11 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[150] flex items-start justify-center p-6 md:p-12 bg-black/90 backdrop-blur-xl overflow-y-auto safe-top safe-bottom"
+            className="fixed inset-0 z-[150] flex items-start justify-center p-6 md:p-12 bg-black/90 backdrop-blur-xl overflow-y-auto safe-top safe-bottom motion-safe-gpu"
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 30 }}
-              className="bg-[#1a1a1a] border border-white/10 w-full max-w-2xl overflow-hidden relative my-12 md:my-24"
+              className="bg-[#1a1a1a] border border-white/10 w-full max-w-2xl overflow-hidden relative my-12 md:my-24 motion-safe-gpu"
               animate={isSent ? { 
                 scale: 1, 
                 opacity: 1, 
@@ -1363,7 +1387,7 @@ export default function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             id="project-modal"
-            className="fixed inset-0 z-[100] bg-white text-black overflow-y-auto"
+            className="fixed inset-0 z-[100] bg-white text-black overflow-y-auto motion-safe-gpu"
           >
             <div className="min-h-full flex flex-col">
               <nav className="sticky top-0 w-full px-4 py-4 md:px-12 md:py-8 flex justify-between items-center bg-white/80 backdrop-blur-md z-10 border-b border-black/5 safe-top">

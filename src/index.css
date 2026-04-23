@@ -28,11 +28,21 @@
     position: relative;
     -webkit-overflow-scrolling: touch;
     text-rendering: optimizeLegibility;
+    /* Safari specific performance */
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior-y: none;
+    touch-action: pan-x pan-y;
+  }
+
+  /* Stabilize fixed elements in Safari's rendering tree */
+  nav.fixed, .fixed, .sticky {
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    z-index: 1000;
   }
 
   html {
     height: -webkit-fill-available;
-    scroll-behavior: smooth;
   }
 
   #root {
@@ -74,22 +84,39 @@
     transform: translateZ(0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    perspective: 1000;
-    -webkit-perspective: 1000;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
   }
 
   /* Improved scrolling for Safari modals */
   .overflow-y-auto {
     -webkit-overflow-scrolling: touch;
+    isolation: isolate;
   }
   
-  /* Safari rounding issues with overflow-hidden and transform */
+  /* Safari fixed positioning context fix */
+  nav.fixed {
+    -webkit-transform: translateZ(100px);
+    transform: translateZ(100px);
+    isolation: isolate;
+  }
+  
+  /* Force Safari to keep rounded corners on transformed content */
   .rounded-2xl, .rounded-3xl, .rounded-xl, .rounded-lg, .rounded-full {
     -webkit-mask-image: -webkit-radial-gradient(white, black);
     mask-image: radial-gradient(white, black);
+    contain: paint;
   }
 
-  /* Grid/Flex fixes for older Safari */
+  /* Prevent flickering during animations in Safari */
+  .motion-safe-gpu {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform, opacity;
+  }
+
   .grid {
     display: -ms-grid;
     display: grid;
