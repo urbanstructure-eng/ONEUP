@@ -125,7 +125,9 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
                           controls: 0,
                           showinfo: 0,
                           autohide: 1,
-                          playsinline: 1
+                          playsinline: 1,
+                          autoplay: 1,
+                          mute: 1
                         }
                       }
                     }}
@@ -137,7 +139,7 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
           ) : isDrive ? (
             <div className="absolute inset-0 pointer-events-auto">
               <iframe
-                src={`https://drive.google.com/file/d/${driveId}/preview`}
+                src={`https://drive.google.com/file/d/${driveId}/preview?autoplay=1&mute=1`}
                 className="w-full h-full border-none"
                 allow="autoplay; encrypted-media"
                 onLoad={() => setIsLoaded(true)}
