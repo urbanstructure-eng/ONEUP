@@ -142,7 +142,6 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
                 allow="autoplay; encrypted-media"
                 onLoad={() => setIsLoaded(true)}
               />
-              {/* Overlay to catch clicks and prevent interaction with Drive UI if desired */}
               <div 
                 className="absolute inset-0 z-10 cursor-pointer"
                 onClick={togglePlay}
@@ -177,7 +176,6 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
         )}
       </div>
 
-      {/* Modern Minimalist Controls */}
       <div className="absolute inset-0 flex items-center justify-center">
         <motion.div 
           onClick={togglePlay}
@@ -660,7 +658,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] text-white selection:bg-accent selection:text-black font-sans overflow-x-hidden relative">
+    <div className="min-h-screen bg-[#1a1a1a] text-white selection:bg-accent selection:text-black font-sans relative">
       {/* Navigation (Static/Fixed) */}
       <nav className="fixed top-0 left-0 w-full z-50 px-4 py-4 md:px-12 md:py-6 flex justify-between items-center backdrop-blur-md border-b border-white/10 bg-[#1a1a1a]/80 safe-top">
         <div 
@@ -1085,27 +1083,19 @@ export default function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[150] flex items-start justify-center p-6 md:p-12 bg-black/90 backdrop-blur-xl overflow-y-auto safe-top safe-bottom"
-            style={{ WebkitOverflowScrolling: 'touch' }}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 30 }}
-              className="bg-[#1a1a1a] border border-white/10 w-full max-w-2xl overflow-hidden relative preserve-3d my-12 md:my-24"
-              style={{ transformStyle: 'preserve-3d' }}
+              className="bg-[#1a1a1a] border border-white/10 w-full max-w-2xl overflow-hidden relative my-12 md:my-24"
               animate={isSent ? { 
                 scale: 1, 
                 opacity: 1, 
                 x: 0, 
-                y: 0, 
-                rotateX: 0, 
-                rotateY: 0, 
-                rotateZ: 0 
+                y: 0
               } : (isFolding ? {
-                scale: [1, 0.4, 0.1],
-                rotateX: [0, 90, 0],
-                rotateY: [0, 45, 0],
-                rotateZ: [0, -20, -15],
-                x: [0, 50, 1200],
-                y: [0, -50, -300],
+                scale: [1, 0.8, 0],
+                x: [0, 0, 800],
+                y: [0, 0, -400],
                 opacity: [1, 1, 0],
               } : { scale: 1, opacity: 1, y: 0 })}
               exit={{ scale: 0.9, opacity: 0, y: 30 }}
@@ -1395,7 +1385,6 @@ export default function App() {
             exit={{ opacity: 0 }}
             id="project-modal"
             className="fixed inset-0 z-[100] bg-white text-black overflow-y-auto"
-            style={{ WebkitOverflowScrolling: 'touch' }}
           >
             <div className="min-h-screen flex flex-col">
               <nav className="sticky top-0 w-full px-4 py-4 md:px-12 md:py-8 flex justify-between items-center bg-white/80 backdrop-blur-md z-10 border-b border-black/5 safe-top">
@@ -2520,6 +2509,28 @@ export default function App() {
                               "Fournir une solution universelle pour les voyageurs internationaux, garantissant une protection de haute qualité peu importe votre destination."
                             ) : (
                               "Brindando una solución universal para viajeros internacionales, asegurando una protección de alta calidad sin importar a dónde te lleve tu viaje."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Insurly Section 4: Cinematic Experience */}
+                      <div className="space-y-12">
+                        <div className="overflow-hidden bg-black rounded-2xl aspect-video">
+                          <CompactVideoPlayer 
+                            src="https://youtu.be/_KSTc_MdqFw" 
+                            alt="Insurly Cinematic Brand Video"
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Visual Storytelling</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Our cinematic strategy captures the fast-paced nature of modern travel, translating reliable insurance into a dynamic visual narrative."
+                            ) : lang === 'fr' ? (
+                              "Notre stratégie cinématique capture la nature trépidante des voyages modernes."
+                            ) : (
+                              "Nuestra estrategia cinematográfica captura la naturaleza acelerada de los viajes modernos."
                             )}
                           </p>
                         </div>

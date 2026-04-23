@@ -15,16 +15,15 @@
   }
   
   html, body {
-    height: 100%;
-    overflow-x: hidden;
-    /* Prevent vertical bounce in some Safari versions if needed, but usually we want scrolling */
+    margin: 0;
+    padding: 0;
   }
   
   body {
-    @apply bg-[#1a1a1a] text-white selection:bg-accent selection:text-black;
+    @apply bg-[#1a1a1a] text-white selection:bg-accent selection:text-black font-sans antialiased;
     min-height: 100vh;
-    min-height: -webkit-fill-available;
-    /* Fix for scrolling issues on some Safari versions */
+    /* Basic cross-browser scrolling stability */
+    overflow-x: hidden;
     position: relative;
     -webkit-overflow-scrolling: touch;
     text-rendering: optimizeLegibility;
