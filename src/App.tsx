@@ -17,24 +17,26 @@ interface Project {
   colSpan: string;
   contain?: boolean;
   location?: string;
+  year?: string;
+  role?: string;
 }
 
 const PROJECTS: Project[] = [
-  { id: 11, title: "Voltique", category: "Service Design", image: "https://lh3.googleusercontent.com/d/1gusf69CAd1am1JcsIyc1qiGekzmZLEUP", colSpan: "md:col-span-12" },
-  { id: 12, title: "Pulso Health", category: "AI Health / Branding", image: "https://lh3.googleusercontent.com/d/1ONCooNfgYuYu5trUJrFZcZq1HxYSFZrr", colSpan: "md:col-span-4" },
-  { id: 13, title: "BuyDrop", category: "Logistic Company", image: "https://lh3.googleusercontent.com/d/1qpd246hL-TbgCSgf9j2qxBk15FMW2FuF", heroImage: "https://lh3.googleusercontent.com/d/1nZNLMGhECM67AST6qbGCmYiXUhN0RF-C", colSpan: "md:col-span-4" },
-  { id: 14, title: "UNITY Community Hub", category: "Community / Branding", image: "https://lh3.googleusercontent.com/d/1SaZAxfG-M0ouGb0w0wCRxmzKQ3U8S5uT", heroImage: "https://lh3.googleusercontent.com/d/1zBFr8LhCxzjxucFpkMMXeekayY2JLk9g", colSpan: "md:col-span-4" },
-  { id: 15, title: "Atelier d'art", category: "Art Direction / Branding", image: "https://lh3.googleusercontent.com/d/1sAcH9tLsKt9mXswTCynb7bnRcS5qAYJT", colSpan: "md:col-span-12", location: "Paris, France" },
-  { id: 1, title: "Aura Identity", category: "Branding", image: "https://picsum.photos/seed/aura/1200/800", colSpan: "md:col-span-4" },
-  { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1l4lV4DJ1v17tOBJxEC3l32mjxqTjTdH-", colSpan: "md:col-span-4" },
-  { id: 4, title: "Nova Campaign", category: "Art Direction", image: "https://picsum.photos/seed/nova/800/800", colSpan: "md:col-span-4" },
-  { id: 5, title: "Zenith Web", category: "Development", image: "https://picsum.photos/seed/zenith/800/1000", colSpan: "md:col-span-4" },
-  { id: 6, title: "Pulse Motion", category: "Animation", image: "https://picsum.photos/seed/pulse/1200/675", colSpan: "md:col-span-6" },
-  { id: 7, title: "Echo Sound", category: "Audio", image: "https://picsum.photos/seed/echo/1200/675", colSpan: "md:col-span-6" },
-  { id: 8, title: "Stellar App", category: "Mobile", image: "https://picsum.photos/seed/stellar/1600/600", colSpan: "md:col-span-12" },
-  { id: 9, title: "Flux Brand", category: "Strategy", image: "https://picsum.photos/seed/flux/800/800", colSpan: "md:col-span-6" },
-  { id: 10, title: "Orbit Space", category: "Exhibition", image: "https://picsum.photos/seed/orbit/1200/750", colSpan: "md:col-span-6" },
-  { id: 16, title: "edere restaurant", category: "Culinary / Branding", image: "https://lh3.googleusercontent.com/d/1xwwm8qTPTaFktoSelqGyTUz5tYsOCK7W", colSpan: "md:col-span-12", location: "Global" },
+  { id: 11, title: "Voltique", category: "Service Design", image: "https://lh3.googleusercontent.com/d/1gusf69CAd1am1JcsIyc1qiGekzmZLEUP", colSpan: "md:col-span-12", year: "2024", role: "Lead Design" },
+  { id: 12, title: "Pulso Health", category: "AI Health / Branding", image: "https://lh3.googleusercontent.com/d/1ONCooNfgYuYu5trUJrFZcZq1HxYSFZrr", colSpan: "md:col-span-4", year: "2023", role: "Brand Identity" },
+  { id: 13, title: "BuyDrop", category: "Logistic Company", image: "https://lh3.googleusercontent.com/d/1qpd246hL-TbgCSgf9j2qxBk15FMW2FuF", heroImage: "https://lh3.googleusercontent.com/d/1nZNLMGhECM67AST6qbGCmYiXUhN0RF-C", colSpan: "md:col-span-4", year: "2024", role: "Creative Direction" },
+  { id: 14, title: "UNITY Community Hub", category: "Community / Branding", image: "https://lh3.googleusercontent.com/d/1SaZAxfG-M0ouGb0w0wCRxmzKQ3U8S5uT", heroImage: "https://lh3.googleusercontent.com/d/1zBFr8LhCxzjxucFpkMMXeekayY2JLk9g", colSpan: "md:col-span-4", year: "2024", role: "Lead Design" },
+  { id: 15, title: "Atelier d'art", category: "Art Direction / Branding", image: "https://lh3.googleusercontent.com/d/1sAcH9tLsKt9mXswTCynb7bnRcS5qAYJT", colSpan: "md:col-span-12", location: "Paris, France", year: "2024", role: "Art Direction" },
+  { id: 1, title: "Aura Identity", category: "Branding", image: "https://picsum.photos/seed/aura/1200/800", colSpan: "md:col-span-4", year: "2024", role: "Designer" },
+  { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1l4lV4DJ1v17tOBJxEC3l32mjxqTjTdH-", colSpan: "md:col-span-4", year: "2023", role: "Identity Design" },
+  { id: 4, title: "Nova Campaign", category: "Art Direction", image: "https://picsum.photos/seed/nova/800/800", colSpan: "md:col-span-4", year: "2024", role: "Art Director" },
+  { id: 5, title: "Zenith Web", category: "Development", image: "https://picsum.photos/seed/zenith/800/1000", colSpan: "md:col-span-4", year: "2024", role: "Fullstack Dev" },
+  { id: 6, title: "Pulse Motion", category: "Animation", image: "https://picsum.photos/seed/pulse/1200/675", colSpan: "md:col-span-6", year: "2023", role: "Motion Designer" },
+  { id: 7, title: "Echo Sound", category: "Audio", image: "https://picsum.photos/seed/echo/1200/675", colSpan: "md:col-span-6", year: "2024", role: "Sound Design" },
+  { id: 8, title: "Stellar App", category: "Mobile", image: "https://picsum.photos/seed/stellar/1600/600", colSpan: "md:col-span-12", year: "2024", role: "UX/UI Lead" },
+  { id: 9, title: "Flux Brand", category: "Strategy", image: "https://picsum.photos/seed/flux/800/800", colSpan: "md:col-span-6", year: "2023", role: "Strategist" },
+  { id: 10, title: "Orbit Space", category: "Exhibition", image: "https://picsum.photos/seed/orbit/1200/750", colSpan: "md:col-span-6", year: "2024", role: "Spatial Designer" },
+  { id: 16, title: "edere restaurant", category: "Branding / Environment", image: "https://lh3.googleusercontent.com/d/19Gt0niVC8EL5JdpHNmsRdCLTrBeeIbcu", colSpan: "md:col-span-12", location: "Rome, Italy", year: "2022", role: "Project Identity" },
 ];
 
 const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", contain = false, cinematic = false }: { src: string, alt: string, className?: string, objectPosition?: string, contain?: boolean, cinematic?: boolean }) => (
@@ -508,12 +510,13 @@ export default function App() {
     if (project.title === "edere restaurant") {
       return [
         project.image,
+        "https://lh3.googleusercontent.com/d/1k8q8V3zvS4uYnfp0s6unRNpWiaAbIqa9",
+        "https://lh3.googleusercontent.com/d/1Lg4ePRrMplc3GDzN8ixUcuL9MbPwqBxg",
         "https://lh3.googleusercontent.com/d/19C-4W9Vpb5EgIzhZZO9jJB19_b10ejYO",
         "https://lh3.googleusercontent.com/d/1GY7keTnEI3Jayucac9QegpwS8rk-vOMJ",
         "https://lh3.googleusercontent.com/d/1Mux8yWx0pRNv-P3p1-92vHZH7nkO9rRh",
-        "https://lh3.googleusercontent.com/d/19Gt0niVC8EL5JdpHNmsRdCLTrBeeIbcu",
         "https://lh3.googleusercontent.com/d/1KswSnGMZRZkyOOaVJXWTKkUqWwdzxTqB",
-        `https://picsum.photos/seed/edere-vision/1200/800`
+        "https://lh3.googleusercontent.com/d/1xwwm8qTPTaFktoSelqGyTUz5tYsOCK7W"
       ];
     }
     return [
@@ -1405,11 +1408,11 @@ export default function App() {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8 border-t border-black/10">
                     <div>
                       <span className="text-[13px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">{t[lang].modal.year}</span>
-                      <span className="text-sm font-medium">2024</span>
+                      <span className="text-sm font-medium">{selectedProject.year || "2024"}</span>
                     </div>
                     <div>
                       <span className="text-[13px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">{t[lang].modal.role}</span>
-                      <span className="text-sm font-medium">Lead Design</span>
+                      <span className="text-sm font-medium">{selectedProject.role || "Lead Design"}</span>
                     </div>
                     <div>
                       <span className="text-[13px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">Location</span>
@@ -2371,58 +2374,58 @@ export default function App() {
                     </>
                   ) : selectedProject.title === "edere restaurant" ? (
                     <>
-                      {/* Edere Restaurant Section 1: Culinary Identity */}
+                      {/* Edere Restaurant Section 1: Branding Strategy */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div className="space-y-6">
-                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Culinary Identity</span>
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Branding Strategy</span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                             {lang === 'en' ? (
-                              "Edere restaurant redefines the culinary experience through a visual language that balances modern gastronomy with traditional warmth. The branding focuses on organic textures and a minimalist color palette."
+                              "The development of a refined branding strategy for a vibrant restaurant in Rome, Italy, is essential to capture the essence of this historic city. By embracing the rich tapestry of ancient Roman culture, the branding reflects the unique character and charm that Rome offers."
                             ) : lang === 'fr' ? (
-                              "Le restaurant Edere redéfinit l'expérience culinaire à travers un langage visuel qui équilibre gastronomie moderne et chaleur traditionnelle."
+                              "Le développement d'une stratégie de marque raffinée pour un restaurant dynamique à Rome est essentiel pour capturer l'essence de cette ville historique."
                             ) : (
-                              "El restaurante Edere redefine la experiencia culinaria a través de un lenguaje visual que equilibra la gastronomía moderna con la calidez tradicional."
+                              "El desarrollo de una estrategia de marca refinada para un restaurante vibrante en Roma es esencial para capturar la esencia de esta ciudad histórica."
                             )}
                           </p>
                         </div>
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1xwwm8qTPTaFktoSelqGyTUz5tYsOCK7W")}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1k8q8V3zvS4uYnfp0s6unRNpWiaAbIqa9")}
                         >
                           <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/1xwwm8qTPTaFktoSelqGyTUz5tYsOCK7W" 
-                            alt="Edere Restaurant Visual"
+                            src="https://lh3.googleusercontent.com/d/1k8q8V3zvS4uYnfp0s6unRNpWiaAbIqa9" 
+                            alt="Edere Branding Strategy"
                           />
                         </div>
                       </div>
 
-                      {/* Edere Restaurant Section 2: Strategic Vision */}
+                      {/* Edere Restaurant Section 2: Cultural Heritage */}
                       <div className="space-y-12 mb-24 md:mb-40">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
-                          onClick={() => setFullscreenImage("https://picsum.photos/seed/edere-vision/1200/800")}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1Lg4ePRrMplc3GDzN8ixUcuL9MbPwqBxg")}
                         >
                           <SubtleMotionImage 
-                            src="https://picsum.photos/seed/edere-vision/1200/800" 
-                            alt="Edere Vision"
+                            src="https://lh3.googleusercontent.com/d/1Lg4ePRrMplc3GDzN8ixUcuL9MbPwqBxg" 
+                            alt="Edere Cultural Heritage"
                             cinematic={true}
                           />
                         </div>
                         <div className="max-w-3xl">
-                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Strategic Vision</span>
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Cultural Heritage</span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                             {lang === 'en' ? (
-                              "The project aims to create a sensory journey for every guest, where the graphic design and environmental architecture work in harmony to elevate the dining experience."
+                              "This approach highlights the restaurant's commitment to authenticity, creating a welcoming atmosphere that resonates with both locals and tourists through elements that evoke the city's storied past."
                             ) : lang === 'fr' ? (
-                              "Le projet vise à créer un voyage sensoriel pour chaque convive, où le design graphique et l'architecture environnementale travaillent en harmonie."
+                              "Cette approche souligne l'engagement du restaurant envers l'authenticité, créant une atmosphère accueillante qui résonne auprès de tous."
                             ) : (
-                              "El proyecto busca crear un viaje sensorial para cada comensal, donde el diseño gráfico y la arquitectura ambiental trabajen en armonía."
+                              "Este enfoque destaca el compromiso del restaurante con la autenticidad, creando una atmósfera acogedora que resuena con todos."
                             )}
                           </p>
                         </div>
                       </div>
 
-                      {/* Edere Restaurant Section 3: Visual Detail */}
+                      {/* Edere Restaurant Section 3: Design Experience */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
                           className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square"
@@ -2434,30 +2437,30 @@ export default function App() {
                           />
                         </div>
                         <div className="order-1 md:order-2 space-y-6">
-                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Visual Detail</span>
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Design Experience</span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                             {lang === 'en' ? (
-                              "Attentive to detail, every branding element of the restaurant creates a tactile and memorable connection with the guest, reinforcing the restaurant's commitment to excellence."
+                              "From the logo to the interior decor, design elements evoke Rome's past while providing a modern dining experience that appeals to a diverse and sophisticated clientele."
                             ) : lang === 'fr' ? (
-                              "Attentif aux détails, chaque élément de branding du restaurant crée une connexion tactile et mémorable avec le client."
+                              "Du logo au décor intérieur, les éléments de design évoquent le passé de Rome tout en offrant une expérience culinaire moderne."
                             ) : (
-                              "Atento a los detalles, cada elemento de branding del restaurante crea una conexión táctil y memorable con el comensal."
+                              "Desde el logotipo hasta la decoración interior, los elementos de diseño evocan el pasado de Roma ofreciendo una experiencia moderna."
                             )}
                           </p>
                         </div>
                       </div>
 
-                      {/* Edere Restaurant Section 4: Brand Legacy */}
+                      {/* Edere Restaurant Section 4: Social Gathering */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div className="space-y-6">
-                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Brand Legacy</span>
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Social Gathering</span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                             {lang === 'en' ? (
-                              "The brand's legacy is built on a foundation of refined craftsmanship, where every visual element serves as a testament to the restaurant's commitment to culinary storytelling."
+                              "The restaurant aims to be a cherished gathering place for friends and family, offering a delightful escape after a long day at work in the heart of the city."
                             ) : lang === 'fr' ? (
-                              "L'héritage de la marque repose sur un savoir-faire raffiné, où chaque élément visuel témoigne de l'engagement du restaurant."
+                              "Le restaurant se veut un lieu de rencontre privilégié pour les amis et la famille, offrant une évasion délicieuse après le travail."
                             ) : (
-                              "El legado de la marca se basa en una artesanía refinada, donde cada elemento visual sirve como testimonio del compromiso del restaurante."
+                              "el restaurante pretende ser un lugar de encuentro apreciado por amigos y familiares, ofreciendo un escape encantador después del trabajo."
                             )}
                           </p>
                         </div>
@@ -2472,7 +2475,7 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Edere Restaurant Section 5: Material Connection */}
+                      {/* Edere Restaurant Section 5: Culinary Roots */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
                           className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square"
@@ -2484,30 +2487,30 @@ export default function App() {
                           />
                         </div>
                         <div className="order-1 md:order-2 space-y-6">
-                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Material Connection</span>
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Culinary Roots</span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                             {lang === 'en' ? (
-                              "The selection of raw materials and organic textures establishes a tactile bridge between the space and the guest, grounding the high-end experience in natural authenticity."
+                              "With a menu that celebrates traditional Italian cuisine, patrons can indulge in a variety of dishes that showcase the region's rich culinary heritage."
                             ) : lang === 'fr' ? (
-                              "La sélection de matières premières et de textures organiques établit un pont tactile entre l'espace et le client."
+                              "Avec une carte qui célèbre la cuisine italienne traditionnelle, les clients peuvent découvrir le riche patrimoine culinaire de la région."
                             ) : (
-                              "La selección de materias primas y texturas orgánicas establece un puente táctil entre el espacio y el comensal."
+                              "Con una carta que celebra la cocina tradicional italiana, los clientes pueden disfrutar del rico patrimonio culinario de la región."
                             )}
                           </p>
                         </div>
                       </div>
 
-                      {/* Edere Restaurant Section 6: Gastronomic Excellence */}
+                      {/* Edere Restaurant Section 6: Community Hub */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div className="space-y-6">
-                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Gastronomic Excellence</span>
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Community Hub</span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                             {lang === 'en' ? (
-                              "Every plate is a canvas. The visual identity extends into the culinary presentation, where precision and creativity converge to define the new standard of modern fine dining."
+                              "Ambiance designed to foster connection and relaxation. By positioning itself as a community hub, the restaurant cultivates a profound sense of belonging."
                             ) : lang === 'fr' ? (
-                              "Chaque assiette est une toile. L'identité visuelle s'étend jusqu'à la présentation culinaire."
+                              "Une ambiance conçue pour favoriser la connexion. En se positionnant comme un hub communautaire, le restaurant cultive un sens de l'appartenance."
                             ) : (
-                              "Cada plato es un lienzo. La identidad visual se extiende hasta la presentación culinaria."
+                              "Un ambiente diseñado para fomentar la conexión. Al posicionarse como un centro comunitario, el restaurante cultiva un sentido de pertenencia."
                             )}
                           </p>
                         </div>
@@ -2538,11 +2541,36 @@ export default function App() {
                           <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Experiential Atmosphere</span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                             {lang === 'en' ? (
-                              "The architectural integration of the brand ensures that the identity is felt in every corner of the space, creating an immersive atmosphere that transcends a standard dining experience."
+                              "Encouraging guests to unwind over a glass of wine or a hearty meal, making it a beloved destination in the heart of Rome."
                             ) : lang === 'fr' ? (
-                              "L'intégration architecturale de la marque garantit que l'identité est ressentie dans chaque recoin de l'espace, créant une atmosphère immersive."
+                              "Encourager les invités à se détendre autour d'un verre de vin, en faisant une destination privilégiée au cœur de Rome."
                             ) : (
-                              "La integración arquitectónica de la marca asegura que la identidad se sienta en cada rincón del espacio, creando una atmósfera inmersiva."
+                              "Alentando a los huéspedes a relajarse con una copa de vino, convirtiéndolo en un destino querido en el corazón de Roma."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Edere Restaurant Section 8: Design Philosophy */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center mb-24 md:mb-40">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1xwwm8qTPTaFktoSelqGyTUz5tYsOCK7W")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1xwwm8qTPTaFktoSelqGyTUz5tYsOCK7W" 
+                            alt="Edere Design Philosophy"
+                          />
+                        </div>
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Design Philosophy</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Meticulous attention to visual storytelling and material integrity ensures every branding detail resonates with Rome's artisanal excellence."
+                            ) : lang === 'fr' ? (
+                              "Une attention méticuleuse à la narration visuelle et à l'intégrité des matériaux garantit que chaque détail de branding résonne avec l'excellence de Rome."
+                            ) : (
+                              "La atención meticulosa a la narrativa visual y la integridad de los materiales asegura que cada detalle de branding resuene con la excelencia artesanal de Roma."
                             )}
                           </p>
                         </div>
