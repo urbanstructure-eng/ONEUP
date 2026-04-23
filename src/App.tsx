@@ -863,7 +863,7 @@ export default function App() {
               onClick={() => setSelectedProject(project)}
               className={`group cursor-pointer border-r border-b border-white/10 ${project.colSpan} p-4 md:p-8`}
             >
-              <div className="relative h-[320px] overflow-hidden bg-[#262626]">
+              <div className="relative h-[320px] overflow-hidden bg-[#262626] rounded-2xl">
                 <motion.img 
                   whileHover={{ scale: project.contain ? 1 : 1.05 }}
                   initial={{ scale: 1, x: 0, y: 0 }}
@@ -1453,7 +1453,7 @@ export default function App() {
                   initial={{ y: 40, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  className="aspect-video overflow-hidden bg-black/5 cursor-zoom-in rounded-sm mb-24 md:mb-40"
+                  className="aspect-video overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl mb-24 md:mb-40"
                   onClick={() => setFullscreenImage(selectedProject.heroImage || selectedProject.image)}
                 >
                   <SubtleMotionImage 
@@ -1481,7 +1481,7 @@ export default function App() {
                           </p>
                         </div>
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1pWnjLekDDJw2nyvaITIkbyyYCyyVqhrN")}
                         >
                           <SubtleMotionImage 
@@ -1494,7 +1494,7 @@ export default function App() {
                       {/* Pulso Health Section 2: Visual Identity */}
                       <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1HV38KNGMYygGYoRFDoFe2P5v0By10sDC")}
                         >
                           <SubtleMotionImage 
@@ -1520,7 +1520,7 @@ export default function App() {
                       {/* Pulso Health Section 3: Engagement Strategy */}
                       <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1C9aaZv2jODy3L2G_f70176rmthMvJ7y9")}
                         >
                           <SubtleMotionImage 
@@ -1543,7 +1543,7 @@ export default function App() {
                             </p>
                           </div>
                           <div 
-                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square"
+                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-square"
                             onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1JclpfUaRLdnfi-Y8bFiYZjgMoumw4E_U")}
                           >
                             <SubtleMotionImage 
@@ -1560,7 +1560,7 @@ export default function App() {
                       {/* Pulso Health Section 4: Global Leadership */}
                       <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/14dOgWst9Yy4S-uenpiuTiJSF5owIrT6M")}
                         >
                           <SubtleMotionImage 
@@ -1586,7 +1586,7 @@ export default function App() {
                       {/* Pulso Health Section 5: Connectivity */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
-                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/16PjI9KDz2z6IFWutld9YKRkwVTNw5Htk")}
                         >
                           <SubtleMotionImage 
@@ -1624,7 +1624,7 @@ export default function App() {
                         </div>
                         
                         <div 
-                          className="relative overflow-hidden rounded-sm aspect-video md:aspect-[21/9] bg-transparent cursor-zoom-in"
+                          className="relative overflow-hidden rounded-2xl aspect-video md:aspect-[21/9] bg-transparent cursor-zoom-in"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez")}
                         >
                           <motion.div 
@@ -1675,7 +1675,7 @@ export default function App() {
                           </p>
                         </div>
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1p6uNNFVC96xiAjRJvtsiCn3MhA330SpH")}
                         >
                           <SubtleMotionImage 
@@ -1688,7 +1688,7 @@ export default function App() {
                       {/* Section 2: Image + Text (Process) */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
-                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1fpYurGgn-hjRjtOVQN9bAVnEBKu_tkOD")}
                         >
                           <SubtleMotionImage 
@@ -1712,7 +1712,7 @@ export default function App() {
 
                       {/* Section 3 (Spot 4) - Wayfinding/Coordinates (Image 4) */}
                       <div 
-                        className="relative overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video group"
+                        className="relative overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video group"
                         onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI")}
                       >
                         <SubtleMotionImage 
@@ -1748,7 +1748,7 @@ export default function App() {
                       {/* Section 4: Large Image or Full Video grid (History) */}
                       <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1Zr9R_Z3bMjuCJo5xykDJIPVcxvgVeFar")}
                         >
                           <SubtleMotionImage 
@@ -1770,7 +1770,7 @@ export default function App() {
                       {/* Section 5: Vertical Mood Image (Identity) */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/169Pww9eoPuFuC3gU5bx9E02cOV7037zl")}
                         >
                           <SubtleMotionImage 
@@ -1795,7 +1795,7 @@ export default function App() {
                       {/* Section 6: Image + Text (Lifestyle) */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
-                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv")}
                         >
                           <SubtleMotionImage 
@@ -1834,7 +1834,7 @@ export default function App() {
                           </p>
                         </div>
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/18okrA2Rgsx9gzhggIOu89nuz6QcWu-Hi")}
                         >
                           <SubtleMotionImage 
@@ -1847,7 +1847,7 @@ export default function App() {
                       {/* Voltique Story Section 2: Future Infrastructure */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
-                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1LP7r24WA012N3hkibYdehCPnKasGT4jB")}
                         >
                           <SubtleMotionImage 
@@ -1872,7 +1872,7 @@ export default function App() {
                       {/* Voltique Story Section 3: Lifestyle Sanctuary */}
                       <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1Ad-O2_nnkJHtfNLqVneCvzqufYPEpP-t")}
                         >
                           <SubtleMotionImage 
@@ -1909,7 +1909,7 @@ export default function App() {
                           </p>
                         </div>
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1C6c6M2Sf0EchjHqKsylmecO9Z__707lY")}
                         >
                           <SubtleMotionImage 
@@ -1922,7 +1922,7 @@ export default function App() {
                       {/* Voltique Story Section 5: Brand Ecosystem */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
-                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1tJkKFKLTwo-zkp6K_EVdVRz7rCviD-F0")}
                         >
                           <SubtleMotionImage 
@@ -1947,7 +1947,7 @@ export default function App() {
                       {/* Voltique Story Section 6: Future Vision */}
                       <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1RYRWf7_CSv27PD95PfnPPKLs534PhOQD")}
                         >
                           <SubtleMotionImage 
@@ -1973,7 +1973,7 @@ export default function App() {
                       {/* Voltique Story Section 7: Impact & Sustainability */}
                       <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1IbhBUuJuXIiKMGleLfoHvwAlE78GdwG_")}
                         >
                           <SubtleMotionImage 
@@ -2001,7 +2001,7 @@ export default function App() {
                       {/* BuyDrop Section 0: The Ecosystem (Square Detail) */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
-                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square"
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-square"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1qpd246hL-TbgCSgf9j2qxBk15FMW2FuF")}
                         >
                           <SubtleMotionImage 
@@ -2026,7 +2026,7 @@ export default function App() {
                       {/* BuyDrop Section 1: Full-Width Cinematic (The Concept) */}
                       <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1jxksiMAxUtLXBxGL8bNC7jcizLTyxXR0")}
                         >
                           <SubtleMotionImage 
@@ -2052,7 +2052,7 @@ export default function App() {
                       {/* BuyDrop Section 2: Image + Text (System Architecture) */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
-                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1NV4L745ah-lWi0pZtmULvNTiJHefN6J9")}
                         >
                           <SubtleMotionImage 
@@ -2077,7 +2077,7 @@ export default function App() {
                       {/* BuyDrop Section 3: Cinematic / Precision Overlay (Full Width Image) */}
                       <div className="space-y-12">
                         <div 
-                          className="relative overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video group"
+                          className="relative overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video group"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/16nVARSrN4RZielAgzspDx6mkKm6VUs_3")}
                         >
                           <SubtleMotionImage 
@@ -2103,7 +2103,7 @@ export default function App() {
                       {/* BuyDrop Section 4: Final Impact */}
                       <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1rxQVm2VX7vOD1Z0HPFx7DgVC1s5iwzXH")}
                         >
                           <SubtleMotionImage 
@@ -2143,7 +2143,7 @@ export default function App() {
                           </p>
                         </div>
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-square"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1SaZAxfG-M0ouGb0w0wCRxmzKQ3U8S5uT")}
                         >
                           <SubtleMotionImage 
@@ -2156,7 +2156,7 @@ export default function App() {
                       {/* UNITY Section 2: Branding Strategy */}
                       <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/11wP3BfkI3AFIZP49UH1WSwpXPZEvmHc6")}
                         >
                           <SubtleMotionImage 
@@ -2196,7 +2196,7 @@ export default function App() {
                       {/* UNITY Section 4: Physical Touchpoints */}
                       <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1M-1AUscx9JJ7guyEjAeF1ziTjLxrnbWK")}
                         >
                           <SubtleMotionImage 
@@ -2234,7 +2234,7 @@ export default function App() {
                           </p>
                         </div>
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1JL_vUWyn2sn9wFsdgCnL-XekDbMnzJ4t")}
                         >
                           <SubtleMotionImage 
@@ -2247,7 +2247,7 @@ export default function App() {
                       {/* UNITY Section 6: Community Connection */}
                       <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/178fpIdVUsFAnFVgY89ztj_hRTVaxAWsw")}
                         >
                           <SubtleMotionImage 
@@ -2273,7 +2273,7 @@ export default function App() {
                       {/* UNITY Section 7: Brand Precision */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-square"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/18gqdiRXLF7McIOK9DyD33TilFTV1OwYX")}
                         >
                           <SubtleMotionImage 
@@ -2312,7 +2312,7 @@ export default function App() {
                           </p>
                         </div>
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1osUANG5WeR0Ww3n_OQtdiaNXBxQLIA7f")}
                         >
                           <SubtleMotionImage 
@@ -2325,7 +2325,7 @@ export default function App() {
                       {/* Atelier Section 2: Visual Language (Cinematic) */}
                       <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1el8VLirLeFCbYzVJmjInCWc_1ndww9-9")}
                         >
                           <SubtleMotionImage 
@@ -2351,7 +2351,7 @@ export default function App() {
                       {/* Atelier Section 3: Artistic Precision */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
-                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square"
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-square"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/16PMa4p6HKCfzF56Ny_JoEGR6OBJqU-Jj")}
                         >
                           <SubtleMotionImage 
@@ -2376,7 +2376,7 @@ export default function App() {
                       {/* Atelier Section 4: Cultural Heritage (Final Impact) */}
                       <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1T9CIXul6wnGY6caACLxwvlW1gAR-EDzi")}
                         >
                           <SubtleMotionImage 
@@ -2416,7 +2416,7 @@ export default function App() {
                           </p>
                         </div>
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1k8q8V3zvS4uYnfp0s6unRNpWiaAbIqa9")}
                         >
                           <SubtleMotionImage 
@@ -2429,7 +2429,7 @@ export default function App() {
                       {/* Edere Restaurant Section 2: Cultural Heritage */}
                       <div className="space-y-12 mb-24 md:mb-40">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1Lg4ePRrMplc3GDzN8ixUcuL9MbPwqBxg")}
                         >
                           <SubtleMotionImage 
@@ -2455,7 +2455,7 @@ export default function App() {
                       {/* Edere Restaurant Section 3: Design Experience */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
-                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square"
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-square"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/19C-4W9Vpb5EgIzhZZO9jJB19_b10ejYO")}
                         >
                           <SubtleMotionImage 
@@ -2492,7 +2492,7 @@ export default function App() {
                           </p>
                         </div>
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1GY7keTnEI3Jayucac9QegpwS8rk-vOMJ")}
                         >
                           <SubtleMotionImage 
@@ -2505,7 +2505,7 @@ export default function App() {
                       {/* Edere Restaurant Section 5: Culinary Roots */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
-                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square"
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-square"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1Mux8yWx0pRNv-P3p1-92vHZH7nkO9rRh")}
                         >
                           <SubtleMotionImage 
@@ -2542,7 +2542,7 @@ export default function App() {
                           </p>
                         </div>
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-[4/5]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/19Gt0niVC8EL5JdpHNmsRdCLTrBeeIbcu")}
                         >
                           <SubtleMotionImage 
@@ -2561,7 +2561,7 @@ export default function App() {
                           <CinematicScrollImage 
                             src="https://lh3.googleusercontent.com/d/1KswSnGMZRZkyOOaVJXWTKkUqWwdzxTqB" 
                             alt="Edere Experiential Atmosphere"
-                            className="aspect-video md:aspect-[21/9] rounded-sm"
+                            className="aspect-video md:aspect-[21/9] rounded-2xl"
                           />
                         </div>
                         <div className="max-w-3xl">
@@ -2581,7 +2581,7 @@ export default function App() {
                       {/* Edere Restaurant Section 8: Design Philosophy */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center mb-24 md:mb-40">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-square"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1xwwm8qTPTaFktoSelqGyTUz5tYsOCK7W")}
                         >
                           <SubtleMotionImage 
@@ -2606,7 +2606,7 @@ export default function App() {
                       {/* Edere Restaurant Section 9: Brand Extension */}
                       <div className="space-y-12 mb-24 md:mb-40">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-video md:aspect-[21/9]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1nzAd11wQwe07yeFdZdSLS2-xexHfCIsa")}
                         >
                           <SubtleMotionImage 
@@ -2645,7 +2645,7 @@ export default function App() {
                             </p>
                         </div>
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square md:aspect-[4/3]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-square md:aspect-[4/3]"
                           onClick={() => setFullscreenImage(`https://picsum.photos/seed/${selectedProject.id + 100}/1200/800`)}
                         >
                           <SubtleMotionImage 
@@ -2657,7 +2657,7 @@ export default function App() {
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
-                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-sm aspect-square md:aspect-[4/3]"
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-square md:aspect-[4/3]"
                           onClick={() => setFullscreenImage(`https://picsum.photos/seed/${selectedProject.id + 200}/1200/800`)}
                         >
                           <SubtleMotionImage 
@@ -2730,7 +2730,7 @@ export default function App() {
 
             <div className="relative w-full h-full flex items-center justify-center select-none">
               {fullscreenImage === "https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez" ? (
-                <div className="relative w-full max-w-[90vw] h-[90vh] overflow-hidden rounded-sm bg-transparent">
+                <div className="relative w-full max-w-[90vw] h-[90vh] overflow-hidden rounded-2xl bg-transparent">
                   <motion.div 
                     className="w-full flex flex-col"
                     animate={{ y: ["0%", "-50%"] }}
