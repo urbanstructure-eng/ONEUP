@@ -87,7 +87,7 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
   const driveId = src.includes('drive.google.com') && driveMatch ? driveMatch[0] : null;
   const isDrive = !!driveId;
 
-  // Cinematic 40-second presentation cycle
+  // Cinematic 80-second presentation cycle
   useEffect(() => {
     const cycle = setInterval(() => {
       // Fade out
@@ -97,7 +97,7 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
       setTimeout(() => {
         setIsSectionVisible(true);
       }, 3000);
-    }, 40000);
+    }, 80000);
 
     return () => clearInterval(cycle);
   }, []);
@@ -129,10 +129,10 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
           >
             {!error ? (
               isYouTube ? (
-                <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute inset-0 pointer-events-none bg-black">
                   <iframe
                     src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0&autohide=1&disablekb=1&playsinline=1&enablejsapi=1`}
-                    className="w-[100.5%] h-[100.5%] -translate-x-[0.25%] -translate-y-[0.25%] border-none"
+                    className="w-[102%] h-[102%] -translate-x-[1%] -translate-y-[1%] border-none"
                     allow="autoplay; encrypted-media; picture-in-picture"
                     onLoad={() => setIsLoaded(true)}
                   />
