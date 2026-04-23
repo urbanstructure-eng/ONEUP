@@ -8,8 +8,58 @@
 }
 
 @layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  html, body {
+    height: 100%;
+    overflow-x: hidden;
+    /* Prevent vertical bounce in some Safari versions if needed, but usually we want scrolling */
+  }
+  
   body {
-    @apply bg-[#1a1a1a] text-white antialiased selection:bg-accent selection:text-black;
+    @apply bg-[#1a1a1a] text-white selection:bg-accent selection:text-black;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    /* Fix for scrolling issues on some Safari versions */
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Safe Area for iPhone/iPad notches */
+  .safe-top { padding-top: env(safe-area-inset-top); }
+  .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+  .safe-left { padding-left: env(safe-area-inset-left); }
+  .safe-right { padding-right: env(safe-area-inset-right); }
+  
+  /* Safari button/input reset */
+  button, input, textarea, select {
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  /* Safari aspect-ratio fallback if not supported */
+  @supports not (aspect-ratio: 1/1) {
+    .aspect-square { padding-bottom: 100%; position: relative; }
+    .aspect-square > * { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .aspect-video { padding-bottom: 56.25%; position: relative; }
+    .aspect-video > * { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+  }
+
+  /* Safari backdrop filter fallback */
+  .backdrop-blur-sm { -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+  .backdrop-blur-md { -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+  .backdrop-blur-lg { -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
+  .backdrop-blur-xl { -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px); }
+  
+  /* Fix for Safari rounding issues with overflow-hidden and transform */
+  .rounded-2xl {
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
   }
 }
 

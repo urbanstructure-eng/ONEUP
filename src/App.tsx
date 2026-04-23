@@ -37,7 +37,7 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
     src={src}
     alt={alt}
     className={`${className} w-full h-full ${contain ? 'object-contain p-8' : 'object-cover'}`}
-    style={{ objectPosition }}
+    style={{ objectPosition, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
     referrerPolicy="no-referrer"
     initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
     whileInView={{ opacity: 1, scale: 1 }}
@@ -662,7 +662,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#1a1a1a] text-white selection:bg-accent selection:text-black font-sans overflow-x-hidden relative">
       {/* Navigation (Static/Fixed) */}
-      <nav className="fixed top-0 left-0 w-full z-50 px-4 py-4 md:px-12 md:py-6 flex justify-between items-center backdrop-blur-md border-b border-white/10 bg-[#1a1a1a]/80">
+      <nav className="fixed top-0 left-0 w-full z-50 px-4 py-4 md:px-12 md:py-6 flex justify-between items-center backdrop-blur-md border-b border-white/10 bg-[#1a1a1a]/80 safe-top">
         <div 
           onClick={() => {
             scrollToTop();
@@ -1084,7 +1084,8 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[150] flex items-start justify-center p-6 md:p-12 bg-black/90 backdrop-blur-xl overflow-y-auto"
+            className="fixed inset-0 z-[150] flex items-start justify-center p-6 md:p-12 bg-black/90 backdrop-blur-xl overflow-y-auto safe-top safe-bottom"
+            style={{ WebkitOverflowScrolling: 'touch' }}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 30 }}
@@ -1394,9 +1395,10 @@ export default function App() {
             exit={{ opacity: 0 }}
             id="project-modal"
             className="fixed inset-0 z-[100] bg-white text-black overflow-y-auto"
+            style={{ WebkitOverflowScrolling: 'touch' }}
           >
             <div className="min-h-screen flex flex-col">
-              <nav className="sticky top-0 w-full px-4 py-4 md:px-12 md:py-8 flex justify-between items-center bg-white/80 backdrop-blur-md z-10 border-b border-black/5">
+              <nav className="sticky top-0 w-full px-4 py-4 md:px-12 md:py-8 flex justify-between items-center bg-white/80 backdrop-blur-md z-10 border-b border-black/5 safe-top">
                 <div 
                   onClick={() => setSelectedProject(null)}
                   className="flex items-center cursor-pointer group shrink-0"
@@ -1442,7 +1444,7 @@ export default function App() {
                 </div>
               </nav>
 
-              <main className="flex-grow px-6 md:px-12 py-12 md:py-24 max-w-7xl mx-auto w-full">
+              <main className="flex-grow px-6 md:px-12 py-12 md:py-24 max-w-7xl mx-auto w-full safe-bottom">
                 {/* Project Header */}
                 <div className="mb-24">
                   <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase mb-4 block">
@@ -2523,27 +2525,6 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Insurly Section 4: Cinematic Experience */}
-                      <div className="space-y-12">
-                        <div className="overflow-hidden bg-black rounded-2xl aspect-video">
-                          <CompactVideoPlayer 
-                            src="https://drive.google.com/uc?export=download&id=1GNwBWBHgy0kwubQtxtWOM4i4ez9l8a0G" 
-                            alt="Insurly Cinematic Brand Video"
-                          />
-                        </div>
-                        <div className="max-w-3xl">
-                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Visual Storytelling</span>
-                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
-                            {lang === 'en' ? (
-                              "Our cinematic strategy captures the fast-paced nature of modern travel, translating reliable insurance into a dynamic visual narrative."
-                            ) : lang === 'fr' ? (
-                              "Notre stratégie cinématique capture la nature trépidante des voyages modernes."
-                            ) : (
-                              "Nuestra estrategia cinematográfica captura la naturaleza acelerada de los viajes modernos."
-                            )}
-                          </p>
-                        </div>
-                      </div>
                     </>
                   ) : selectedProject.title === "edere restaurant" ? (
                     <>
