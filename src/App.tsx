@@ -2580,6 +2580,20 @@ export default function App() {
                         </div>
                       </div>
 
+                      {/* Insurly Section 5: Brand Impact */}
+                      <div className="space-y-12 pb-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1m8koR6xj0qa1Ijn53Le5HUiT1SjQDZHW")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1m8koR6xj0qa1Ijn53Le5HUiT1SjQDZHW" 
+                            alt="Insurly Brand Impact"
+                            cinematic={true}
+                          />
+                        </div>
+                      </div>
+
                       {/* Insurly Section 4: Cinematic Experience */}
                       <div className="space-y-12">
                         <div className="overflow-hidden bg-black rounded-2xl aspect-video relative group/video">
