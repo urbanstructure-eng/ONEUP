@@ -7,6 +7,13 @@ import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, animate } from 'motion/react';
 import { Instagram, Twitter, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu, Play, Pause } from 'lucide-react';
 
+declare global {
+  interface Window {
+    onYouTubeIframeAPIReady: () => void;
+    YT: any;
+  }
+}
+
 interface Project {
   id: number;
   title: string;
@@ -28,7 +35,7 @@ const PROJECTS: Project[] = [
   { id: 15, title: "Atelier d'art", category: "Art Direction / Branding", image: "https://lh3.googleusercontent.com/d/1sAcH9tLsKt9mXswTCynb7bnRcS5qAYJT", colSpan: "md:col-span-12", location: "Paris, France", year: "2024", role: "Art Direction" },
   { id: 16, title: "edere restaurant", category: "Branding / Environment", image: "https://lh3.googleusercontent.com/d/19Gt0niVC8EL5JdpHNmsRdCLTrBeeIbcu", colSpan: "md:col-span-12", location: "Rome, Italy", year: "2022", role: "Project Identity" },
   { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1l4lV4DJ1v17tOBJxEC3l32mjxqTjTdH-", colSpan: "md:col-span-6", year: "2023", role: "Identity Design" },
-  { id: 17, title: "Insurly", category: "Insurance / Platform", image: "https://lh3.googleusercontent.com/d/1TeSUFMoUj56pjCeP4PKvfrLC9QKIEnOg", colSpan: "md:col-span-6", year: "2024", role: "Branding Design for Global Insurance Provider" },
+  { id: 17, title: "Insurly", category: "Insurance / Platform", image: "https://lh3.googleusercontent.com/d/1Pv55tjArCkD6pSyKqgpmqBrAsIUyZCgJ", colSpan: "md:col-span-6", year: "2024", role: "Branding Design for Global Insurance Provider" },
 ];
 
 const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", contain = false, cinematic = false }: { src: string, alt: string, className?: string, objectPosition?: string, contain?: boolean, cinematic?: boolean }) => (
@@ -71,40 +78,103 @@ const CinematicScrollImage = ({ src, alt, className }: { src: string, alt: strin
   );
 };
 
-const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string, className?: string }) => {
+const CompactVideoPlayer = ({ src, alt, className, useGif = false }: { src: string, alt: string, className?: string, useGif?: boolean }) => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
-  const [isSectionVisible, setIsSectionVisible] = useState(true);
   const videoRef = React.useRef<HTMLVideoElement>(null);
+  const playerRef = React.useRef<any>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [isAPIReady, setIsAPIReady] = useState(false);
   
   // Extract YouTube ID
   const youtubeMatch = src.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|user\/\S+|live\/))([^\?&"'>]+)/);
   const youtubeId = youtubeMatch ? youtubeMatch[1] : null;
-  const isYouTube = !!youtubeId;
+  const isYouTube = !!youtubeId && !useGif;
 
   const driveMatch = src.match(/[-\w]{25,}/);
   const driveId = src.includes('drive.google.com') && driveMatch ? driveMatch[0] : null;
-  const isDrive = !!driveId;
+  const isDrive = !!driveId && !useGif;
 
-  // Cinematic 80-second presentation cycle
+  // Load YouTube API
   useEffect(() => {
-    const cycle = setInterval(() => {
-      // Fade out
-      setIsSectionVisible(false);
-      
-      // Elegant pause, then fade back in
-      setTimeout(() => {
-        setIsSectionVisible(true);
-      }, 3000);
-    }, 80000);
+    if (isYouTube && !window.YT) {
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
 
-    return () => clearInterval(cycle);
-  }, []);
+      window.onYouTubeIframeAPIReady = () => {
+        setIsAPIReady(true);
+      };
+    } else if (isYouTube && window.YT) {
+      setIsAPIReady(true);
+    }
+  }, [isYouTube]);
+
+  // Initialize YouTube Player
+  useEffect(() => {
+    if (isYouTube && isAPIReady && containerRef.current && !playerRef.current) {
+      playerRef.current = new window.YT.Player(containerRef.current, {
+        videoId: youtubeId,
+        playerVars: {
+          autoplay: 1,
+          mute: 1,
+          controls: 0,
+          modestbranding: 1,
+          rel: 0,
+          iv_load_policy: 3,
+          showinfo: 0,
+          disablekb: 1,
+          playsinline: 1,
+          loop: 0 // We handle loop manually for "stay on last frame" effect
+        },
+        events: {
+          onReady: (event: any) => {
+            setIsLoaded(true);
+            event.target.playVideo();
+          },
+          onStateChange: (event: any) => {
+            // YT.PlayerState.ENDED is 0
+            if (event.data === 0) {
+              // Stay on last frame for 2 seconds then restart
+              setTimeout(() => {
+                if (playerRef.current) {
+                  playerRef.current.seekTo(0);
+                  playerRef.current.playVideo();
+                }
+              }, 2000);
+            }
+          }
+        }
+      });
+    }
+
+    return () => {
+      if (playerRef.current) {
+        // Cleaning up the player is important to prevent memory leaks and ghost audio
+        try {
+          playerRef.current.destroy();
+          playerRef.current = null;
+        } catch (e) {
+          console.error("Error destroying YT player", e);
+        }
+      }
+    };
+  }, [isYouTube, isAPIReady, youtubeId]);
 
   const togglePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (isYouTube || isDrive) {
+    if (isYouTube && playerRef.current) {
+      const state = playerRef.current.getPlayerState();
+      if (state === 1) { // 1 is Playing
+        playerRef.current.pauseVideo();
+        setIsPlaying(false);
+      } else {
+        playerRef.current.playVideo();
+        setIsPlaying(true);
+      }
+    } else if (isDrive) {
       setIsPlaying(!isPlaying);
     } else if (videoRef.current) {
       if (isPlaying) {
@@ -118,85 +188,78 @@ const CompactVideoPlayer = ({ src, alt, className }: { src: string, alt: string,
 
   return (
     <div className="relative w-full h-full flex items-center justify-center bg-black group cursor-default overflow-hidden transform-gpu">
-      <AnimatePresence mode="wait">
-        {isSectionVisible && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isYouTube || isDrive || isLoaded ? 1 : 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full h-full"
-          >
-            {!error ? (
-              isYouTube ? (
-                <div className="absolute inset-0 pointer-events-none bg-black">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0&autohide=1&disablekb=1&playsinline=1&enablejsapi=1`}
-                    className="w-[102%] h-[102%] -translate-x-[1%] -translate-y-[1%] border-none"
-                    allow="autoplay; encrypted-media; picture-in-picture"
-                    onLoad={() => setIsLoaded(true)}
-                  />
-                </div>
-              ) : isDrive ? (
-                <div className="absolute inset-0 pointer-events-auto">
-                  <iframe
-                    src={`https://drive.google.com/file/d/${driveId}/preview?autoplay=1&mute=1`}
-                    className="w-full h-full border-none"
-                    allow="autoplay; encrypted-media"
-                    onLoad={() => setIsLoaded(true)}
-                  />
-                  <div 
-                    className="absolute inset-0 z-10 cursor-pointer"
-                    onClick={togglePlay}
-                  />
-                </div>
-              ) : (
-                <video
-                  ref={videoRef}
-                  key={src}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  onLoadedData={() => setIsLoaded(true)}
-                  onError={() => setError(true)}
-                  className={`${className} w-full h-full object-cover`}
-                >
-                  <source src={src} type="video/mp4" />
-                  <source src={src} type="video/webm" />
-                  <source src={src} type="video/ogg" />
-                </video>
-              )
-            ) : (
-              <motion.img
-                src={src}
+      <div 
+        className={`w-full h-full transition-opacity duration-1000 ${isYouTube || isDrive || isLoaded || useGif ? 'opacity-100' : 'opacity-0'}`}
+      >
+        {!error ? (
+          useGif ? (
+            <div className="absolute inset-0 bg-black">
+              <img 
+                src={src} 
                 alt={alt}
                 onLoad={() => setIsLoaded(true)}
-                className={`${className} w-full h-full object-cover`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                className="w-full h-full object-cover transform-gpu scale-[1.01]"
+                referrerPolicy="no-referrer"
               />
-            )}
-          </motion.div>
+            </div>
+          ) : isYouTube ? (
+            <div className="absolute inset-0 pointer-events-auto">
+              <iframe
+                src={`https://drive.google.com/file/d/${driveId}/preview?autoplay=1&mute=1`}
+                className="w-full h-full border-none"
+                allow="autoplay; encrypted-media"
+                onLoad={() => setIsLoaded(true)}
+              />
+              <div 
+                className="absolute inset-0 z-10 cursor-pointer"
+                onClick={togglePlay}
+              />
+            </div>
+          ) : (
+            <video
+              ref={videoRef}
+              key={src}
+              autoPlay
+              loop
+              muted
+              playsInline
+              onLoadedData={() => setIsLoaded(true)}
+              onError={() => setError(true)}
+              className={`${className} w-full h-full object-cover`}
+            >
+              <source src={src} type="video/mp4" />
+              <source src={src} type="video/webm" />
+              <source src={src} type="video/ogg" />
+            </video>
+          )
+        ) : (
+          <motion.img
+            src={src}
+            alt={alt}
+            onLoad={() => setIsLoaded(true)}
+            className={`${className} w-full h-full object-cover`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          />
         )}
-      </AnimatePresence>
+      </div>
 
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <motion.div 
           onClick={togglePlay}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ 
-            opacity: isPlaying ? 0 : (isYouTube ? 0 : 1),
+            opacity: isPlaying ? 0 : 1,
             scale: isPlaying ? 0.8 : 1 
           }}
           whileHover={{ scale: 1.1, opacity: 1 }}
           className="w-20 h-20 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-white/20 group/btn opacity-0 group-hover:opacity-100 pointer-events-auto z-30"
         >
-          {!isYouTube && (isPlaying ? (
+          {isPlaying ? (
             <Pause className="w-8 h-8 text-white fill-current" />
           ) : (
             <Play className="w-8 h-8 text-white fill-current translate-x-1" />
-          ))}
+          )}
         </motion.div>
       </div>
     </div>
@@ -2470,10 +2533,10 @@ export default function App() {
                       <div className="space-y-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1TeSUFMoUj56pjCeP4PKvfrLC9QKIEnOg")}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1ZYz8F6REOrPju1PSGE42hzL-HcNck6Yh")}
                         >
                           <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/1TeSUFMoUj56pjCeP4PKvfrLC9QKIEnOg" 
+                            src="https://lh3.googleusercontent.com/d/1ZYz8F6REOrPju1PSGE42hzL-HcNck6Yh" 
                             alt="Insurly Seamless Experience"
                             cinematic={true}
                           />
@@ -2519,10 +2582,11 @@ export default function App() {
 
                       {/* Insurly Section 4: Cinematic Experience */}
                       <div className="space-y-12">
-                        <div className="overflow-hidden bg-black rounded-2xl aspect-video">
+                        <div className="overflow-hidden bg-black rounded-2xl aspect-video relative group/video">
                           <CompactVideoPlayer 
-                            src="https://youtu.be/_KSTc_MdqFw" 
-                            alt="Insurly Cinematic Brand Video"
+                            src="https://lh3.googleusercontent.com/d/1w_ctPlIrM484s3rr8ZT9hut7L-1QKE-3" 
+                            alt="Insurly Cinematic Brand Animation"
+                            useGif={true}
                           />
                         </div>
                         <div className="max-w-3xl">
