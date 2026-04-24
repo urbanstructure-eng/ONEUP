@@ -635,6 +635,7 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1ZYz8F6REOrPju1PSGE42hzL-HcNck6Yh",
         "https://lh3.googleusercontent.com/d/1SMqz6HPzVZHCXfErDSBNVoJzHxltdPGY",
         "https://lh3.googleusercontent.com/d/1WhPpMX954NfJUF-1ncQ5VfV__3Ao7FbX",
+        "https://lh3.googleusercontent.com/d/1-pLYowWBDuGOLikvx_Qow6PN1AuxJUJj",
         "https://lh3.googleusercontent.com/d/1m8koR6xj0qa1Ijn53Le5HUiT1SjQDZHW",
         "https://lh3.googleusercontent.com/d/1w_ctPlIrM484s3rr8ZT9hut7L-1QKE-3"
       ];
@@ -2594,6 +2595,18 @@ export default function App() {
                               "Brindando una solución universal para viajeros internacionales, asegurando una protección de alta calidad sin importar a dónde te lleve tu viaje."
                             )}
                           </p>
+                        </div>
+                      </div>
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1-pLYowWBDuGOLikvx_Qow6PN1AuxJUJj")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1-pLYowWBDuGOLikvx_Qow6PN1AuxJUJj" 
+                            alt="Insurly Global Reach Solution"
+                            cinematic={true}
+                          />
                         </div>
                       </div>
 
