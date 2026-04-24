@@ -78,7 +78,7 @@ const CinematicScrollImage = ({ src, alt, className }: { src: string, alt: strin
   );
 };
 
-const CompactVideoPlayer = ({ src, alt, className, useGif = false }: { src: string, alt: string, className?: string, useGif?: boolean }) => {
+const CompactVideoPlayer = ({ src, alt, className, useGif = false, onClick }: { src: string, alt: string, className?: string, useGif?: boolean, onClick?: () => void }) => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
@@ -187,7 +187,10 @@ const CompactVideoPlayer = ({ src, alt, className, useGif = false }: { src: stri
   };
 
   return (
-    <div className="relative w-full h-full flex items-center justify-center bg-black group cursor-default overflow-hidden transform-gpu">
+    <div 
+      className={`relative w-full h-full flex items-center justify-center bg-black group overflow-hidden transform-gpu ${onClick ? 'cursor-zoom-in' : 'cursor-default'}`}
+      onClick={onClick}
+    >
       <div 
         className={`w-full h-full transition-opacity duration-1000 ${isYouTube || isDrive || isLoaded || useGif ? 'opacity-100' : 'opacity-0'}`}
       >
@@ -629,7 +632,11 @@ export default function App() {
       return [
         project.image,
         "https://lh3.googleusercontent.com/d/1TeSUFMoUj56pjCeP4PKvfrLC9QKIEnOg",
-        "https://lh3.googleusercontent.com/d/1WhPpMX954NfJUF-1ncQ5VfV__3Ao7FbX"
+        "https://lh3.googleusercontent.com/d/1ZYz8F6REOrPju1PSGE42hzL-HcNck6Yh",
+        "https://lh3.googleusercontent.com/d/1SMqz6HPzVZHCXfErDSBNVoJzHxltdPGY",
+        "https://lh3.googleusercontent.com/d/1WhPpMX954NfJUF-1ncQ5VfV__3Ao7FbX",
+        "https://lh3.googleusercontent.com/d/1m8koR6xj0qa1Ijn53Le5HUiT1SjQDZHW",
+        "https://lh3.googleusercontent.com/d/1w_ctPlIrM484s3rr8ZT9hut7L-1QKE-3"
       ];
     }
     return [
@@ -2553,6 +2560,16 @@ export default function App() {
                             )}
                           </p>
                         </div>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1SMqz6HPzVZHCXfErDSBNVoJzHxltdPGY")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1SMqz6HPzVZHCXfErDSBNVoJzHxltdPGY" 
+                            alt="Insurly App Interface"
+                            cinematic={true}
+                          />
+                        </div>
                       </div>
 
                       {/* Insurly Section 3: Global Coverage */}
@@ -2601,6 +2618,7 @@ export default function App() {
                             src="https://lh3.googleusercontent.com/d/1w_ctPlIrM484s3rr8ZT9hut7L-1QKE-3" 
                             alt="Insurly Cinematic Brand Animation"
                             useGif={true}
+                            onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1w_ctPlIrM484s3rr8ZT9hut7L-1QKE-3")}
                           />
                         </div>
                         <div className="max-w-3xl">
@@ -2948,6 +2966,30 @@ export default function App() {
             </button>
 
             <div className="relative w-full h-full flex items-center justify-center select-none">
+              {/* Navigation Arrows */}
+              <div className="absolute inset-0 flex items-center justify-between px-4 md:px-12 pointer-events-none z-50">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    prevFullscreenImage();
+                  }}
+                  className="p-4 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all pointer-events-auto group backdrop-blur-sm"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="w-8 h-8 group-hover:-translate-x-1 transition-transform" />
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    nextFullscreenImage();
+                  }}
+                  className="p-4 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-all pointer-events-auto group backdrop-blur-sm"
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="w-8 h-8 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+
               {fullscreenImage === "https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez" ? (
                 <div className="relative w-full max-w-[90vw] h-[90vh] overflow-hidden rounded-2xl bg-transparent">
                   <motion.div 
