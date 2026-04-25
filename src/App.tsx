@@ -36,7 +36,7 @@ const PROJECTS: Project[] = [
   { id: 16, title: "edere restaurant", category: "Branding / Environment", image: "https://lh3.googleusercontent.com/d/19Gt0niVC8EL5JdpHNmsRdCLTrBeeIbcu", colSpan: "md:col-span-12", location: "Rome, Italy", year: "2022", role: "Project Identity" },
   { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1l4lV4DJ1v17tOBJxEC3l32mjxqTjTdH-", colSpan: "md:col-span-6", year: "2023", role: "Identity Design" },
   { id: 17, title: "Insurly", category: "Insurance / Platform", image: "https://lh3.googleusercontent.com/d/1Pv55tjArCkD6pSyKqgpmqBrAsIUyZCgJ", colSpan: "md:col-span-6", year: "2024", role: "Branding Design for Global Insurance Provider" },
-  { id: 18, title: "organic cosmetic", category: "Branding / Packaging", image: "https://lh3.googleusercontent.com/d/1DlAdlFYlYmujpUEC1uzvAu4EIc9uRiHu", colSpan: "md:col-span-12", year: "2024", role: "Creative Direction" },
+  { id: 18, title: "organic cosmetic", category: "Branding / Packaging", image: "https://lh3.googleusercontent.com/d/1DlAdlFYlYmujpUEC1uzvAu4EIc9uRiHu", colSpan: "md:col-span-12", year: "2021", role: "Creative Direction" },
 ];
 
 const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", contain = false, cinematic = false }: { src: string, alt: string, className?: string, objectPosition?: string, contain?: boolean, cinematic?: boolean }) => (
@@ -644,8 +644,13 @@ export default function App() {
     }
     if (project.title === "organic cosmetic") {
       return [
-        project.image,
-        "https://lh3.googleusercontent.com/d/1grDf1nKeXz2GbtfBFF0lyqSzyEY2Z7is"
+        "https://lh3.googleusercontent.com/d/1DlAdlFYlYmujpUEC1uzvAu4EIc9uRiHu",
+        "https://lh3.googleusercontent.com/d/1grDf1nKeXz2GbtfBFF0lyqSzyEY2Z7is",
+        "https://lh3.googleusercontent.com/d/1EtZot-anCp8jl1iTfBOlQ6j7wD7nx2q9",
+        "https://lh3.googleusercontent.com/d/1ZBbLFTGD-0Lsn3fwnj4Q-MmdmoHC904o",
+        "https://lh3.googleusercontent.com/d/1LPXu6hViyRbN0Hw2hsqCA327AMuKjBrU",
+        "https://lh3.googleusercontent.com/d/17oO2Xu9QGfAgygzxJ7Z7-L8uCKBalvS9",
+        "https://lh3.googleusercontent.com/d/1yTOuRj336bqdzjiHDddXK4cDcLPacMu7"
       ];
     }
     return [
@@ -2679,11 +2684,11 @@ export default function App() {
                           <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Brand Concept</span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                             {lang === 'en' ? (
-                              "A minimal and pure identity for an organic cosmetic line, focusing on sustainability and natural ingredients. The visual language uses soft tones and clean typography to reflect the brand's commitment to wellness and nature."
+                              "One assisted an organic brand in developing a simple yet elegant and memorable identity for its nature-curated cosmetic line. The scope encompassed branding, collateral print, and environmental brand integration. The products are crafted from 100% organic, non-allergenic ingredients, ensuring safety and quality for consumers."
                             ) : lang === 'fr' ? (
-                              "Une identité minimale et pure pour une ligne de cosmétiques biologiques, axée sur la durabilité et les ingrédients naturels."
+                              "Nous avons aidé une marque biologique à développer une identité simple, élégante et mémorable pour sa ligne de cosmétiques. Le projet comprenait l'image de marque, les supports imprimés et l'intégration environnementale de la marque."
                             ) : (
-                              "Una identidad mínima et pura para una línea de cosmética orgánica, centrada en la sostenibilidad y los ingredientes naturales."
+                              "Ayudamos a una marca orgánica a desarrollar una identidad sencilla, elegante y memorable. El proyecto incluyó branding, colaterales impresos e integración de marca ambiental."
                             )}
                           </p>
                         </div>
@@ -2699,18 +2704,109 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Organic Cosmetic Section 2: Visual Identity */}
-                      <div className="space-y-12">
+                      {/* Organic Cosmetic Section 2: Visual Narrative */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Visual Narrative</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "This branding approach emphasizes the brand's commitment to natural beauty while appealing to a discerning audience. By focusing on the purity of its ingredients and the aesthetic of its presentation, the brand effectively communicates its values and mission in the competitive cosmetics market."
+                            ) : lang === 'fr' ? (
+                              "Cette approche souligne l'engagement de la marque envers la beauté naturelle tout en séduisant un public exigeant. En se concentrant sur la pureté de ses ingrédients et l'esthétique de sa présentation, la marque communique efficacement ses valeurs."
+                            ) : (
+                              "Este enfoque de marca enfatiza el compromiso con la belleza natural a la vez que atrae a un público exigente. Al centrarse en la pureza de sus ingredientes y la estética de su presentación, la marca comunica eficazmente sus valores."
+                            )}
+                          </p>
+                        </div>
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1DlAdlFYlYmujpUEC1uzvAu4EIc9uRiHu")}
                         >
                           <SubtleMotionImage 
                             src="https://lh3.googleusercontent.com/d/1DlAdlFYlYmujpUEC1uzvAu4EIc9uRiHu" 
-                            alt="Organic Cosmetic Visual Identity"
-                            cinematic={true}
-                            contain={true}
+                            alt="Organic Cosmetic Purity"
                           />
+                        </div>
+                      </div>
+
+                      {/* Organic Cosmetic Section 3: Lifestyle / Atmosphere */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1EtZot-anCp8jl1iTfBOlQ6j7wD7nx2q9")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1EtZot-anCp8jl1iTfBOlQ6j7wD7nx2q9" 
+                            alt="Organic Cosmetic Lifestyle"
+                            cinematic={true}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Organic Cosmetic Section 4: Brand Mood */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1ZBbLFTGD-0Lsn3fwnj4Q-MmdmoHC904o")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1ZBbLFTGD-0Lsn3fwnj4Q-MmdmoHC904o" 
+                            alt="Organic Cosmetic Brand Mood"
+                            cinematic={true}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Organic Cosmetic Section 5: Packaging & Detail */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1LPXu6hViyRbN0Hw2hsqCA327AMuKjBrU")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1LPXu6hViyRbN0Hw2hsqCA327AMuKjBrU" 
+                            alt="Organic Cosmetic Packaging Detail"
+                            cinematic={true}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Organic Cosmetic Section 6: Natural Essence */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/17oO2Xu9QGfAgygzxJ7Z7-L8uCKBalvS9")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/17oO2Xu9QGfAgygzxJ7Z7-L8uCKBalvS9" 
+                            alt="Organic Cosmetic Natural Essence"
+                            cinematic={true}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Organic Cosmetic Section 7: Brand Excellence Grid */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5] order-2 md:order-1"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1yTOuRj336bqdzjiHDddXK4cDcLPacMu7")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1yTOuRj336bqdzjiHDddXK4cDcLPacMu7" 
+                            alt="Organic Cosmetic Brand Excellence"
+                          />
+                        </div>
+                        <div className="space-y-6 order-1 md:order-2">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Brand Excellence</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The meticulous attention to detail in packaging and identity reflects the brand's premium positioning and dedication to providing an elevated self-care experience."
+                            ) : lang === 'fr' ? (
+                              "L'attention méticuleuse portée aux détails de l'emballage et de l'identité reflète le positionnement haut de gamme de la marque et son dévouement à offrir une expérience de soin de soi exceptionnelle."
+                            ) : (
+                              "La meticulosa atención al detalle en el empaque y la identidad refleja el posicionamiento premium de la marca y su dedicación a brindar una experiencia de autocuidado elevada."
+                            )}
+                          </p>
                         </div>
                       </div>
                     </>
