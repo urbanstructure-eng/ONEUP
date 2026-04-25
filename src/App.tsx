@@ -37,6 +37,7 @@ const PROJECTS: Project[] = [
   { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1l4lV4DJ1v17tOBJxEC3l32mjxqTjTdH-", colSpan: "md:col-span-6", year: "2023", role: "Identity Design" },
   { id: 17, title: "Insurly", category: "Insurance / Platform", image: "https://lh3.googleusercontent.com/d/1Pv55tjArCkD6pSyKqgpmqBrAsIUyZCgJ", colSpan: "md:col-span-6", year: "2024", role: "Branding Design for Global Insurance Provider" },
   { id: 18, title: "organic cosmetic", category: "Branding / Packaging", image: "https://lh3.googleusercontent.com/d/1DlAdlFYlYmujpUEC1uzvAu4EIc9uRiHu", colSpan: "md:col-span-12", year: "2021", role: "Creative Direction" },
+  { id: 19, title: "physical and online campaign", category: "campaign", image: "https://lh3.googleusercontent.com/d/1_iaj5BKDM91g4xSaS_TeC134Y-zQz9TV", colSpan: "md:col-span-12", year: "2024", role: "Campaign Design" },
 ];
 
 const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", contain = false, cinematic = false }: { src: string, alt: string, className?: string, objectPosition?: string, contain?: boolean, cinematic?: boolean }) => (
@@ -651,6 +652,11 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1LPXu6hViyRbN0Hw2hsqCA327AMuKjBrU",
         "https://lh3.googleusercontent.com/d/17oO2Xu9QGfAgygzxJ7Z7-L8uCKBalvS9",
         "https://lh3.googleusercontent.com/d/1yTOuRj336bqdzjiHDddXK4cDcLPacMu7"
+      ];
+    }
+    if (project.title === "physical and online campaign") {
+      return [
+        "https://lh3.googleusercontent.com/d/1_iaj5BKDM91g4xSaS_TeC134Y-zQz9TV"
       ];
     }
     return [
@@ -3037,6 +3043,33 @@ export default function App() {
                               "Expandir el lenguaje visual a través de diversos puntos de contacto asegura una presencia de marca cohesiva y poderosa que resuena en cada escala."
                             )}
                           </p>
+                        </div>
+                      </div>
+                    </>
+                  ) : selectedProject.title === "physical and online campaign" ? (
+                    <>
+                      {/* Campaign Section 1: Visual Identity */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Campaign Design</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The 'Physical and Online Campaign' focuses on creating a seamless visual experience across all platforms. By integrating digital excellence with traditional media, the campaign ensures a unified brand presence."
+                            ) : lang === 'fr' ? (
+                              "La 'Campagne physique et en ligne' se concentre sur la création d'une expérience visuelle fluide sur toutes les plateformes."
+                            ) : (
+                              "La 'Campaña física y online' se centra en crear una experiencia visual fluida en todas las plataformas."
+                            )}
+                          </p>
+                        </div>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1_iaj5BKDM91g4xSaS_TeC134Y-zQz9TV")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1_iaj5BKDM91g4xSaS_TeC134Y-zQz9TV" 
+                            alt="Campaign Design Strategy"
+                          />
                         </div>
                       </div>
                     </>
