@@ -631,6 +631,7 @@ export default function App() {
     if (project.title === "Insurly") {
       return [
         project.image,
+        "https://lh3.googleusercontent.com/d/10Na1qqypVRFoARcL01kFD_mbdaZdQMP6",
         "https://lh3.googleusercontent.com/d/1TeSUFMoUj56pjCeP4PKvfrLC9QKIEnOg",
         "https://lh3.googleusercontent.com/d/1ZYz8F6REOrPju1PSGE42hzL-HcNck6Yh",
         "https://lh3.googleusercontent.com/d/1SMqz6HPzVZHCXfErDSBNVoJzHxltdPGY",
@@ -2528,11 +2529,25 @@ export default function App() {
                         </div>
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/10Na1qqypVRFoARcL01kFD_mbdaZdQMP6")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/10Na1qqypVRFoARcL01kFD_mbdaZdQMP6" 
+                            alt="Insurly Mobile Interface"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Insurly Section: Narrative Overview */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1TeSUFMoUj56pjCeP4PKvfrLC9QKIEnOg")}
                         >
                           <SubtleMotionImage 
                             src="https://lh3.googleusercontent.com/d/1TeSUFMoUj56pjCeP4PKvfrLC9QKIEnOg" 
-                            alt="Insurly App Design"
+                            alt="Insurly Brand System"
+                            cinematic={true}
                           />
                         </div>
                       </div>
