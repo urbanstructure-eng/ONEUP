@@ -36,6 +36,7 @@ const PROJECTS: Project[] = [
   { id: 16, title: "edere restaurant", category: "Branding / Environment", image: "https://lh3.googleusercontent.com/d/19Gt0niVC8EL5JdpHNmsRdCLTrBeeIbcu", colSpan: "md:col-span-12", location: "Rome, Italy", year: "2022", role: "Project Identity" },
   { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1l4lV4DJ1v17tOBJxEC3l32mjxqTjTdH-", colSpan: "md:col-span-6", year: "2023", role: "Identity Design" },
   { id: 17, title: "Insurly", category: "Insurance / Platform", image: "https://lh3.googleusercontent.com/d/1Pv55tjArCkD6pSyKqgpmqBrAsIUyZCgJ", colSpan: "md:col-span-6", year: "2024", role: "Branding Design for Global Insurance Provider" },
+  { id: 18, title: "organic cosmetic", category: "Branding / Packaging", image: "https://lh3.googleusercontent.com/d/1DlAdlFYlYmujpUEC1uzvAu4EIc9uRiHu", colSpan: "md:col-span-12", year: "2024", role: "Creative Direction" },
 ];
 
 const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", contain = false, cinematic = false }: { src: string, alt: string, className?: string, objectPosition?: string, contain?: boolean, cinematic?: boolean }) => (
@@ -639,6 +640,12 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1-pLYowWBDuGOLikvx_Qow6PN1AuxJUJj",
         "https://lh3.googleusercontent.com/d/1m8koR6xj0qa1Ijn53Le5HUiT1SjQDZHW",
         "https://lh3.googleusercontent.com/d/1w_ctPlIrM484s3rr8ZT9hut7L-1QKE-3"
+      ];
+    }
+    if (project.title === "organic cosmetic") {
+      return [
+        project.image,
+        "https://lh3.googleusercontent.com/d/1grDf1nKeXz2GbtfBFF0lyqSzyEY2Z7is"
       ];
     }
     return [
@@ -2663,6 +2670,49 @@ export default function App() {
                         </div>
                       </div>
 
+                    </>
+                  ) : selectedProject.title === "organic cosmetic" ? (
+                    <>
+                      {/* Organic Cosmetic Section 1: Brand Concept */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Brand Concept</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "A minimal and pure identity for an organic cosmetic line, focusing on sustainability and natural ingredients. The visual language uses soft tones and clean typography to reflect the brand's commitment to wellness and nature."
+                            ) : lang === 'fr' ? (
+                              "Une identité minimale et pure pour une ligne de cosmétiques biologiques, axée sur la durabilité et les ingrédients naturels."
+                            ) : (
+                              "Una identidad mínima et pura para una línea de cosmética orgánica, centrada en la sostenibilidad y los ingredientes naturales."
+                            )}
+                          </p>
+                        </div>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1grDf1nKeXz2GbtfBFF0lyqSzyEY2Z7is")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1grDf1nKeXz2GbtfBFF0lyqSzyEY2Z7is" 
+                            alt="Organic Cosmetic Brand Animation"
+                            contain={true}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Organic Cosmetic Section 2: Visual Identity */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1DlAdlFYlYmujpUEC1uzvAu4EIc9uRiHu")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1DlAdlFYlYmujpUEC1uzvAu4EIc9uRiHu" 
+                            alt="Organic Cosmetic Visual Identity"
+                            cinematic={true}
+                            contain={true}
+                          />
+                        </div>
+                      </div>
                     </>
                   ) : selectedProject.title === "edere restaurant" ? (
                     <>
