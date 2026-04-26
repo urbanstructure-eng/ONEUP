@@ -659,7 +659,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1oHOYP6MO2Fadp1BhAKnP8iCwCaMsoBlZ",
         "https://lh3.googleusercontent.com/d/1QRwzjvDFCvj300hn5OBdpjgYEOx626py",
         "https://lh3.googleusercontent.com/d/1SQmNFdF01PdC0wBREQlofEXLhd6i9XfT",
-        "https://lh3.googleusercontent.com/d/1Lr4S469gDL8yvA4-DjDWdAuX17PzdlhB"
+        "https://lh3.googleusercontent.com/d/1Lr4S469gDL8yvA4-DjDWdAuX17PzdlhB",
+        "https://lh3.googleusercontent.com/d/1u0EskKOHj0n5i53wG2XJi9z4bxLVqLuu"
       ];
     }
     return [
@@ -3110,6 +3111,20 @@ export default function App() {
                           <SubtleMotionImage 
                             src="https://lh3.googleusercontent.com/d/1Lr4S469gDL8yvA4-DjDWdAuX17PzdlhB" 
                             alt="Campaign Motion Experience"
+                            cinematic={true}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Campaign Section 4: Physical Engagement */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1u0EskKOHj0n5i53wG2XJi9z4bxLVqLuu")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1u0EskKOHj0n5i53wG2XJi9z4bxLVqLuu" 
+                            alt="Physical Marketing Engagement"
                             cinematic={true}
                           />
                         </div>
