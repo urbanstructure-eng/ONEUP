@@ -344,11 +344,11 @@ export default function App() {
     en: {
       nav: { work: 'work', services: 'services', about: 'about', contact: 'contact' },
       hero: {
-        tag: 'Design & Technology',
-        title: 'INNOVATIVE DIGITAL EXPERIENCES.',
-        desc: 'We create innovative digital experiences tailored for the modern market, focusing on experimental concepts and effective branding strategies.',
+        tag: 'Design & Technology Studio',
+        title: 'EXPERIMENTAL GRAPHIC DESIGN<br />& INNOVATIVE MARKETING.',
+        desc: 'oneup is an experimental graphic design studio crafting innovative marketing campaigns and digital experiences. We focus on distinctive visual identities for the modern market.',
         cta: 'Start a Project',
-        scroll: 'Scroll to explore'
+        scroll: 'Explore our design portfolio'
       },
       work: { tag: 'Portfolio', title: 'SELECTED WORK' },
       services: { 
@@ -361,10 +361,10 @@ export default function App() {
         ]
       },
       about: {
-        tag: 'Our Approach',
-        title: 'WE COMBINE <span className="text-accent">CREATIVITY</span> AND TECHNOLOGY TO ELEVATE BRAND PRESENCE.',
-        desc: 'Our approach combines creativity and technology to engage audiences and elevate brand presence in a competitive landscape.',
-        points: ['Our Approach', 'Research Driven', 'Aesthetic Precision', 'Technical Excellence']
+        tag: 'Experimental Approach',
+        title: 'WE COMBINE <span className="text-accent">GRAPHIC DESIGN</span> AND MARKETING TO ELEVATE BRAND PRESENCE.',
+        desc: 'Our experimental approach combines graphic design and marketing technology to engage audiences and elevate digital brand presence in today\'s competitive landscape.',
+        points: ['Experimental Research', 'Aesthetic Precision', 'Marketing Strategy', 'Technical Excellence']
       },
       contact: {
         tag: 'Get in touch',
@@ -966,7 +966,7 @@ export default function App() {
             <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase mb-4 block">{t[lang].work.tag}</span>
             <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">{t[lang].work.title}</h2>
           </div>
-          <span className="text-[13px] uppercase tracking-[0.3em] font-bold text-white/20 font-mono hidden md:block">2022 — 2024</span>
+          <span className="text-[13px] uppercase tracking-[0.3em] font-bold text-white/20 font-mono hidden md:block">2022 — 2025</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-0 border-t border-l border-white/10">
@@ -1158,7 +1158,7 @@ export default function App() {
       {/* Footer */}
       <footer className="relative z-10 px-6 md:px-12 py-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] uppercase tracking-[0.3em] font-bold text-white/20 font-mono bg-[#1a1a1a]">
         <div className="flex items-center gap-4">
-          © 2024 oneup. {lang === 'en' ? 'Design studio / Creative studio' : lang === 'fr' ? 'Studio de design / Atelier de création' : 'Estudio de diseño / Taller creativo'}
+          © 2025 oneup. {lang === 'en' ? 'Graphic Design & Marketing Studio' : lang === 'fr' ? 'Studio de design / Atelier de création' : 'Estudio de diseño / Taller creativo'}
         </div>
         <div className="flex gap-12">
           <button onClick={() => setShowLegalModal(true)} className="hover:text-white transition-colors">
@@ -1467,7 +1467,7 @@ export default function App() {
                   Close Legal
                 </button>
                 <div className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/20">
-                  oneup © 2024 Design studio / Atelier de création
+                  oneup © 2025 Experimental Graphic Design & Marketing Studio
                 </div>
               </footer>
             </div>
@@ -3221,7 +3221,7 @@ export default function App() {
                   {t[lang].modal.close}
                 </button>
                 <div className="text-[10px] uppercase tracking-[0.4em] font-bold text-black/20">
-                  oneup © 2024 {lang === 'en' ? 'Design studio / Atelier de création' : 'Studio de design / Atelier de création'}
+                  oneup © 2025 {lang === 'en' ? 'Graphic Design & Marketing Studio' : 'Studio de design / Atelier de création'}
                 </div>
               </footer>
             </div>
