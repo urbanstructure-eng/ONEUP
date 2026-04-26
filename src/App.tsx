@@ -37,7 +37,7 @@ const PROJECTS: Project[] = [
   { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1l4lV4DJ1v17tOBJxEC3l32mjxqTjTdH-", colSpan: "md:col-span-6", year: "2023", role: "Identity Design" },
   { id: 17, title: "Insurly", category: "Insurance / Platform", image: "https://lh3.googleusercontent.com/d/1Pv55tjArCkD6pSyKqgpmqBrAsIUyZCgJ", colSpan: "md:col-span-6", year: "2024", role: "Branding Design for Global Insurance Provider" },
   { id: 18, title: "organic cosmetic", category: "Branding / Packaging", image: "https://lh3.googleusercontent.com/d/1DlAdlFYlYmujpUEC1uzvAu4EIc9uRiHu", colSpan: "md:col-span-12", year: "2021", role: "Creative Direction" },
-  { id: 19, title: "physical and online campaign", category: "campaign", image: "https://lh3.googleusercontent.com/d/1oHOYP6MO2Fadp1BhAKnP8iCwCaMsoBlZ", colSpan: "md:col-span-12", year: "2024", role: "Campaign Design" },
+  { id: 19, title: "Integrated Marketing Campaign", category: "campaign", image: "https://lh3.googleusercontent.com/d/1oHOYP6MO2Fadp1BhAKnP8iCwCaMsoBlZ", colSpan: "md:col-span-12", location: "UK, England", year: "2025", role: "Campaign Design" },
 ];
 
 const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", contain = false, cinematic = false }: { src: string, alt: string, className?: string, objectPosition?: string, contain?: boolean, cinematic?: boolean }) => (
@@ -654,13 +654,15 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1yTOuRj336bqdzjiHDddXK4cDcLPacMu7"
       ];
     }
-    if (project.title === "physical and online campaign") {
+    if (project.title === "Integrated Marketing Campaign") {
       return [
         "https://lh3.googleusercontent.com/d/1oHOYP6MO2Fadp1BhAKnP8iCwCaMsoBlZ",
         "https://lh3.googleusercontent.com/d/1QRwzjvDFCvj300hn5OBdpjgYEOx626py",
         "https://lh3.googleusercontent.com/d/1SQmNFdF01PdC0wBREQlofEXLhd6i9XfT",
         "https://lh3.googleusercontent.com/d/1Lr4S469gDL8yvA4-DjDWdAuX17PzdlhB",
-        "https://lh3.googleusercontent.com/d/1u0EskKOHj0n5i53wG2XJi9z4bxLVqLuu"
+        "https://lh3.googleusercontent.com/d/1u0EskKOHj0n5i53wG2XJi9z4bxLVqLuu",
+        "https://lh3.googleusercontent.com/d/1OiRPp_ywOrfgWl_xMc2XftvMo50NTfzw",
+        "https://lh3.googleusercontent.com/d/18aRHBJ0NPKGpTnVHT51KAl-ZvIoD2PTL"
       ];
     }
     return [
@@ -3050,7 +3052,7 @@ export default function App() {
                         </div>
                       </div>
                     </>
-                  ) : selectedProject.title === "physical and online campaign" ? (
+                  ) : selectedProject.title === "Integrated Marketing Campaign" ? (
                     <>
                       {/* Campaign Section 1: Visual Identity */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
@@ -3125,6 +3127,34 @@ export default function App() {
                           <SubtleMotionImage 
                             src="https://lh3.googleusercontent.com/d/1u0EskKOHj0n5i53wG2XJi9z4bxLVqLuu" 
                             alt="Physical Marketing Engagement"
+                            cinematic={true}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Campaign Section 5: Brand Presence */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1OiRPp_ywOrfgWl_xMc2XftvMo50NTfzw")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1OiRPp_ywOrfgWl_xMc2XftvMo50NTfzw" 
+                            alt="Physical Marketing Brand Presence"
+                            cinematic={true}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Campaign Section 6: Digital & Physical Integration */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/18aRHBJ0NPKGpTnVHT51KAl-ZvIoD2PTL")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/18aRHBJ0NPKGpTnVHT51KAl-ZvIoD2PTL" 
+                            alt="Integrated Strategy Visual"
                             cinematic={true}
                           />
                         </div>
