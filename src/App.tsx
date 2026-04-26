@@ -37,7 +37,7 @@ const PROJECTS: Project[] = [
   { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1l4lV4DJ1v17tOBJxEC3l32mjxqTjTdH-", colSpan: "md:col-span-6", year: "2023", role: "Identity Design" },
   { id: 17, title: "Insurly", category: "Insurance / Platform", image: "https://lh3.googleusercontent.com/d/1Pv55tjArCkD6pSyKqgpmqBrAsIUyZCgJ", colSpan: "md:col-span-6", year: "2024", role: "Branding Design for Global Insurance Provider" },
   { id: 18, title: "organic cosmetic", category: "Branding / Packaging", image: "https://lh3.googleusercontent.com/d/1DlAdlFYlYmujpUEC1uzvAu4EIc9uRiHu", colSpan: "md:col-span-12", year: "2021", role: "Creative Direction" },
-  { id: 19, title: "physical and online campaign", category: "campaign", image: "https://lh3.googleusercontent.com/d/1_iaj5BKDM91g4xSaS_TeC134Y-zQz9TV", colSpan: "md:col-span-12", year: "2024", role: "Campaign Design" },
+  { id: 19, title: "physical and online campaign", category: "campaign", image: "https://lh3.googleusercontent.com/d/1oHOYP6MO2Fadp1BhAKnP8iCwCaMsoBlZ", colSpan: "md:col-span-12", year: "2024", role: "Campaign Design" },
 ];
 
 const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", contain = false, cinematic = false }: { src: string, alt: string, className?: string, objectPosition?: string, contain?: boolean, cinematic?: boolean }) => (
@@ -656,7 +656,8 @@ export default function App() {
     }
     if (project.title === "physical and online campaign") {
       return [
-        "https://lh3.googleusercontent.com/d/1_iaj5BKDM91g4xSaS_TeC134Y-zQz9TV"
+        "https://lh3.googleusercontent.com/d/1oHOYP6MO2Fadp1BhAKnP8iCwCaMsoBlZ",
+        "https://lh3.googleusercontent.com/d/1QRwzjvDFCvj300hn5OBdpjgYEOx626py"
       ];
     }
     return [
@@ -3052,22 +3053,33 @@ export default function App() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div className="space-y-6">
                           <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Campaign Design</span>
-                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
-                            {lang === 'en' ? (
-                              "The 'Physical and Online Campaign' focuses on creating a seamless visual experience across all platforms. By integrating digital excellence with traditional media, the campaign ensures a unified brand presence."
-                            ) : lang === 'fr' ? (
-                              "La 'Campagne physique et en ligne' se concentre sur la création d'une expérience visuelle fluide sur toutes les plateformes."
-                            ) : (
-                              "La 'Campaña física y online' se centra en crear una experiencia visual fluida en todas las plataformas."
-                            )}
-                          </p>
+                          <div className="space-y-6">
+                            <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                              {lang === 'en' ? (
+                                "ONEup specializes in crafting impactful marketing campaigns for your brand, both in physical spaces and online. Our focus is on creating memorable experiences that leverage the latest technology, from interactive screens to data capture initiatives."
+                              ) : lang === 'fr' ? (
+                                "ONEup se spécialise dans la création de campagnes marketing percutantes pour votre marque, tant dans les espaces physiques qu'en ligne."
+                              ) : (
+                                "ONEup se especializa en crear campañas de marketing impactantes para su marca, tanto en espacios físicos como online."
+                              )}
+                            </p>
+                            <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                              {lang === 'en' ? (
+                                "By integrating innovative solutions, we ensure that your campaigns not only stand out but also engage your audience effectively, using experimental digital and print to convey your brand message in today's market. Let us help you elevate your brand presence and connect with customers in meaningful ways."
+                              ) : lang === 'fr' ? (
+                                "En intégrant des solutions innovantes, nous veillons à ce que vos campagnes se démarquent et engagent votre public efficacement."
+                              ) : (
+                                "Al integrar soluciones innovadoras, nos aseguramos de que sus campañas no solo se destaquen sino que también involucren a su audiencia de manera efectiva."
+                              )}
+                            </p>
+                          </div>
                         </div>
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1_iaj5BKDM91g4xSaS_TeC134Y-zQz9TV")}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1QRwzjvDFCvj300hn5OBdpjgYEOx626py")}
                         >
                           <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/1_iaj5BKDM91g4xSaS_TeC134Y-zQz9TV" 
+                            src="https://lh3.googleusercontent.com/d/1QRwzjvDFCvj300hn5OBdpjgYEOx626py" 
                             alt="Campaign Design Strategy"
                           />
                         </div>
