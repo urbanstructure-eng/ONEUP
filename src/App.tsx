@@ -345,7 +345,7 @@ export default function App() {
       nav: { work: 'work', services: 'services', about: 'about', contact: 'contact' },
       hero: {
         tag: 'Design & Technology Studio',
-        title: 'EXPERIMENTAL GRAPHIC DESIGN<br />& INNOVATIVE MARKETING.',
+        title: 'Experimental Design<br />& Innovative Marketing',
         desc: 'oneup is an experimental graphic design studio crafting innovative marketing campaigns and digital experiences. We focus on distinctive visual identities for the modern market.',
         cta: 'Start a Project',
         scroll: 'Explore our design portfolio'
@@ -651,7 +651,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1ZBbLFTGD-0Lsn3fwnj4Q-MmdmoHC904o",
         "https://lh3.googleusercontent.com/d/1LPXu6hViyRbN0Hw2hsqCA327AMuKjBrU",
         "https://lh3.googleusercontent.com/d/17oO2Xu9QGfAgygzxJ7Z7-L8uCKBalvS9",
-        "https://lh3.googleusercontent.com/d/1yTOuRj336bqdzjiHDddXK4cDcLPacMu7"
+        "https://lh3.googleusercontent.com/d/1yTOuRj336bqdzjiHDddXK4cDcLPacMu7",
+        "https://lh3.googleusercontent.com/d/1cJX-YdWCW_Fy6_yDvkIqk6VaWwao7qeR"
       ];
     }
     if (project.title === "Integrated Marketing Campaign") {
@@ -932,7 +933,7 @@ export default function App() {
             <div className="inline-block px-3 py-1 bg-white/10 border border-white/20 text-white text-[10px] font-bold tracking-widest uppercase mb-8">
               {t[lang].hero.tag}
             </div>
-            <h1 className="text-[10vw] md:text-[7vw] font-bold leading-[0.85] tracking-tighter mb-12 text-accent">
+            <h1 className="text-[9vw] md:text-[6.5vw] font-bold leading-[0.85] tracking-tighter mb-12 text-accent">
               {t[lang].hero.title.split('<br />').map((line, i) => (
                 <React.Fragment key={i}>
                   {line}
@@ -2819,6 +2820,20 @@ export default function App() {
                               "La meticulosa atención al detalle en el empaque y la identidad refleja el posicionamiento premium de la marca y su dedicación a brindar una experiencia de autocuidado elevada."
                             )}
                           </p>
+                        </div>
+                      </div>
+
+                      {/* Organic Cosmetic Section 8: Tactile Integrity */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1cJX-YdWCW_Fy6_yDvkIqk6VaWwao7qeR")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1cJX-YdWCW_Fy6_yDvkIqk6VaWwao7qeR" 
+                            alt="Organic Cosmetic Tactile Material Integrity"
+                            cinematic={true}
+                          />
                         </div>
                       </div>
                     </>
