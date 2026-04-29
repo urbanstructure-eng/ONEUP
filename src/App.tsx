@@ -663,7 +663,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1Lr4S469gDL8yvA4-DjDWdAuX17PzdlhB",
         "https://lh3.googleusercontent.com/d/1u0EskKOHj0n5i53wG2XJi9z4bxLVqLuu",
         "https://lh3.googleusercontent.com/d/1OiRPp_ywOrfgWl_xMc2XftvMo50NTfzw",
-        "https://lh3.googleusercontent.com/d/18aRHBJ0NPKGpTnVHT51KAl-ZvIoD2PTL"
+        "https://lh3.googleusercontent.com/d/18aRHBJ0NPKGpTnVHT51KAl-ZvIoD2PTL",
+        "https://lh3.googleusercontent.com/d/1xZLp2sYZh1WetJBLOzffBLRF0YuYrmMh"
       ];
     }
     return [
@@ -3172,6 +3173,29 @@ export default function App() {
                             alt="Integrated Strategy Visual"
                             cinematic={true}
                           />
+                        </div>
+                      </div>
+
+                      {/* Campaign Section 7: Global Campaign Strategy */}
+                      <div className="space-y-12 pb-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1xZLp2sYZh1WetJBLOzffBLRF0YuYrmMh")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1xZLp2sYZh1WetJBLOzffBLRF0YuYrmMh" 
+                            alt="Global Campaign Integrated Strategy"
+                            cinematic={true}
+                          />
+                        </div>
+                        
+                        <div className="max-w-3xl space-y-6">
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            Integrated marketing campaigns featuring signage throughout the city and at the football stadium aim to enhance brand awareness. Users can engage with the brand app by scanning QR codes, which allows them to participate in special events and win prizes.
+                          </p>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            This strategy not only fosters brand recognition but also encourages customer loyalty. By creating interactive experiences, the campaign effectively connects with the audience, driving both engagement and retention.
+                          </p>
                         </div>
                       </div>
                     </>
