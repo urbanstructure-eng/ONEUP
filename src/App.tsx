@@ -1415,14 +1415,6 @@ export default function App() {
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
               className="relative w-full max-w-md h-full bg-[#1a1a1a] shadow-2xl border-l border-white/10 p-12 flex flex-col"
             >
-              <div className="absolute top-8 left-12">
-                 <img 
-                    src="https://lh3.googleusercontent.com/d/17xzztOYQ2Sk3ZTlPOY0Pan1g0jfZikyP" 
-                    alt="oneup logo" 
-                    className="h-6 w-auto"
-                    referrerPolicy="no-referrer"
-                  />
-              </div>
               <button 
                 onClick={() => setShowLoginPanel(false)}
                 className="absolute top-8 right-8 p-2 hover:bg-white/10 rounded-full transition-colors group"
@@ -1468,11 +1460,11 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="mt-auto opacity-10">
+              <div className="mt-auto opacity-30">
                  <img 
                     src="https://lh3.googleusercontent.com/d/17xzztOYQ2Sk3ZTlPOY0Pan1g0jfZikyP" 
                     alt="oneup logo" 
-                    className="h-8 w-auto"
+                    className="h-10 w-auto"
                     referrerPolicy="no-referrer"
                   />
               </div>
