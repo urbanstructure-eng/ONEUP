@@ -396,6 +396,17 @@ export default function App() {
         thankYou: 'THANK YOU',
         successMsg: 'Your inquiry has taken flight. We\'ll get back to you shortly.',
         close: 'Close Window'
+      },
+      login: {
+        tag: 'Secure Portal',
+        title: 'CLIENT LOGIN',
+        note: 'Authorized access only',
+        email: 'Email Address',
+        password: 'Password',
+        submit: 'Enter Portal',
+        help: 'Problems accessing your account?',
+        manager: 'Contact your project manager or',
+        support: 'email support@oneup.com'
       }
     },
     fr: {
@@ -452,6 +463,17 @@ export default function App() {
         thankYou: 'MERCI',
         successMsg: 'Votre demande a pris son envol. Nous vous répondrons sous peu.',
         close: 'Fermer la Fenêtre'
+      },
+      login: {
+        tag: 'Portail Sécurisé',
+        title: 'ACCÈS CLIENT',
+        note: 'Accès autorisé uniquement',
+        email: 'Adresse Email',
+        password: 'Mot de passe',
+        submit: 'Entrer dans le Portail',
+        help: 'Problèmes d\'accès à votre compte ?',
+        manager: 'Contactez votre chef de projet ou',
+        support: 'email support@oneup.com'
       }
     },
     es: {
@@ -508,6 +530,17 @@ export default function App() {
         thankYou: 'GRACIAS',
         successMsg: 'Tu consulta ha tomado vuelo. Nos pondremos en contacto contigo pronto.',
         close: 'Cerrar Ventana'
+      },
+      login: {
+        tag: 'Portal Seguro',
+        title: 'ACCESO CLIENTES',
+        note: 'Solo acceso autorizado',
+        email: 'Correo Electrónico',
+        password: 'Contraseña',
+        submit: 'Entrar al Portal',
+        help: '¿Problemas para acceder?',
+        manager: 'Contacte a su gestor de proyectos o',
+        support: 'email support@oneup.com'
       }
     }
   };
@@ -1424,14 +1457,14 @@ export default function App() {
 
               <div className="mt-20 space-y-12">
                 <div>
-                  <span className="text-accent text-[10px] font-bold tracking-[0.5em] uppercase mb-4 block">Secure Portal</span>
-                  <h2 className="text-4xl font-bold tracking-tighter text-white uppercase">CLIENT LOGIN</h2>
-                  <p className="text-white/40 font-mono text-[10px] uppercase tracking-widest mt-4">Authorized access only</p>
+                  <span className="text-accent text-[10px] font-bold tracking-[0.5em] uppercase mb-4 block">{t[lang].login.tag}</span>
+                  <h2 className="text-4xl font-bold tracking-tighter text-white uppercase">{t[lang].login.title}</h2>
+                  <p className="text-white/40 font-mono text-[10px] uppercase tracking-widest mt-4">{t[lang].login.note}</p>
                 </div>
 
                 <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
                   <div className="space-y-2">
-                    <label className="text-[10px] uppercase tracking-widest text-white/60 font-bold">Email Address</label>
+                    <label className="text-[10px] uppercase tracking-widest text-white/60 font-bold">{t[lang].login.email}</label>
                     <input 
                       type="email" 
                       className="w-full bg-white/5 border border-white/10 px-4 py-4 text-white focus:border-accent outline-none transition-colors rounded-sm"
@@ -1439,7 +1472,7 @@ export default function App() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] uppercase tracking-widest text-white/60 font-bold">Password</label>
+                    <label className="text-[10px] uppercase tracking-widest text-white/60 font-bold">{t[lang].login.password}</label>
                     <input 
                       type="password" 
                       className="w-full bg-white/5 border border-white/10 px-4 py-4 text-white focus:border-accent outline-none transition-colors rounded-sm"
@@ -1447,15 +1480,15 @@ export default function App() {
                     />
                   </div>
                   <button className="w-full bg-accent text-white py-4 font-bold uppercase tracking-widest hover:brightness-110 transition-all rounded-sm">
-                    Enter Portal
+                    {t[lang].login.submit}
                   </button>
                 </form>
 
                 <div className="pt-12 border-t border-white/10">
                   <p className="text-white/40 text-[10px] leading-relaxed uppercase tracking-widest">
-                    Problems accessing your account? <br />
-                    Contact your project manager or <br />
-                    email support@oneup.com
+                    {t[lang].login.help} <br />
+                    {t[lang].login.manager} <br />
+                    {t[lang].login.support}
                   </p>
                 </div>
               </div>
