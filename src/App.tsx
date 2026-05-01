@@ -326,6 +326,7 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState<typeof PROJECTS[0] | null>(null);
   const [showContactForm, setShowContactForm] = useState(false);
   const [showLegalModal, setShowLegalModal] = useState(false);
+  const [showLoginPanel, setShowLoginPanel] = useState(false);
   const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
   const [isFolding, setIsFolding] = useState(false);
   const [isSent, setIsSent] = useState(false);
@@ -1162,6 +1163,17 @@ export default function App() {
         <div className="flex items-center gap-4">
           © 2025 oneup. {lang === 'en' ? 'Graphic Design & Marketing Studio' : lang === 'fr' ? 'Studio de design / Atelier de création' : 'Estudio de diseño / Taller creativo'}
         </div>
+        
+        <div className="flex items-center">
+          <button 
+            onClick={() => setShowLoginPanel(true)} 
+            className="bg-accent text-white px-4 py-2 rounded-full flex items-center gap-2 hover:brightness-110 transition-all duration-300 shadow-lg shadow-accent/20 cursor-pointer"
+          >
+            <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
+            {lang === 'en' ? 'Client Login' : lang === 'fr' ? 'Connexion Client' : 'Acceso Clientes'}
+          </button>
+        </div>
+
         <div className="flex gap-12">
           <button onClick={() => setShowLegalModal(true)} className="hover:text-white transition-colors">
             {lang === 'en' ? 'Privacy Policy' : lang === 'fr' ? 'Politique de Confidentialité' : 'Política de Privacidad'}
@@ -1387,6 +1399,79 @@ export default function App() {
 
       {/* Legal Modal */}
       <AnimatePresence>
+        {showLoginPanel && (
+          <div className="fixed inset-0 z-[300] flex justify-end">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowLoginPanel(false)}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="relative w-full max-w-md h-full bg-[#1a1a1a] shadow-2xl border-l border-white/10 p-12 flex flex-col"
+            >
+              <button 
+                onClick={() => setShowLoginPanel(false)}
+                className="absolute top-8 right-8 p-2 hover:bg-white/10 rounded-full transition-colors group"
+              >
+                <X className="w-8 h-8 text-white group-hover:rotate-90 transition-transform duration-300" />
+              </button>
+
+              <div className="mt-20 space-y-12">
+                <div>
+                  <span className="text-accent text-[10px] font-bold tracking-[0.5em] uppercase mb-4 block">Secure Portal</span>
+                  <h2 className="text-4xl font-bold tracking-tighter text-white uppercase">CLIENT LOGIN</h2>
+                  <p className="text-white/40 font-mono text-[10px] uppercase tracking-widest mt-4">Authorized access only</p>
+                </div>
+
+                <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
+                  <div className="space-y-2">
+                    <label className="text-[10px] uppercase tracking-widest text-white/60 font-bold">Email Address</label>
+                    <input 
+                      type="email" 
+                      className="w-full bg-white/5 border border-white/10 px-4 py-4 text-white focus:border-accent outline-none transition-colors rounded-sm"
+                      placeholder="name@company.com"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] uppercase tracking-widest text-white/60 font-bold">Password</label>
+                    <input 
+                      type="password" 
+                      className="w-full bg-white/5 border border-white/10 px-4 py-4 text-white focus:border-accent outline-none transition-colors rounded-sm"
+                      placeholder="••••••••"
+                    />
+                  </div>
+                  <button className="w-full bg-accent text-white py-4 font-bold uppercase tracking-widest hover:brightness-110 transition-all rounded-sm">
+                    Enter Portal
+                  </button>
+                </form>
+
+                <div className="pt-12 border-t border-white/10">
+                  <p className="text-white/40 text-[10px] leading-relaxed uppercase tracking-widest">
+                    Problems accessing your account? <br />
+                    Contact your project manager or <br />
+                    email support@oneup.com
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-auto opacity-10">
+                 <img 
+                    src="https://lh3.googleusercontent.com/d/17xzztOYQ2Sk3ZTlPOY0Pan1g0jfZikyP" 
+                    alt="oneup logo" 
+                    className="h-8 w-auto"
+                    referrerPolicy="no-referrer"
+                  />
+              </div>
+            </motion.div>
+          </div>
+        )}
+
         {showLegalModal && (
           <motion.div
             initial={{ opacity: 0 }}
