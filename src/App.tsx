@@ -586,7 +586,7 @@ export default function App() {
   const getProjectImages = (project: typeof PROJECTS[0]) => {
     if (project.title === "Pulso Health") {
       return [
-        project.image,
+        project.heroImage || project.image,
         "https://lh3.googleusercontent.com/d/1pWnjLekDDJw2nyvaITIkbyyYCyyVqhrN",
         "https://lh3.googleusercontent.com/d/1HV38KNGMYygGYoRFDoFe2P5v0By10sDC",
         "https://lh3.googleusercontent.com/d/1C9aaZv2jODy3L2G_f70176rmthMvJ7y9",
@@ -599,7 +599,7 @@ export default function App() {
     }
     if (project.title === "Padelux") {
       return [
-        project.image,
+        project.heroImage || project.image,
         "https://lh3.googleusercontent.com/d/1p6uNNFVC96xiAjRJvtsiCn3MhA330SpH",
         "https://lh3.googleusercontent.com/d/1fpYurGgn-hjRjtOVQN9bAVnEBKu_tkOD",
         "https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI",
@@ -610,7 +610,7 @@ export default function App() {
     }
     if (project.title === "Voltique") {
       return [
-        project.image,
+        project.heroImage || project.image,
         "https://lh3.googleusercontent.com/d/18okrA2Rgsx9gzhggIOu89nuz6QcWu-Hi",
         "https://lh3.googleusercontent.com/d/1LP7r24WA012N3hkibYdehCPnKasGT4jB",
         "https://lh3.googleusercontent.com/d/1Ad-O2_nnkJHtfNLqVneCvzqufYPEpP-t",
@@ -627,13 +627,14 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1jxksiMAxUtLXBxGL8bNC7jcizLTyxXR0",
         "https://lh3.googleusercontent.com/d/1NV4L745ah-lWi0pZtmULvNTiJHefN6J9",
         "https://lh3.googleusercontent.com/d/16nVARSrN4RZielAgzspDx6mkKm6VUs_3",
-        "https://lh3.googleusercontent.com/d/1rxQVm2VX7vOD1Z0HPFx7DgVC1s5iwzXH"
+        "https://lh3.googleusercontent.com/d/1rxQVm2VX7vOD1Z0HPFx7DgVC1s5iwzXH",
+        "https://lh3.googleusercontent.com/d/1zpj8lgRtq9a7hkRvkSv2iPIWGgmeCwcr"
       ];
     }
     if (project.title === "UNITY Community Hub") {
       return [
         project.heroImage || project.image,
-        project.image,
+        "https://lh3.googleusercontent.com/d/1SaZAxfG-M0ouGb0w0wCRxmzKQ3U8S5uT",
         "https://lh3.googleusercontent.com/d/11wP3BfkI3AFIZP49UH1WSwpXPZEvmHc6",
         "https://lh3.googleusercontent.com/d/1M-1AUscx9JJ7guyEjAeF1ziTjLxrnbWK",
         "https://lh3.googleusercontent.com/d/1JL_vUWyn2sn9wFsdgCnL-XekDbMnzJ4t",
@@ -643,7 +644,7 @@ export default function App() {
     }
     if (project.title === "Atelier d'art") {
       return [
-        project.image,
+        project.heroImage || project.image,
         "https://lh3.googleusercontent.com/d/1osUANG5WeR0Ww3n_OQtdiaNXBxQLIA7f",
         "https://lh3.googleusercontent.com/d/1el8VLirLeFCbYzVJmjInCWc_1ndww9-9",
         "https://lh3.googleusercontent.com/d/16PMa4p6HKCfzF56Ny_JoEGR6OBJqU-Jj",
@@ -652,21 +653,21 @@ export default function App() {
     }
     if (project.title === "edere restaurant") {
       return [
-        project.image, // Hero
-        "https://lh3.googleusercontent.com/d/1k8q8V3zvS4uYnfp0s6unRNpWiaAbIqa9", // Sec 1
-        "https://lh3.googleusercontent.com/d/1Lg4ePRrMplc3GDzN8ixUcuL9MbPwqBxg", // Sec 2
-        "https://lh3.googleusercontent.com/d/19C-4W9Vpb5EgIzhZZO9jJB19_b10ejYO", // Sec 3
-        "https://lh3.googleusercontent.com/d/1GY7keTnEI3Jayucac9QegpwS8rk-vOMJ", // Sec 4
-        "https://lh3.googleusercontent.com/d/1Mux8yWx0pRNv-P3p1-92vHZH7nkO9rRh", // Sec 5
-        "https://lh3.googleusercontent.com/d/19Gt0niVC8EL5JdpHNmsRdCLTrBeeIbcu", // Sec 6 (Same as Hero)
-        "https://lh3.googleusercontent.com/d/1KswSnGMZRZkyOOaVJXWTKkUqWwdzxTqB", // Sec 7
-        "https://lh3.googleusercontent.com/d/1xwwm8qTPTaFktoSelqGyTUz5tYsOCK7W", // Sec 8
-        "https://lh3.googleusercontent.com/d/1nzAd11wQwe07yeFdZdSLS2-xexHfCIsa"  // Sec 9
+        project.heroImage || project.image,
+        "https://lh3.googleusercontent.com/d/1k8q8V3zvS4uYnfp0s6unRNpWiaAbIqa9",
+        "https://lh3.googleusercontent.com/d/1Lg4ePRrMplc3GDzN8ixUcuL9MbPwqBxg",
+        "https://lh3.googleusercontent.com/d/19C-4W9Vpb5EgIzhZZO9jJB19_b10ejYO",
+        "https://lh3.googleusercontent.com/d/1GY7keTnEI3Jayucac9QegpwS8rk-vOMJ",
+        "https://lh3.googleusercontent.com/d/1Mux8yWx0pRNv-P3p1-92vHZH7nkO9rRh",
+        "https://lh3.googleusercontent.com/d/19Gt0niVC8EL5JdpHNmsRdCLTrBeeIbcu",
+        "https://lh3.googleusercontent.com/d/1KswSnGMZRZkyOOaVJXWTKkUqWwdzxTqB",
+        "https://lh3.googleusercontent.com/d/1xwwm8qTPTaFktoSelqGyTUz5tYsOCK7W",
+        "https://lh3.googleusercontent.com/d/1nzAd11wQwe07yeFdZdSLS2-xexHfCIsa"
       ];
     }
     if (project.title === "Insurly") {
       return [
-        project.image,
+        project.heroImage || project.image,
         "https://lh3.googleusercontent.com/d/10Na1qqypVRFoARcL01kFD_mbdaZdQMP6",
         "https://lh3.googleusercontent.com/d/1TeSUFMoUj56pjCeP4PKvfrLC9QKIEnOg",
         "https://lh3.googleusercontent.com/d/1ZYz8F6REOrPju1PSGE42hzL-HcNck6Yh",
@@ -679,8 +680,9 @@ export default function App() {
     }
     if (project.title === "organic cosmetic") {
       return [
-        "https://lh3.googleusercontent.com/d/1DlAdlFYlYmujpUEC1uzvAu4EIc9uRiHu",
+        project.heroImage || project.image,
         "https://lh3.googleusercontent.com/d/1grDf1nKeXz2GbtfBFF0lyqSzyEY2Z7is",
+        "https://lh3.googleusercontent.com/d/1DlAdlFYlYmujpUEC1uzvAu4EIc9uRiHu",
         "https://lh3.googleusercontent.com/d/1EtZot-anCp8jl1iTfBOlQ6j7wD7nx2q9",
         "https://lh3.googleusercontent.com/d/1ZBbLFTGD-0Lsn3fwnj4Q-MmdmoHC904o",
         "https://lh3.googleusercontent.com/d/1LPXu6hViyRbN0Hw2hsqCA327AMuKjBrU",
@@ -691,7 +693,7 @@ export default function App() {
     }
     if (project.title === "Integrated Marketing Campaign") {
       return [
-        "https://lh3.googleusercontent.com/d/1oHOYP6MO2Fadp1BhAKnP8iCwCaMsoBlZ",
+        project.heroImage || project.image,
         "https://lh3.googleusercontent.com/d/1QRwzjvDFCvj300hn5OBdpjgYEOx626py",
         "https://lh3.googleusercontent.com/d/1SQmNFdF01PdC0wBREQlofEXLhd6i9XfT",
         "https://lh3.googleusercontent.com/d/1Lr4S469gDL8yvA4-DjDWdAuX17PzdlhB",
@@ -702,7 +704,7 @@ export default function App() {
       ];
     }
     return [
-      project.image,
+      project.heroImage || project.image,
       `https://picsum.photos/seed/${project.id + 100}/1200/800`,
       `https://picsum.photos/seed/${project.id + 200}/1200/800`
     ];
@@ -2379,6 +2381,20 @@ export default function App() {
                               "Conectando continentes a través de una capa digital unificada."
                             )}
                           </p>
+                        </div>
+                      </div>
+
+                      {/* BuyDrop Section 5: Strategic Overview */}
+                      <div className="space-y-12 pb-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1zpj8lgRtq9a7hkRvkSv2iPIWGgmeCwcr")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1zpj8lgRtq9a7hkRvkSv2iPIWGgmeCwcr" 
+                            alt="BuyDrop Strategic Overview"
+                            cinematic={true}
+                          />
                         </div>
                       </div>
                     </>
