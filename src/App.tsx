@@ -625,6 +625,7 @@ export default function App() {
         project.heroImage || project.image,
         "https://lh3.googleusercontent.com/d/1qpd246hL-TbgCSgf9j2qxBk15FMW2FuF",
         "https://lh3.googleusercontent.com/d/1jxksiMAxUtLXBxGL8bNC7jcizLTyxXR0",
+        "https://lh3.googleusercontent.com/d/1IYSW94E7ehfVzt6JxjUd3MYrvLGD8hg5",
         "https://lh3.googleusercontent.com/d/1NV4L745ah-lWi0pZtmULvNTiJHefN6J9",
         "https://lh3.googleusercontent.com/d/16nVARSrN4RZielAgzspDx6mkKm6VUs_3",
         "https://lh3.googleusercontent.com/d/1rxQVm2VX7vOD1Z0HPFx7DgVC1s5iwzXH",
@@ -2311,10 +2312,10 @@ export default function App() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
                           className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1NV4L745ah-lWi0pZtmULvNTiJHefN6J9")}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1IYSW94E7ehfVzt6JxjUd3MYrvLGD8hg5")}
                         >
                           <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/1NV4L745ah-lWi0pZtmULvNTiJHefN6J9" 
+                            src="https://lh3.googleusercontent.com/d/1IYSW94E7ehfVzt6JxjUd3MYrvLGD8hg5" 
                             alt="BuyDrop System"
                           />
                         </div>
@@ -2324,11 +2325,25 @@ export default function App() {
                             {lang === 'en' ? (
                               "The backend infrastructure supports millions of concurrent transactions, ensuring that every 'drop' is executed with millisecond precision."
                             ) : lang === 'fr' ? (
-                              "L'infrastructure backend prend en charge des millions de transactions simultanées."
+                              "L'infrastructure backend prend en charge des millions de transactions simultanées, garantissant que chaque 'drop' est exécuté avec une précision de l'ordre de la milliseconde."
                             ) : (
-                              "La infraestructura backend soporta millones de transacciones simultáneas."
+                              "La infraestructura del backend soporta millones de transacciones simultáneas, garantizando que cada 'drop' se ejecute con una precisión de milisegundos."
                             )}
                           </p>
+                        </div>
+                      </div>
+
+                      {/* BuyDrop Section 2b: Infrastructure Mapping (Restored Image) */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1NV4L745ah-lWi0pZtmULvNTiJHefN6J9")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1NV4L745ah-lWi0pZtmULvNTiJHefN6J9" 
+                            alt="BuyDrop Infrastructure"
+                            cinematic={true}
+                          />
                         </div>
                       </div>
 
