@@ -629,7 +629,7 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1NV4L745ah-lWi0pZtmULvNTiJHefN6J9",
         "https://lh3.googleusercontent.com/d/16nVARSrN4RZielAgzspDx6mkKm6VUs_3",
         "https://lh3.googleusercontent.com/d/1rxQVm2VX7vOD1Z0HPFx7DgVC1s5iwzXH",
-        "https://lh3.googleusercontent.com/d/1zpj8lgRtq9a7hkRvkSv2iPIWGgmeCwcr"
+        "https://lh3.googleusercontent.com/d/1GjpYYVEeMn_NvL_zBIxmXzRvIoNYXNga"
       ];
     }
     if (project.title === "UNITY Community Hub") {
@@ -2403,10 +2403,10 @@ export default function App() {
                       <div className="space-y-12 pb-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1zpj8lgRtq9a7hkRvkSv2iPIWGgmeCwcr")}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1GjpYYVEeMn_NvL_zBIxmXzRvIoNYXNga")}
                         >
                           <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/1zpj8lgRtq9a7hkRvkSv2iPIWGgmeCwcr" 
+                            src="https://lh3.googleusercontent.com/d/1GjpYYVEeMn_NvL_zBIxmXzRvIoNYXNga" 
                             alt="BuyDrop Strategic Overview"
                             cinematic={true}
                           />
