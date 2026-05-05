@@ -689,7 +689,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1LPXu6hViyRbN0Hw2hsqCA327AMuKjBrU",
         "https://lh3.googleusercontent.com/d/17oO2Xu9QGfAgygzxJ7Z7-L8uCKBalvS9",
         "https://lh3.googleusercontent.com/d/1yTOuRj336bqdzjiHDddXK4cDcLPacMu7",
-        "https://lh3.googleusercontent.com/d/1cJX-YdWCW_Fy6_yDvkIqk6VaWwao7qeR"
+        "https://lh3.googleusercontent.com/d/1cJX-YdWCW_Fy6_yDvkIqk6VaWwao7qeR",
+        "https://lh3.googleusercontent.com/d/1nDeiDcSTHnTD_OGeDihtWtXxb_M3d-ak"
       ];
     }
     if (project.title === "Integrated Marketing Campaign") {
@@ -2982,6 +2983,20 @@ export default function App() {
                           <SubtleMotionImage 
                             src="https://lh3.googleusercontent.com/d/1cJX-YdWCW_Fy6_yDvkIqk6VaWwao7qeR" 
                             alt="Organic Cosmetic Tactile Material Integrity"
+                            cinematic={true}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Organic Cosmetic Section 9: Branding Completion */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1nDeiDcSTHnTD_OGeDihtWtXxb_M3d-ak")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1nDeiDcSTHnTD_OGeDihtWtXxb_M3d-ak" 
+                            alt="Organic Cosmetic Branding Completion"
                             cinematic={true}
                           />
                         </div>
