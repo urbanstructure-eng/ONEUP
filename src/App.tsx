@@ -617,8 +617,7 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1C6c6M2Sf0EchjHqKsylmecO9Z__707lY",
         "https://lh3.googleusercontent.com/d/1tJkKFKLTwo-zkp6K_EVdVRz7rCviD-F0",
         "https://lh3.googleusercontent.com/d/1RYRWf7_CSv27PD95PfnPPKLs534PhOQD",
-        "https://lh3.googleusercontent.com/d/1IbhBUuJuXIiKMGleLfoHvwAlE78GdwG_",
-        "https://lh3.googleusercontent.com/d/1STdB5MpZaLaugIetkkhwD5-pE4irkS9b"
+        "https://lh3.googleusercontent.com/d/1IbhBUuJuXIiKMGleLfoHvwAlE78GdwG_"
       ];
     }
     if (project.title === "BuyDrop") {
@@ -2253,20 +2252,6 @@ export default function App() {
                               "La visión de Voltique va más allá de la mera utilidad, creando un referente sostenible para la movilidad urbana de alta gama."
                             )}
                           </p>
-                        </div>
-                      </div>
-
-                      {/* Voltique Story Section 8: Sustainable Future */}
-                      <div className="space-y-12">
-                        <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1STdB5MpZaLaugIetkkhwD5-pE4irkS9b")}
-                        >
-                          <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/1STdB5MpZaLaugIetkkhwD5-pE4irkS9b" 
-                            alt="Voltique Sustainable Future"
-                            cinematic={true}
-                          />
                         </div>
                       </div>
                     </>
