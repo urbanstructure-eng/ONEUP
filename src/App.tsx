@@ -605,7 +605,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI",
         "https://lh3.googleusercontent.com/d/1Zr9R_Z3bMjuCJo5xykDJIPVcxvgVeFar",
         "https://lh3.googleusercontent.com/d/169Pww9eoPuFuC3gU5bx9E02cOV7037zl",
-        "https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv"
+        "https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv",
+        "https://lh3.googleusercontent.com/d/1Rnad3hTvqrKQCbcPPklfr2Qe6lOVPKqr"
       ];
     }
     if (project.title === "Voltique") {
@@ -2074,6 +2075,20 @@ export default function App() {
                               "Padelux es más que un deporte; es un destino social. Curamos una experiencia de estilo de vida que resuena con una comunidad de entusiastas."
                             )}
                           </p>
+                        </div>
+                      </div>
+
+                      {/* Section 7: Cinematic Finale */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1Rnad3hTvqrKQCbcPPklfr2Qe6lOVPKqr")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1Rnad3hTvqrKQCbcPPklfr2Qe6lOVPKqr" 
+                            alt="Padelux Cinematic View"
+                            cinematic={true}
+                          />
                         </div>
                       </div>
                     </>
