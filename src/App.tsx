@@ -606,7 +606,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1Zr9R_Z3bMjuCJo5xykDJIPVcxvgVeFar",
         "https://lh3.googleusercontent.com/d/169Pww9eoPuFuC3gU5bx9E02cOV7037zl",
         "https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv",
-        "https://lh3.googleusercontent.com/d/1Rnad3hTvqrKQCbcPPklfr2Qe6lOVPKqr"
+        "https://lh3.googleusercontent.com/d/1Rnad3hTvqrKQCbcPPklfr2Qe6lOVPKqr",
+        "https://lh3.googleusercontent.com/d/1D1d7VFqv7vsAjrPMwZAVlxNYHAkEWvsv"
       ];
     }
     if (project.title === "Voltique") {
@@ -2087,6 +2088,20 @@ export default function App() {
                           <SubtleMotionImage 
                             src="https://lh3.googleusercontent.com/d/1Rnad3hTvqrKQCbcPPklfr2Qe6lOVPKqr" 
                             alt="Padelux Cinematic View"
+                            cinematic={true}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Section 8: Brand Essence */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1D1d7VFqv7vsAjrPMwZAVlxNYHAkEWvsv")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1D1d7VFqv7vsAjrPMwZAVlxNYHAkEWvsv" 
+                            alt="Padelux Brand Essence"
                             cinematic={true}
                           />
                         </div>
