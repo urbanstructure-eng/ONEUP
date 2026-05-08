@@ -651,7 +651,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1osUANG5WeR0Ww3n_OQtdiaNXBxQLIA7f",
         "https://lh3.googleusercontent.com/d/1el8VLirLeFCbYzVJmjInCWc_1ndww9-9",
         "https://lh3.googleusercontent.com/d/16PMa4p6HKCfzF56Ny_JoEGR6OBJqU-Jj",
-        "https://lh3.googleusercontent.com/d/1T9CIXul6wnGY6caACLxwvlW1gAR-EDzi"
+        "https://lh3.googleusercontent.com/d/1T9CIXul6wnGY6caACLxwvlW1gAR-EDzi",
+        "https://lh3.googleusercontent.com/d/1ceZ6NYiqfNKYtU9mfdn5tYWu6XSkAHN8"
       ];
     }
     if (project.title === "edere restaurant") {
@@ -2714,6 +2715,52 @@ export default function App() {
                               "Al enfatizar el rico patrimonio cultural del arte francés, la campaña fomentó un profundo aprecio por la expresión artística."
                             )}
                           </p>
+                        </div>
+                      </div>
+
+                      {/* Atelier Section 5: Artistic Legacy (New Image) */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center pb-12">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Artistic Legacy</span>
+                          <div className="space-y-4">
+                            {lang === 'en' ? (
+                              <>
+                                <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                                  The final expression of the brand identity captures the timeless essence of French craftsmanship, ensuring a legacy that inspires future generations of artists.
+                                </p>
+                                <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                                  City street signs are equipped with motion detection technology that interacts with urban movement, enhancing the overall functionality and responsiveness of the city infrastructure.
+                                </p>
+                              </>
+                            ) : lang === 'fr' ? (
+                              <>
+                                <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                                  L'expression finale de l'identité de marque capture l'essence intemporelle de l'artisanat français, assurant un héritage qui inspire les générations futures d'artistes.
+                                </p>
+                                <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                                  Les panneaux de signalisation urbaine sont équipés d'une technologie de détection de mouvement qui interagit avec le mouvement urbain.
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                                  La expresión final de la identidad de marca captura la esencia atemporal de la artesanía francesa, asegurando un legado que inspira a las futuras generaciones de artistas.
+                                </p>
+                                <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                                  Las señales de tráfico de la ciudad están equipadas con tecnología de detección de movimiento que interactúa con el movimiento urbano.
+                                </p>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-square"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1ceZ6NYiqfNKYtU9mfdn5tYWu6XSkAHN8")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1ceZ6NYiqfNKYtU9mfdn5tYWu6XSkAHN8" 
+                            alt="Atelier d'art Artistic Legacy"
+                          />
                         </div>
                       </div>
                     </>
