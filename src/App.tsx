@@ -652,7 +652,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1el8VLirLeFCbYzVJmjInCWc_1ndww9-9",
         "https://lh3.googleusercontent.com/d/16PMa4p6HKCfzF56Ny_JoEGR6OBJqU-Jj",
         "https://lh3.googleusercontent.com/d/1T9CIXul6wnGY6caACLxwvlW1gAR-EDzi",
-        "https://lh3.googleusercontent.com/d/1ceZ6NYiqfNKYtU9mfdn5tYWu6XSkAHN8"
+        "https://lh3.googleusercontent.com/d/1ceZ6NYiqfNKYtU9mfdn5tYWu6XSkAHN8",
+        "https://lh3.googleusercontent.com/d/1qvHCSLMNQTsa2R60U1-CqwLslI37IvFr"
       ];
     }
     if (project.title === "edere restaurant") {
@@ -2760,6 +2761,20 @@ export default function App() {
                           <SubtleMotionImage 
                             src="https://lh3.googleusercontent.com/d/1ceZ6NYiqfNKYtU9mfdn5tYWu6XSkAHN8" 
                             alt="Atelier d'art Artistic Legacy"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Atelier Section 6: Future Vision (Final Impact) */}
+                      <div className="space-y-12 pb-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1qvHCSLMNQTsa2R60U1-CqwLslI37IvFr")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1qvHCSLMNQTsa2R60U1-CqwLslI37IvFr" 
+                            alt="Atelier d'art Vision"
+                            cinematic={true}
                           />
                         </div>
                       </div>
