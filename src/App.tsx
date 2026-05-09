@@ -607,7 +607,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/169Pww9eoPuFuC3gU5bx9E02cOV7037zl",
         "https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv",
         "https://lh3.googleusercontent.com/d/1Rnad3hTvqrKQCbcPPklfr2Qe6lOVPKqr",
-        "https://lh3.googleusercontent.com/d/1D1d7VFqv7vsAjrPMwZAVlxNYHAkEWvsv"
+        "https://lh3.googleusercontent.com/d/1D1d7VFqv7vsAjrPMwZAVlxNYHAkEWvsv",
+        "https://lh3.googleusercontent.com/d/1PGGL6aKGts05H98M-r4Sn4ltEJVQMQ53"
       ];
     }
     if (project.title === "Voltique") {
@@ -2104,6 +2105,20 @@ export default function App() {
                           <SubtleMotionImage 
                             src="https://lh3.googleusercontent.com/d/1D1d7VFqv7vsAjrPMwZAVlxNYHAkEWvsv" 
                             alt="Padelux Brand Essence"
+                            cinematic={true}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Section 9: Architectural Balance (Final) */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1PGGL6aKGts05H98M-r4Sn4ltEJVQMQ53")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1PGGL6aKGts05H98M-r4Sn4ltEJVQMQ53" 
+                            alt="Padelux Architectural Balance"
                             cinematic={true}
                           />
                         </div>
