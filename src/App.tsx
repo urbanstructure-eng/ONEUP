@@ -644,7 +644,7 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1JL_vUWyn2sn9wFsdgCnL-XekDbMnzJ4t",
         "https://lh3.googleusercontent.com/d/178fpIdVUsFAnFVgY89ztj_hRTVaxAWsw",
         "https://lh3.googleusercontent.com/d/18gqdiRXLF7McIOK9DyD33TilFTV1OwYX",
-        "https://lh3.googleusercontent.com/d/1awpvDABwFf-QFiLyPEbGlRFq240PPoQ7"
+        "https://lh3.googleusercontent.com/d/1m31oo9zxLbATGYpaKlePXMaJdekQgo5h"
       ];
     }
     if (project.title === "Atelier d'art") {
@@ -2635,10 +2635,10 @@ export default function App() {
                       <div className="space-y-12 pb-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1awpvDABwFf-QFiLyPEbGlRFq240PPoQ7")}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1m31oo9zxLbATGYpaKlePXMaJdekQgo5h")}
                         >
                           <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/1awpvDABwFf-QFiLyPEbGlRFq240PPoQ7" 
+                            src="https://lh3.googleusercontent.com/d/1m31oo9zxLbATGYpaKlePXMaJdekQgo5h" 
                             alt="UNITY Final Impact"
                             cinematic={true}
                           />
