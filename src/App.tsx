@@ -643,7 +643,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1M-1AUscx9JJ7guyEjAeF1ziTjLxrnbWK",
         "https://lh3.googleusercontent.com/d/1JL_vUWyn2sn9wFsdgCnL-XekDbMnzJ4t",
         "https://lh3.googleusercontent.com/d/178fpIdVUsFAnFVgY89ztj_hRTVaxAWsw",
-        "https://lh3.googleusercontent.com/d/18gqdiRXLF7McIOK9DyD33TilFTV1OwYX"
+        "https://lh3.googleusercontent.com/d/18gqdiRXLF7McIOK9DyD33TilFTV1OwYX",
+        "https://lh3.googleusercontent.com/d/1awpvDABwFf-QFiLyPEbGlRFq240PPoQ7"
       ];
     }
     if (project.title === "Atelier d'art") {
@@ -2627,6 +2628,20 @@ export default function App() {
                               "El sistema visual de la marca se define por una precisión y claridad extremas, asegurando que cada punto de contacto refleje los valores fundamentales."
                             )}
                           </p>
+                        </div>
+                      </div>
+
+                      {/* UNITY Section 8: Final Impact */}
+                      <div className="space-y-12 pb-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1awpvDABwFf-QFiLyPEbGlRFq240PPoQ7")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1awpvDABwFf-QFiLyPEbGlRFq240PPoQ7" 
+                            alt="UNITY Final Impact"
+                            cinematic={true}
+                          />
                         </div>
                       </div>
                     </>
