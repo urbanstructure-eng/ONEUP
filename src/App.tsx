@@ -594,7 +594,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/14dOgWst9Yy4S-uenpiuTiJSF5owIrT6M",
         "https://lh3.googleusercontent.com/d/16PjI9KDz2z6IFWutld9YKRkwVTNw5Htk",
         "https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez",
-        "https://lh3.googleusercontent.com/d/1490HNQUNQowTbcizbN6YKqIw7YNr3gxG"
+        "https://lh3.googleusercontent.com/d/1490HNQUNQowTbcizbN6YKqIw7YNr3gxG",
+        "https://lh3.googleusercontent.com/d/1ICOrOMmkoRu44W9sTV_SlHGHtOvROMld"
       ];
     }
     if (project.title === "Padelux") {
@@ -1921,6 +1922,20 @@ export default function App() {
                               "La integración de la IA en los servicios de salud requiere un lenguaje visual que equilibre la precisión clínica con la empatía humana, allanando el camino para la próxima generación de atención médica."
                             )}
                           </p>
+                        </div>
+                      </div>
+
+                      {/* Pulso Health Section 8: Brand Essence (Final) */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1ICOrOMmkoRu44W9sTV_SlHGHtOvROMld")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1ICOrOMmkoRu44W9sTV_SlHGHtOvROMld" 
+                            alt="Pulso Health Brand Essence"
+                            cinematic={true}
+                          />
                         </div>
                       </div>
                     </>
