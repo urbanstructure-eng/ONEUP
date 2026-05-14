@@ -1226,10 +1226,15 @@ export default function App() {
             {lang === 'en' ? 'Terms of Service' : lang === 'fr' ? 'Conditions d\'Utilisation' : 'Términos de Servicio'}
           </button>
         </div>
-        <div className="flex items-center gap-2 text-white/40">
+        <a 
+          href="https://oneupdesign.carrd.co/" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="flex items-center gap-2 text-white/40 hover:text-white transition-colors"
+        >
           {lang === 'en' ? 'globally yours!' : lang === 'fr' ? 'mondialement vôtre!' : '¡globalmente tuyos!'}
           <Smile className="w-4 h-4 text-white" />
-        </div>
+        </a>
       </footer>
 
       {/* Contact Form Modal */}
