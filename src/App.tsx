@@ -5,7 +5,17 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, animate } from 'motion/react';
-import { Instagram, Twitter, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu, Play, Pause } from 'lucide-react';
+import { Instagram, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu, Play, Pause } from 'lucide-react';
+
+const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    fill="currentColor" 
+    className={className}
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
 
 declare global {
   interface Window {
@@ -935,7 +945,7 @@ export default function App() {
               className="mt-auto mb-12"
             >
               <div className="flex gap-6">
-                <a href="https://x.com/one_experiences" target="_blank" rel="noopener noreferrer" className="p-3 border border-white/10 rounded-full hover:border-accent transition-colors"><Twitter className="w-5 h-5 text-white/40" /></a>
+                <a href="https://x.com/one_experiences" target="_blank" rel="noopener noreferrer" className="p-3 border border-white/10 rounded-full hover:border-accent transition-colors"><TwitterXIcon className="w-5 h-5 text-white/40" /></a>
                 <a href="https://www.instagram.com/onecx2026/" target="_blank" rel="noopener noreferrer" className="p-3 border border-white/10 rounded-full hover:border-accent transition-colors"><Instagram className="w-5 h-5 text-white/40" /></a>
                 <a href="https://www.linkedin.com/company/112942100/" target="_blank" rel="noopener noreferrer" className="p-3 border border-white/10 rounded-full hover:border-accent transition-colors"><Linkedin className="w-5 h-5 text-white/40" /></a>
               </div>
@@ -1166,7 +1176,7 @@ export default function App() {
             <div className="flex gap-8 justify-center">
               {[
                 { Icon: Instagram, href: "https://www.instagram.com/onecx2026/" },
-                { Icon: Twitter, href: "https://x.com/one_experiences" },
+                { Icon: TwitterXIcon, href: "https://x.com/one_experiences" },
                 { Icon: Linkedin, href: "https://www.linkedin.com/company/112942100/" }
               ].map(({ Icon, href }, i) => (
                 <motion.a 
