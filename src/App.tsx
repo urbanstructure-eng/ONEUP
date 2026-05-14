@@ -1227,7 +1227,7 @@ export default function App() {
           </button>
         </div>
         <a 
-          href="https://oneupdesign.carrd.co/" 
+          href="https://onedigitalexperiences.carrd.co/" 
           target="_blank" 
           rel="noopener noreferrer" 
           className="flex items-center gap-2 text-white/40 hover:text-white transition-colors"
