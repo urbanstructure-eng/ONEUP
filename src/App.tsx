@@ -3033,6 +3033,25 @@ export default function App() {
                               "Este enfoque de marca enfatiza el compromiso con la belleza natural a la vez que atrae a un público exigente. Al centrarse en la pureza de sus ingredientes y la estética de su presentación, la marca comunica eficazmente sus valores."
                             )}
                           </p>
+                          <div className="pt-4">
+                            <a 
+                              href="https://onebiodegradable.vercel.app/" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="inline-flex items-center gap-2 group text-base text-black/60 hover:text-accent font-light border-b border-black/10 hover:border-accent pb-0.5 transition-all"
+                            >
+                              <span>
+                                {lang === 'en' ? (
+                                  "All packaging materials for Organic were printed by ONE Biodegradable Zero Emission Packaging"
+                                ) : lang === 'fr' ? (
+                                  "Tous les matériaux d'emballage d'Organic ont été imprimés par ONE Biodegradable Zero Emission Packaging"
+                                ) : (
+                                  "Todos los materiales de embalaje de Organic fueron impresos por ONE Biodegradable Zero Emission Packaging"
+                                )}
+                              </span>
+                              <ArrowUpRight className="w-4 h-4 text-black/40 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                            </a>
+                          </div>
                         </div>
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
