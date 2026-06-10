@@ -3044,7 +3044,7 @@ export default function App() {
                                 src="https://lh3.googleusercontent.com/d/1FFUL1WsEw6OslEg-mizcFWSC4-e8lpqd" 
                                 alt="ONE Biodegradable Logo" 
                                 referrerPolicy="no-referrer"
-                                className="w-12 h-12 object-contain shrink-0 transition-transform duration-500 ease-out group-hover:scale-110 group-hover:-rotate-3 group-hover:-translate-y-0.5"
+                                className="w-16 h-16 object-contain shrink-0 transition-transform duration-500 ease-out group-hover:scale-110 group-hover:-rotate-3 group-hover:-translate-y-0.5"
                               />
                               <span>
                                 {lang === 'en' ? (
