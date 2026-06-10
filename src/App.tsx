@@ -3038,8 +3038,14 @@ export default function App() {
                               href="https://onebiodegradable.vercel.app/" 
                               target="_blank" 
                               rel="noopener noreferrer" 
-                              className="inline-flex items-center gap-2 group text-base text-black/60 hover:text-accent font-light border-b border-black/10 hover:border-accent pb-0.5 transition-all"
+                              className="inline-flex items-center gap-3 group text-base text-black/60 hover:text-accent font-light border-b border-black/10 hover:border-accent pb-1 transition-all"
                             >
+                              <img 
+                                src="https://lh3.googleusercontent.com/d/12NcitdJrAauCP-DhDo_UFj8RLdZ_XxXh" 
+                                alt="ONE Biodegradable Logo" 
+                                referrerPolicy="no-referrer"
+                                className="w-12 h-12 object-contain shrink-0"
+                              />
                               <span>
                                 {lang === 'en' ? (
                                   "All packaging materials for Organic were printed by ONE Biodegradable Zero Emission Packaging"
