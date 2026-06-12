@@ -1735,6 +1735,32 @@ export default function App() {
                               "Pulso se centra en el branding a través de diversas plataformas, incluyendo web, campañas de correo electrónico y diseño ambiental para una empresa global de salud con IA."
                             )}
                           </p>
+                          <div className="pt-4">
+                            <a 
+                              href="https://pulsoai.fwh.is/?i=1" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="inline-flex items-center gap-3 group text-base text-black/60 hover:text-accent font-light border-b border-black/10 hover:border-accent pb-0.5 transition-all"
+                            >
+                              <svg 
+                                viewBox="0 0 24 24" 
+                                fill="currentColor" 
+                                className="w-4 h-4 text-accent transition-transform duration-500 ease-out group-hover:scale-110 group-hover:rotate-90 shrink-0"
+                              >
+                                <path d="M9 4h6v5h5v6h-5v5H9v-5H4V9h5V4z" />
+                              </svg>
+                              <span>
+                                {lang === 'en' ? (
+                                  "Experience Pulso AI Health"
+                                ) : lang === 'fr' ? (
+                                  "Découvrez Pulso AI Health"
+                                ) : (
+                                  "Experimenta Pulso AI Health"
+                                )}
+                              </span>
+                              <ArrowUpRight className="w-4 h-4 text-black/40 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                            </a>
+                          </div>
                         </div>
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
