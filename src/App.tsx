@@ -3512,20 +3512,6 @@ export default function App() {
                             cinematic={true}
                           />
                         </div>
-                      </div>
-
-                      {/* Campaign Section 3: Motion Experience */}
-                      <div className="space-y-12">
-                        <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1Lr4S469gDL8yvA4-DjDWdAuX17PzdlhB")}
-                        >
-                          <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/1Lr4S469gDL8yvA4-DjDWdAuX17PzdlhB" 
-                            alt="Campaign Motion Experience"
-                            cinematic={true}
-                          />
-                        </div>
                         <div className="max-w-3xl">
                           <div className="pt-4">
                             <a 
@@ -3552,6 +3538,20 @@ export default function App() {
                               <ArrowUpRight className="w-4 h-4 text-black/40 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                             </a>
                           </div>
+                        </div>
+                      </div>
+
+                      {/* Campaign Section 3: Motion Experience */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1Lr4S469gDL8yvA4-DjDWdAuX17PzdlhB")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1Lr4S469gDL8yvA4-DjDWdAuX17PzdlhB" 
+                            alt="Campaign Motion Experience"
+                            cinematic={true}
+                          />
                         </div>
                       </div>
 
