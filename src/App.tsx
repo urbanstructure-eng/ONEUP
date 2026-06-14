@@ -3673,15 +3673,32 @@ export default function App() {
                 </div>
               </main>
 
-              <footer className="px-6 md:px-12 py-12 border-t border-black/10 flex justify-between items-center">
-                <button 
-                  onClick={() => setSelectedProject(null)}
-                  className="text-[10px] uppercase tracking-[0.4em] font-bold hover:text-accent transition-colors"
-                >
-                  {t[lang].modal.close}
-                </button>
-                <div className="text-[10px] uppercase tracking-[0.4em] font-bold text-black/20">
-                  oneup © 2025 {lang === 'en' ? 'Graphic Design & Marketing Studio' : 'Studio de design / Atelier de création'}
+              <footer className="px-6 md:px-12 py-12 border-t border-black/10 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div className="flex-1 flex justify-start w-full md:w-auto">
+                  <button 
+                    onClick={() => setSelectedProject(null)}
+                    className="text-[10px] uppercase tracking-[0.4em] font-bold hover:text-accent transition-colors w-full md:w-auto text-left"
+                  >
+                    {t[lang].modal.close}
+                  </button>
+                </div>
+                
+                <div className="flex justify-center">
+                  <a 
+                    href="https://www.instagram.com/onecx2026/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="group p-2.5 border border-black/10 rounded-full hover:border-black hover:bg-black/5 transition-all inline-flex items-center justify-center bg-white"
+                    title="Instagram"
+                  >
+                    <Instagram className="w-5 h-5 text-black/60 group-hover:text-black transition-colors" />
+                  </a>
+                </div>
+
+                <div className="flex-1 flex justify-end w-full md:w-auto">
+                  <div className="text-[10px] uppercase tracking-[0.4em] font-bold text-black/20 text-center md:text-right w-full">
+                    oneup © 2025 {lang === 'en' ? 'Graphic Design & Marketing Studio' : 'Studio de design / Atelier de création'}
+                  </div>
                 </div>
               </footer>
             </div>
