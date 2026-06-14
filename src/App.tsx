@@ -2453,7 +2453,7 @@ export default function App() {
                         <div className="max-w-3xl">
                           <div className="pt-4">
                             <a 
-                              href="https://onebiodegradable.vercel.app/" 
+                              href="https://www.onebio.shop/" 
                               target="_blank" 
                               rel="noopener noreferrer" 
                               className="inline-flex items-center gap-3 group text-base text-black/60 hover:text-accent font-light border-b border-black/10 hover:border-accent pb-1 transition-all"
@@ -3083,12 +3083,12 @@ export default function App() {
                             ) : lang === 'fr' ? (
                               "Cette approche souligne l'engagement de la marque envers la beauté naturelle tout en séduisant un public exigeant. En se concentrant sur la pureté de ses ingrédients et l'esthétique de sa présentation, la marque communique efficacement ses valeurs."
                             ) : (
-                              "Este enfoque de marca enfatiza el compromiso con la belleza natural a la vez que atrae a un público exigente. Al centrarse en la pureza de sus ingredientes y la estética de su presentación, la marca comunica eficazmente sus valores."
+                              "Este enfoque de marca enfatiza el compromiso con la belleza natural a la vez que atrae a un público exigente. Al centrarse en la pureza de sus ingredients y la estética de su présentation, la marque comunica eficazmente sus valores."
                             )}
                           </p>
                           <div className="pt-4">
                             <a 
-                              href="https://onebiodegradable.vercel.app/" 
+                              href="https://www.onebio.shop/" 
                               target="_blank" 
                               rel="noopener noreferrer" 
                               className="inline-flex items-center gap-3 group text-base text-black/60 hover:text-accent font-light border-b border-black/10 hover:border-accent pb-1 transition-all"
@@ -3515,7 +3515,7 @@ export default function App() {
                         <div className="max-w-3xl">
                           <div className="pt-4">
                             <a 
-                              href="https://onebiodegradable.vercel.app/" 
+                              href="https://www.onebio.shop/" 
                               target="_blank" 
                               rel="noopener noreferrer" 
                               className="inline-flex items-center gap-3 group text-base text-black/60 hover:text-accent font-light border-b border-black/10 hover:border-accent pb-1 transition-all"
