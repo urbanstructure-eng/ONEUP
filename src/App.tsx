@@ -2087,6 +2087,33 @@ export default function App() {
                             "El pádel, un deporte que se originó en Acapulco, México, fue creado por Enrique Corcuera. Este juego innovador ha ganado desde entonces una inmensa popularidad."
                           )}
                         </p>
+                        <div className="max-w-3xl">
+                          <div className="pt-4">
+                            <a 
+                              href="https://www.onebio.shop/" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="inline-flex items-center gap-3 group text-base text-black/60 hover:text-accent font-light border-b border-black/10 hover:border-accent pb-1 transition-all"
+                            >
+                              <img 
+                                src="https://lh3.googleusercontent.com/d/1FFUL1WsEw6OslEg-mizcFWSC4-e8lpqd" 
+                                alt="ONE Biodegradable Logo" 
+                                referrerPolicy="no-referrer"
+                                className="w-16 h-16 object-contain shrink-0 transition-transform duration-500 ease-out group-hover:scale-110 group-hover:-rotate-3 group-hover:-translate-y-0.5"
+                              />
+                              <span>
+                                {lang === 'en' ? (
+                                  "All packaging materials for Padelux were printed by ONE Biodegradable Zero Emission Packaging"
+                                ) : lang === 'fr' ? (
+                                  "Tous les matériaux d'emballage de Padelux ont été imprimés par ONE Biodegradable Zero Emission Packaging"
+                                ) : (
+                                  "Todos los materiales de embalaje de Padelux fueron impresos por ONE Biodegradable Zero Emission Packaging"
+                                )}
+                              </span>
+                              <ArrowUpRight className="w-4 h-4 text-black/40 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                            </a>
+                          </div>
+                        </div>
                       </div>
 
                       {/* Section 5: Vertical Mood Image (Identity) */}
