@@ -3710,7 +3710,7 @@ export default function App() {
                   </button>
                 </div>
                 
-                <div className="flex justify-center">
+                <div className="flex justify-center items-center gap-4">
                   <a 
                     href="https://www.instagram.com/onecx2026/" 
                     target="_blank" 
@@ -3720,6 +3720,16 @@ export default function App() {
                   >
                     <Instagram className="w-5 h-5 text-black/60 group-hover:text-black transition-colors" />
                   </a>
+
+                  <button 
+                    onClick={() => {
+                      document.getElementById("project-modal")?.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="group p-2.5 border border-black/10 rounded-full hover:border-black hover:bg-black/5 transition-all inline-flex items-center justify-center bg-white"
+                    title={lang === 'en' ? "Back to top" : lang === 'fr' ? "Retour en haut" : "Volver arriba"}
+                  >
+                    <ChevronUp className="w-5 h-5 text-black/60 group-hover:text-black transition-colors" />
+                  </button>
                 </div>
 
                 <div className="flex-1 flex justify-end w-full md:w-auto">
