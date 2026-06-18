@@ -137,4 +137,20 @@
   .glass-tile {
     @apply bg-linear-to-b from-[#262626] to-[#1a1a1a] border border-white/10 rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_20px_40px_rgba(0,0,0,0.3)];
   }
+
+  @keyframes marquee {
+    0% {
+      transform: translate3d(0%, 0, 0);
+    }
+    100% {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  .animate-marquee-smooth {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+    will-change: transform;
+  }
 }

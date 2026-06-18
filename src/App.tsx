@@ -1000,6 +1000,7 @@ export default function App() {
             <p className="max-w-md text-lg md:text-xl text-white/70 leading-relaxed mb-12 font-light">
               {t[lang].hero.desc}
             </p>
+
             <div className="flex gap-6 items-center">
               <button 
                 onClick={() => setShowContactForm(true)}
@@ -1013,6 +1014,36 @@ export default function App() {
               </div>
             </div>
           </motion.div>
+        </div>
+
+        {/* Side-to-side edge-to-edge ticker close to the bottom edge of the hero image */}
+        <div className="absolute bottom-0 left-0 w-full z-20 overflow-hidden py-3 border-y border-white/10 select-none bg-black/10 backdrop-blur-[1px]">
+          <div className="animate-marquee-smooth text-[10px] tracking-[0.3em] font-mono text-white uppercase whitespace-nowrap">
+            <div className="flex shrink-0 gap-8 pr-8">
+              <span>TOKIO</span> <span className="text-white/30">&bull;</span>
+              <span>NEW YORK</span> <span className="text-white/30">&bull;</span>
+              <span>TORONTO</span> <span className="text-white/30">&bull;</span>
+              <span>BUENOS AIRES</span> <span className="text-white/30">&bull;</span>
+              <span>PARIS</span> <span className="text-white/30">&bull;</span>
+              <span>AMSTERDAM</span> <span className="text-white/30">&bull;</span>
+              <span>LA</span> <span className="text-white/30">&bull;</span>
+              <span>SAO PAOLO</span> <span className="text-white/30">&bull;</span>
+              <span>TORONTO</span> <span className="text-white/30">&bull;</span>
+              <span>LONDON</span> <span className="text-white/30">&bull;</span>
+            </div>
+            <div className="flex shrink-0 gap-8 pr-8">
+              <span>TOKIO</span> <span className="text-white/30">&bull;</span>
+              <span>NEW YORK</span> <span className="text-white/30">&bull;</span>
+              <span>TORONTO</span> <span className="text-white/30">&bull;</span>
+              <span>BUENOS AIRES</span> <span className="text-white/30">&bull;</span>
+              <span>PARIS</span> <span className="text-white/30">&bull;</span>
+              <span>AMSTERDAM</span> <span className="text-white/30">&bull;</span>
+              <span>LA</span> <span className="text-white/30">&bull;</span>
+              <span>SAO PAOLO</span> <span className="text-white/30">&bull;</span>
+              <span>TORONTO</span> <span className="text-white/30">&bull;</span>
+              <span>LONDON</span> <span className="text-white/30">&bull;</span>
+            </div>
+          </div>
         </div>
       </section>
 
