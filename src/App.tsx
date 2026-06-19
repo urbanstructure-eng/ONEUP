@@ -367,7 +367,7 @@ const CityTicker = () => {
 
   const renderCityList = () => {
     return (
-      <div className="flex shrink-0 gap-8 pr-8 items-center">
+      <div className="flex shrink-0 gap-12 md:gap-16 pr-12 md:pr-16 items-center">
         <span>TOKIO <span className="text-white/40 font-light font-mono ml-1.5">{times["TOKIO"] || "--:--:--"}</span></span> 
         <span className="text-white/30">&bull;</span>
         <span>NEW YORK <span className="text-white/40 font-light font-mono ml-1.5">{times["NEW YORK"] || "--:--:--"}</span></span> 
@@ -393,8 +393,8 @@ const CityTicker = () => {
   };
 
   return (
-    <div className="absolute bottom-0 left-0 w-full z-20 overflow-hidden py-3 border-y border-white/10 select-none bg-black/10 backdrop-blur-[1px]">
-      <div className="animate-marquee-smooth text-[10px] tracking-[0.3em] font-mono text-white uppercase whitespace-nowrap">
+    <div className="absolute bottom-0 left-0 w-full z-20 overflow-hidden py-4 border-y border-white/10 select-none bg-black/25 backdrop-blur-[2px]">
+      <div className="animate-marquee-smooth text-[11px] md:text-[13px] tracking-[0.3em] font-mono text-white uppercase whitespace-nowrap">
         {renderCityList()}
         {renderCityList()}
       </div>
