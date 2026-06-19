@@ -318,6 +318,89 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
   );
 };
 
+const WhiteFlag = ({ country }: { country: string }) => {
+  const baseClass = "inline-block w-[18px] h-[12px] mr-2 px-[1px] opacity-80 align-middle -translate-y-[1px]";
+  
+  switch (country) {
+    case "JP": // JAPAN
+      return (
+        <svg className={baseClass} viewBox="0 0 30 20" fill="none">
+          <rect x="0.5" y="0.5" width="29" height="19" rx="1" stroke="white" strokeWidth="1.5" />
+          <circle cx="15" cy="10" r="4.5" fill="white" />
+        </svg>
+      );
+    case "US": // USA
+      return (
+        <svg className={baseClass} viewBox="0 0 30 20" fill="none">
+          <rect x="0.5" y="0.5" width="29" height="19" rx="1" stroke="white" strokeWidth="1.5" />
+          <rect x="0.5" y="0.5" width="12" height="9" fill="white" fillOpacity="0.8" />
+          <line x1="12" y1="2.5" x2="30" y2="2.5" stroke="white" strokeWidth="1" strokeOpacity="0.8" />
+          <line x1="12" y1="5.5" x2="30" y2="5.5" stroke="white" strokeWidth="1" strokeOpacity="0.8" />
+          <line x1="12" y1="8.5" x2="30" y2="8.5" stroke="white" strokeWidth="1" strokeOpacity="0.8" />
+          <line x1="0" y1="12.5" x2="30" y2="12.5" stroke="white" strokeWidth="1" strokeOpacity="0.8" />
+          <line x1="0" y1="15.5" x2="30" y2="15.5" stroke="white" strokeWidth="1" strokeOpacity="0.8" />
+          <line x1="0" y1="18.5" x2="30" y2="18.5" stroke="white" strokeWidth="1" strokeOpacity="0.8" />
+        </svg>
+      );
+    case "CA": // CANADA
+      return (
+        <svg className={baseClass} viewBox="0 0 30 20" fill="none">
+          <rect x="0.5" y="0.5" width="29" height="19" rx="1" stroke="white" strokeWidth="1.5" />
+          <rect x="0.5" y="0.5" width="7" height="19" fill="white" fillOpacity="0.8" />
+          <rect x="22.5" y="0.5" width="7" height="19" fill="white" fillOpacity="0.8" />
+          <path d="M15,5 L16.5,8.5 L19.5,8 L18.5,10.5 L20,12.5 L17,12 L15.5,15 L15,13 L14.5,15 L13,12 L10,12.5 L11.5,10.5 L10.5,8 L13.5,8.5 Z" fill="white" fillOpacity="0.8" />
+        </svg>
+      );
+    case "AR": // ARGENTINA
+      return (
+        <svg className={baseClass} viewBox="0 0 30 20" fill="none">
+          <rect x="0.5" y="0.5" width="29" height="19" rx="1" stroke="white" strokeWidth="1.5" />
+          <rect x="0.5" y="0.5" width="29" height="5.5" fill="white" fillOpacity="0.8" />
+          <rect x="0.5" y="14" width="29" height="5.5" fill="white" fillOpacity="0.8" />
+          <circle cx="15" cy="10" r="2" fill="white" fillOpacity="0.8" />
+        </svg>
+      );
+    case "FR": // FRANCE
+      return (
+        <svg className={baseClass} viewBox="0 0 30 20" fill="none">
+          <rect x="0.5" y="0.5" width="29" height="19" rx="1" stroke="white" strokeWidth="1.5" />
+          <rect x="0.5" y="0.5" width="9.5" height="19" fill="white" fillOpacity="0.3" />
+          <rect x="10" y="0.5" width="10" height="19" fill="white" fillOpacity="0.1" />
+          <rect x="20" y="0.5" width="9.5" height="19" fill="white" fillOpacity="0.8" />
+        </svg>
+      );
+    case "NL": // NETHERLANDS
+      return (
+        <svg className={baseClass} viewBox="0 0 30 20" fill="none">
+          <rect x="0.5" y="0.5" width="29" height="19" rx="1" stroke="white" strokeWidth="1.5" />
+          <rect x="0.5" y="0.5" width="29" height="6" fill="white" fillOpacity="0.8" />
+          <rect x="0.5" y="6.5" width="29" height="7" fill="white" fillOpacity="0.1" />
+          <rect x="0.5" y="13.5" width="29" height="6" fill="white" fillOpacity="0.3" />
+        </svg>
+      );
+    case "BR": // BRAZIL
+      return (
+        <svg className={baseClass} viewBox="0 0 30 20" fill="none">
+          <rect x="0.5" y="0.5" width="29" height="19" rx="1" stroke="white" strokeWidth="1.5" />
+          <polygon points="15,3 27,10 15,17 3,10" stroke="white" strokeWidth="1.2" fill="none" strokeOpacity="0.8" />
+          <circle cx="15" cy="10" r="3.5" fill="white" fillOpacity="0.8" />
+        </svg>
+      );
+    case "GB": // UK
+      return (
+        <svg className={baseClass} viewBox="0 0 30 20" fill="none">
+          <rect x="0.5" y="0.5" width="29" height="19" rx="1" stroke="white" strokeWidth="1.5" />
+          <line x1="1" y1="1" x2="29" y2="19" stroke="white" strokeWidth="1" strokeOpacity="0.4" />
+          <line x1="29" y1="1" x2="1" y2="19" stroke="white" strokeWidth="1" strokeOpacity="0.4" />
+          <rect x="13.5" y="0.5" width="3" height="19" fill="white" fillOpacity="0.9" />
+          <rect x="0.5" y="8.5" width="29" height="3" fill="white" fillOpacity="0.9" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+};
+
 const CityTicker = () => {
   const [times, setTimes] = useState<Record<string, string>>({});
 
@@ -368,25 +451,25 @@ const CityTicker = () => {
   const renderCityList = () => {
     return (
       <div className="flex shrink-0 gap-12 md:gap-16 pr-12 md:pr-16 items-center">
-        <span>TOKIO <span className="text-white/40 font-light font-mono ml-1.5">{times["TOKIO"] || "--:--:--"}</span></span> 
+        <span><WhiteFlag country="JP" /> TOKIO <span className="text-white/40 font-light font-mono ml-1.5">{times["TOKIO"] || "--:--:--"}</span></span> 
         <span className="text-white/30">&bull;</span>
-        <span>NEW YORK <span className="text-white/40 font-light font-mono ml-1.5">{times["NEW YORK"] || "--:--:--"}</span></span> 
+        <span><WhiteFlag country="US" /> NEW YORK <span className="text-white/40 font-light font-mono ml-1.5">{times["NEW YORK"] || "--:--:--"}</span></span> 
         <span className="text-white/30">&bull;</span>
-        <span>TORONTO <span className="text-white/40 font-light font-mono ml-1.5">{times["TORONTO"] || "--:--:--"}</span></span> 
+        <span><WhiteFlag country="CA" /> TORONTO <span className="text-white/40 font-light font-mono ml-1.5">{times["TORONTO"] || "--:--:--"}</span></span> 
         <span className="text-white/30">&bull;</span>
-        <span>BUENOS AIRES <span className="text-white/40 font-light font-mono ml-1.5">{times["BUENOS AIRES"] || "--:--:--"}</span></span> 
+        <span><WhiteFlag country="AR" /> BUENOS AIRES <span className="text-white/40 font-light font-mono ml-1.5">{times["BUENOS AIRES"] || "--:--:--"}</span></span> 
         <span className="text-white/30">&bull;</span>
-        <span>PARIS <span className="text-white/40 font-light font-mono ml-1.5">{times["PARIS"] || "--:--:--"}</span></span> 
+        <span><WhiteFlag country="FR" /> PARIS <span className="text-white/40 font-light font-mono ml-1.5">{times["PARIS"] || "--:--:--"}</span></span> 
         <span className="text-white/30">&bull;</span>
-        <span>AMSTERDAM <span className="text-white/40 font-light font-mono ml-1.5">{times["AMSTERDAM"] || "--:--:--"}</span></span> 
+        <span><WhiteFlag country="NL" /> AMSTERDAM <span className="text-white/40 font-light font-mono ml-1.5">{times["AMSTERDAM"] || "--:--:--"}</span></span> 
         <span className="text-white/30">&bull;</span>
-        <span>LA <span className="text-white/40 font-light font-mono ml-1.5">{times["LA"] || "--:--:--"}</span></span> 
+        <span><WhiteFlag country="US" /> LA <span className="text-white/40 font-light font-mono ml-1.5">{times["LA"] || "--:--:--"}</span></span> 
         <span className="text-white/30">&bull;</span>
-        <span>SAO PAOLO <span className="text-white/40 font-light font-mono ml-1.5">{times["SAO PAOLO"] || "--:--:--"}</span></span> 
+        <span><WhiteFlag country="BR" /> SAO PAOLO <span className="text-white/40 font-light font-mono ml-1.5">{times["SAO PAOLO"] || "--:--:--"}</span></span> 
         <span className="text-white/30">&bull;</span>
-        <span>TORONTO <span className="text-white/40 font-light font-mono ml-1.5">{times["TORONTO_2"] || "--:--:--"}</span></span> 
+        <span><WhiteFlag country="CA" /> TORONTO <span className="text-white/40 font-light font-mono ml-1.5">{times["TORONTO_2"] || "--:--:--"}</span></span> 
         <span className="text-white/30">&bull;</span>
-        <span>LONDON <span className="text-white/40 font-light font-mono ml-1.5">{times["LONDON"] || "--:--:--"}</span></span>
+        <span><WhiteFlag country="GB" /> LONDON <span className="text-white/40 font-light font-mono ml-1.5">{times["LONDON"] || "--:--:--"}</span></span>
         <span className="text-white/30">&bull;</span>
       </div>
     );
