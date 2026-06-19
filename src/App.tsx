@@ -318,6 +318,90 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
   );
 };
 
+const CityTicker = () => {
+  const [times, setTimes] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    const cities = [
+      { id: "TOKIO", timezone: "Asia/Tokyo" },
+      { id: "NEW YORK", timezone: "America/New_York" },
+      { id: "TORONTO", timezone: "America/Toronto" },
+      { id: "BUENOS AIRES", timezone: "America/Argentina/Buenos_Aires" },
+      { id: "PARIS", timezone: "Europe/Paris" },
+      { id: "AMSTERDAM", timezone: "Europe/Amsterdam" },
+      { id: "LA", timezone: "America/Los_Angeles" },
+      { id: "SAO PAOLO", timezone: "America/Sao_Paulo" },
+      { id: "TORONTO_2", timezone: "America/Toronto" },
+      { id: "LONDON", timezone: "Europe/London" },
+    ];
+
+    const updateTimes = () => {
+      const now = new Date();
+      const updated: Record<string, string> = {};
+      cities.forEach(city => {
+        try {
+          const formatter = new Intl.DateTimeFormat("en-US", {
+            timeZone: city.timezone,
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false,
+          });
+          // Ensure double digit hours (Intl.DateTimeFormat can sometimes omit leading zero on 2-digit format depending on locale setup, so we handle it)
+          const parts = formatter.formatToParts(now);
+          const hour = parts.find(p => p.type === 'hour')?.value || "00";
+          const minute = parts.find(p => p.type === 'minute')?.value || "00";
+          const second = parts.find(p => p.type === 'second')?.value || "00";
+          updated[city.id] = `${hour.padStart(2, '0')}:${minute.padStart(2, '0')}:${second.padStart(2, '0')}`;
+        } catch (e) {
+          updated[city.id] = "00:00:00";
+        }
+      });
+      setTimes(updated);
+    };
+
+    updateTimes();
+    const interval = setInterval(updateTimes, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const renderCityList = () => {
+    return (
+      <div className="flex shrink-0 gap-8 pr-8 items-center">
+        <span>TOKIO <span className="text-white/40 font-light font-mono ml-1.5">{times["TOKIO"] || "--:--:--"}</span></span> 
+        <span className="text-white/30">&bull;</span>
+        <span>NEW YORK <span className="text-white/40 font-light font-mono ml-1.5">{times["NEW YORK"] || "--:--:--"}</span></span> 
+        <span className="text-white/30">&bull;</span>
+        <span>TORONTO <span className="text-white/40 font-light font-mono ml-1.5">{times["TORONTO"] || "--:--:--"}</span></span> 
+        <span className="text-white/30">&bull;</span>
+        <span>BUENOS AIRES <span className="text-white/40 font-light font-mono ml-1.5">{times["BUENOS AIRES"] || "--:--:--"}</span></span> 
+        <span className="text-white/30">&bull;</span>
+        <span>PARIS <span className="text-white/40 font-light font-mono ml-1.5">{times["PARIS"] || "--:--:--"}</span></span> 
+        <span className="text-white/30">&bull;</span>
+        <span>AMSTERDAM <span className="text-white/40 font-light font-mono ml-1.5">{times["AMSTERDAM"] || "--:--:--"}</span></span> 
+        <span className="text-white/30">&bull;</span>
+        <span>LA <span className="text-white/40 font-light font-mono ml-1.5">{times["LA"] || "--:--:--"}</span></span> 
+        <span className="text-white/30">&bull;</span>
+        <span>SAO PAOLO <span className="text-white/40 font-light font-mono ml-1.5">{times["SAO PAOLO"] || "--:--:--"}</span></span> 
+        <span className="text-white/30">&bull;</span>
+        <span>TORONTO <span className="text-white/40 font-light font-mono ml-1.5">{times["TORONTO_2"] || "--:--:--"}</span></span> 
+        <span className="text-white/30">&bull;</span>
+        <span>LONDON <span className="text-white/40 font-light font-mono ml-1.5">{times["LONDON"] || "--:--:--"}</span></span>
+        <span className="text-white/30">&bull;</span>
+      </div>
+    );
+  };
+
+  return (
+    <div className="absolute bottom-0 left-0 w-full z-20 overflow-hidden py-3 border-y border-white/10 select-none bg-black/10 backdrop-blur-[1px]">
+      <div className="animate-marquee-smooth text-[10px] tracking-[0.3em] font-mono text-white uppercase whitespace-nowrap">
+        {renderCityList()}
+        {renderCityList()}
+      </div>
+    </div>
+  );
+};
+
 export default function App() {
   const { scrollY } = useScroll();
   const smoothScrollY = useSpring(scrollY, {
@@ -1017,34 +1101,7 @@ export default function App() {
         </div>
 
         {/* Side-to-side edge-to-edge ticker close to the bottom edge of the hero image */}
-        <div className="absolute bottom-0 left-0 w-full z-20 overflow-hidden py-3 border-y border-white/10 select-none bg-black/10 backdrop-blur-[1px]">
-          <div className="animate-marquee-smooth text-[10px] tracking-[0.3em] font-mono text-white uppercase whitespace-nowrap">
-            <div className="flex shrink-0 gap-8 pr-8">
-              <span>TOKIO</span> <span className="text-white/30">&bull;</span>
-              <span>NEW YORK</span> <span className="text-white/30">&bull;</span>
-              <span>TORONTO</span> <span className="text-white/30">&bull;</span>
-              <span>BUENOS AIRES</span> <span className="text-white/30">&bull;</span>
-              <span>PARIS</span> <span className="text-white/30">&bull;</span>
-              <span>AMSTERDAM</span> <span className="text-white/30">&bull;</span>
-              <span>LA</span> <span className="text-white/30">&bull;</span>
-              <span>SAO PAOLO</span> <span className="text-white/30">&bull;</span>
-              <span>TORONTO</span> <span className="text-white/30">&bull;</span>
-              <span>LONDON</span> <span className="text-white/30">&bull;</span>
-            </div>
-            <div className="flex shrink-0 gap-8 pr-8">
-              <span>TOKIO</span> <span className="text-white/30">&bull;</span>
-              <span>NEW YORK</span> <span className="text-white/30">&bull;</span>
-              <span>TORONTO</span> <span className="text-white/30">&bull;</span>
-              <span>BUENOS AIRES</span> <span className="text-white/30">&bull;</span>
-              <span>PARIS</span> <span className="text-white/30">&bull;</span>
-              <span>AMSTERDAM</span> <span className="text-white/30">&bull;</span>
-              <span>LA</span> <span className="text-white/30">&bull;</span>
-              <span>SAO PAOLO</span> <span className="text-white/30">&bull;</span>
-              <span>TORONTO</span> <span className="text-white/30">&bull;</span>
-              <span>LONDON</span> <span className="text-white/30">&bull;</span>
-            </div>
-          </div>
-        </div>
+        <CityTicker />
       </section>
 
       {/* Featured Work */}
