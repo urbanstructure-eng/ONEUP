@@ -1,6 +1,8 @@
 {
-  "name": "oneup | Experimental Graphic Design & Marketing Studio",
-  "description": "oneup is an experimental graphic design and marketing studio specializing in distinctive visual identities, digital experiences, and innovative campaign strategies that redefine brand presence.",
+  "name": "oneup | Global Experience Design, UX/CX, Branding & AI-UX Studio",
+  "description": "oneup is a leading global experimental design and marketing studio specializing in Experience Design (UX/CX), Branding, Product Design, AI-UX Design, and Digital Sustainability.",
   "requestFramePermissions": [],
-  "majorCapabilities": []
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

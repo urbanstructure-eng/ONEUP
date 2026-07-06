@@ -387,6 +387,53 @@ export default function App() {
   const [lang, setLang] = useState<'en' | 'fr' | 'es'>('en');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Dynamic Multi-lingual SEO Optimizer for Google Search Rankings
+  useEffect(() => {
+    // 1. Update the document's HTML lang attribute
+    document.documentElement.lang = lang;
+
+    // 2. Define translation mappings for titles & descriptions to maximize localization SEO indexing
+    const seoContent = {
+      en: {
+        title: "oneup | Global Experience Design, UX/CX, Branding & AI-UX Studio",
+        description: "oneup is a leading global experimental design studio. We specialize in Experience Design (UX/CX), Branding, Product Design, AI-UX Design, and Digital Sustainability to elevate brand presence and drive leads globally."
+      },
+      fr: {
+        title: "oneup | Studio de Design Expérimental Global, UX/CX, Branding & AI-UX",
+        description: "oneup est un studio de design expérimental de premier plan, spécialisé en design d'expérience (UX/CX), identité de marque, design de produits, design AI-UX et éco-conception numérique."
+      },
+      es: {
+        title: "oneup | Estudio de Diseño Experimental Global, UX/CX, Branding y AI-UX",
+        description: "oneup es un estudio líder en diseño experimental global y marketing, especializado en diseño de experiencias (UX/CX), branding, diseño de productos, diseño AI-UX y sostenibilidad digital."
+      }
+    };
+
+    const currentSeo = seoContent[lang] || seoContent.en;
+
+    // 3. Update the browser document title
+    document.title = currentSeo.title;
+
+    // 4. Update core meta description
+    const descMeta = document.querySelector('meta[name="description"]');
+    if (descMeta) {
+      descMeta.setAttribute("content", currentSeo.description);
+    }
+
+    // 5. Update Open Graph and Twitter elements dynamically
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute("content", currentSeo.title);
+
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute("content", currentSeo.description);
+
+    const twTitle = document.querySelector('meta[property="twitter:title"]');
+    if (twTitle) twTitle.setAttribute("content", currentSeo.title);
+
+    const twDesc = document.querySelector('meta[property="twitter:description"]');
+    if (twDesc) twDesc.setAttribute("content", currentSeo.description);
+
+  }, [lang]);
+
   const t = {
     en: {
       nav: { work: 'work', services: 'services', about: 'about', contact: 'contact' },
