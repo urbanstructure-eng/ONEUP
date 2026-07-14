@@ -65,7 +65,7 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
     />
     <div 
       style={{ writingMode: 'vertical-rl' }} 
-      className="absolute bottom-6 right-3 md:right-4 text-[9px] md:text-[10px] text-white/85 font-mono uppercase tracking-[0.25em] select-none pointer-events-none z-10 mix-blend-difference"
+      className="absolute bottom-6 right-3 md:right-4 text-[9px] md:text-[10px] text-white font-mono uppercase tracking-[0.25em] select-none pointer-events-none z-10 mix-blend-difference"
     >
       ONEUP © 2025
     </div>
@@ -96,7 +96,7 @@ const CinematicScrollImage = ({ src, alt, className }: { src: string, alt: strin
       <div className="absolute inset-0 bg-black/15 pointer-events-none" />
       <div 
         style={{ writingMode: 'vertical-rl' }} 
-        className="absolute bottom-6 right-3 md:right-4 text-[9px] md:text-[10px] text-white/85 font-mono uppercase tracking-[0.25em] select-none pointer-events-none z-10 mix-blend-difference"
+        className="absolute bottom-6 right-3 md:right-4 text-[9px] md:text-[10px] text-white font-mono uppercase tracking-[0.25em] select-none pointer-events-none z-10 mix-blend-difference"
       >
         ONEUP © 2025
       </div>
@@ -332,7 +332,7 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
         {isLoaded && (
           <div 
             style={{ writingMode: 'vertical-rl' }} 
-            className="absolute bottom-6 right-4 text-[9px] md:text-[10px] text-white/85 font-mono uppercase tracking-[0.25em] select-none pointer-events-none z-10 mix-blend-difference"
+            className="absolute bottom-6 right-4 text-[9px] md:text-[10px] text-white font-mono uppercase tracking-[0.25em] select-none pointer-events-none z-10 mix-blend-difference"
           >
             ONEUP © 2025
           </div>
@@ -2050,7 +2050,7 @@ export default function App() {
                           <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-neutral-50/90 to-transparent pointer-events-none" />
                           <div 
                             style={{ writingMode: 'vertical-rl' }} 
-                            className="absolute bottom-6 right-3 md:right-4 text-[9px] md:text-[10px] text-white/85 font-mono uppercase tracking-[0.25em] select-none pointer-events-none z-10 mix-blend-difference"
+                            className="absolute bottom-6 right-3 md:right-4 text-[9px] md:text-[10px] text-white font-mono uppercase tracking-[0.25em] select-none pointer-events-none z-10 mix-blend-difference"
                           >
                             ONEUP © 2025
                           </div>
