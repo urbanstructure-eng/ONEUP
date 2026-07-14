@@ -63,7 +63,10 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
       viewport={{ once: true }}
       transition={{ duration: cinematic ? 2.5 : 1, ease: [0.22, 1, 0.36, 1] }}
     />
-    <div className="absolute bottom-3 right-4 text-[9px] md:text-[10px] text-white/35 font-mono uppercase tracking-[0.2em] select-none pointer-events-none z-10 mix-blend-difference">
+    <div 
+      style={{ writingMode: 'vertical-rl' }} 
+      className="absolute bottom-6 right-3 md:right-4 text-[9px] md:text-[10px] text-white/85 font-mono uppercase tracking-[0.25em] select-none pointer-events-none z-10 mix-blend-difference"
+    >
       ONEUP © 2025
     </div>
   </div>
@@ -91,7 +94,10 @@ const CinematicScrollImage = ({ src, alt, className }: { src: string, alt: strin
         className="w-full h-full object-cover transform-gpu"
       />
       <div className="absolute inset-0 bg-black/15 pointer-events-none" />
-      <div className="absolute bottom-3 right-4 text-[9px] md:text-[10px] text-white/35 font-mono uppercase tracking-[0.2em] select-none pointer-events-none z-10 mix-blend-difference">
+      <div 
+        style={{ writingMode: 'vertical-rl' }} 
+        className="absolute bottom-6 right-3 md:right-4 text-[9px] md:text-[10px] text-white/85 font-mono uppercase tracking-[0.25em] select-none pointer-events-none z-10 mix-blend-difference"
+      >
         ONEUP © 2025
       </div>
     </div>
@@ -324,7 +330,10 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
           }}
         />
         {isLoaded && (
-          <div className="absolute bottom-4 right-4 text-[9px] md:text-[10px] text-white/35 font-mono uppercase tracking-[0.2em] select-none pointer-events-none z-10 mix-blend-difference">
+          <div 
+            style={{ writingMode: 'vertical-rl' }} 
+            className="absolute bottom-6 right-4 text-[9px] md:text-[10px] text-white/85 font-mono uppercase tracking-[0.25em] select-none pointer-events-none z-10 mix-blend-difference"
+          >
             ONEUP © 2025
           </div>
         )}
@@ -2039,7 +2048,10 @@ export default function App() {
                           {/* Subtle Gradients to fade edges */}
                           <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-neutral-50/90 to-transparent pointer-events-none" />
                           <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-neutral-50/90 to-transparent pointer-events-none" />
-                          <div className="absolute bottom-3 right-4 text-[9px] md:text-[10px] text-white/35 font-mono uppercase tracking-[0.2em] select-none pointer-events-none z-10 mix-blend-difference">
+                          <div 
+                            style={{ writingMode: 'vertical-rl' }} 
+                            className="absolute bottom-6 right-3 md:right-4 text-[9px] md:text-[10px] text-white/85 font-mono uppercase tracking-[0.25em] select-none pointer-events-none z-10 mix-blend-difference"
+                          >
                             ONEUP © 2025
                           </div>
                         </div>
