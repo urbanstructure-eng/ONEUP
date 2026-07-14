@@ -51,17 +51,22 @@ const PROJECTS: Project[] = [
 ];
 
 const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", contain = false, cinematic = false }: { src: string, alt: string, className?: string, objectPosition?: string, contain?: boolean, cinematic?: boolean }) => (
-  <motion.img
-    src={src}
-    alt={alt}
-    className={`${className} w-full h-full ${contain ? 'object-contain p-8' : 'object-cover'}`}
-    style={{ objectPosition, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
-    referrerPolicy="no-referrer"
-    initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: cinematic ? 2.5 : 1, ease: [0.22, 1, 0.36, 1] }}
-  />
+  <div className="relative w-full h-full overflow-hidden">
+    <motion.img
+      src={src}
+      alt={alt}
+      className={`${className || ''} w-full h-full ${contain ? 'object-contain p-8' : 'object-cover'}`}
+      style={{ objectPosition, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
+      referrerPolicy="no-referrer"
+      initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: cinematic ? 2.5 : 1, ease: [0.22, 1, 0.36, 1] }}
+    />
+    <div className="absolute bottom-3 right-4 text-[9px] md:text-[10px] text-white/35 font-mono uppercase tracking-[0.2em] select-none pointer-events-none z-10 mix-blend-difference">
+      ONEUP © 2025
+    </div>
+  </div>
 );
 
 const CinematicScrollImage = ({ src, alt, className }: { src: string, alt: string, className?: string }) => {
@@ -86,6 +91,9 @@ const CinematicScrollImage = ({ src, alt, className }: { src: string, alt: strin
         className="w-full h-full object-cover transform-gpu"
       />
       <div className="absolute inset-0 bg-black/15 pointer-events-none" />
+      <div className="absolute bottom-3 right-4 text-[9px] md:text-[10px] text-white/35 font-mono uppercase tracking-[0.2em] select-none pointer-events-none z-10 mix-blend-difference">
+        ONEUP © 2025
+      </div>
     </div>
   );
 };
@@ -297,23 +305,30 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
           Preview unavailable
         </div>
       )}
-      <motion.img
-        key={src}
-        src={src}
-        alt={alt}
-        onLoad={() => setIsLoaded(true)}
-        onError={() => setError(true)}
-        className={`max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl`}
-        referrerPolicy="no-referrer"
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 0.95 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        onClick={(e) => {
-          e.stopPropagation();
-          onNext();
-        }}
-      />
+      <div className="relative">
+        <motion.img
+          key={src}
+          src={src}
+          alt={alt}
+          onLoad={() => setIsLoaded(true)}
+          onError={() => setError(true)}
+          className={`max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl`}
+          referrerPolicy="no-referrer"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 0.95 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          onClick={(e) => {
+            e.stopPropagation();
+            onNext();
+          }}
+        />
+        {isLoaded && (
+          <div className="absolute bottom-4 right-4 text-[9px] md:text-[10px] text-white/35 font-mono uppercase tracking-[0.2em] select-none pointer-events-none z-10 mix-blend-difference">
+            ONEUP © 2025
+          </div>
+        )}
+      </div>
     </div>
   );
 };
@@ -2024,6 +2039,9 @@ export default function App() {
                           {/* Subtle Gradients to fade edges */}
                           <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-neutral-50/90 to-transparent pointer-events-none" />
                           <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-neutral-50/90 to-transparent pointer-events-none" />
+                          <div className="absolute bottom-3 right-4 text-[9px] md:text-[10px] text-white/35 font-mono uppercase tracking-[0.2em] select-none pointer-events-none z-10 mix-blend-difference">
+                            ONEUP © 2025
+                          </div>
                         </div>
                       </div>
 
