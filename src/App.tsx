@@ -1309,14 +1309,14 @@ export default function App() {
       {/* Post-Contact Signature Image */}
       <div className="relative z-10 flex justify-center py-24 bg-[#1a1a1a] border-t border-white/5">
         <a 
-          href="https://www.onenow.shop/" 
+          href="https://www.onedigital.company/" 
           target="_blank" 
           rel="noopener noreferrer"
           className="block group"
         >
           <img 
             src="https://lh3.googleusercontent.com/d/1M-EDoDT8Ex1EWXMUU8HaPfhECDSggPxq" 
-            alt="Studio Signature" 
+            alt="ONe Digital Experiences" 
             className="h-32 md:h-48 w-auto transition-transform duration-700 group-hover:scale-105 rounded-2xl"
             referrerPolicy="no-referrer"
           />
@@ -1348,7 +1348,7 @@ export default function App() {
           </button>
         </div>
         <a 
-          href="https://onedigitalexperiences.carrd.co/" 
+          href="https://www.onedigital.company/" 
           target="_blank" 
           rel="noopener noreferrer" 
           className="flex items-center gap-2 text-white/40 hover:text-white transition-colors"
