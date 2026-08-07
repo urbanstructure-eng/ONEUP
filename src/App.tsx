@@ -1063,28 +1063,40 @@ export default function App() {
 
       {/* Hero Section */}
       <section className="relative h-[100dvh] flex flex-col justify-center px-6 md:px-12 pt-20 overflow-hidden border-b border-white/10">
-        {/* Animated Background Image */}
-        <div className="absolute inset-0 z-0">
+        {/* Animated Background Image with Cinematic Motion */}
+        <div className="absolute inset-0 z-0 bg-black overflow-hidden">
           <motion.div
             style={{ y: heroImageY }}
-            initial={{ scale: 1.1, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 2, ease: "easeOut" }}
             className="w-full h-full"
           >
             <motion.img
-              src="https://lh3.googleusercontent.com/d/1K8jMInFU6_CVgRk-ZYRpcSdKnmXkmVKz"
+              src="https://lh3.googleusercontent.com/d/1igyns2Fcx9I3sPtdEn-jMyBHzoSnOsje"
               alt="Hero Background"
               referrerPolicy="no-referrer"
-              className="w-full h-full object-cover"
-              initial={{ scale: 1 }}
-              animate={{ scale: 1.08 }}
+              className="w-full h-full object-cover brightness-[0.82] contrast-[1.15] saturate-[1.1]"
+              initial={{ scale: 1, x: "0%", y: "0%", rotate: 0 }}
+              animate={{ 
+                scale: [1, 1.15, 1.08, 1],
+                x: ["0%", "-2%", "1.5%", "0%"],
+                y: ["0%", "1.5%", "-1%", "0%"],
+                rotate: [0, 0.3, -0.3, 0]
+              }}
               transition={{
-                duration: 15,
-                ease: "easeOut"
+                duration: 25,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut"
               }}
             />
           </motion.div>
+
+          {/* Cinematic Vignette & Lighting Overlays */}
+          <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black via-black/30 to-black/70" />
+          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,transparent_25%,rgba(0,0,0,0.85)_100%)]" />
+          <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-blue-950/20 via-transparent to-amber-950/20 mix-blend-screen" />
         </div>
         
         <div className="relative z-20 max-w-5xl p-0">
