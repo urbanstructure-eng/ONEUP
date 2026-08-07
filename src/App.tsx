@@ -1073,7 +1073,7 @@ export default function App() {
             className="w-full h-full"
           >
             <motion.img
-              src="https://lh3.googleusercontent.com/d/1cRgnMzlCeBFa0zsTzaUV5l3aSg1wy4l_"
+              src="https://lh3.googleusercontent.com/d/1K8jMInFU6_CVgRk-ZYRpcSdKnmXkmVKz"
               alt="Hero Background"
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover"
@@ -1096,7 +1096,7 @@ export default function App() {
             <div className="inline-block px-3 py-1 bg-white/10 border border-white/20 text-white text-[10px] font-bold tracking-widest uppercase mb-8">
               {t[lang].hero.tag}
             </div>
-            <h1 className="text-[9vw] md:text-[6.5vw] font-bold leading-[0.85] tracking-tighter mb-12 text-accent">
+            <h1 className="text-[9vw] md:text-[6.5vw] font-bold leading-[0.85] tracking-tighter mb-12 text-white">
               {t[lang].hero.title.split('<br />').map((line, i) => (
                 <React.Fragment key={i}>
                   {line}
