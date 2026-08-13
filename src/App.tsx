@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, animate } from 'motion/react';
 import { Instagram, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu, Play, Pause } from 'lucide-react';
+const stockiqHomeImage = "https://lh3.googleusercontent.com/d/115or6C4Imd0kOm2-lPIpXVdl1rvdyfNN";
 const stockiqHero = "https://lh3.googleusercontent.com/d/12y_h1qFMeTMrJovWZ6851wOYtcO982OX";
 const stockiqOverviewImage = "https://lh3.googleusercontent.com/d/1URFuOF_YAMhKNzgEUEnS_UuyczyxtUZ0";
 const stockiqDetailImage = "https://lh3.googleusercontent.com/d/1lwn6PfXHxqz96caYITF90wi9vU8YyNy0";
@@ -44,7 +45,7 @@ interface Project {
 }
 
 const PROJECTS: Project[] = [
-  { id: 20, title: "StockIQ", category: "AI Retail Inventory / Branding & Product Design", image: stockiqHero, heroImage: stockiqHero, colSpan: "md:col-span-12", location: "San Francisco, CA / New York, NY", year: "2026", role: "Multidisciplinary Designer" },
+  { id: 20, title: "StockIQ", category: "AI Retail Inventory / Branding & Product Design", image: stockiqHomeImage, heroImage: stockiqHero, colSpan: "md:col-span-12", location: "San Francisco, CA / New York, NY", year: "2026", role: "Multidisciplinary Designer" },
   { id: 11, title: "Voltique", category: "Service Design", image: "https://lh3.googleusercontent.com/d/1gusf69CAd1am1JcsIyc1qiGekzmZLEUP", colSpan: "md:col-span-12", year: "2024", role: "Lead Design" },
   { id: 12, title: "Pulso Health", category: "AI Health / Branding", image: "https://lh3.googleusercontent.com/d/1ONCooNfgYuYu5trUJrFZcZq1HxYSFZrr", colSpan: "md:col-span-4", year: "2023", role: "Brand Identity" },
   { id: 13, title: "BuyDrop", category: "Logistic Company", image: "https://lh3.googleusercontent.com/d/1qpd246hL-TbgCSgf9j2qxBk15FMW2FuF", heroImage: "https://lh3.googleusercontent.com/d/1nZNLMGhECM67AST6qbGCmYiXUhN0RF-C", colSpan: "md:col-span-4", year: "2024", role: "Creative Direction" },
