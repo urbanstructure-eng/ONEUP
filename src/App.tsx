@@ -6,6 +6,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, animate } from 'motion/react';
 import { Instagram, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu, Play, Pause } from 'lucide-react';
+const stockiqHero = "https://lh3.googleusercontent.com/d/12y_h1qFMeTMrJovWZ6851wOYtcO982OX";
+const stockiqOverviewImage = "https://lh3.googleusercontent.com/d/1URFuOF_YAMhKNzgEUEnS_UuyczyxtUZ0";
+const stockiqDetailImage = "https://lh3.googleusercontent.com/d/1lwn6PfXHxqz96caYITF90wi9vU8YyNy0";
+const stockiqBrandImage = "https://lh3.googleusercontent.com/d/134Il3V5cWFOeeLsdWqmgbvElSCCmdW7M";
+const stockiqSystemImage = "https://lh3.googleusercontent.com/d/1-Rt1RAl-MrnWUQ3fIWyXAoHZgOrLnpLy";
+const stockiqOutcomeImage = "https://lh3.googleusercontent.com/d/1iJoSEuskYyCsGuAFhE8CGRBaMQ_cD5GV";
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg 
@@ -38,6 +44,7 @@ interface Project {
 }
 
 const PROJECTS: Project[] = [
+  { id: 20, title: "StockIQ", category: "AI Retail Inventory / Branding & Product Design", image: stockiqHero, heroImage: stockiqHero, colSpan: "md:col-span-12", location: "San Francisco, CA / New York, NY", year: "2026", role: "Multidisciplinary Designer" },
   { id: 11, title: "Voltique", category: "Service Design", image: "https://lh3.googleusercontent.com/d/1gusf69CAd1am1JcsIyc1qiGekzmZLEUP", colSpan: "md:col-span-12", year: "2024", role: "Lead Design" },
   { id: 12, title: "Pulso Health", category: "AI Health / Branding", image: "https://lh3.googleusercontent.com/d/1ONCooNfgYuYu5trUJrFZcZq1HxYSFZrr", colSpan: "md:col-span-4", year: "2023", role: "Brand Identity" },
   { id: 13, title: "BuyDrop", category: "Logistic Company", image: "https://lh3.googleusercontent.com/d/1qpd246hL-TbgCSgf9j2qxBk15FMW2FuF", heroImage: "https://lh3.googleusercontent.com/d/1nZNLMGhECM67AST6qbGCmYiXUhN0RF-C", colSpan: "md:col-span-4", year: "2024", role: "Creative Direction" },
@@ -701,6 +708,16 @@ export default function App() {
   };
 
   const getProjectImages = (project: typeof PROJECTS[0]) => {
+    if (project.title === "StockIQ") {
+      return [
+        stockiqHero,
+        stockiqOverviewImage,
+        stockiqDetailImage,
+        stockiqBrandImage,
+        stockiqSystemImage,
+        stockiqOutcomeImage
+      ];
+    }
     if (project.title === "Pulso Health") {
       return [
         project.heroImage || project.image,
@@ -1809,7 +1826,9 @@ export default function App() {
                   </span>
                   <h2 className="text-5xl md:text-8xl font-bold tracking-tighter leading-none mb-12">
                     {selectedProject.title.split(' ')[0]} <br />
-                    <span className="text-black/10">{selectedProject.title.split(' ')[1] || ''}</span>
+                    <span className="text-black/10">
+                      {selectedProject.title.split(' ').slice(1).join(' ') || (selectedProject.title === 'StockIQ' ? 'Retail Inventory' : '')}
+                    </span>
                   </h2>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8 border-t border-black/10">
                     <div>
@@ -1843,7 +1862,270 @@ export default function App() {
 
                 {/* Alternating Content Sections */}
                 <div className="space-y-24 md:space-y-48">
-                  {selectedProject.title === "Pulso Health" ? (
+                  {selectedProject.title === "StockIQ" ? (
+                    <>
+                      {/* StockIQ Section 1: Overview & Multidisciplinary Role */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'Overview & Multidisciplinary Role' : lang === 'fr' ? 'Vue d\'ensemble & Rôle' : 'Resumen y Rol Multidisciplinario'}
+                          </span>
+                          <div className="space-y-4">
+                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-black">
+                              AI Retail Inventory — Branding & Product Design
+                            </h3>
+                            <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                              {lang === 'en' ? (
+                                "A self-initiated branding and digital product design project for a conceptual AI-powered retail inventory platform."
+                              ) : lang === 'fr' ? (
+                                "Un projet d'identité de marque et de conception de produit numérique auto-initié pour une plateforme d'inventaire de vente au détail alimentée par l'IA."
+                              ) : (
+                                "Un proyecto de branding y diseño de producto digital de iniciativa propia para una plataforma conceptual de inventario minorista impulsada por IA."
+                              )}
+                            </p>
+                            <p className="text-lg md:text-xl text-black/70 leading-relaxed font-light">
+                              {lang === 'en' ? (
+                                "The goal was to create a brand and digital experience that makes complex inventory data feel simple, intelligent, and actionable."
+                              ) : lang === 'fr' ? (
+                                "L'objectif était de créer une marque et une expérience numérique rendant les données d'inventaire complexes simples, intelligentes et exploitables."
+                              ) : (
+                                "El objetivo era crear una marca y una experiencia digital que hiciera que los datos de inventario complejos se sintieran simples, inteligentes y accionables."
+                              )}
+                            </p>
+                          </div>
+
+                          <div className="pt-6 border-t border-black/10">
+                            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-black/40 block mb-2">
+                              {lang === 'en' ? 'My Role' : lang === 'fr' ? 'Mon Rôle' : 'Mi Rol'}
+                            </span>
+                            <span className="text-base font-semibold text-black block mb-3">
+                              Multidisciplinary Designer
+                            </span>
+                            <div className="flex flex-wrap gap-2">
+                              {["Brand Identity", "Art Direction", "UI/UX", "Product Design", "Web Design", "Design Systems"].map((discipline, idx) => (
+                                <span key={idx} className="px-3 py-1 bg-black/5 rounded-full text-xs font-medium text-black/70">
+                                  {discipline}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5] md:aspect-square"
+                          onClick={() => setFullscreenImage(stockiqOverviewImage)}
+                        >
+                          <SubtleMotionImage 
+                            src={stockiqOverviewImage} 
+                            alt="StockIQ AI Retail Inventory Overview"
+                          />
+                        </div>
+                      </div>
+
+                      {/* StockIQ Section 2: The Concept */}
+                      <div className="space-y-12">
+                        <div className="max-w-4xl space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'The Concept' : lang === 'fr' ? 'Le Concept' : 'El Concepto'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The platform uses AI to monitor retail inventory in real time, identify potential stock issues, forecast demand, and recommend actions."
+                            ) : lang === 'fr' ? (
+                              "La plateforme utilise l'IA pour surveiller l'inventaire des détaillants en temps réel, identifier les problèmes potentiels de stock, prévoir la demande et recommander des actions."
+                            ) : (
+                              "La plataforma utiliza IA para monitorear el inventario minorista en tiempo real, identificar posibles problemas de stock, pronosticar la demanda y recomendar acciones."
+                            )}
+                          </p>
+                          <div className="p-8 md:p-12 bg-[#090e17] text-white rounded-2xl border border-cyan-500/20 shadow-2xl relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+                            <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-cyan-400 block mb-3">
+                              {lang === 'en' ? 'Core Product Philosophy' : lang === 'fr' ? 'Philosophie Clé du Produit' : 'Filosofía Clave del Producto'}
+                            </span>
+                            <p className="text-2xl md:text-3xl font-medium tracking-tight text-white/95 leading-snug">
+                              “Know what’s happening with your inventory — before it becomes a problem.”
+                            </p>
+                          </div>
+                        </div>
+
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage(stockiqDetailImage)}
+                        >
+                          <SubtleMotionImage 
+                            src={stockiqDetailImage} 
+                            alt="StockIQ Real-Time Platform Architecture & Telemetry"
+                            cinematic={true}
+                          />
+                        </div>
+                      </div>
+
+                      {/* StockIQ Section 3: Branding */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div 
+                          className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/3]"
+                          onClick={() => setFullscreenImage(stockiqBrandImage)}
+                        >
+                          <SubtleMotionImage 
+                            src={stockiqBrandImage} 
+                            alt="StockIQ Brand Identity System"
+                          />
+                        </div>
+                        <div className="order-1 md:order-2 space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'Branding' : lang === 'fr' ? 'Identité Visuelle' : 'Identidad de Marca'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "I developed a modern visual identity combining technology, data, and retail."
+                            ) : lang === 'fr' ? (
+                              "J'ai développé une identité visuelle moderne combinant technologie, données et commerce de détail."
+                            ) : (
+                              "Desarrollé una identidad visual moderna que combina tecnología, datos y comercio minorista."
+                            )}
+                          </p>
+                          <p className="text-lg md:text-xl text-black/70 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The visual system uses a dark navy foundation with electric blue and cyan accents, supported by clear status colors for inventory health, alerts, and AI insights."
+                            ) : lang === 'fr' ? (
+                              "Le système visuel utilise une base bleu marine sombre avec des accents bleu électrique et cyan, soutenus par des couleurs de statut claires pour la santé des stocks, les alertes et les insights d'IA."
+                            ) : (
+                              "El sistema visual utiliza una base azul marino oscuro con acentos azul eléctrico y cian, respaldados por colores de estado claros para la salud del inventario, alertas e información de IA."
+                            )}
+                          </p>
+                          <div className="pt-2">
+                            <p className="text-base text-black/60 font-light italic">
+                              {lang === 'en' ? (
+                                "The brand direction was designed to feel intelligent, premium, trustworthy, and scalable."
+                              ) : lang === 'fr' ? (
+                                "La direction de marque a été conçue pour inspirer l'intelligence, le haut de gamme, la confiance et l'évolutivité."
+                              ) : (
+                                "La dirección de la marca fue diseñada para sentirse inteligente, premium, confiable y escalable."
+                              )}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* StockIQ Section 4: UI/UX & Design System */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage(stockiqSystemImage)}
+                        >
+                          <SubtleMotionImage 
+                            src={stockiqSystemImage} 
+                            alt="StockIQ Scalable UI Design System & Component Kit"
+                            cinematic={true}
+                          />
+                        </div>
+
+                        <div className="max-w-4xl space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'UI/UX & Design System' : lang === 'fr' ? 'Design UI/UX & Système' : 'Diseño UI/UX y Sistema'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The product experience is centered around a real-time dashboard and a scalable UI component kit:"
+                            ) : lang === 'fr' ? (
+                              "L'expérience produit est centrée sur un tableau de bord en temps réel et un kit de composants d'interface utilisateur évolutif :"
+                            ) : (
+                              "La experiencia del producto se centra en un panel de control en tiempo real y un kit de componentes de interfaz de usuario escalable:"
+                            )}
+                          </p>
+
+                          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 pt-2">
+                            {[
+                              { label: "Inventory Health", color: "border-emerald-500/30 text-emerald-700 bg-emerald-500/5" },
+                              { label: "Stock Levels", color: "border-blue-500/30 text-blue-700 bg-blue-500/5" },
+                              { label: "AI Insights", color: "border-cyan-500/30 text-cyan-700 bg-cyan-500/5" },
+                              { label: "Alerts", color: "border-amber-500/30 text-amber-700 bg-amber-500/5" },
+                              { label: "Demand Forecasts", color: "border-purple-500/30 text-purple-700 bg-purple-500/5" },
+                              { label: "Locations", color: "border-slate-500/30 text-slate-700 bg-slate-500/5" }
+                            ].map((pill, idx) => (
+                              <div key={idx} className={`p-4 rounded-xl border ${pill.color} flex flex-col justify-center items-center text-center font-medium text-xs md:text-sm`}>
+                                <span>{pill.label}</span>
+                              </div>
+                            ))}
+                          </div>
+
+                          <div className="flex flex-wrap gap-2.5 pt-3">
+                            {["Navigation", "Cards", "Tables", "Charts", "Alerts", "Buttons", "Filters", "AI Components", "Data Visualization"].map((comp, idx) => (
+                              <span key={idx} className="px-4 py-2 bg-black/5 border border-black/10 rounded-lg text-sm font-medium text-black/80">
+                                {comp}
+                              </span>
+                            ))}
+                          </div>
+
+                          <p className="text-lg md:text-xl text-black/70 leading-relaxed font-light pt-2">
+                            {lang === 'en' ? (
+                              "I focused on creating a clear information hierarchy and consistent components so users can quickly identify a problem, understand data, and take immediate action."
+                            ) : lang === 'fr' ? (
+                              "Je me suis concentré sur la création d'une hiérarchie d'information claire et de composants cohérents pour permettre aux utilisateurs d'identifier rapidement un problème, de comprendre les données et d'agir immédiatement."
+                            ) : (
+                              "Me enfoqué en crear una jerarquía de información clara y componentes consistentes para que los usuarios puedan identificar rápidamente un problema, comprender los datos y actuar de inmediato."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* StockIQ Section 5: Outcome */}
+                      <div className="space-y-12 pb-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage(stockiqOutcomeImage)}
+                        >
+                          <SubtleMotionImage 
+                            src={stockiqOutcomeImage} 
+                            alt="StockIQ Multidisciplinary Product Ecosystem Outcome"
+                            cinematic={true}
+                          />
+                        </div>
+
+                        <div className="max-w-4xl space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'Outcome & Multidisciplinary Impact' : lang === 'fr' ? 'Résultats & Impact' : 'Resultados e Impacto'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "This project combines branding, strategy, UI/UX, and product thinking into one cohesive digital experience."
+                            ) : lang === 'fr' ? (
+                              "Ce projet combine branding, stratégie, UI/UX et réflexion produit en une expérience numérique cohérente."
+                            ) : (
+                              "Este proyecto combina branding, estrategia, UI/UX y pensamiento de producto en una experiencia digital cohesiva."
+                            )}
+                          </p>
+                          <p className="text-lg md:text-xl text-black/70 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "It demonstrates my approach to multidisciplinary design — creating not just individual screens, but a complete brand and product ecosystem."
+                            ) : lang === 'fr' ? (
+                              "Il démontre mon approche du design multidisciplinaire : créer non pas de simples écrans isolés, mais un écosystème complet de marque et de produit."
+                            ) : (
+                              "Demuestra mi enfoque del diseño multidisciplinario: crear no sólo pantallas individuales, sino un ecosistema completo de marca y producto."
+                            )}
+                          </p>
+
+                          {/* Process Pipeline Flow */}
+                          <div className="p-6 md:p-8 bg-black/5 border border-black/10 rounded-2xl mt-8">
+                            <span className="text-[11px] uppercase tracking-[0.25em] font-bold text-black/40 block mb-4">
+                              {lang === 'en' ? 'Design Pipeline' : lang === 'fr' ? 'Processus de Création' : 'Flujo de Diseño'}
+                            </span>
+                            <div className="flex flex-wrap items-center gap-2 md:gap-3 text-sm md:text-base font-semibold text-black/80">
+                              <span className="px-3 py-1.5 bg-white border border-black/10 rounded-lg shadow-xs">Brand Strategy</span>
+                              <span className="text-accent font-bold">→</span>
+                              <span className="px-3 py-1.5 bg-white border border-black/10 rounded-lg shadow-xs">Visual Identity</span>
+                              <span className="text-accent font-bold">→</span>
+                              <span className="px-3 py-1.5 bg-white border border-black/10 rounded-lg shadow-xs">UX</span>
+                              <span className="text-accent font-bold">→</span>
+                              <span className="px-3 py-1.5 bg-white border border-black/10 rounded-lg shadow-xs">UI</span>
+                              <span className="text-accent font-bold">→</span>
+                              <span className="px-3 py-1.5 bg-white border border-black/10 rounded-lg shadow-xs">Design System</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ) : selectedProject.title === "Pulso Health" ? (
                     <>
                       {/* Pulso Health Section 1: The Vision */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
