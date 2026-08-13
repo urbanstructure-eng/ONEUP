@@ -127,23 +127,9 @@ const StockIQSkuLineGraphWatermark = () => {
   }, []);
 
   return (
-    <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden flex flex-col justify-between p-0 select-none">
-      {/* Top right prominent all-white stock counter ticker */}
-      <div className="flex justify-end items-center p-4 md:p-6 z-20">
-        <div className="flex items-center gap-2.5 md:gap-3 px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-black/65 backdrop-blur-md border border-white/40 shadow-2xl text-white">
-          <span className="w-2 md:w-2.5 h-2 md:h-2.5 rounded-full bg-white animate-pulse shadow-[0_0_8px_rgba(255,255,255,1)]" />
-          <span className="text-[11px] md:text-xs font-mono font-semibold tracking-widest text-white">STOCK</span>
-          <span className="text-sm md:text-lg font-mono font-bold text-white tabular-nums tracking-wide">
-            {stockCount.toLocaleString()}
-          </span>
-          <span className="text-[10px] md:text-xs font-mono font-bold text-white bg-white/20 px-2 py-0.5 rounded-full tabular-nums">
-            {delta >= 0 ? `▲ +${delta}` : `▼ ${delta}`}
-          </span>
-        </div>
-      </div>
-
+    <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden flex flex-col justify-end p-0 select-none">
       {/* Pure animated stock graph lines running continuously side to side (edge to edge) */}
-      <div className="relative w-full h-32 md:h-40 mt-auto translate-y-3 md:translate-y-6 overflow-hidden opacity-50 group-hover:opacity-80 transition-opacity duration-700">
+      <div className="relative w-full h-32 md:h-40 translate-y-3 md:translate-y-6 overflow-hidden opacity-50 group-hover:opacity-80 transition-opacity duration-700">
         {/* Seamless scrolling marquee/ticker wave track running horizontally from side to side */}
         <motion.div
           className="flex w-[200%] h-full"
@@ -436,8 +422,19 @@ const StockIQSkuLineGraphWatermark = () => {
         </motion.div>
       </div>
 
-      {/* Bottom spacer */}
-      <div className="h-1" />
+      {/* Bottom right prominent all-white stock counter ticker */}
+      <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-30 pointer-events-none">
+        <div className="flex items-center gap-2.5 md:gap-3 px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-black/65 backdrop-blur-md border border-white/40 shadow-2xl text-white">
+          <span className="w-2 md:w-2.5 h-2 md:h-2.5 rounded-full bg-white animate-pulse shadow-[0_0_8px_rgba(255,255,255,1)]" />
+          <span className="text-[11px] md:text-xs font-mono font-semibold tracking-widest text-white">STOCK</span>
+          <span className="text-sm md:text-lg font-mono font-bold text-white tabular-nums tracking-wide">
+            {stockCount.toLocaleString()}
+          </span>
+          <span className="text-[10px] md:text-xs font-mono font-bold text-white bg-white/20 px-2 py-0.5 rounded-full tabular-nums">
+            {delta >= 0 ? `▲ +${delta}` : `▼ ${delta}`}
+          </span>
+        </div>
+      </div>
     </div>
   );
 };
