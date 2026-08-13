@@ -114,36 +114,36 @@ const CinematicScrollImage = ({ src, alt, className }: { src: string, alt: strin
 
 const StockIQSkuLineGraphWatermark = () => {
   const [stockCount, setStockCount] = useState(28450);
-  const [deltaIndicator, setDeltaIndicator] = useState<'+' | '-' | ''>('+');
+  const [delta, setDelta] = useState<number>(24);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setStockCount(prev => {
-        // Dynamic stock fluctuations between -48 and +54 units rapidly
-        const change = Math.floor(Math.random() * 103) - 48;
-        setDeltaIndicator(change >= 0 ? '+' : '-');
-        return Math.max(26500, Math.min(31200, prev + change));
-      });
-    }, 180); // Fast fluctuation ticker
+      // Dynamic stock fluctuations rapidly
+      const change = Math.floor(Math.random() * 95) - 42;
+      setDelta(change);
+      setStockCount(prev => Math.max(26500, Math.min(31200, prev + change)));
+    }, 190); // Fast fluctuation ticker
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden flex flex-col justify-between p-0 opacity-45 group-hover:opacity-75 transition-opacity duration-700 select-none">
-      {/* Top right fast stock counter ticker */}
-      <div className="flex justify-end items-center p-4 md:p-6">
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[9px] md:text-[10px] font-mono tracking-widest text-white shadow-lg">
-          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-          <span className="text-white/60">STOCK</span>
-          <span className="font-bold text-white tabular-nums">{stockCount.toLocaleString()}</span>
-          <span className={`text-[8px] font-bold ${deltaIndicator === '+' ? 'text-emerald-400' : 'text-amber-400'}`}>
-            {deltaIndicator === '+' ? '▲' : '▼'}
+    <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden flex flex-col justify-between p-0 select-none">
+      {/* Top right prominent all-white stock counter ticker */}
+      <div className="flex justify-end items-center p-4 md:p-6 z-20">
+        <div className="flex items-center gap-2.5 md:gap-3 px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-black/65 backdrop-blur-md border border-white/40 shadow-2xl text-white">
+          <span className="w-2 md:w-2.5 h-2 md:h-2.5 rounded-full bg-white animate-pulse shadow-[0_0_8px_rgba(255,255,255,1)]" />
+          <span className="text-[11px] md:text-xs font-mono font-semibold tracking-widest text-white">STOCK</span>
+          <span className="text-sm md:text-lg font-mono font-bold text-white tabular-nums tracking-wide">
+            {stockCount.toLocaleString()}
+          </span>
+          <span className="text-[10px] md:text-xs font-mono font-bold text-white bg-white/20 px-2 py-0.5 rounded-full tabular-nums">
+            {delta >= 0 ? `▲ +${delta}` : `▼ ${delta}`}
           </span>
         </div>
       </div>
 
       {/* Pure animated stock graph lines running continuously side to side (edge to edge) */}
-      <div className="relative w-full h-32 md:h-40 mt-auto translate-y-3 md:translate-y-6 overflow-hidden">
+      <div className="relative w-full h-32 md:h-40 mt-auto translate-y-3 md:translate-y-6 overflow-hidden opacity-50 group-hover:opacity-80 transition-opacity duration-700">
         {/* Seamless scrolling marquee/ticker wave track running horizontally from side to side */}
         <motion.div
           className="flex w-[200%] h-full"
