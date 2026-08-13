@@ -129,9 +129,9 @@ const StockIQSkuLineGraphWatermark = () => {
   }, []);
 
   return (
-    <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden flex flex-col justify-between p-4 md:p-6 opacity-45 group-hover:opacity-75 transition-opacity duration-700 select-none">
+    <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden flex flex-col justify-between p-0 opacity-45 group-hover:opacity-75 transition-opacity duration-700 select-none">
       {/* Top right fast stock counter ticker */}
-      <div className="flex justify-end items-center">
+      <div className="flex justify-end items-center p-4 md:p-6">
         <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[9px] md:text-[10px] font-mono tracking-widest text-white shadow-lg">
           <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
           <span className="text-white/60">STOCK</span>
@@ -142,182 +142,298 @@ const StockIQSkuLineGraphWatermark = () => {
         </div>
       </div>
 
-      {/* Pure animated stock graph lines & wave curves (no busy text) */}
-      <div className="relative w-full h-36 md:h-44 my-auto">
-        <svg 
-          viewBox="0 0 800 200" 
-          className="w-full h-full overflow-visible"
-          preserveAspectRatio="none"
+      {/* Pure animated stock graph lines running continuously side to side (edge to edge) */}
+      <div className="relative w-full h-32 md:h-40 mt-auto translate-y-3 md:translate-y-6 overflow-hidden">
+        {/* Seamless scrolling marquee/ticker wave track running horizontally from side to side */}
+        <motion.div
+          className="flex w-[200%] h-full"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{
+            duration: 14,
+            repeat: Infinity,
+            ease: "linear"
+          }}
         >
-          <defs>
-            <linearGradient id="skuWatermarkGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.22" />
-              <stop offset="50%" stopColor="#ffffff" stopOpacity="0.06" />
-              <stop offset="100%" stopColor="#ffffff" stopOpacity="0.0" />
-            </linearGradient>
-            <linearGradient id="skuWatermarkGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.10" />
-              <stop offset="100%" stopColor="#ffffff" stopOpacity="0.0" />
-            </linearGradient>
-            <linearGradient id="skuWatermarkGradient3" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.05" />
-              <stop offset="100%" stopColor="#ffffff" stopOpacity="0.0" />
-            </linearGradient>
-            <filter id="skuGlow" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="2.5" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-          </defs>
+          {/* Wave Tile 1 */}
+          <div className="w-1/2 h-full flex-shrink-0">
+            <svg 
+              viewBox="0 0 1000 200" 
+              className="w-full h-full overflow-visible"
+              preserveAspectRatio="none"
+            >
+              <defs>
+                <linearGradient id="skuWatermarkGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.22" />
+                  <stop offset="50%" stopColor="#ffffff" stopOpacity="0.06" />
+                  <stop offset="100%" stopColor="#ffffff" stopOpacity="0.0" />
+                </linearGradient>
+                <linearGradient id="skuWatermarkGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.10" />
+                  <stop offset="100%" stopColor="#ffffff" stopOpacity="0.0" />
+                </linearGradient>
+                <linearGradient id="skuWatermarkGradient3" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.05" />
+                  <stop offset="100%" stopColor="#ffffff" stopOpacity="0.0" />
+                </linearGradient>
+                <filter id="skuGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="2.5" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
 
-          {/* Watermark subtle background coordinate grid */}
-          <line x1="0" y1="40" x2="800" y2="40" stroke="rgba(255,255,255,0.08)" strokeDasharray="3 6" />
-          <line x1="0" y1="90" x2="800" y2="90" stroke="rgba(255,255,255,0.08)" strokeDasharray="3 6" />
-          <line x1="0" y1="140" x2="800" y2="140" stroke="rgba(255,255,255,0.08)" strokeDasharray="3 6" />
-          
-          <line x1="200" y1="0" x2="200" y2="200" stroke="rgba(255,255,255,0.05)" strokeDasharray="4 6" />
-          <line x1="400" y1="0" x2="400" y2="200" stroke="rgba(255,255,255,0.05)" strokeDasharray="4 6" />
-          <line x1="600" y1="0" x2="600" y2="200" stroke="rgba(255,255,255,0.05)" strokeDasharray="4 6" />
+              {/* Background horizontal coordinate grid */}
+              <line x1="0" y1="40" x2="1000" y2="40" stroke="rgba(255,255,255,0.08)" strokeDasharray="3 6" />
+              <line x1="0" y1="90" x2="1000" y2="90" stroke="rgba(255,255,255,0.08)" strokeDasharray="3 6" />
+              <line x1="0" y1="140" x2="1000" y2="140" stroke="rgba(255,255,255,0.08)" strokeDasharray="3 6" />
+              
+              <line x1="250" y1="0" x2="250" y2="200" stroke="rgba(255,255,255,0.05)" strokeDasharray="4 6" />
+              <line x1="500" y1="0" x2="500" y2="200" stroke="rgba(255,255,255,0.05)" strokeDasharray="4 6" />
+              <line x1="750" y1="0" x2="750" y2="200" stroke="rgba(255,255,255,0.05)" strokeDasharray="4 6" />
 
-          {/* Line 3 (Bottom Ambient SKU Flow) */}
-          <motion.path
-            d="M0,150 C100,180 200,130 300,160 C400,190 500,120 600,155 C700,180 750,140 800,150 L800,200 L0,200 Z"
-            fill="url(#skuWatermarkGradient3)"
-            animate={{
-              d: [
-                "M0,150 C100,180 200,130 300,160 C400,190 500,120 600,155 C700,180 750,140 800,150 L800,200 L0,200 Z",
-                "M0,165 C100,140 200,170 300,135 C400,160 500,155 600,125 C700,160 750,170 800,165 L800,200 L0,200 Z",
-                "M0,135 C100,165 200,145 300,175 C400,130 500,140 600,165 C700,130 750,125 800,140 L800,200 L0,200 Z",
-                "M0,150 C100,180 200,130 300,160 C400,190 500,120 600,155 C700,180 750,140 800,150 L800,200 L0,200 Z"
-              ]
-            }}
-            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-          />
+              {/* Line 3 (Bottom Ambient SKU Flow) */}
+              <motion.path
+                d="M0,150 C125,180 250,130 375,160 C500,190 625,120 750,155 C875,180 940,140 1000,150 L1000,200 L0,200 Z"
+                fill="url(#skuWatermarkGradient3)"
+                animate={{
+                  d: [
+                    "M0,150 C125,180 250,130 375,160 C500,190 625,120 750,155 C875,180 940,140 1000,150 L1000,200 L0,200 Z",
+                    "M0,165 C125,140 250,170 375,135 C500,160 625,155 750,125 C875,160 940,170 1000,165 L1000,200 L0,200 Z",
+                    "M0,135 C125,165 250,145 375,175 C500,130 625,140 750,165 C875,130 940,125 1000,135 L1000,200 L0,200 Z",
+                    "M0,150 C125,180 250,130 375,160 C500,190 625,120 750,155 C875,180 940,140 1000,150 L1000,200 L0,200 Z"
+                  ]
+                }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+              />
 
-          {/* Line 2 (Mid Stock Inventory Volatility) */}
-          <motion.path
-            d="M0,110 C120,140 220,85 320,120 C420,155 520,70 620,105 C720,135 760,90 800,100 L800,200 L0,200 Z"
-            fill="url(#skuWatermarkGradient2)"
-            animate={{
-              d: [
-                "M0,110 C120,140 220,85 320,120 C420,155 520,70 620,105 C720,135 760,90 800,100 L800,200 L0,200 Z",
-                "M0,125 C120,95 220,135 320,90 C420,120 520,115 620,75 C720,110 760,120 800,115 L800,200 L0,200 Z",
-                "M0,95 C120,125 220,105 320,140 C420,85 520,95 620,125 C720,85 760,75 800,85 L800,200 L0,200 Z",
-                "M0,110 C120,140 220,85 320,120 C420,155 520,70 620,105 C720,135 760,90 800,100 L800,200 L0,200 Z"
-              ]
-            }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.path
-            d="M0,110 C120,140 220,85 320,120 C420,155 520,70 620,105 C720,135 760,90 800,100"
-            fill="none"
-            stroke="rgba(255,255,255,0.4)"
-            strokeWidth="1.5"
-            animate={{
-              d: [
-                "M0,110 C120,140 220,85 320,120 C420,155 520,70 620,105 C720,135 760,90 800,100",
-                "M0,125 C120,95 220,135 320,90 C420,120 520,115 620,75 C720,110 760,120 800,115",
-                "M0,95 C120,125 220,105 320,140 C420,85 520,95 620,125 C720,85 760,75 800,85",
-                "M0,110 C120,140 220,85 320,120 C420,155 520,70 620,105 C720,135 760,90 800,100"
-              ]
-            }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-          />
+              {/* Line 2 (Mid Stock Inventory Volatility) */}
+              <motion.path
+                d="M0,110 C150,140 275,85 400,120 C525,155 650,70 775,105 C900,135 950,90 1000,110 L1000,200 L0,200 Z"
+                fill="url(#skuWatermarkGradient2)"
+                animate={{
+                  d: [
+                    "M0,110 C150,140 275,85 400,120 C525,155 650,70 775,105 C900,135 950,90 1000,110 L1000,200 L0,200 Z",
+                    "M0,125 C150,95 275,135 400,90 C525,120 650,115 775,75 C900,110 950,120 1000,125 L1000,200 L0,200 Z",
+                    "M0,95 C150,125 275,105 400,140 C525,85 650,95 775,125 C900,85 950,75 1000,95 L1000,200 L0,200 Z",
+                    "M0,110 C150,140 275,85 400,120 C525,155 650,70 775,105 C900,135 950,90 1000,110 L1000,200 L0,200 Z"
+                  ]
+                }}
+                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.path
+                d="M0,110 C150,140 275,85 400,120 C525,155 650,70 775,105 C900,135 950,90 1000,110"
+                fill="none"
+                stroke="rgba(255,255,255,0.4)"
+                strokeWidth="1.5"
+                animate={{
+                  d: [
+                    "M0,110 C150,140 275,85 400,120 C525,155 650,70 775,105 C900,135 950,90 1000,110",
+                    "M0,125 C150,95 275,135 400,90 C525,120 650,115 775,75 C900,110 950,120 1000,125",
+                    "M0,95 C150,125 275,105 400,140 C525,85 650,95 775,125 C900,85 950,75 1000,95",
+                    "M0,110 C150,140 275,85 400,120 C525,155 650,70 775,105 C900,135 950,90 1000,110"
+                  ]
+                }}
+                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+              />
 
-          {/* Line 1 (Primary Stock Demand Curve) */}
-          <motion.path
-            d="M0,75 C90,120 170,30 270,70 C370,110 450,15 550,50 C650,85 720,10 800,30 L800,200 L0,200 Z"
-            fill="url(#skuWatermarkGradient1)"
-            animate={{
-              d: [
-                "M0,75 C90,120 170,30 270,70 C370,110 450,15 550,50 C650,85 720,10 800,30 L800,200 L0,200 Z",
-                "M0,50 C90,80 170,110 270,35 C370,65 450,90 550,20 C650,45 720,65 800,15 L800,200 L0,200 Z",
-                "M0,95 C90,40 170,70 270,100 C370,25 450,60 550,90 C650,30 720,25 800,45 L800,200 L0,200 Z",
-                "M0,75 C90,120 170,30 270,70 C370,110 450,15 550,50 C650,85 720,10 800,30 L800,200 L0,200 Z"
-              ]
-            }}
-            transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.path
-            d="M0,75 C90,120 170,30 270,70 C370,110 450,15 550,50 C650,85 720,10 800,30"
-            fill="none"
-            stroke="#ffffff"
-            strokeWidth="2.4"
-            strokeLinecap="round"
-            filter="url(#skuGlow)"
-            animate={{
-              d: [
-                "M0,75 C90,120 170,30 270,70 C370,110 450,15 550,50 C650,85 720,10 800,30",
-                "M0,50 C90,80 170,110 270,35 C370,65 450,90 550,20 C650,45 720,65 800,15",
-                "M0,95 C90,40 170,70 270,100 C370,25 450,60 550,90 C650,30 720,25 800,45",
-                "M0,75 C90,120 170,30 270,70 C370,110 450,15 550,50 C650,85 720,10 800,30"
-              ]
-            }}
-            transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
-          />
+              {/* Line 1 (Primary Stock Demand Curve) */}
+              <motion.path
+                d="M0,75 C110,120 220,30 340,70 C460,110 570,15 690,50 C810,85 900,10 1000,75 L1000,200 L0,200 Z"
+                fill="url(#skuWatermarkGradient1)"
+                animate={{
+                  d: [
+                    "M0,75 C110,120 220,30 340,70 C460,110 570,15 690,50 C810,85 900,10 1000,75 L1000,200 L0,200 Z",
+                    "M0,50 C110,80 220,110 340,35 C460,65 570,90 690,20 C810,45 900,65 1000,50 L1000,200 L0,200 Z",
+                    "M0,95 C110,40 220,70 340,100 C460,25 570,60 690,90 C810,30 900,25 1000,95 L1000,200 L0,200 Z",
+                    "M0,75 C110,120 220,30 340,70 C460,110 570,15 690,50 C810,85 900,10 1000,75 L1000,200 L0,200 Z"
+                  ]
+                }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.path
+                d="M0,75 C110,120 220,30 340,70 C460,110 570,15 690,50 C810,85 900,10 1000,75"
+                fill="none"
+                stroke="#ffffff"
+                strokeWidth="2.4"
+                strokeLinecap="round"
+                filter="url(#skuGlow)"
+                animate={{
+                  d: [
+                    "M0,75 C110,120 220,30 340,70 C460,110 570,15 690,50 C810,85 900,10 1000,75",
+                    "M0,50 C110,80 220,110 340,35 C460,65 570,90 690,20 C810,45 900,65 1000,50",
+                    "M0,95 C110,40 220,70 340,100 C460,25 570,60 690,90 C810,30 900,25 1000,95",
+                    "M0,75 C110,120 220,30 340,70 C460,110 570,15 690,50 C810,85 900,10 1000,75"
+                  ]
+                }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+              />
 
-          {/* Animated pulsing telemetry nodes */}
-          <motion.g
-            animate={{ y: [0, -25, 20, 0], x: [0, 4, -4, 0] }}
-            transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <circle cx="270" cy="70" r="4.5" fill="#ffffff" />
-            <motion.circle 
-              cx="270" 
-              cy="70" 
-              r="8" 
-              fill="none" 
-              stroke="#ffffff" 
-              strokeWidth="1.2"
-              animate={{ r: [4.5, 13, 4.5], opacity: [0.8, 0, 0.8] }}
-              transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
-            />
-          </motion.g>
+              {/* Animated pulsing telemetry nodes */}
+              <motion.g
+                animate={{ y: [0, -25, 20, 0], x: [0, 4, -4, 0] }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <circle cx="340" cy="70" r="4.5" fill="#ffffff" />
+                <motion.circle 
+                  cx="340" 
+                  cy="70" 
+                  r="8" 
+                  fill="none" 
+                  stroke="#ffffff" 
+                  strokeWidth="1.2"
+                  animate={{ r: [4.5, 13, 4.5], opacity: [0.8, 0, 0.8] }}
+                  transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
+                />
+              </motion.g>
 
-          <motion.g
-            animate={{ y: [0, 25, -30, 0], x: [0, -6, 5, 0] }}
-            transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <circle cx="550" cy="50" r="5" fill="#ffffff" />
-            <motion.circle 
-              cx="550" 
-              cy="50" 
-              r="10" 
-              fill="none" 
-              stroke="#ffffff" 
-              strokeWidth="1.2"
-              animate={{ r: [5, 16, 5], opacity: [0.9, 0, 0.9] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut", delay: 0.3 }}
-            />
-          </motion.g>
+              <motion.g
+                animate={{ y: [0, 25, -30, 0], x: [0, -6, 5, 0] }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <circle cx="690" cy="50" r="5" fill="#ffffff" />
+                <motion.circle 
+                  cx="690" 
+                  cy="50" 
+                  r="10" 
+                  fill="none" 
+                  stroke="#ffffff" 
+                  strokeWidth="1.2"
+                  animate={{ r: [5, 16, 5], opacity: [0.9, 0, 0.9] }}
+                  transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut", delay: 0.3 }}
+                />
+              </motion.g>
+            </svg>
+          </div>
 
-          <motion.g
-            animate={{ y: [0, -18, 14, 0] }}
-            transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <circle cx="780" cy="32" r="4" fill="#ffffff" />
-          </motion.g>
+          {/* Wave Tile 2 (seamless continuation running side to side) */}
+          <div className="w-1/2 h-full flex-shrink-0">
+            <svg 
+              viewBox="0 0 1000 200" 
+              className="w-full h-full overflow-visible"
+              preserveAspectRatio="none"
+            >
+              {/* Background coordinate grid */}
+              <line x1="0" y1="40" x2="1000" y2="40" stroke="rgba(255,255,255,0.08)" strokeDasharray="3 6" />
+              <line x1="0" y1="90" x2="1000" y2="90" stroke="rgba(255,255,255,0.08)" strokeDasharray="3 6" />
+              <line x1="0" y1="140" x2="1000" y2="140" stroke="rgba(255,255,255,0.08)" strokeDasharray="3 6" />
+              
+              <line x1="250" y1="0" x2="250" y2="200" stroke="rgba(255,255,255,0.05)" strokeDasharray="4 6" />
+              <line x1="500" y1="0" x2="500" y2="200" stroke="rgba(255,255,255,0.05)" strokeDasharray="4 6" />
+              <line x1="750" y1="0" x2="750" y2="200" stroke="rgba(255,255,255,0.05)" strokeDasharray="4 6" />
 
-          {/* Scanning radar line sweeping horizontally */}
-          <motion.line
-            x1="0"
-            y1="0"
-            x2="0"
-            y2="200"
-            stroke="rgba(255,255,255,0.35)"
-            strokeWidth="1.2"
-            strokeDasharray="2 4"
-            animate={{
-              x1: [0, 800, 0],
-              x2: [0, 800, 0],
-              opacity: [0.12, 0.4, 0.12]
-            }}
-            transition={{
-              duration: 7,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-        </svg>
+              {/* Line 3 (Bottom Ambient SKU Flow) */}
+              <motion.path
+                d="M0,150 C125,180 250,130 375,160 C500,190 625,120 750,155 C875,180 940,140 1000,150 L1000,200 L0,200 Z"
+                fill="url(#skuWatermarkGradient3)"
+                animate={{
+                  d: [
+                    "M0,150 C125,180 250,130 375,160 C500,190 625,120 750,155 C875,180 940,140 1000,150 L1000,200 L0,200 Z",
+                    "M0,165 C125,140 250,170 375,135 C500,160 625,155 750,125 C875,160 940,170 1000,165 L1000,200 L0,200 Z",
+                    "M0,135 C125,165 250,145 375,175 C500,130 625,140 750,165 C875,130 940,125 1000,135 L1000,200 L0,200 Z",
+                    "M0,150 C125,180 250,130 375,160 C500,190 625,120 750,155 C875,180 940,140 1000,150 L1000,200 L0,200 Z"
+                  ]
+                }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+              />
+
+              {/* Line 2 (Mid Stock Inventory Volatility) */}
+              <motion.path
+                d="M0,110 C150,140 275,85 400,120 C525,155 650,70 775,105 C900,135 950,90 1000,110 L1000,200 L0,200 Z"
+                fill="url(#skuWatermarkGradient2)"
+                animate={{
+                  d: [
+                    "M0,110 C150,140 275,85 400,120 C525,155 650,70 775,105 C900,135 950,90 1000,110 L1000,200 L0,200 Z",
+                    "M0,125 C150,95 275,135 400,90 C525,120 650,115 775,75 C900,110 950,120 1000,125 L1000,200 L0,200 Z",
+                    "M0,95 C150,125 275,105 400,140 C525,85 650,95 775,125 C900,85 950,75 1000,95 L1000,200 L0,200 Z",
+                    "M0,110 C150,140 275,85 400,120 C525,155 650,70 775,105 C900,135 950,90 1000,110 L1000,200 L0,200 Z"
+                  ]
+                }}
+                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.path
+                d="M0,110 C150,140 275,85 400,120 C525,155 650,70 775,105 C900,135 950,90 1000,110"
+                fill="none"
+                stroke="rgba(255,255,255,0.4)"
+                strokeWidth="1.5"
+                animate={{
+                  d: [
+                    "M0,110 C150,140 275,85 400,120 C525,155 650,70 775,105 C900,135 950,90 1000,110",
+                    "M0,125 C150,95 275,135 400,90 C525,120 650,115 775,75 C900,110 950,120 1000,125",
+                    "M0,95 C150,125 275,105 400,140 C525,85 650,95 775,125 C900,85 950,75 1000,95",
+                    "M0,110 C150,140 275,85 400,120 C525,155 650,70 775,105 C900,135 950,90 1000,110"
+                  ]
+                }}
+                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+              />
+
+              {/* Line 1 (Primary Stock Demand Curve) */}
+              <motion.path
+                d="M0,75 C110,120 220,30 340,70 C460,110 570,15 690,50 C810,85 900,10 1000,75 L1000,200 L0,200 Z"
+                fill="url(#skuWatermarkGradient1)"
+                animate={{
+                  d: [
+                    "M0,75 C110,120 220,30 340,70 C460,110 570,15 690,50 C810,85 900,10 1000,75 L1000,200 L0,200 Z",
+                    "M0,50 C110,80 220,110 340,35 C460,65 570,90 690,20 C810,45 900,65 1000,50 L1000,200 L0,200 Z",
+                    "M0,95 C110,40 220,70 340,100 C460,25 570,60 690,90 C810,30 900,25 1000,95 L1000,200 L0,200 Z",
+                    "M0,75 C110,120 220,30 340,70 C460,110 570,15 690,50 C810,85 900,10 1000,75 L1000,200 L0,200 Z"
+                  ]
+                }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.path
+                d="M0,75 C110,120 220,30 340,70 C460,110 570,15 690,50 C810,85 900,10 1000,75"
+                fill="none"
+                stroke="#ffffff"
+                strokeWidth="2.4"
+                strokeLinecap="round"
+                filter="url(#skuGlow)"
+                animate={{
+                  d: [
+                    "M0,75 C110,120 220,30 340,70 C460,110 570,15 690,50 C810,85 900,10 1000,75",
+                    "M0,50 C110,80 220,110 340,35 C460,65 570,90 690,20 C810,45 900,65 1000,50",
+                    "M0,95 C110,40 220,70 340,100 C460,25 570,60 690,90 C810,30 900,25 1000,95",
+                    "M0,75 C110,120 220,30 340,70 C460,110 570,15 690,50 C810,85 900,10 1000,75"
+                  ]
+                }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+              />
+
+              {/* Animated pulsing telemetry nodes */}
+              <motion.g
+                animate={{ y: [0, -25, 20, 0], x: [0, 4, -4, 0] }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <circle cx="340" cy="70" r="4.5" fill="#ffffff" />
+                <motion.circle 
+                  cx="340" 
+                  cy="70" 
+                  r="8" 
+                  fill="none" 
+                  stroke="#ffffff" 
+                  strokeWidth="1.2"
+                  animate={{ r: [4.5, 13, 4.5], opacity: [0.8, 0, 0.8] }}
+                  transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
+                />
+              </motion.g>
+
+              <motion.g
+                animate={{ y: [0, 25, -30, 0], x: [0, -6, 5, 0] }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <circle cx="690" cy="50" r="5" fill="#ffffff" />
+                <motion.circle 
+                  cx="690" 
+                  cy="50" 
+                  r="10" 
+                  fill="none" 
+                  stroke="#ffffff" 
+                  strokeWidth="1.2"
+                  animate={{ r: [5, 16, 5], opacity: [0.9, 0, 0.9] }}
+                  transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut", delay: 0.3 }}
+                />
+              </motion.g>
+            </svg>
+          </div>
+        </motion.div>
       </div>
 
       {/* Bottom spacer */}
