@@ -113,6 +113,104 @@ const CinematicScrollImage = ({ src, alt, className }: { src: string, alt: strin
   );
 };
 
+const StockIQDetailHeroCinematicMotion = ({ src, alt }: { src: string, alt: string }) => {
+  const [timecode, setTimecode] = useState("00:00:14:08");
+
+  useEffect(() => {
+    let frame = 0;
+    const interval = setInterval(() => {
+      frame = (frame + 1) % 1800; // 30fps cycle
+      const totalSec = Math.floor(frame / 30);
+      const ff = String(frame % 30).padStart(2, '0');
+      const ss = String(totalSec % 60).padStart(2, '0');
+      const mm = String(Math.floor(totalSec / 60)).padStart(2, '0');
+      setTimecode(`00:${mm}:${ss}:${ff}`);
+    }, 33.3);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="relative w-full h-full overflow-hidden bg-black select-none">
+      {/* Cinematic Continuous Slow Pan & Zoom Video Motion */}
+      <motion.img
+        src={src}
+        alt={alt}
+        className="w-full h-full object-cover transform-gpu"
+        referrerPolicy="no-referrer"
+        initial={{ scale: 1.05, x: "-1.5%", y: "-1%" }}
+        animate={{
+          scale: [1.05, 1.14, 1.08, 1.15, 1.05],
+          x: ["-1.5%", "1.5%", "-0.5%", "1.2%", "-1.5%"],
+          y: ["-1%", "1.2%", "-1%", "0.8%", "-1%"],
+        }}
+        transition={{
+          duration: 22,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        style={{
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
+          filter: 'contrast(1.04) brightness(0.98)',
+        }}
+      />
+
+      {/* Subtle Cinematic Vignette */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30 pointer-events-none" />
+
+      {/* Slow Anamorphic Light Shimmer Bar Sweep */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none bg-gradient-to-r from-transparent via-white/[0.08] to-transparent skew-x-12"
+        animate={{ x: ["-120%", "220%"] }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+          repeatDelay: 3,
+        }}
+      />
+
+      {/* Top Bar Video Telemetry HUD */}
+      <div className="absolute top-4 left-4 right-4 md:top-6 md:left-6 md:right-6 flex justify-between items-center pointer-events-none z-10">
+        <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[9px] md:text-[10px] font-mono tracking-widest text-white shadow-lg">
+          <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,1)]" />
+          <span className="font-bold tracking-wider">CINEMATIC MOTION</span>
+          <span className="text-white/40">|</span>
+          <span className="text-white/80">4K 60FPS</span>
+        </div>
+
+        <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[9px] md:text-[10px] font-mono tracking-widest text-white shadow-lg">
+          <span className="text-white/50">TC</span>
+          <span className="font-bold tabular-nums text-white">{timecode}</span>
+        </div>
+      </div>
+
+      {/* Bottom Timeline Scrubber Line */}
+      <div className="absolute bottom-0 inset-x-0 pointer-events-none z-10">
+        <div className="w-full h-0.5 bg-white/20 relative overflow-hidden">
+          <motion.div
+            className="absolute top-0 bottom-0 left-0 bg-white shadow-[0_0_8px_rgba(255,255,255,0.9)]"
+            animate={{ width: ["0%", "100%"] }}
+            transition={{
+              duration: 22,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Vertical Studio Watermark */}
+      <div 
+        style={{ writingMode: 'vertical-rl' }} 
+        className="absolute bottom-6 right-3 md:right-4 text-[9px] md:text-[10px] text-white/80 font-mono uppercase tracking-[0.25em] select-none pointer-events-none z-10"
+      >
+        ONEUP © 2025
+      </div>
+    </div>
+  );
+};
+
 const StockIQSkuLineGraphWatermark = () => {
   const [stockCount, setStockCount] = useState(28450);
   const [delta, setDelta] = useState<number>(24);
@@ -2184,10 +2282,17 @@ export default function App() {
                   className="aspect-video overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl mb-24 md:mb-40"
                   onClick={() => setFullscreenImage(selectedProject.heroImage || selectedProject.image)}
                 >
-                  <SubtleMotionImage 
-                    src={selectedProject.heroImage || selectedProject.image} 
-                    alt={selectedProject.title}
-                  />
+                  {selectedProject.title === "StockIQ" ? (
+                    <StockIQDetailHeroCinematicMotion 
+                      src={selectedProject.heroImage || selectedProject.image} 
+                      alt={selectedProject.title}
+                    />
+                  ) : (
+                    <SubtleMotionImage 
+                      src={selectedProject.heroImage || selectedProject.image} 
+                      alt={selectedProject.title}
+                    />
+                  )}
                 </motion.div>
 
                 {/* Alternating Content Sections */}
