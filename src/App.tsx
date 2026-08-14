@@ -11,7 +11,7 @@ const stockiqHero = "https://lh3.googleusercontent.com/d/12y_h1qFMeTMrJovWZ6851w
 const stockiqOverviewImage = "https://lh3.googleusercontent.com/d/1URFuOF_YAMhKNzgEUEnS_UuyczyxtUZ0";
 const stockiqDetailImage = "https://lh3.googleusercontent.com/d/1lwn6PfXHxqz96caYITF90wi9vU8YyNy0";
 const stockiqBrandImage = "https://lh3.googleusercontent.com/d/134Il3V5cWFOeeLsdWqmgbvElSCCmdW7M";
-const stockiqSystemImage = "https://lh3.googleusercontent.com/d/1-Rt1RAl-MrnWUQ3fIWyXAoHZgOrLnpLy";
+const stockiqSystemImage = "https://lh3.googleusercontent.com/d/1nCiRALkZH3FOnSGFfXpRm5A1MQk2t4JE";
 const stockiqOutcomeImage = "https://lh3.googleusercontent.com/d/1iJoSEuskYyCsGuAFhE8CGRBaMQ_cD5GV";
 const stockiqGalleryImage = "https://lh3.googleusercontent.com/d/1L4gTgudZK7s3JQaOlvHIhLkLxgPctfGO";
 
