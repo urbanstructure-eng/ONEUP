@@ -114,21 +114,6 @@ const CinematicScrollImage = ({ src, alt, className }: { src: string, alt: strin
 };
 
 const StockIQDetailHeroCinematicMotion = ({ src, alt }: { src: string, alt: string }) => {
-  const [timecode, setTimecode] = useState("00:00:14:08");
-
-  useEffect(() => {
-    let frame = 0;
-    const interval = setInterval(() => {
-      frame = (frame + 1) % 1800; // 30fps cycle
-      const totalSec = Math.floor(frame / 30);
-      const ff = String(frame % 30).padStart(2, '0');
-      const ss = String(totalSec % 60).padStart(2, '0');
-      const mm = String(Math.floor(totalSec / 60)).padStart(2, '0');
-      setTimecode(`00:${mm}:${ss}:${ff}`);
-    }, 33.3);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <div className="relative w-full h-full overflow-hidden bg-black select-none">
       {/* Cinematic Continuous Slow Pan & Zoom Video Motion */}
@@ -156,7 +141,7 @@ const StockIQDetailHeroCinematicMotion = ({ src, alt }: { src: string, alt: stri
       />
 
       {/* Subtle Cinematic Vignette */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
 
       {/* Slow Anamorphic Light Shimmer Bar Sweep */}
       <motion.div
@@ -169,44 +154,6 @@ const StockIQDetailHeroCinematicMotion = ({ src, alt }: { src: string, alt: stri
           repeatDelay: 3,
         }}
       />
-
-      {/* Top Bar Video Telemetry HUD */}
-      <div className="absolute top-4 left-4 right-4 md:top-6 md:left-6 md:right-6 flex justify-between items-center pointer-events-none z-10">
-        <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[9px] md:text-[10px] font-mono tracking-widest text-white shadow-lg">
-          <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,1)]" />
-          <span className="font-bold tracking-wider">CINEMATIC MOTION</span>
-          <span className="text-white/40">|</span>
-          <span className="text-white/80">4K 60FPS</span>
-        </div>
-
-        <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[9px] md:text-[10px] font-mono tracking-widest text-white shadow-lg">
-          <span className="text-white/50">TC</span>
-          <span className="font-bold tabular-nums text-white">{timecode}</span>
-        </div>
-      </div>
-
-      {/* Bottom Timeline Scrubber Line */}
-      <div className="absolute bottom-0 inset-x-0 pointer-events-none z-10">
-        <div className="w-full h-0.5 bg-white/20 relative overflow-hidden">
-          <motion.div
-            className="absolute top-0 bottom-0 left-0 bg-white shadow-[0_0_8px_rgba(255,255,255,0.9)]"
-            animate={{ width: ["0%", "100%"] }}
-            transition={{
-              duration: 22,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        </div>
-      </div>
-
-      {/* Vertical Studio Watermark */}
-      <div 
-        style={{ writingMode: 'vertical-rl' }} 
-        className="absolute bottom-6 right-3 md:right-4 text-[9px] md:text-[10px] text-white/80 font-mono uppercase tracking-[0.25em] select-none pointer-events-none z-10"
-      >
-        ONEUP © 2025
-      </div>
     </div>
   );
 };
