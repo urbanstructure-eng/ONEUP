@@ -1142,7 +1142,8 @@ export default function App() {
         stockiqDetailImage,
         stockiqBrandImage,
         stockiqSystemImage,
-        stockiqOutcomeImage
+        stockiqOutcomeImage,
+        stockiqGalleryImage
       ];
     }
     if (project.title === "Pulso Health") {
