@@ -13,6 +13,7 @@ const stockiqDetailImage = "https://lh3.googleusercontent.com/d/1lwn6PfXHxqz96ca
 const stockiqBrandImage = "https://lh3.googleusercontent.com/d/134Il3V5cWFOeeLsdWqmgbvElSCCmdW7M";
 const stockiqSystemImage = "https://lh3.googleusercontent.com/d/1-Rt1RAl-MrnWUQ3fIWyXAoHZgOrLnpLy";
 const stockiqOutcomeImage = "https://lh3.googleusercontent.com/d/1iJoSEuskYyCsGuAFhE8CGRBaMQ_cD5GV";
+const stockiqGalleryImage = "https://lh3.googleusercontent.com/d/1L4gTgudZK7s3JQaOlvHIhLkLxgPctfGO";
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg 
@@ -2451,6 +2452,18 @@ export default function App() {
                               <span className="px-3 py-1.5 bg-white border border-black/10 rounded-lg shadow-xs">Design System</span>
                             </div>
                           </div>
+                        </div>
+
+                        {/* StockIQ Final Image Showcase */}
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9] mt-8"
+                          onClick={() => setFullscreenImage(stockiqGalleryImage)}
+                        >
+                          <SubtleMotionImage 
+                            src={stockiqGalleryImage} 
+                            alt="StockIQ Ecosystem Design Overview"
+                            cinematic={true}
+                          />
                         </div>
                       </div>
                     </>
