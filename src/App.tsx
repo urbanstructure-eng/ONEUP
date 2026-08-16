@@ -12,6 +12,7 @@ const stockiqOverviewImage = "https://lh3.googleusercontent.com/d/1URFuOF_YAMhKN
 const stockiqDetailImage = "https://lh3.googleusercontent.com/d/1lwn6PfXHxqz96caYITF90wi9vU8YyNy0";
 const stockiqBrandImage = "https://lh3.googleusercontent.com/d/134Il3V5cWFOeeLsdWqmgbvElSCCmdW7M";
 const stockiqSystemImage = "https://lh3.googleusercontent.com/d/1nCiRALkZH3FOnSGFfXpRm5A1MQk2t4JE";
+const stockiqComponentsImage = "https://lh3.googleusercontent.com/d/1JsGApruf34MUEO-RjzbquWAOO5hiRyhb";
 const stockiqOutcomeImage = "https://lh3.googleusercontent.com/d/1iJoSEuskYyCsGuAFhE8CGRBaMQ_cD5GV";
 const stockiqGalleryImage = "https://lh3.googleusercontent.com/d/1L4gTgudZK7s3JQaOlvHIhLkLxgPctfGO";
 
@@ -1089,6 +1090,7 @@ export default function App() {
         stockiqDetailImage,
         stockiqBrandImage,
         stockiqSystemImage,
+        stockiqComponentsImage,
         stockiqOutcomeImage,
         stockiqGalleryImage
       ];
@@ -2449,6 +2451,18 @@ export default function App() {
                               "Me enfoqué en crear una jerarquía de información clara y componentes consistentes para que los usuarios puedan identificar rápidamente un problema, comprender los datos y actuar de inmediato."
                             )}
                           </p>
+                        </div>
+
+                        {/* StockIQ UI Components & Information Hierarchy Detail Image */}
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage(stockiqComponentsImage)}
+                        >
+                          <SubtleMotionImage 
+                            src={stockiqComponentsImage} 
+                            alt="StockIQ UI Components & Information Hierarchy"
+                            cinematic={true}
+                          />
                         </div>
                       </div>
 
