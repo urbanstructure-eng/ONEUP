@@ -801,7 +801,7 @@ const TopVideoFloatingWindow = ({
     onClose();
   };
 
-  // Sound activation handler
+  // Sound activation helper
   const unmuteAudio = () => {
     try {
       if (playerRef.current) {
@@ -820,6 +820,8 @@ const TopVideoFloatingWindow = ({
         win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
         win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
         win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+        win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [], id: 1, channel: 'widget' }), '*');
+        win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100], id: 1, channel: 'widget' }), '*');
       }
     } catch (e) {}
   };
@@ -849,14 +851,17 @@ const TopVideoFloatingWindow = ({
       }, 5000);
     };
 
-    // Instant play signal directly over postMessage (ensuring muted autoplay)
+    // Instant play signal directly over postMessage
     const triggerInstantPlay = () => {
       try {
         const win = iframeRef.current?.contentWindow;
         if (win) {
           win.postMessage(JSON.stringify({ event: 'listening', id: 1 }), '*');
-          win.postMessage(JSON.stringify({ event: 'command', func: 'mute', args: [] }), '*');
+          win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
+          win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
           win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+          win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [], id: 1, channel: 'widget' }), '*');
+          win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100], id: 1, channel: 'widget' }), '*');
         }
       } catch (e) {}
     };
@@ -871,8 +876,8 @@ const TopVideoFloatingWindow = ({
           events: {
             onReady: (event: any) => {
               try {
-                // Ensure muted autoplay starts immediately without violating browser autoplay policy
-                event.target.mute();
+                event.target.unMute();
+                event.target.setVolume(100);
                 event.target.playVideo();
               } catch (e) {}
             },
@@ -946,12 +951,11 @@ const TopVideoFloatingWindow = ({
     };
     window.addEventListener('message', handleMessage);
 
-    // Global interaction listeners to guarantee audio unmute across all browsers
+    // Global interaction listeners to guarantee unmuted audio across browsers
     window.addEventListener('click', unmuteAudio, { passive: true });
     window.addEventListener('touchstart', unmuteAudio, { passive: true });
     window.addEventListener('pointerdown', unmuteAudio, { passive: true });
     window.addEventListener('keydown', unmuteAudio, { passive: true });
-    window.addEventListener('scroll', unmuteAudio, { passive: true });
 
     return () => {
       if (checkInterval) clearInterval(checkInterval);
@@ -962,7 +966,6 @@ const TopVideoFloatingWindow = ({
       window.removeEventListener('touchstart', unmuteAudio);
       window.removeEventListener('pointerdown', unmuteAudio);
       window.removeEventListener('keydown', unmuteAudio);
-      window.removeEventListener('scroll', unmuteAudio);
       if (playerRef.current) {
         try {
           if (typeof playerRef.current.stopVideo === 'function') {
@@ -1023,7 +1026,7 @@ const TopVideoFloatingWindow = ({
               <iframe
                 ref={iframeRef}
                 id="oneup-center-youtube-player"
-                src="https://www.youtube.com/embed/JmOpzzc2u0k?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1"
+                src={`https://www.youtube.com/embed/JmOpzzc2u0k?autoplay=1&mute=0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1${typeof window !== 'undefined' ? `&origin=${encodeURIComponent(window.location.origin)}&widget_referrer=${encodeURIComponent(window.location.href)}` : ''}`}
                 title="ONEUP STUDIO Video"
                 loading="eager"
                 onLoad={() => {
@@ -1031,8 +1034,11 @@ const TopVideoFloatingWindow = ({
                     const win = iframeRef.current?.contentWindow;
                     if (win) {
                       win.postMessage(JSON.stringify({ event: 'listening', id: 1 }), '*');
-                      win.postMessage(JSON.stringify({ event: 'command', func: 'mute', args: [] }), '*');
+                      win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
+                      win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
                       win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+                      win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [], id: 1, channel: 'widget' }), '*');
+                      win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100], id: 1, channel: 'widget' }), '*');
                     }
                   } catch (e) {}
                 }}
@@ -1042,7 +1048,7 @@ const TopVideoFloatingWindow = ({
                 referrerPolicy="strict-origin-when-cross-origin"
               />
 
-              {/* Complete Shield: completely blocks all pointer events/clicks/links on the video, while ensuring audio unmute on touch without opening links */}
+              {/* Invisible Shield: prevents clicking links/opening YouTube while triggering unmuted sound on interaction */}
               <div 
                 className="absolute inset-0 z-10 pointer-events-auto cursor-pointer select-none" 
                 onClick={unmuteAudio}
@@ -1053,10 +1059,6 @@ const TopVideoFloatingWindow = ({
               {/* 5-second automatic close countdown progress bar shown ONLY after video finishes */}
               {hasEnded && (
                 <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
-                  <div className="flex items-center justify-between px-4 py-1.5 bg-black/80 backdrop-blur-sm text-[11px] font-mono text-white tracking-wider">
-                    <span>Video finished</span>
-                    <span>Closing in 5s...</span>
-                  </div>
                   <div className="h-[4px] bg-white/30 w-full overflow-hidden">
                     <motion.div
                       initial={{ width: "100%" }}
