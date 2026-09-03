@@ -968,19 +968,25 @@ const TopVideoFloatingWindow = ({
               <X className="w-5 h-5 text-black stroke-[2.5]" />
             </button>
 
-            {/* Elegant Minimalist Video Frame (No controls, centered, plays with sound) */}
+            {/* Elegant Minimalist Video Frame (Original aspect ratio, fitted 100%, zero links clicked, plays with sound) */}
             <div 
-              className="relative aspect-video w-full rounded-[20px] sm:rounded-[28px] overflow-hidden bg-black shadow-inner cursor-pointer"
-              onClick={unmuteSound}
+              className="relative aspect-video w-full rounded-[20px] sm:rounded-[28px] overflow-hidden bg-black shadow-inner select-none"
             >
+              {/* Full 100% fitted iframe preserving original video dimensions without cutoff */}
               <iframe
                 ref={iframeRef}
                 id="oneup-center-youtube-player"
-                src="https://www.youtube.com/embed/JmOpzzc2u0k?autoplay=1&mute=0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&enablejsapi=1&origin=https://ais-dev-y3asgdnnxujtajkth6ggiu-46688224939.us-east1.run.app"
+                src="https://www.youtube.com/embed/JmOpzzc2u0k?autoplay=1&mute=0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1"
                 title="ONEUP STUDIO Video"
-                className="w-full h-full border-0 pointer-events-auto"
+                className="w-full h-full border-0 pointer-events-none select-none"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
+              />
+
+              {/* Interaction Shield Overlay: blocks any link clicks on the video surface */}
+              <div 
+                className="absolute inset-0 z-10 pointer-events-auto cursor-default" 
+                onClick={unmuteSound}
+                title=""
               />
 
               {/* Discreet 5-second automatic close countdown progress bar shown ONLY after video finishes */}
