@@ -801,6 +801,29 @@ const TopVideoFloatingWindow = ({
     onClose();
   };
 
+  // Sound activation handler
+  const unmuteAudio = () => {
+    try {
+      if (playerRef.current) {
+        if (typeof playerRef.current.unMute === 'function') {
+          playerRef.current.unMute();
+        }
+        if (typeof playerRef.current.setVolume === 'function') {
+          playerRef.current.setVolume(100);
+        }
+        if (typeof playerRef.current.playVideo === 'function') {
+          playerRef.current.playVideo();
+        }
+      }
+      const win = iframeRef.current?.contentWindow;
+      if (win) {
+        win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
+        win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
+        win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+      }
+    } catch (e) {}
+  };
+
   useEffect(() => {
     if (!isOpen) {
       hasEndedRef.current = false;
@@ -826,31 +849,12 @@ const TopVideoFloatingWindow = ({
       }, 5000);
     };
 
-    // Sound activation handler
-    const unmuteAudio = () => {
-      try {
-        if (playerRef.current && typeof playerRef.current.unMute === 'function') {
-          playerRef.current.unMute();
-          playerRef.current.setVolume(100);
-          playerRef.current.playVideo();
-        }
-        const win = iframeRef.current?.contentWindow;
-        if (win) {
-          win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
-          win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
-          win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
-        }
-      } catch (e) {}
-    };
-
-    // Instant play and unmute signal directly over postMessage
+    // Instant play signal directly over postMessage
     const triggerInstantPlay = () => {
       try {
         const win = iframeRef.current?.contentWindow;
         if (win) {
           win.postMessage(JSON.stringify({ event: 'listening', id: 1 }), '*');
-          win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
-          win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
           win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
         }
       } catch (e) {}
@@ -866,9 +870,11 @@ const TopVideoFloatingWindow = ({
           events: {
             onReady: (event: any) => {
               try {
+                // Ensure immediate playback starts
+                event.target.playVideo();
+                // Attempt to unmute if policy permits
                 event.target.unMute();
                 event.target.setVolume(100);
-                event.target.playVideo();
               } catch (e) {}
             },
             onStateChange: (event: any) => {
@@ -946,6 +952,7 @@ const TopVideoFloatingWindow = ({
     window.addEventListener('touchstart', unmuteAudio, { passive: true });
     window.addEventListener('pointerdown', unmuteAudio, { passive: true });
     window.addEventListener('keydown', unmuteAudio, { passive: true });
+    window.addEventListener('scroll', unmuteAudio, { passive: true });
 
     return () => {
       if (checkInterval) clearInterval(checkInterval);
@@ -956,6 +963,7 @@ const TopVideoFloatingWindow = ({
       window.removeEventListener('touchstart', unmuteAudio);
       window.removeEventListener('pointerdown', unmuteAudio);
       window.removeEventListener('keydown', unmuteAudio);
+      window.removeEventListener('scroll', unmuteAudio);
       if (playerRef.current) {
         try {
           if (typeof playerRef.current.stopVideo === 'function') {
@@ -1016,7 +1024,7 @@ const TopVideoFloatingWindow = ({
               <iframe
                 ref={iframeRef}
                 id="oneup-center-youtube-player"
-                src={`https://www.youtube.com/embed/JmOpzzc2u0k?autoplay=1&mute=0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1&widgetid=1${typeof window !== 'undefined' ? `&origin=${encodeURIComponent(window.location.origin)}` : ''}`}
+                src="https://www.youtube.com/embed/JmOpzzc2u0k?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1"
                 title="ONEUP STUDIO Video"
                 loading="eager"
                 onLoad={() => {
@@ -1024,33 +1032,20 @@ const TopVideoFloatingWindow = ({
                     const win = iframeRef.current?.contentWindow;
                     if (win) {
                       win.postMessage(JSON.stringify({ event: 'listening', id: 1 }), '*');
-                      win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
-                      win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
                       win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
                     }
                   } catch (e) {}
                 }}
                 className="w-full h-full border-0 pointer-events-none select-none"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allow="autoplay; fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               />
 
               {/* Complete Shield: completely blocks all pointer events/clicks/links on the video, while ensuring audio unmute on touch without opening links */}
               <div 
-                className="absolute inset-0 z-10 pointer-events-auto cursor-default select-none" 
-                onClick={() => {
-                  try {
-                    if (playerRef.current && typeof playerRef.current.unMute === 'function') {
-                      playerRef.current.unMute();
-                      playerRef.current.setVolume(100);
-                      playerRef.current.playVideo();
-                    }
-                    const win = iframeRef.current?.contentWindow;
-                    if (win) {
-                      win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
-                      win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
-                    }
-                  } catch (e) {}
-                }}
+                className="absolute inset-0 z-10 pointer-events-auto cursor-pointer select-none" 
+                onClick={unmuteAudio}
+                onTouchStart={unmuteAudio}
+                onPointerDown={unmuteAudio}
               />
 
               {/* 5-second automatic close countdown progress bar shown ONLY after video finishes */}
