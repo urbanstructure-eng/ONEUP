@@ -776,7 +776,6 @@ const TopVideoFloatingWindow = ({
   const hasEndedRef = React.useRef<boolean>(false);
   const closeTimerRef = React.useRef<NodeJS.Timeout | null>(null);
   const [hasEnded, setHasEnded] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
 
   // Close handler that cleanly stops player & audio
   const handleClose = () => {
@@ -820,7 +819,7 @@ const TopVideoFloatingWindow = ({
       hasEndedRef.current = true;
       setHasEnded(true);
 
-      // Once finished playing entirely, stay for 5 seconds, then close
+      // Once finished playing entirely, stay for 5 seconds if user does not close, then close automatically
       if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
       closeTimerRef.current = setTimeout(() => {
         handleClose();
@@ -835,11 +834,10 @@ const TopVideoFloatingWindow = ({
           events: {
             onReady: (event: any) => {
               try {
+                event.target.playVideo();
                 event.target.unMute();
                 event.target.setVolume(100);
-                setIsMuted(event.target.isMuted ? event.target.isMuted() : false);
               } catch (e) {}
-              event.target.playVideo();
             },
             onStateChange: (event: any) => {
               // 0 is YT.PlayerState.ENDED
@@ -876,23 +874,34 @@ const TopVideoFloatingWindow = ({
       }, 100);
     }
 
-    // Secondary watchdog: check playback progress
+    // Progress and state watchdog: check for video end
     pollDurationInterval = setInterval(() => {
-      if (playerRef.current && typeof playerRef.current.getDuration === 'function') {
-        const duration = playerRef.current.getDuration();
-        const current = playerRef.current.getCurrentTime();
-        if (duration > 0 && current >= duration - 0.4) {
-          onVideoFinished();
-        }
+      if (playerRef.current) {
+        try {
+          const state = typeof playerRef.current.getPlayerState === 'function' ? playerRef.current.getPlayerState() : -1;
+          if (state === 0) {
+            onVideoFinished();
+            return;
+          }
+          if (typeof playerRef.current.getDuration === 'function' && typeof playerRef.current.getCurrentTime === 'function') {
+            const duration = playerRef.current.getDuration();
+            const current = playerRef.current.getCurrentTime();
+            if (duration > 0 && current > 0 && current >= duration - 0.4) {
+              onVideoFinished();
+            }
+          }
+        } catch (e) {}
       }
-    }, 400);
+    }, 300);
 
     // Tertiary watchdog: listen for postMessage from YouTube iframe
     const handleMessage = (e: MessageEvent) => {
       try {
         const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
-        if (data && (data.event === 'onStateChange' || typeof data.info !== 'undefined')) {
-          if (data.info === 0) {
+        if (data) {
+          if (data.event === 'onStateChange' && data.info === 0) {
+            onVideoFinished();
+          } else if (data.info && typeof data.info === 'object' && data.info.playerState === 0) {
             onVideoFinished();
           }
         }
@@ -918,17 +927,6 @@ const TopVideoFloatingWindow = ({
       }
     };
   }, [isOpen]);
-
-  const unmuteSound = () => {
-    if (playerRef.current) {
-      try {
-        playerRef.current.unMute();
-        playerRef.current.setVolume(100);
-        playerRef.current.playVideo();
-        setIsMuted(false);
-      } catch (e) {}
-    }
-  };
 
   if (hidden) return null;
 
@@ -968,7 +966,7 @@ const TopVideoFloatingWindow = ({
               <X className="w-5 h-5 text-black stroke-[2.5]" />
             </button>
 
-            {/* Elegant Minimalist Video Frame (Original aspect ratio, fitted 100%, zero links clicked, plays with sound) */}
+            {/* Video Frame (Original aspect ratio, 100% fit, zero link clicks, pure video) */}
             <div 
               className="relative aspect-video w-full rounded-[20px] sm:rounded-[28px] overflow-hidden bg-black shadow-inner select-none"
             >
@@ -976,28 +974,32 @@ const TopVideoFloatingWindow = ({
               <iframe
                 ref={iframeRef}
                 id="oneup-center-youtube-player"
-                src="https://www.youtube.com/embed/JmOpzzc2u0k?autoplay=1&mute=0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1"
+                src="https://www.youtube.com/embed/JmOpzzc2u0k?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1"
                 title="ONEUP STUDIO Video"
                 className="w-full h-full border-0 pointer-events-none select-none"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               />
 
-              {/* Interaction Shield Overlay: blocks any link clicks on the video surface */}
+              {/* Complete Shield: completely blocks all pointer events/clicks/links on the video */}
               <div 
-                className="absolute inset-0 z-10 pointer-events-auto cursor-default" 
-                onClick={unmuteSound}
-                title=""
+                className="absolute inset-0 z-10 pointer-events-auto cursor-default select-none" 
               />
 
-              {/* Discreet 5-second automatic close countdown progress bar shown ONLY after video finishes */}
+              {/* 5-second automatic close countdown progress bar shown ONLY after video finishes */}
               {hasEnded && (
-                <div className="absolute bottom-0 left-0 right-0 h-[4px] bg-white/30 z-20 overflow-hidden pointer-events-none">
-                  <motion.div
-                    initial={{ width: "100%" }}
-                    animate={{ width: "0%" }}
-                    transition={{ duration: 5, ease: "linear" }}
-                    className="h-full bg-white"
-                  />
+                <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
+                  <div className="flex items-center justify-between px-4 py-1.5 bg-black/80 backdrop-blur-sm text-[11px] font-mono text-white tracking-wider">
+                    <span>Video finished</span>
+                    <span>Closing in 5s...</span>
+                  </div>
+                  <div className="h-[4px] bg-white/30 w-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: "100%" }}
+                      animate={{ width: "0%" }}
+                      transition={{ duration: 5, ease: "linear" }}
+                      className="h-full bg-white"
+                    />
+                  </div>
                 </div>
               )}
             </div>
