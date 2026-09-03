@@ -857,16 +857,17 @@ const TopVideoFloatingWindow = ({
         const win = iframeRef.current?.contentWindow;
         if (win) {
           win.postMessage(JSON.stringify({ event: 'listening', id: 1 }), '*');
-          win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
-          win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
           win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
-          win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [], id: 1, channel: 'widget' }), '*');
-          win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100], id: 1, channel: 'widget' }), '*');
         }
       } catch (e) {}
     };
 
     triggerInstantPlay();
+
+    // After playback initializes, attempt to unmute with volume
+    const autoUnmuteTimer = setTimeout(() => {
+      unmuteAudio();
+    }, 400);
 
     const attachPlayer = () => {
       if (!iframeRef.current || playerRef.current || !window.YT || !window.YT.Player) return;
@@ -876,12 +877,19 @@ const TopVideoFloatingWindow = ({
           events: {
             onReady: (event: any) => {
               try {
+                event.target.playVideo();
                 event.target.unMute();
                 event.target.setVolume(100);
-                event.target.playVideo();
               } catch (e) {}
             },
             onStateChange: (event: any) => {
+              if (event.data === 1) {
+                // When playback begins, trigger unMute
+                try {
+                  event.target.unMute();
+                  event.target.setVolume(100);
+                } catch (e) {}
+              }
               // 0 is YT.PlayerState.ENDED
               if (event.data === 0) {
                 onVideoFinished();
@@ -956,8 +964,11 @@ const TopVideoFloatingWindow = ({
     window.addEventListener('touchstart', unmuteAudio, { passive: true });
     window.addEventListener('pointerdown', unmuteAudio, { passive: true });
     window.addEventListener('keydown', unmuteAudio, { passive: true });
+    window.addEventListener('scroll', unmuteAudio, { passive: true });
+    window.addEventListener('mousemove', unmuteAudio, { passive: true });
 
     return () => {
+      clearTimeout(autoUnmuteTimer);
       if (checkInterval) clearInterval(checkInterval);
       if (pollDurationInterval) clearInterval(pollDurationInterval);
       if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
@@ -966,6 +977,8 @@ const TopVideoFloatingWindow = ({
       window.removeEventListener('touchstart', unmuteAudio);
       window.removeEventListener('pointerdown', unmuteAudio);
       window.removeEventListener('keydown', unmuteAudio);
+      window.removeEventListener('scroll', unmuteAudio);
+      window.removeEventListener('mousemove', unmuteAudio);
       if (playerRef.current) {
         try {
           if (typeof playerRef.current.stopVideo === 'function') {
@@ -1026,7 +1039,7 @@ const TopVideoFloatingWindow = ({
               <iframe
                 ref={iframeRef}
                 id="oneup-center-youtube-player"
-                src={`https://www.youtube.com/embed/JmOpzzc2u0k?autoplay=1&mute=0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1${typeof window !== 'undefined' ? `&origin=${encodeURIComponent(window.location.origin)}&widget_referrer=${encodeURIComponent(window.location.href)}` : ''}`}
+                src="https://www.youtube.com/embed/JmOpzzc2u0k?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1"
                 title="ONEUP STUDIO Video"
                 loading="eager"
                 onLoad={() => {
@@ -1034,11 +1047,7 @@ const TopVideoFloatingWindow = ({
                     const win = iframeRef.current?.contentWindow;
                     if (win) {
                       win.postMessage(JSON.stringify({ event: 'listening', id: 1 }), '*');
-                      win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
-                      win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
                       win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
-                      win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [], id: 1, channel: 'widget' }), '*');
-                      win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100], id: 1, channel: 'widget' }), '*');
                     }
                   } catch (e) {}
                 }}
@@ -1054,6 +1063,8 @@ const TopVideoFloatingWindow = ({
                 onClick={unmuteAudio}
                 onTouchStart={unmuteAudio}
                 onPointerDown={unmuteAudio}
+                onMouseMove={unmuteAudio}
+                onMouseEnter={unmuteAudio}
               />
 
               {/* 5-second automatic close countdown progress bar shown ONLY after video finishes */}
