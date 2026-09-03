@@ -811,15 +811,37 @@ const TopVideoFloatingWindow = ({
         if (typeof playerRef.current.setVolume === 'function') {
           playerRef.current.setVolume(100);
         }
-        if (typeof playerRef.current.playVideo === 'function') {
-          playerRef.current.playVideo();
-        }
       }
       const win = iframeRef.current?.contentWindow;
       if (win) {
         win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
         win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
+        win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [], id: 1, channel: 'widget' }), '*');
+        win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100], id: 1, channel: 'widget' }), '*');
+      }
+    } catch (e) {}
+  };
+
+  // Play and unmute combined handler for user interactions
+  const handlePlayAndUnmute = () => {
+    try {
+      if (playerRef.current) {
+        if (typeof playerRef.current.playVideo === 'function') {
+          playerRef.current.playVideo();
+        }
+        if (typeof playerRef.current.unMute === 'function') {
+          playerRef.current.unMute();
+        }
+        if (typeof playerRef.current.setVolume === 'function') {
+          playerRef.current.setVolume(100);
+        }
+      }
+      const win = iframeRef.current?.contentWindow;
+      if (win) {
         win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+        win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
+        win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
+        win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [], id: 1, channel: 'widget' }), '*');
         win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [], id: 1, channel: 'widget' }), '*');
         win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100], id: 1, channel: 'widget' }), '*');
       }
@@ -864,11 +886,6 @@ const TopVideoFloatingWindow = ({
 
     triggerInstantPlay();
 
-    // After playback initializes, attempt to unmute with volume
-    const autoUnmuteTimer = setTimeout(() => {
-      unmuteAudio();
-    }, 400);
-
     const attachPlayer = () => {
       if (!iframeRef.current || playerRef.current || !window.YT || !window.YT.Player) return;
 
@@ -878,18 +895,9 @@ const TopVideoFloatingWindow = ({
             onReady: (event: any) => {
               try {
                 event.target.playVideo();
-                event.target.unMute();
-                event.target.setVolume(100);
               } catch (e) {}
             },
             onStateChange: (event: any) => {
-              if (event.data === 1) {
-                // When playback begins, trigger unMute
-                try {
-                  event.target.unMute();
-                  event.target.setVolume(100);
-                } catch (e) {}
-              }
               // 0 is YT.PlayerState.ENDED
               if (event.data === 0) {
                 onVideoFinished();
@@ -959,26 +967,25 @@ const TopVideoFloatingWindow = ({
     };
     window.addEventListener('message', handleMessage);
 
-    // Global interaction listeners to guarantee unmuted audio across browsers
-    window.addEventListener('click', unmuteAudio, { passive: true });
-    window.addEventListener('touchstart', unmuteAudio, { passive: true });
-    window.addEventListener('pointerdown', unmuteAudio, { passive: true });
-    window.addEventListener('keydown', unmuteAudio, { passive: true });
-    window.addEventListener('scroll', unmuteAudio, { passive: true });
-    window.addEventListener('mousemove', unmuteAudio, { passive: true });
+    // User gesture listeners: unmute audio on genuine user interaction
+    const handleUserGesture = () => {
+      unmuteAudio();
+    };
+
+    window.addEventListener('click', handleUserGesture, { passive: true });
+    window.addEventListener('touchstart', handleUserGesture, { passive: true });
+    window.addEventListener('pointerdown', handleUserGesture, { passive: true });
+    window.addEventListener('keydown', handleUserGesture, { passive: true });
 
     return () => {
-      clearTimeout(autoUnmuteTimer);
       if (checkInterval) clearInterval(checkInterval);
       if (pollDurationInterval) clearInterval(pollDurationInterval);
       if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
       window.removeEventListener('message', handleMessage);
-      window.removeEventListener('click', unmuteAudio);
-      window.removeEventListener('touchstart', unmuteAudio);
-      window.removeEventListener('pointerdown', unmuteAudio);
-      window.removeEventListener('keydown', unmuteAudio);
-      window.removeEventListener('scroll', unmuteAudio);
-      window.removeEventListener('mousemove', unmuteAudio);
+      window.removeEventListener('click', handleUserGesture);
+      window.removeEventListener('touchstart', handleUserGesture);
+      window.removeEventListener('pointerdown', handleUserGesture);
+      window.removeEventListener('keydown', handleUserGesture);
       if (playerRef.current) {
         try {
           if (typeof playerRef.current.stopVideo === 'function') {
@@ -1039,7 +1046,7 @@ const TopVideoFloatingWindow = ({
               <iframe
                 ref={iframeRef}
                 id="oneup-center-youtube-player"
-                src="https://www.youtube.com/embed/JmOpzzc2u0k?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1"
+                src={`https://www.youtube.com/embed/JmOpzzc2u0k?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1${typeof window !== 'undefined' && window.location.origin && window.location.origin !== 'null' ? `&origin=${encodeURIComponent(window.location.origin)}` : ''}`}
                 title="ONEUP STUDIO Video"
                 loading="eager"
                 onLoad={() => {
@@ -1057,14 +1064,12 @@ const TopVideoFloatingWindow = ({
                 referrerPolicy="strict-origin-when-cross-origin"
               />
 
-              {/* Invisible Shield: prevents clicking links/opening YouTube while triggering unmuted sound on interaction */}
+              {/* Invisible Shield: prevents clicking links/opening YouTube while triggering unmuted sound and playback on user click */}
               <div 
                 className="absolute inset-0 z-10 pointer-events-auto cursor-pointer select-none" 
-                onClick={unmuteAudio}
-                onTouchStart={unmuteAudio}
-                onPointerDown={unmuteAudio}
-                onMouseMove={unmuteAudio}
-                onMouseEnter={unmuteAudio}
+                onClick={handlePlayAndUnmute}
+                onTouchStart={handlePlayAndUnmute}
+                onPointerDown={handlePlayAndUnmute}
               />
 
               {/* 5-second automatic close countdown progress bar shown ONLY after video finishes */}
