@@ -760,6 +760,269 @@ const CityTicker = () => {
   );
 };
 
+const TopVideoFloatingWindow = ({
+  isOpen,
+  onClose,
+  onReopen,
+  hidden
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  onReopen: () => void;
+  hidden: boolean;
+}) => {
+  const playerRef = React.useRef<any>(null);
+  const iframeRef = React.useRef<HTMLIFrameElement>(null);
+  const hasEndedRef = React.useRef<boolean>(false);
+  const closeTimerRef = React.useRef<NodeJS.Timeout | null>(null);
+  const [hasEnded, setHasEnded] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+
+  // Close handler that cleanly stops player & audio
+  const handleClose = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    if (playerRef.current) {
+      try {
+        if (typeof playerRef.current.stopVideo === 'function') {
+          playerRef.current.stopVideo();
+        }
+        if (typeof playerRef.current.destroy === 'function') {
+          playerRef.current.destroy();
+        }
+      } catch (e) {
+        console.error("Error stopping YT player on close", e);
+      }
+      playerRef.current = null;
+    }
+    hasEndedRef.current = false;
+    setHasEnded(false);
+    onClose();
+  };
+
+  useEffect(() => {
+    if (!isOpen) {
+      hasEndedRef.current = false;
+      setHasEnded(false);
+      return;
+    }
+
+    hasEndedRef.current = false;
+    setHasEnded(false);
+
+    let checkInterval: NodeJS.Timeout | null = null;
+    let pollDurationInterval: NodeJS.Timeout | null = null;
+
+    const onVideoFinished = () => {
+      if (hasEndedRef.current) return;
+      hasEndedRef.current = true;
+      setHasEnded(true);
+
+      // Once finished playing entirely, stay for 5 seconds, then close
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = setTimeout(() => {
+        handleClose();
+      }, 5000);
+    };
+
+    const attachPlayer = () => {
+      if (!iframeRef.current || playerRef.current || !window.YT || !window.YT.Player) return;
+
+      try {
+        playerRef.current = new window.YT.Player(iframeRef.current, {
+          events: {
+            onReady: (event: any) => {
+              try {
+                event.target.unMute();
+                event.target.setVolume(100);
+                setIsMuted(event.target.isMuted ? event.target.isMuted() : false);
+              } catch (e) {}
+              event.target.playVideo();
+            },
+            onStateChange: (event: any) => {
+              // 0 is YT.PlayerState.ENDED
+              if (event.data === 0) {
+                onVideoFinished();
+              }
+            }
+          }
+        });
+      } catch (e) {
+        console.error("Error attaching YT Player", e);
+      }
+    };
+
+    // Ensure YouTube API script is loaded
+    if (!window.YT) {
+      const existingScript = document.querySelector('script[src*="youtube.com/iframe_api"]');
+      if (!existingScript) {
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+      }
+    }
+
+    if (window.YT && window.YT.Player) {
+      attachPlayer();
+    } else {
+      checkInterval = setInterval(() => {
+        if (window.YT && window.YT.Player) {
+          if (checkInterval) clearInterval(checkInterval);
+          attachPlayer();
+        }
+      }, 100);
+    }
+
+    // Secondary watchdog: check playback progress
+    pollDurationInterval = setInterval(() => {
+      if (playerRef.current && typeof playerRef.current.getDuration === 'function') {
+        const duration = playerRef.current.getDuration();
+        const current = playerRef.current.getCurrentTime();
+        if (duration > 0 && current >= duration - 0.4) {
+          onVideoFinished();
+        }
+      }
+    }, 400);
+
+    // Tertiary watchdog: listen for postMessage from YouTube iframe
+    const handleMessage = (e: MessageEvent) => {
+      try {
+        const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+        if (data && (data.event === 'onStateChange' || typeof data.info !== 'undefined')) {
+          if (data.info === 0) {
+            onVideoFinished();
+          }
+        }
+      } catch {}
+    };
+    window.addEventListener('message', handleMessage);
+
+    return () => {
+      if (checkInterval) clearInterval(checkInterval);
+      if (pollDurationInterval) clearInterval(pollDurationInterval);
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+      window.removeEventListener('message', handleMessage);
+      if (playerRef.current) {
+        try {
+          if (typeof playerRef.current.stopVideo === 'function') {
+            playerRef.current.stopVideo();
+          }
+          if (typeof playerRef.current.destroy === 'function') {
+            playerRef.current.destroy();
+          }
+        } catch (e) {}
+        playerRef.current = null;
+      }
+    };
+  }, [isOpen]);
+
+  const unmuteSound = () => {
+    if (playerRef.current) {
+      try {
+        playerRef.current.unMute();
+        playerRef.current.setVolume(100);
+        playerRef.current.playVideo();
+        setIsMuted(false);
+      } catch (e) {}
+    }
+  };
+
+  if (hidden) return null;
+
+  return (
+    <AnimatePresence>
+      {isOpen ? (
+        <motion.div
+          id="top-video-modal-backdrop"
+          key="floating-video-backdrop"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) handleClose();
+          }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 bg-black/60 backdrop-blur-md select-none"
+        >
+          <motion.aside
+            id="top-video-center-window"
+            initial={{ opacity: 0, scale: 0.92, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.92, y: 20 }}
+            transition={{ type: "spring", damping: 26, stiffness: 280 }}
+            className="relative w-full max-w-2xl md:max-w-3xl lg:max-w-4xl rounded-[28px] sm:rounded-[36px] bg-white p-3 sm:p-4 shadow-[0_35px_100px_rgba(0,0,0,0.65)] border border-neutral-100 select-none group"
+            aria-label="ONEUP STUDIO Showcase Video"
+          >
+            {/* Elegant Clean White Close Button on Top Right */}
+            <button
+              id="close-top-video-btn"
+              type="button"
+              onClick={handleClose}
+              className="absolute -top-3.5 -right-3.5 sm:-top-4 sm:-right-4 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-black shadow-[0_8px_25px_rgba(0,0,0,0.35)] hover:scale-110 active:scale-95 flex items-center justify-center transition-all cursor-pointer border border-neutral-200"
+              title="Close video"
+              aria-label="Close video"
+            >
+              <X className="w-5 h-5 text-black stroke-[2.5]" />
+            </button>
+
+            {/* Elegant Minimalist Video Frame (No controls, centered, plays with sound) */}
+            <div 
+              className="relative aspect-video w-full rounded-[20px] sm:rounded-[28px] overflow-hidden bg-black shadow-inner cursor-pointer"
+              onClick={unmuteSound}
+            >
+              <iframe
+                ref={iframeRef}
+                id="oneup-center-youtube-player"
+                src="https://www.youtube.com/embed/JmOpzzc2u0k?autoplay=1&mute=0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&enablejsapi=1&origin=https://ais-dev-y3asgdnnxujtajkth6ggiu-46688224939.us-east1.run.app"
+                title="ONEUP STUDIO Video"
+                className="w-full h-full border-0 pointer-events-auto"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+
+              {/* Discreet 5-second automatic close countdown progress bar shown ONLY after video finishes */}
+              {hasEnded && (
+                <div className="absolute bottom-0 left-0 right-0 h-[4px] bg-white/30 z-20 overflow-hidden pointer-events-none">
+                  <motion.div
+                    initial={{ width: "100%" }}
+                    animate={{ width: "0%" }}
+                    transition={{ duration: 5, ease: "linear" }}
+                    className="h-full bg-white"
+                  />
+                </div>
+              )}
+            </div>
+          </motion.aside>
+        </motion.div>
+      ) : (
+        <motion.div
+          key="reopen-top-video-chip"
+          initial={{ opacity: 0, scale: 0.9, y: -10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: -10 }}
+          transition={{ type: "spring", damping: 25, stiffness: 300 }}
+          className="fixed top-20 right-4 sm:top-24 sm:right-6 md:top-24 md:right-8 z-40"
+        >
+          <button
+            id="reopen-top-video-btn"
+            type="button"
+            onClick={onReopen}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white text-black border border-neutral-200 shadow-[0_10px_25px_rgba(0,0,0,0.15)] hover:shadow-lg transition-all text-[10px] font-mono tracking-widest uppercase cursor-pointer group"
+            title="Watch Video"
+            aria-label="Watch Video"
+          >
+            <span>Video</span>
+            <Play className="w-3 h-3 text-black fill-black ml-0.5 group-hover:scale-110 transition-transform" />
+          </button>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
 export default function App() {
   const { scrollY } = useScroll();
   const smoothScrollY = useSpring(scrollY, {
@@ -792,6 +1055,7 @@ export default function App() {
 
   const [lang, setLang] = useState<'en' | 'fr' | 'es'>('en');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showFloatingVideo, setShowFloatingVideo] = useState(true);
 
   // Dynamic Multi-lingual SEO Optimizer for Google Search Rankings
   useEffect(() => {
@@ -1409,6 +1673,14 @@ export default function App() {
           </button>
         </div>
       </nav>
+
+      {/* Top Floating Video Window */}
+      <TopVideoFloatingWindow
+        isOpen={showFloatingVideo}
+        onClose={() => setShowFloatingVideo(false)}
+        onReopen={() => setShowFloatingVideo(true)}
+        hidden={isMobileMenuOpen || !!fullscreenImage || showContactForm || showLegalModal}
+      />
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
