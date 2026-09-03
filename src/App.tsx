@@ -849,12 +849,13 @@ const TopVideoFloatingWindow = ({
       }, 5000);
     };
 
-    // Instant play signal directly over postMessage
+    // Instant play signal directly over postMessage (ensuring muted autoplay)
     const triggerInstantPlay = () => {
       try {
         const win = iframeRef.current?.contentWindow;
         if (win) {
           win.postMessage(JSON.stringify({ event: 'listening', id: 1 }), '*');
+          win.postMessage(JSON.stringify({ event: 'command', func: 'mute', args: [] }), '*');
           win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
         }
       } catch (e) {}
@@ -870,11 +871,9 @@ const TopVideoFloatingWindow = ({
           events: {
             onReady: (event: any) => {
               try {
-                // Ensure immediate playback starts
+                // Ensure muted autoplay starts immediately without violating browser autoplay policy
+                event.target.mute();
                 event.target.playVideo();
-                // Attempt to unmute if policy permits
-                event.target.unMute();
-                event.target.setVolume(100);
               } catch (e) {}
             },
             onStateChange: (event: any) => {
@@ -1032,12 +1031,15 @@ const TopVideoFloatingWindow = ({
                     const win = iframeRef.current?.contentWindow;
                     if (win) {
                       win.postMessage(JSON.stringify({ event: 'listening', id: 1 }), '*');
+                      win.postMessage(JSON.stringify({ event: 'command', func: 'mute', args: [] }), '*');
                       win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
                     }
                   } catch (e) {}
                 }}
                 className="w-full h-full border-0 pointer-events-none select-none"
-                allow="autoplay; fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                referrerPolicy="strict-origin-when-cross-origin"
               />
 
               {/* Complete Shield: completely blocks all pointer events/clicks/links on the video, while ensuring audio unmute on touch without opening links */}
