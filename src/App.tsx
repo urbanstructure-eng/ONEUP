@@ -896,14 +896,12 @@ const TopVideoFloatingWindow = ({
       }, 5000);
     };
 
-    // Instant play signal directly over postMessage with unmuted sound
+    // Instant play signal directly over postMessage
     const triggerInstantPlay = () => {
       try {
         const win = iframeRef.current?.contentWindow;
         if (win) {
           win.postMessage(JSON.stringify({ event: 'listening', id: 1 }), '*');
-          win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
-          win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
           win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
         }
       } catch (e) {}
@@ -919,8 +917,6 @@ const TopVideoFloatingWindow = ({
           events: {
             onReady: (event: any) => {
               try {
-                event.target.unMute();
-                event.target.setVolume(100);
                 event.target.playVideo();
               } catch (e) {}
             },
@@ -958,19 +954,6 @@ const TopVideoFloatingWindow = ({
         }
       }, 50);
     }
-
-    // Fallback: If browser security restricts unmuted initial start, guarantee playback initiates
-    const fallbackTimer = setTimeout(() => {
-      if (playerRef.current) {
-        try {
-          const state = typeof playerRef.current.getPlayerState === 'function' ? playerRef.current.getPlayerState() : -1;
-          if (state === -1 || state === 2) {
-            playerRef.current.mute();
-            playerRef.current.playVideo();
-          }
-        } catch (e) {}
-      }
-    }, 400);
 
     // Progress and state watchdog: check for video end
     pollDurationInterval = setInterval(() => {
@@ -1020,7 +1003,6 @@ const TopVideoFloatingWindow = ({
     window.addEventListener('scroll', handleUserGesture, { passive: true });
 
     return () => {
-      clearTimeout(fallbackTimer);
       if (checkInterval) clearInterval(checkInterval);
       if (pollDurationInterval) clearInterval(pollDurationInterval);
       if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
@@ -1091,7 +1073,7 @@ const TopVideoFloatingWindow = ({
               <iframe
                 ref={iframeRef}
                 id="oneup-center-youtube-player"
-                src={`https://www.youtube.com/embed/JmOpzzc2u0k?autoplay=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1${typeof window !== 'undefined' && window.location.origin && window.location.origin !== 'null' ? `&origin=${encodeURIComponent(window.location.origin)}` : ''}`}
+                src={`https://www.youtube.com/embed/JmOpzzc2u0k?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1${typeof window !== 'undefined' && window.location.origin && window.location.origin !== 'null' ? `&origin=${encodeURIComponent(window.location.origin)}` : ''}`}
                 title="ONEUP STUDIO Video"
                 loading="eager"
                 onLoad={() => {
@@ -1099,8 +1081,6 @@ const TopVideoFloatingWindow = ({
                     const win = iframeRef.current?.contentWindow;
                     if (win) {
                       win.postMessage(JSON.stringify({ event: 'listening', id: 1 }), '*');
-                      win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
-                      win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
                       win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
                     }
                   } catch (e) {}
