@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, animate } from 'motion/react';
-import { Instagram, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu, Play, Pause } from 'lucide-react';
+import { Instagram, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 const stockiqHomeImage = "https://lh3.googleusercontent.com/d/115or6C4Imd0kOm2-lPIpXVdl1rvdyfNN";
 const stockiqHero = "https://lh3.googleusercontent.com/d/12y_h1qFMeTMrJovWZ6851wOYtcO982OX";
 const stockiqOverviewImage = "https://lh3.googleusercontent.com/d/1URFuOF_YAMhKNzgEUEnS_UuyczyxtUZ0";
@@ -776,6 +776,7 @@ const TopVideoFloatingWindow = ({
   const hasEndedRef = React.useRef<boolean>(false);
   const closeTimerRef = React.useRef<NodeJS.Timeout | null>(null);
   const [hasEnded, setHasEnded] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   // Close handler that cleanly stops player & audio
   const handleClose = () => {
@@ -798,6 +799,7 @@ const TopVideoFloatingWindow = ({
     }
     hasEndedRef.current = false;
     setHasEnded(false);
+    setIsMuted(true);
     onClose();
   };
 
@@ -819,6 +821,7 @@ const TopVideoFloatingWindow = ({
         win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [], id: 1, channel: 'widget' }), '*');
         win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100], id: 1, channel: 'widget' }), '*');
       }
+      setIsMuted(false);
     } catch (e) {}
   };
 
@@ -845,7 +848,27 @@ const TopVideoFloatingWindow = ({
         win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [], id: 1, channel: 'widget' }), '*');
         win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100], id: 1, channel: 'widget' }), '*');
       }
+      setIsMuted(false);
     } catch (e) {}
+  };
+
+  // Interactive toggle for sound
+  const toggleSound = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    if (isMuted) {
+      handlePlayAndUnmute();
+    } else {
+      try {
+        if (playerRef.current && typeof playerRef.current.mute === 'function') {
+          playerRef.current.mute();
+        }
+        const win = iframeRef.current?.contentWindow;
+        if (win) {
+          win.postMessage(JSON.stringify({ event: 'command', func: 'mute', args: [] }), '*');
+        }
+      } catch (err) {}
+      setIsMuted(true);
+    }
   };
 
   useEffect(() => {
@@ -873,12 +896,14 @@ const TopVideoFloatingWindow = ({
       }, 5000);
     };
 
-    // Instant play signal directly over postMessage
+    // Instant play signal directly over postMessage with unmuted sound
     const triggerInstantPlay = () => {
       try {
         const win = iframeRef.current?.contentWindow;
         if (win) {
           win.postMessage(JSON.stringify({ event: 'listening', id: 1 }), '*');
+          win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
+          win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
           win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
         }
       } catch (e) {}
@@ -894,6 +919,8 @@ const TopVideoFloatingWindow = ({
           events: {
             onReady: (event: any) => {
               try {
+                event.target.unMute();
+                event.target.setVolume(100);
                 event.target.playVideo();
               } catch (e) {}
             },
@@ -931,6 +958,19 @@ const TopVideoFloatingWindow = ({
         }
       }, 50);
     }
+
+    // Fallback: If browser security restricts unmuted initial start, guarantee playback initiates
+    const fallbackTimer = setTimeout(() => {
+      if (playerRef.current) {
+        try {
+          const state = typeof playerRef.current.getPlayerState === 'function' ? playerRef.current.getPlayerState() : -1;
+          if (state === -1 || state === 2) {
+            playerRef.current.mute();
+            playerRef.current.playVideo();
+          }
+        } catch (e) {}
+      }
+    }, 400);
 
     // Progress and state watchdog: check for video end
     pollDurationInterval = setInterval(() => {
@@ -976,8 +1016,11 @@ const TopVideoFloatingWindow = ({
     window.addEventListener('touchstart', handleUserGesture, { passive: true });
     window.addEventListener('pointerdown', handleUserGesture, { passive: true });
     window.addEventListener('keydown', handleUserGesture, { passive: true });
+    window.addEventListener('wheel', handleUserGesture, { passive: true });
+    window.addEventListener('scroll', handleUserGesture, { passive: true });
 
     return () => {
+      clearTimeout(fallbackTimer);
       if (checkInterval) clearInterval(checkInterval);
       if (pollDurationInterval) clearInterval(pollDurationInterval);
       if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
@@ -986,6 +1029,8 @@ const TopVideoFloatingWindow = ({
       window.removeEventListener('touchstart', handleUserGesture);
       window.removeEventListener('pointerdown', handleUserGesture);
       window.removeEventListener('keydown', handleUserGesture);
+      window.removeEventListener('wheel', handleUserGesture);
+      window.removeEventListener('scroll', handleUserGesture);
       if (playerRef.current) {
         try {
           if (typeof playerRef.current.stopVideo === 'function') {
@@ -1046,7 +1091,7 @@ const TopVideoFloatingWindow = ({
               <iframe
                 ref={iframeRef}
                 id="oneup-center-youtube-player"
-                src={`https://www.youtube.com/embed/JmOpzzc2u0k?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1${typeof window !== 'undefined' && window.location.origin && window.location.origin !== 'null' ? `&origin=${encodeURIComponent(window.location.origin)}` : ''}`}
+                src={`https://www.youtube.com/embed/JmOpzzc2u0k?autoplay=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1${typeof window !== 'undefined' && window.location.origin && window.location.origin !== 'null' ? `&origin=${encodeURIComponent(window.location.origin)}` : ''}`}
                 title="ONEUP STUDIO Video"
                 loading="eager"
                 onLoad={() => {
@@ -1054,6 +1099,8 @@ const TopVideoFloatingWindow = ({
                     const win = iframeRef.current?.contentWindow;
                     if (win) {
                       win.postMessage(JSON.stringify({ event: 'listening', id: 1 }), '*');
+                      win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
+                      win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
                       win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
                     }
                   } catch (e) {}
@@ -1071,6 +1118,28 @@ const TopVideoFloatingWindow = ({
                 onTouchStart={handlePlayAndUnmute}
                 onPointerDown={handlePlayAndUnmute}
               />
+
+              {/* Minimalist Audio Control Pill in Bottom-Left */}
+              <button
+                id="top-video-sound-toggle-btn"
+                type="button"
+                onClick={toggleSound}
+                className="absolute bottom-3.5 left-3.5 sm:bottom-4 sm:left-4 z-20 flex items-center gap-2 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full bg-black/80 hover:bg-black backdrop-blur-md text-white shadow-[0_4px_16px_rgba(0,0,0,0.5)] border border-white/20 transition-all cursor-pointer active:scale-95 select-none"
+                title={isMuted ? "Click to turn on sound" : "Mute audio"}
+                aria-label={isMuted ? "Turn on sound" : "Mute audio"}
+              >
+                {isMuted ? (
+                  <>
+                    <VolumeX className="w-4 h-4 text-white/90 animate-pulse" />
+                    <span className="font-medium text-xs text-white/90">Tap for sound</span>
+                  </>
+                ) : (
+                  <>
+                    <Volume2 className="w-4 h-4 text-emerald-400" />
+                    <span className="font-medium text-xs text-white/90">Sound on</span>
+                  </>
+                )}
+              </button>
 
               {/* 5-second automatic close countdown progress bar shown ONLY after video finishes */}
               {hasEnded && (
