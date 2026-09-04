@@ -803,8 +803,9 @@ const TopVideoFloatingWindow = ({
     onClose();
   };
 
-  // Sound activation helper
+  // Audio unmute helper
   const unmuteAudio = () => {
+    setIsMuted(false);
     try {
       if (playerRef.current) {
         if (typeof playerRef.current.unMute === 'function') {
@@ -813,61 +814,48 @@ const TopVideoFloatingWindow = ({
         if (typeof playerRef.current.setVolume === 'function') {
           playerRef.current.setVolume(100);
         }
-      }
-      const win = iframeRef.current?.contentWindow;
-      if (win) {
-        win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
-        win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
-        win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [], id: 1, channel: 'widget' }), '*');
-        win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100], id: 1, channel: 'widget' }), '*');
-      }
-      setIsMuted(false);
-    } catch (e) {}
-  };
-
-  // Play and unmute combined handler for user interactions
-  const handlePlayAndUnmute = () => {
-    try {
-      if (playerRef.current) {
         if (typeof playerRef.current.playVideo === 'function') {
           playerRef.current.playVideo();
         }
-        if (typeof playerRef.current.unMute === 'function') {
-          playerRef.current.unMute();
-        }
-        if (typeof playerRef.current.setVolume === 'function') {
-          playerRef.current.setVolume(100);
+      }
+      const win = iframeRef.current?.contentWindow;
+      if (win) {
+        win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
+        win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
+        win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+        win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [], channel: 'widget' }), '*');
+        win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100], channel: 'widget' }), '*');
+      }
+    } catch (e) {}
+  };
+
+  // Audio mute helper
+  const muteAudio = () => {
+    setIsMuted(true);
+    try {
+      if (playerRef.current) {
+        if (typeof playerRef.current.mute === 'function') {
+          playerRef.current.mute();
         }
       }
       const win = iframeRef.current?.contentWindow;
       if (win) {
-        win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
-        win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
-        win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
-        win.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [], id: 1, channel: 'widget' }), '*');
-        win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [], id: 1, channel: 'widget' }), '*');
-        win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100], id: 1, channel: 'widget' }), '*');
+        win.postMessage(JSON.stringify({ event: 'command', func: 'mute', args: [] }), '*');
+        win.postMessage(JSON.stringify({ event: 'command', func: 'mute', args: [], channel: 'widget' }), '*');
       }
-      setIsMuted(false);
     } catch (e) {}
   };
 
   // Interactive toggle for sound
-  const toggleSound = (e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
+  const toggleSound = (e?: React.SyntheticEvent) => {
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
     if (isMuted) {
-      handlePlayAndUnmute();
+      unmuteAudio();
     } else {
-      try {
-        if (playerRef.current && typeof playerRef.current.mute === 'function') {
-          playerRef.current.mute();
-        }
-        const win = iframeRef.current?.contentWindow;
-        if (win) {
-          win.postMessage(JSON.stringify({ event: 'command', func: 'mute', args: [] }), '*');
-        }
-      } catch (err) {}
-      setIsMuted(true);
+      muteAudio();
     }
   };
 
@@ -918,6 +906,9 @@ const TopVideoFloatingWindow = ({
             onReady: (event: any) => {
               try {
                 event.target.playVideo();
+                if (typeof event.target.isMuted === 'function') {
+                  setIsMuted(event.target.isMuted());
+                }
               } catch (e) {}
             },
             onStateChange: (event: any) => {
@@ -925,6 +916,13 @@ const TopVideoFloatingWindow = ({
               if (event.data === 0) {
                 onVideoFinished();
               }
+            },
+            onVolumeChange: (event: any) => {
+              try {
+                if (event && event.data && typeof event.data.muted === 'boolean') {
+                  setIsMuted(event.data.muted);
+                }
+              } catch (e) {}
             }
           }
         });
@@ -975,44 +973,31 @@ const TopVideoFloatingWindow = ({
       }
     }, 250);
 
-    // Tertiary watchdog: listen for postMessage from YouTube iframe
+    // Watchdog: listen for postMessage from YouTube iframe
     const handleMessage = (e: MessageEvent) => {
       try {
         const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
         if (data) {
-          if (data.event === 'onStateChange' && data.info === 0) {
+          if (data.event === 'onStateChange' && (data.info === 0 || (data.info && data.info.playerState === 0))) {
             onVideoFinished();
           } else if (data.info && typeof data.info === 'object' && data.info.playerState === 0) {
             onVideoFinished();
+          }
+          if (data.event === 'onVolumeChange' && data.info && typeof data.info.muted === 'boolean') {
+            setIsMuted(data.info.muted);
+          } else if (data.info && typeof data.info === 'object' && typeof data.info.muted === 'boolean') {
+            setIsMuted(data.info.muted);
           }
         }
       } catch {}
     };
     window.addEventListener('message', handleMessage);
 
-    // User gesture listeners: unmute audio on genuine user interaction
-    const handleUserGesture = () => {
-      unmuteAudio();
-    };
-
-    window.addEventListener('click', handleUserGesture, { passive: true });
-    window.addEventListener('touchstart', handleUserGesture, { passive: true });
-    window.addEventListener('pointerdown', handleUserGesture, { passive: true });
-    window.addEventListener('keydown', handleUserGesture, { passive: true });
-    window.addEventListener('wheel', handleUserGesture, { passive: true });
-    window.addEventListener('scroll', handleUserGesture, { passive: true });
-
     return () => {
       if (checkInterval) clearInterval(checkInterval);
       if (pollDurationInterval) clearInterval(pollDurationInterval);
       if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
       window.removeEventListener('message', handleMessage);
-      window.removeEventListener('click', handleUserGesture);
-      window.removeEventListener('touchstart', handleUserGesture);
-      window.removeEventListener('pointerdown', handleUserGesture);
-      window.removeEventListener('keydown', handleUserGesture);
-      window.removeEventListener('wheel', handleUserGesture);
-      window.removeEventListener('scroll', handleUserGesture);
       if (playerRef.current) {
         try {
           if (typeof playerRef.current.stopVideo === 'function') {
@@ -1091,32 +1076,34 @@ const TopVideoFloatingWindow = ({
                 referrerPolicy="strict-origin-when-cross-origin"
               />
 
-              {/* Invisible Shield: prevents clicking links/opening YouTube while triggering unmuted sound and playback on user click */}
+              {/* Invisible Shield: prevents clicking links/opening YouTube while enabling sound activation on click if muted */}
               <div 
                 className="absolute inset-0 z-10 pointer-events-auto cursor-pointer select-none" 
-                onClick={handlePlayAndUnmute}
-                onTouchStart={handlePlayAndUnmute}
-                onPointerDown={handlePlayAndUnmute}
+                onClick={() => {
+                  if (isMuted) unmuteAudio();
+                }}
               />
 
-              {/* Minimalist Audio Control Pill in Bottom-Left */}
+              {/* Audio Control Pill in Bottom-Left */}
               <button
                 id="top-video-sound-toggle-btn"
                 type="button"
                 onClick={toggleSound}
-                className="absolute bottom-3.5 left-3.5 sm:bottom-4 sm:left-4 z-20 flex items-center gap-2 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full bg-black/80 hover:bg-black backdrop-blur-md text-white shadow-[0_4px_16px_rgba(0,0,0,0.5)] border border-white/20 transition-all cursor-pointer active:scale-95 select-none"
-                title={isMuted ? "Click to turn on sound" : "Mute audio"}
-                aria-label={isMuted ? "Turn on sound" : "Mute audio"}
+                onPointerDown={(e) => e.stopPropagation()}
+                onTouchStart={(e) => e.stopPropagation()}
+                className="absolute bottom-3.5 left-3.5 sm:bottom-4 sm:left-4 z-20 flex items-center gap-2.5 px-4 py-2.5 min-h-[44px] rounded-full bg-black/85 hover:bg-black active:scale-95 text-white shadow-[0_4px_20px_rgba(0,0,0,0.6)] border border-white/20 backdrop-blur-md transition-all cursor-pointer select-none"
+                title={isMuted ? "Tap to turn on sound" : "Mute audio"}
+                aria-label={isMuted ? "Tap to turn on sound" : "Mute audio"}
               >
                 {isMuted ? (
                   <>
-                    <VolumeX className="w-4 h-4 text-white/90 animate-pulse" />
-                    <span className="font-medium text-xs text-white/90">Tap for sound</span>
+                    <VolumeX className="w-4 h-4 sm:w-5 sm:h-5 text-amber-300 animate-pulse shrink-0" />
+                    <span className="font-semibold text-xs sm:text-sm text-white tracking-wide whitespace-nowrap">Tap for sound</span>
                   </>
                 ) : (
                   <>
-                    <Volume2 className="w-4 h-4 text-emerald-400" />
-                    <span className="font-medium text-xs text-white/90">Sound on</span>
+                    <Volume2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 shrink-0" />
+                    <span className="font-semibold text-xs sm:text-sm text-white/90 tracking-wide whitespace-nowrap">Sound on</span>
                   </>
                 )}
               </button>
