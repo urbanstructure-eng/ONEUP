@@ -1058,7 +1058,7 @@ const TopVideoFloatingWindow = ({
               <iframe
                 ref={iframeRef}
                 id="oneup-center-youtube-player"
-                src={`https://www.youtube.com/embed/JmOpzzc2u0k?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1${typeof window !== 'undefined' && window.location.origin && window.location.origin !== 'null' ? `&origin=${encodeURIComponent(window.location.origin)}` : ''}`}
+                src={`https://www.youtube.com/embed/X6n-iZPYILY?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1${typeof window !== 'undefined' && window.location.origin && window.location.origin !== 'null' ? `&origin=${encodeURIComponent(window.location.origin)}` : ''}`}
                 title="ONEUP STUDIO Video"
                 loading="eager"
                 onLoad={() => {
