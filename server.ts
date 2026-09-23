@@ -52,6 +52,54 @@ async function startServer() {
     }
   });
 
+  // API sync route to download and persist URLs or base64 assets permanently
+  app.post("/api/sync-organic-urls", async (req, res) => {
+    try {
+      const { unboxingUrl, retailUrl } = req.body;
+
+      const saveImageFromSource = async (filename: string, source: string) => {
+        if (!source) return;
+        let buffer: Buffer | null = null;
+        if (source.startsWith("data:image/")) {
+          const base64Data = source.replace(/^data:image\/\w+;base64,/, "");
+          buffer = Buffer.from(base64Data, "base64");
+        } else if (source.startsWith("http")) {
+          const response = await fetch(source);
+          if (response.ok) {
+            const arrayBuffer = await response.arrayBuffer();
+            buffer = Buffer.from(arrayBuffer);
+          }
+        }
+
+        if (buffer && buffer.length > 0) {
+          const targets = [
+            path.join(process.cwd(), "public", filename),
+            path.join(process.cwd(), "public", filename.replace(".png", ".jpg")),
+            path.join(process.cwd(), "src/assets/images", filename),
+            path.join(process.cwd(), "dist", filename),
+            path.join(process.cwd(), "dist", filename.replace(".png", ".jpg")),
+          ];
+          for (const target of targets) {
+            try {
+              const dir = path.dirname(target);
+              if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+              fs.writeFileSync(target, buffer);
+            } catch (e) {}
+          }
+          console.log(`Successfully synced and persisted ${filename} (${buffer.length} bytes)`);
+        }
+      };
+
+      if (unboxingUrl) await saveImageFromSource("organic_unboxing_kit.png", unboxingUrl);
+      if (retailUrl) await saveImageFromSource("organic_retail_display.png", retailUrl);
+
+      return res.status(200).json({ success: true });
+    } catch (err: any) {
+      console.error("Sync organic error:", err);
+      return res.status(500).json({ error: err.message });
+    }
+  });
+
   // API routes
   app.post("/api/send-email", async (req, res) => {
     const { name, email, service, message } = req.body;

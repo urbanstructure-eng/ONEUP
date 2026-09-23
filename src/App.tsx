@@ -17,7 +17,9 @@ const stockiqOutcomeImage = "https://lh3.googleusercontent.com/d/1iJoSEuskYyCsGu
 const stockiqGalleryImage = "https://lh3.googleusercontent.com/d/1L4gTgudZK7s3JQaOlvHIhLkLxgPctfGO";
 const unitySubwayBillboard = "/unity_subway_billboard.png";
 const unityStreetKiosk = "/unity_street_kiosk.png";
-const buydropSmartLocker = "/buydrop_smart_locker.png";
+const buydropSmartLocker = "https://lh3.googleusercontent.com/d/1jZvRbt5s2XFYHf0bkQ3RxD9JpqRLST52";
+const organicUnboxingKit = "https://lh3.googleusercontent.com/d/1DsQa-afKu2rjs0C4Wnp-ne4XZwrWWcrI";
+const organicRetailDisplay = "https://lh3.googleusercontent.com/d/1LKFztqh2TQ7RMYQrxkmIWjuZyIpea3aX";
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg 
@@ -1187,70 +1189,11 @@ export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showFloatingVideo, setShowFloatingVideo] = useState(true);
 
-  const [buydropLockerSrc, setBuydropLockerSrc] = useState<string>(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('oneup_buydrop_locker') || buydropSmartLocker;
-    }
-    return buydropSmartLocker;
-  });
-  const [uploadSuccess, setUploadSuccess] = useState(false);
-  const [driveUrlInput, setDriveUrlInput] = useState('');
-
-  const saveExactImage = (file: File) => {
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-      const dataUrl = e.target?.result as string;
-      if (!dataUrl) return;
-      setBuydropLockerSrc(dataUrl);
-      localStorage.setItem('oneup_buydrop_locker', dataUrl);
-      setUploadSuccess(true);
-      try {
-        await fetch('/api/upload-asset', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            filename: 'buydrop_smart_locker.png',
-            data: dataUrl
-          })
-        });
-      } catch (err) {
-        console.error('Failed to sync upload with server:', err);
-      }
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handleApplyDriveUrl = () => {
-    if (!driveUrlInput.trim()) return;
-    let url = driveUrlInput.trim();
-    const driveMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-    if (driveMatch && driveMatch[1]) {
-      url = `https://lh3.googleusercontent.com/d/${driveMatch[1]}`;
-    }
-    setBuydropLockerSrc(url);
-    localStorage.setItem('oneup_buydrop_locker', url);
-    setUploadSuccess(true);
-  };
-
   useEffect(() => {
-    const handlePaste = (e: ClipboardEvent) => {
-      if (selectedProject?.title === 'BuyDrop') {
-        const items = e.clipboardData?.items;
-        if (!items) return;
-        for (let i = 0; i < items.length; i++) {
-          if (items[i].type.indexOf('image') !== -1) {
-            const file = items[i].getAsFile();
-            if (file) {
-              saveExactImage(file);
-              break;
-            }
-          }
-        }
-      }
-    };
-    window.addEventListener('paste', handlePaste);
-    return () => window.removeEventListener('paste', handlePaste);
-  }, [selectedProject]);
+    localStorage.removeItem('oneup_buydrop_locker');
+    localStorage.removeItem('oneup_organic_unboxing');
+    localStorage.removeItem('oneup_organic_retail');
+  }, []);
 
   // Dynamic Multi-lingual SEO Optimizer for Google Search Rankings
   useEffect(() => {
@@ -1601,7 +1544,7 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1jxksiMAxUtLXBxGL8bNC7jcizLTyxXR0",
         "https://lh3.googleusercontent.com/d/1IYSW94E7ehfVzt6JxjUd3MYrvLGD8hg5",
         "https://lh3.googleusercontent.com/d/1NV4L745ah-lWi0pZtmULvNTiJHefN6J9",
-        buydropLockerSrc,
+        buydropSmartLocker,
         "https://lh3.googleusercontent.com/d/16nVARSrN4RZielAgzspDx6mkKm6VUs_3",
         "https://lh3.googleusercontent.com/d/1rxQVm2VX7vOD1Z0HPFx7DgVC1s5iwzXH",
         "https://lh3.googleusercontent.com/d/1qycuDnRFnPflsbLZ7G1Ys8C9eID-7RYQ"
@@ -1664,8 +1607,10 @@ export default function App() {
         project.heroImage || project.image,
         "https://lh3.googleusercontent.com/d/1grDf1nKeXz2GbtfBFF0lyqSzyEY2Z7is",
         "https://lh3.googleusercontent.com/d/1DlAdlFYlYmujpUEC1uzvAu4EIc9uRiHu",
+        organicUnboxingKit,
         "https://lh3.googleusercontent.com/d/1EtZot-anCp8jl1iTfBOlQ6j7wD7nx2q9",
         "https://lh3.googleusercontent.com/d/1ZBbLFTGD-0Lsn3fwnj4Q-MmdmoHC904o",
+        organicRetailDisplay,
         "https://lh3.googleusercontent.com/d/1LPXu6hViyRbN0Hw2hsqCA327AMuKjBrU",
         "https://lh3.googleusercontent.com/d/17oO2Xu9QGfAgygzxJ7Z7-L8uCKBalvS9",
         "https://lh3.googleusercontent.com/d/1yTOuRj336bqdzjiHDddXK4cDcLPacMu7",
@@ -3824,17 +3769,11 @@ export default function App() {
                       {/* BuyDrop Section 2c: Smart Parcel Lockers (Last-Mile Innovation) */}
                       <div className="space-y-12">
                         <div 
-                          className="relative group overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[16/10] border border-black/5"
-                          onClick={() => setFullscreenImage(buydropLockerSrc || buydropSmartLocker)}
-                          onDragOver={(e) => e.preventDefault()}
-                          onDrop={(e) => {
-                            e.preventDefault();
-                            const file = e.dataTransfer.files?.[0];
-                            if (file) saveExactImage(file);
-                          }}
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[16/10]"
+                          onClick={() => setFullscreenImage(buydropSmartLocker)}
                         >
                           <SubtleMotionImage 
-                            src={buydropLockerSrc || buydropSmartLocker} 
+                            src={buydropSmartLocker} 
                             alt="BuyDrop Smart Parcel Locker & Last-Mile Delivery"
                             cinematic={true}
                           />
@@ -4591,6 +4530,33 @@ export default function App() {
                         </div>
                       </div>
 
+                      {/* Organic Cosmetic Section 5b: Unboxing Experience & Sustainable Kit */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[16/10]"
+                          onClick={() => setFullscreenImage(organicUnboxingKit)}
+                        >
+                          <SubtleMotionImage 
+                            src={organicUnboxingKit} 
+                            alt="Organic Cosmetic Sustainable Unboxing Experience"
+                            cinematic={true}
+                          />
+                        </div>
+
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Unboxing & Kit Architecture</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Conscious Unboxing: Crafted from biodegradable pulp, raw cotton canvas, and zero-emission soy inks. The curated unboxing suite delivers a tactile reveal from the kraft protective shipper into the forest-green presentation chamber and botanical bottles."
+                            ) : lang === 'fr' ? (
+                              "Expérience d'Unboxing Responsable : Conçu à partir de pâte biodégradable, de toile de coton brut et d'encres végétales sans émission, offrant une découverte tactile et raffinée."
+                            ) : (
+                              "Experiencia de Unboxing Consciente: Diseñado con celulosa biodegradable, lona de algodón crudo y tintas de soja cero emisiones, ofreciendo una apertura táctil y elegante."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
                       {/* Organic Cosmetic Section 6: Natural Essence */}
                       <div className="space-y-12">
                         <div 
@@ -4602,6 +4568,33 @@ export default function App() {
                             alt="Organic Cosmetic Natural Essence"
                             cinematic={true}
                           />
+                        </div>
+                      </div>
+
+                      {/* Organic Cosmetic Section 6b: Retail Boutique & Biophilic Flagship */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[16/10]"
+                          onClick={() => setFullscreenImage(organicRetailDisplay)}
+                        >
+                          <SubtleMotionImage 
+                            src={organicRetailDisplay} 
+                            alt="Organic Cosmetic Flagship Retail Store Display"
+                            cinematic={true}
+                          />
+                        </div>
+
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Biophilic Retail Environment</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Spatial Brand Integration: Transforming the boutique retail floor into a living sanctuary. Floor-to-ceiling preserved moss installations paired with illuminated floating display shelving create a tactile, nature-immersive experience for the full product range."
+                            ) : lang === 'fr' ? (
+                              "Intégration Spatiale de Marque : Transformation de la boutique en sanctuaire vivant. Un mur végétal en mousse préservée combiné à des étagères suspendues rétroéclairées sublime la gamme de soins."
+                            ) : (
+                              "Integración Espacial de Marca: Transformando la tienda boutique en un santuario vivo con muros de musgo preservado y estanterías flotantes iluminadas que exaltan la línea botánica."
+                            )}
+                          </p>
                         </div>
                       </div>
 
