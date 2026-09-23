@@ -164,6 +164,105 @@ const StockIQDetailHeroCinematicMotion = ({ src, alt }: { src: string, alt: stri
   );
 };
 
+const SubtleVideoMotionImage = ({ 
+  src, 
+  alt, 
+  className = "" 
+}: { 
+  src: string; 
+  alt: string; 
+  className?: string; 
+}) => {
+  return (
+    <div className={`relative w-full h-full overflow-hidden select-none bg-neutral-950 ${className}`}>
+      {/* Cinematic 35mm SVG Film Grain Texture */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.06] z-20 mix-blend-overlay">
+        <filter id="cinematicGrain">
+          <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch" />
+          <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#cinematicGrain)" />
+      </svg>
+
+      {/* Butter-Smooth 120fps -> 24fps Slow Motion Dolly Push & Subtle Lateral Gimbal Drift */}
+      <motion.img
+        src={src}
+        alt={alt}
+        className="w-full h-full object-cover transform-gpu will-change-transform scale-[1.03]"
+        referrerPolicy="no-referrer"
+        initial={{ scale: 1.04, x: "-1%", y: "-0.8%" }}
+        animate={{
+          scale: [1.04, 1.11, 1.07, 1.13, 1.04],
+          x: ["-1%", "1.2%", "-0.8%", "1.4%", "-1%"],
+          y: ["-0.8%", "0.9%", "-0.4%", "0.7%", "-0.8%"],
+        }}
+        transition={{
+          duration: 32, // Extended 32s for authentic slow-motion frame pacing
+          repeat: Infinity,
+          ease: [0.37, 0, 0.63, 1], // Silky smooth sinusoidal acceleration
+        }}
+        style={{
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
+          filter: 'contrast(1.04) brightness(0.98) saturate(1.02)',
+        }}
+      />
+
+      {/* Cinematic Slow Anamorphic Lens Flare & Soft Light Leak */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none z-10 mix-blend-screen opacity-40"
+        style={{
+          background: 'radial-gradient(ellipse 70% 35% at 30% 40%, rgba(56, 189, 248, 0.18), transparent 70%), radial-gradient(ellipse 50% 25% at 75% 65%, rgba(245, 158, 11, 0.12), transparent 60%)',
+        }}
+        animate={{
+          opacity: [0.25, 0.5, 0.3, 0.55, 0.25],
+          x: ["-4%", "4%", "-2%", "3%", "-4%"],
+          y: ["-3%", "3%", "1%", "-2%", "-3%"],
+        }}
+        transition={{
+          duration: 24,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* Slow Anamorphic Horizontal Streak Sweep */}
+      <motion.div
+        className="absolute -inset-x-full inset-y-0 pointer-events-none z-10 bg-gradient-to-r from-transparent via-cyan-300/[0.08] to-transparent skew-x-[-20deg]"
+        animate={{ x: ["-100%", "200%"] }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "easeInOut",
+          repeatDelay: 5,
+        }}
+      />
+
+      {/* Deep Filmic Letterbox Vignette */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/35 pointer-events-none z-10" />
+
+      {/* Minimalist Cinematic HUD Tag */}
+      <div className="absolute top-4 left-4 z-20 flex items-center gap-2 pointer-events-none">
+        <span className="flex h-2 w-2 relative">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        <span className="text-[10px] font-mono tracking-[0.2em] text-white/80 uppercase backdrop-blur-md bg-black/40 px-2.5 py-1 rounded-full border border-white/10">
+          Cinematic Slow-Mo • 4K
+        </span>
+      </div>
+
+      {/* Subtle studio watermark */}
+      <div 
+        style={{ writingMode: 'vertical-rl' }} 
+        className="absolute bottom-6 right-3 md:right-4 text-[9px] md:text-[10px] text-white/70 font-mono uppercase tracking-[0.25em] select-none pointer-events-none z-20 mix-blend-difference"
+      >
+        ONEUP © 2025
+      </div>
+    </div>
+  );
+};
+
 const StockIQSkuLineGraphWatermark = () => {
   const [stockCount, setStockCount] = useState(28450);
   const [delta, setDelta] = useState<number>(24);
@@ -3769,13 +3868,12 @@ export default function App() {
                       {/* BuyDrop Section 2c: Smart Parcel Lockers (Last-Mile Innovation) */}
                       <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[16/10]"
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[16/10] shadow-sm relative group"
                           onClick={() => setFullscreenImage(buydropSmartLocker)}
                         >
-                          <SubtleMotionImage 
+                          <SubtleVideoMotionImage 
                             src={buydropSmartLocker} 
                             alt="BuyDrop Smart Parcel Locker & Last-Mile Delivery"
-                            cinematic={true}
                           />
                         </div>
 
