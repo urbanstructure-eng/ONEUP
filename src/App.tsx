@@ -15,6 +15,8 @@ const stockiqSystemImage = "https://lh3.googleusercontent.com/d/1nCiRALkZH3FOnSG
 const stockiqComponentsImage = "https://lh3.googleusercontent.com/d/1JsGApruf34MUEO-RjzbquWAOO5hiRyhb";
 const stockiqOutcomeImage = "https://lh3.googleusercontent.com/d/1iJoSEuskYyCsGuAFhE8CGRBaMQ_cD5GV";
 const stockiqGalleryImage = "https://lh3.googleusercontent.com/d/1L4gTgudZK7s3JQaOlvHIhLkLxgPctfGO";
+const unitySubwayBillboard = "/unity_subway_billboard.png";
+const unityStreetKiosk = "/unity_street_kiosk.png";
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg 
@@ -1544,6 +1546,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1SaZAxfG-M0ouGb0w0wCRxmzKQ3U8S5uT",
         "https://lh3.googleusercontent.com/d/11wP3BfkI3AFIZP49UH1WSwpXPZEvmHc6",
         "https://lh3.googleusercontent.com/d/1M-1AUscx9JJ7guyEjAeF1ziTjLxrnbWK",
+        unitySubwayBillboard,
+        unityStreetKiosk,
         "https://lh3.googleusercontent.com/d/1JL_vUWyn2sn9wFsdgCnL-XekDbMnzJ4t",
         "https://lh3.googleusercontent.com/d/178fpIdVUsFAnFVgY89ztj_hRTVaxAWsw",
         "https://lh3.googleusercontent.com/d/18gqdiRXLF7McIOK9DyD33TilFTV1OwYX",
@@ -3904,6 +3908,57 @@ export default function App() {
                               "S'étendant au-delà du domaine numérique, l'identité s'adaptant parfaitement aux environnements physiques."
                             ) : (
                               "Expandiéndose más allá del ámbito digital, la identidad se adapta perfectamente a los entornos físicos."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* UNITY Section 4B: Subway Transit Activation */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage(unitySubwayBillboard)}
+                        >
+                          <SubtleMotionImage 
+                            src={unitySubwayBillboard} 
+                            alt="UNITY Subway Transit Billboard Campaign"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Transit & Public Space</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Deployed across high-density urban transit corridors, the dual-panel campaign pairs bold color blocking with instant QR access, establishing a supportive, destigmatized presence in public daily commute spaces."
+                            ) : lang === 'fr' ? (
+                              "Déployée dans les couloirs de transit urbain à forte fréquentation, la campagne associe un code couleur audacieux à un accès QR instantané, apportant une présence bienveillante et accessible dans les trajets quotidiens."
+                            ) : (
+                              "Desplegada en corredores de transporte urbano de alta afluencia, la campaña combina colores audaces con acceso instantáneo por código QR, estableciendo una presencia accesible y de apoyo en los trayectos diarios."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* UNITY Section 4C: Street-Level Urban Kiosk */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[3/4]"
+                          onClick={() => setFullscreenImage(unityStreetKiosk)}
+                        >
+                          <SubtleMotionImage 
+                            src={unityStreetKiosk} 
+                            alt="UNITY Street-Level Subway Kiosk"
+                          />
+                        </div>
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">Urban Touchpoints</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Integrated directly into street-level metro entrances, physical kiosks act as welcoming, low-barrier bridges connecting young people from the sidewalk directly into the UNITY digital community."
+                            ) : lang === 'fr' ? (
+                              "Intégrés directement aux entrées de métro de plain-pied, les kiosques physiques agissent comme des passerelles accueillantes reliant la jeunesse depuis la rue vers la communauté numérique UNITY."
+                            ) : (
+                              "Integrados directamente en los accesos de metro a pie de calle, los quioscos físicos funcionan como puntos de contacto cercanos que conectan a los jóvenes directamente con la comunidad digital de UNITY."
                             )}
                           </p>
                         </div>

@@ -1,6 +1,7 @@
 import express from "express";
 import { createServer as createViteServer } from "vite";
 import path from "path";
+import fs from "fs";
 import Mailgun from "mailgun.js";
 import formData from "form-data";
 import dotenv from "dotenv";
@@ -13,7 +14,38 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  app.use(express.json());
+  app.use(express.json({ limit: "50mb" }));
+  app.use(express.urlencoded({ limit: "50mb", extended: true }));
+
+  // API upload route for exact branding assets
+  app.post("/api/upload-asset", (req, res) => {
+    try {
+      const { filename, data } = req.body;
+      if (!filename || !data) {
+        return res.status(400).json({ error: "Missing filename or data" });
+      }
+      const base64Data = data.replace(/^data:image\/\w+;base64,/, "");
+      const buffer = Buffer.from(base64Data, "base64");
+
+      const publicDir = path.join(process.cwd(), "public");
+      if (!fs.existsSync(publicDir)) {
+        fs.mkdirSync(publicDir, { recursive: true });
+      }
+      fs.writeFileSync(path.join(publicDir, filename), buffer);
+
+      const assetsDir = path.join(process.cwd(), "src/assets/images");
+      if (!fs.existsSync(assetsDir)) {
+        fs.mkdirSync(assetsDir, { recursive: true });
+      }
+      fs.writeFileSync(path.join(assetsDir, filename), buffer);
+
+      console.log(`Asset ${filename} saved successfully (${buffer.length} bytes)`);
+      return res.status(200).json({ success: true, url: `/${filename}?t=${Date.now()}` });
+    } catch (err: any) {
+      console.error("Asset upload error:", err);
+      return res.status(500).json({ error: err.message || "Upload failed" });
+    }
+  });
 
   // API routes
   app.post("/api/send-email", async (req, res) => {
