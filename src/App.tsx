@@ -20,6 +20,8 @@ const unityStreetKiosk = "/unity_street_kiosk.png";
 const buydropSmartLocker = "https://lh3.googleusercontent.com/d/1jZvRbt5s2XFYHf0bkQ3RxD9JpqRLST52";
 const organicUnboxingKit = "https://lh3.googleusercontent.com/d/1DsQa-afKu2rjs0C4Wnp-ne4XZwrWWcrI";
 const organicRetailDisplay = "https://lh3.googleusercontent.com/d/1LKFztqh2TQ7RMYQrxkmIWjuZyIpea3aX";
+const organicPackagingMaterialsOneBio = "https://lh3.googleusercontent.com/d/1A3uKTKPfMVGSF9X5jCRA6MYBNcFP1qyK";
+const organicPackagingSuiteOneBio = "https://lh3.googleusercontent.com/d/1hQHDDq13LEZLRaK0nkzf-N8wFc7r-Z4a";
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg 
@@ -1722,6 +1724,8 @@ export default function App() {
         project.heroImage || project.image,
         "https://lh3.googleusercontent.com/d/1QRwzjvDFCvj300hn5OBdpjgYEOx626py",
         "https://lh3.googleusercontent.com/d/1SQmNFdF01PdC0wBREQlofEXLhd6i9XfT",
+        organicPackagingMaterialsOneBio,
+        organicPackagingSuiteOneBio,
         "https://lh3.googleusercontent.com/d/1Lr4S469gDL8yvA4-DjDWdAuX17PzdlhB",
         "https://lh3.googleusercontent.com/d/1u0EskKOHj0n5i53wG2XJi9z4bxLVqLuu",
         "https://lh3.googleusercontent.com/d/1OiRPp_ywOrfgWl_xMc2XftvMo50NTfzw",
@@ -5055,6 +5059,30 @@ export default function App() {
                               <ArrowUpRight className="w-4 h-4 text-black/40 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                             </a>
                           </div>
+                        </div>
+
+                        {/* Organic Packaging Materials by ONE Biodegradable Zero Emission Packaging */}
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage(organicPackagingMaterialsOneBio)}
+                        >
+                          <SubtleMotionImage 
+                            src={organicPackagingMaterialsOneBio} 
+                            alt="All packaging materials for Organic printed by ONE Biodegradable Zero Emission Packaging"
+                            cinematic={true}
+                          />
+                        </div>
+
+                        {/* Organic Packaging Suite by ONE Biodegradable Zero Emission Packaging */}
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage(organicPackagingSuiteOneBio)}
+                        >
+                          <SubtleMotionImage 
+                            src={organicPackagingSuiteOneBio} 
+                            alt="ONE Biodegradable Zero Emission Packaging suite and materials"
+                            cinematic={true}
+                          />
                         </div>
                       </div>
 
