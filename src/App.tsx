@@ -17,6 +17,7 @@ const stockiqOutcomeImage = "https://lh3.googleusercontent.com/d/1iJoSEuskYyCsGu
 const stockiqGalleryImage = "https://lh3.googleusercontent.com/d/1L4gTgudZK7s3JQaOlvHIhLkLxgPctfGO";
 const unitySubwayBillboard = "/unity_subway_billboard.png";
 const unityStreetKiosk = "/unity_street_kiosk.png";
+const buydropSmartLocker = "/buydrop_smart_locker.png";
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg 
@@ -1186,6 +1187,30 @@ export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showFloatingVideo, setShowFloatingVideo] = useState(true);
 
+  const [buydropLockerSrc] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('oneup_buydrop_locker') || buydropSmartLocker;
+    }
+    return buydropSmartLocker;
+  });
+
+  // Auto-sync cached upload to server asset storage
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const cached = localStorage.getItem('oneup_buydrop_locker');
+      if (cached && cached.startsWith('data:image')) {
+        fetch('/api/upload-asset', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            filename: 'buydrop_smart_locker.png',
+            data: cached
+          })
+        }).catch(err => console.error('Failed to sync BuyDrop asset with server:', err));
+      }
+    }
+  }, []);
+
   // Dynamic Multi-lingual SEO Optimizer for Google Search Rankings
   useEffect(() => {
     // 1. Update the document's HTML lang attribute
@@ -1535,6 +1560,7 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1jxksiMAxUtLXBxGL8bNC7jcizLTyxXR0",
         "https://lh3.googleusercontent.com/d/1IYSW94E7ehfVzt6JxjUd3MYrvLGD8hg5",
         "https://lh3.googleusercontent.com/d/1NV4L745ah-lWi0pZtmULvNTiJHefN6J9",
+        buydropLockerSrc,
         "https://lh3.googleusercontent.com/d/16nVARSrN4RZielAgzspDx6mkKm6VUs_3",
         "https://lh3.googleusercontent.com/d/1rxQVm2VX7vOD1Z0HPFx7DgVC1s5iwzXH",
         "https://lh3.googleusercontent.com/d/1qycuDnRFnPflsbLZ7G1Ys8C9eID-7RYQ"
@@ -3751,6 +3777,32 @@ export default function App() {
                               <ArrowUpRight className="w-4 h-4 text-black/40 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                             </a>
                           </div>
+                        </div>
+                      </div>
+
+                      {/* BuyDrop Section 2c: Smart Parcel Lockers (Last-Mile Innovation) */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[16/10]"
+                          onClick={() => setFullscreenImage(buydropLockerSrc)}
+                        >
+                          <SubtleMotionImage 
+                            src={buydropLockerSrc} 
+                            alt="BuyDrop Smart Parcel Locker & Last-Mile Delivery"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Last-Mile Innovation</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Smart Parcel Lockers: Revolutionizing urban delivery, automated contactless locker stations streamline final-mile logistics—ensuring 24/7 parcel accessibility, eliminating missed deliveries, and integrating directly with BuyDrop's electric fleet."
+                            ) : lang === 'fr' ? (
+                              "Consignes Connectées Intelligentes : Révolutionnant la livraison urbaine, les stations automatisées simplifient le dernier kilomètre en garantissant un accès 24/7 aux colis et une intégration parfaite avec la flotte électrique BuyDrop."
+                            ) : (
+                              "Casilleros Inteligentes Automatizados: Revolucionando la distribución urbana, las estaciones automatizadas optimizan la logística de última milla, garantizando acceso 24/7 y conectividad directa con la flota eléctrica de BuyDrop."
+                            )}
+                          </p>
                         </div>
                       </div>
 
