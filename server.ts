@@ -39,6 +39,11 @@ async function startServer() {
       }
       fs.writeFileSync(path.join(assetsDir, filename), buffer);
 
+      const distDir = path.join(process.cwd(), "dist");
+      if (fs.existsSync(distDir)) {
+        fs.writeFileSync(path.join(distDir, filename), buffer);
+      }
+
       console.log(`Asset ${filename} saved successfully (${buffer.length} bytes)`);
       return res.status(200).json({ success: true, url: `/${filename}?t=${Date.now()}` });
     } catch (err: any) {

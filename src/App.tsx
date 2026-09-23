@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, animate } from 'motion/react';
-import { Instagram, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu, Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { Instagram, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu, Play, Pause, Volume2, VolumeX, Upload, Check, Link as LinkIcon } from 'lucide-react';
 const stockiqHomeImage = "https://lh3.googleusercontent.com/d/115or6C4Imd0kOm2-lPIpXVdl1rvdyfNN";
 const stockiqHero = "https://lh3.googleusercontent.com/d/12y_h1qFMeTMrJovWZ6851wOYtcO982OX";
 const stockiqOverviewImage = "https://lh3.googleusercontent.com/d/1URFuOF_YAMhKNzgEUEnS_UuyczyxtUZ0";
@@ -1187,29 +1187,70 @@ export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showFloatingVideo, setShowFloatingVideo] = useState(true);
 
-  const [buydropLockerSrc] = useState<string>(() => {
+  const [buydropLockerSrc, setBuydropLockerSrc] = useState<string>(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('oneup_buydrop_locker') || buydropSmartLocker;
     }
     return buydropSmartLocker;
   });
+  const [uploadSuccess, setUploadSuccess] = useState(false);
+  const [driveUrlInput, setDriveUrlInput] = useState('');
 
-  // Auto-sync cached upload to server asset storage
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const cached = localStorage.getItem('oneup_buydrop_locker');
-      if (cached && cached.startsWith('data:image')) {
-        fetch('/api/upload-asset', {
+  const saveExactImage = (file: File) => {
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const dataUrl = e.target?.result as string;
+      if (!dataUrl) return;
+      setBuydropLockerSrc(dataUrl);
+      localStorage.setItem('oneup_buydrop_locker', dataUrl);
+      setUploadSuccess(true);
+      try {
+        await fetch('/api/upload-asset', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             filename: 'buydrop_smart_locker.png',
-            data: cached
+            data: dataUrl
           })
-        }).catch(err => console.error('Failed to sync BuyDrop asset with server:', err));
+        });
+      } catch (err) {
+        console.error('Failed to sync upload with server:', err);
       }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleApplyDriveUrl = () => {
+    if (!driveUrlInput.trim()) return;
+    let url = driveUrlInput.trim();
+    const driveMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    if (driveMatch && driveMatch[1]) {
+      url = `https://lh3.googleusercontent.com/d/${driveMatch[1]}`;
     }
-  }, []);
+    setBuydropLockerSrc(url);
+    localStorage.setItem('oneup_buydrop_locker', url);
+    setUploadSuccess(true);
+  };
+
+  useEffect(() => {
+    const handlePaste = (e: ClipboardEvent) => {
+      if (selectedProject?.title === 'BuyDrop') {
+        const items = e.clipboardData?.items;
+        if (!items) return;
+        for (let i = 0; i < items.length; i++) {
+          if (items[i].type.indexOf('image') !== -1) {
+            const file = items[i].getAsFile();
+            if (file) {
+              saveExactImage(file);
+              break;
+            }
+          }
+        }
+      }
+    };
+    window.addEventListener('paste', handlePaste);
+    return () => window.removeEventListener('paste', handlePaste);
+  }, [selectedProject]);
 
   // Dynamic Multi-lingual SEO Optimizer for Google Search Rankings
   useEffect(() => {
@@ -3783,15 +3824,22 @@ export default function App() {
                       {/* BuyDrop Section 2c: Smart Parcel Lockers (Last-Mile Innovation) */}
                       <div className="space-y-12">
                         <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[16/10]"
-                          onClick={() => setFullscreenImage(buydropLockerSrc)}
+                          className="relative group overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[16/10] border border-black/5"
+                          onClick={() => setFullscreenImage(buydropLockerSrc || buydropSmartLocker)}
+                          onDragOver={(e) => e.preventDefault()}
+                          onDrop={(e) => {
+                            e.preventDefault();
+                            const file = e.dataTransfer.files?.[0];
+                            if (file) saveExactImage(file);
+                          }}
                         >
                           <SubtleMotionImage 
-                            src={buydropLockerSrc} 
+                            src={buydropLockerSrc || buydropSmartLocker} 
                             alt="BuyDrop Smart Parcel Locker & Last-Mile Delivery"
                             cinematic={true}
                           />
                         </div>
+
                         <div className="max-w-3xl">
                           <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Last-Mile Innovation</span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
