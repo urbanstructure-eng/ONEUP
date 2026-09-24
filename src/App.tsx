@@ -2127,7 +2127,6 @@ export default function App() {
             <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase mb-4 block">{t[lang].work.tag}</span>
             <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">{t[lang].work.title}</h2>
           </div>
-          <span className="text-[13px] uppercase tracking-[0.3em] font-bold text-white/20 font-mono hidden md:block">2022 — 2025</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-0 border-t border-l border-white/10">
