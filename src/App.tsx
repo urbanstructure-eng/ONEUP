@@ -5293,11 +5293,41 @@ export default function App() {
                         </div>
                         
                         <div className="max-w-3xl space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'Total Experience & Spatial UX' : lang === 'fr' ? 'Expérience Totale & UX Spatial' : 'Experiencia Total y UX Espacial'}
+                          </span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
-                            Integrated marketing campaigns featuring signage throughout the city and at the football stadium aim to enhance brand awareness. Users can engage with the brand app by scanning QR codes, which allows them to participate in special events and win prizes.
+                            {lang === 'en' ? (
+                              <>
+                                <span className="font-normal text-black block mb-3">
+                                  ONE creates custom UX experiences to experience your brand digitally and in retail spaces — a total experience:
+                                </span>
+                                Integrated marketing campaigns featuring signage throughout the city and at the football stadium aim to enhance brand awareness. Users can engage with the brand app by scanning QR codes, which allows them to participate in special events and win prizes.
+                              </>
+                            ) : lang === 'fr' ? (
+                              <>
+                                <span className="font-normal text-black block mb-3">
+                                  ONE crée des expériences UX sur mesure pour vivre votre marque dans le monde digital et les espaces de vente — une expérience totale :
+                                </span>
+                                Des campagnes marketing intégrées avec une signalétique dans toute la ville et au stade de football visent à renforcer la notoriété de la marque. Les utilisateurs peuvent interagir avec l'application de la marque en scannant des codes QR, ce qui leur permet de participer à des événements spéciaux et de remporter des prix.
+                              </>
+                            ) : (
+                              <>
+                                <span className="font-normal text-black block mb-3">
+                                  ONE crea experiencias UX personalizadas para experimentar su marca digitalmente y en espacios minoristas: una experiencia total:
+                                </span>
+                                Las campañas de marketing integradas con señalización en toda la ciudad y en el estadio de fútbol buscan aumentar el reconocimiento de marca. Los usuarios pueden interactuar con la aplicación de la marca escaneando códigos QR, lo que les permite participar en eventos especiales y ganar premios.
+                              </>
+                            )}
                           </p>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
-                            This strategy not only fosters brand recognition but also encourages customer loyalty. By creating interactive experiences, the campaign effectively connects with the audience, driving both engagement and retention.
+                            {lang === 'en' ? (
+                              "This strategy not only fosters brand recognition but also encourages customer loyalty. By creating interactive experiences, the campaign effectively connects with the audience, driving both engagement and retention."
+                            ) : lang === 'fr' ? (
+                              "Cette stratégie renforce non seulement la reconnaissance de la marque mais encourage également la fidélité client. En créant des expériences interactives, la campagne se connecte efficacement avec le public, stimulant à la fois l'engagement et la rétention."
+                            ) : (
+                              "Esta estrategia no solo fomenta el reconocimiento de marca sino que también impulsa la lealtad del cliente. Al crear experiencias interactivas, la campaña se conecta eficazmente con la audiencia, potenciando el compromiso y la retención."
+                            )}
                           </p>
                         </div>
                       </div>
