@@ -24,6 +24,7 @@ const organicPackagingMaterialsOneBio = "https://lh3.googleusercontent.com/d/1A3
 const organicPackagingSuiteOneBio = "https://lh3.googleusercontent.com/d/1hQHDDq13LEZLRaK0nkzf-N8wFc7r-Z4a";
 const edereCinematicMotion = "https://lh3.googleusercontent.com/d/1VAN-GqZ2QduoqhcfJbiHR5nmT6ouaNti";
 const insurlyAirportPillar = "https://lh3.googleusercontent.com/d/1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x";
+const padeluxOnePackaging = "https://lh3.googleusercontent.com/d/1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR";
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg 
@@ -80,6 +81,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
       onError={(e) => {
         if (src && src.includes("1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x")) {
           (e.currentTarget as HTMLImageElement).src = "/insurly_airport_pillar.png";
+        } else if (src && src.includes("1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR")) {
+          (e.currentTarget as HTMLImageElement).src = "/padelux_one_packaging.png";
         }
       }}
       initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
@@ -823,6 +826,10 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
           onError={(e) => {
             if (src && src.includes("1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x")) {
               (e.currentTarget as HTMLImageElement).src = "/insurly_airport_pillar.png";
+              return;
+            }
+            if (src && src.includes("1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR")) {
+              (e.currentTarget as HTMLImageElement).src = "/padelux_one_packaging.png";
               return;
             }
             setError(true);
@@ -1640,6 +1647,7 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1fpYurGgn-hjRjtOVQN9bAVnEBKu_tkOD",
         "https://lh3.googleusercontent.com/d/126FAgbfA4FCK8e5Ym6OCZKgsoF5SKenI",
         "https://lh3.googleusercontent.com/d/1Zr9R_Z3bMjuCJo5xykDJIPVcxvgVeFar",
+        padeluxOnePackaging,
         "https://lh3.googleusercontent.com/d/169Pww9eoPuFuC3gU5bx9E02cOV7037zl",
         "https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv",
         "https://lh3.googleusercontent.com/d/1Rnad3hTvqrKQCbcPPklfr2Qe6lOVPKqr",
@@ -3474,6 +3482,18 @@ export default function App() {
                               <ArrowUpRight className="w-4 h-4 text-black/40 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                             </a>
                           </div>
+                        </div>
+
+                        {/* Padelux Packaging by ONE Biodegradable */}
+                        <div 
+                          className="pt-2 overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9] shadow-sm relative group"
+                          onClick={() => setFullscreenImage(padeluxOnePackaging)}
+                        >
+                          <SubtleMotionImage 
+                            src={padeluxOnePackaging} 
+                            alt="Padelux Sustainable Packaging by ONE Biodegradable"
+                            cinematic={true}
+                          />
                         </div>
                       </div>
 
