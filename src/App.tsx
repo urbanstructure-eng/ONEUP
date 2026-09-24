@@ -15,6 +15,7 @@ const stockiqSystemImage = "https://lh3.googleusercontent.com/d/1nCiRALkZH3FOnSG
 const stockiqComponentsImage = "https://lh3.googleusercontent.com/d/1JsGApruf34MUEO-RjzbquWAOO5hiRyhb";
 const stockiqOutcomeImage = "https://lh3.googleusercontent.com/d/1iJoSEuskYyCsGuAFhE8CGRBaMQ_cD5GV";
 const stockiqGalleryImage = "https://lh3.googleusercontent.com/d/1L4gTgudZK7s3JQaOlvHIhLkLxgPctfGO";
+const stockiqAnalyticsDashboard = "https://lh3.googleusercontent.com/d/19EjOVnoD9DOxbKDMCZxta5EBo1TC7953";
 const unitySubwayBillboard = "/unity_subway_billboard.png";
 const unityStreetKiosk = "/unity_street_kiosk.png";
 const buydropSmartLocker = "https://lh3.googleusercontent.com/d/1jZvRbt5s2XFYHf0bkQ3RxD9JpqRLST52";
@@ -83,6 +84,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/insurly_airport_pillar.png";
         } else if (src && src.includes("1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR")) {
           (e.currentTarget as HTMLImageElement).src = "/padelux_one_packaging.png";
+        } else if (src && (src.includes("19EjOVnoD9DOxbKDMCZxta5EBo1TC7953") || src.includes("stockiq_analytics_dashboard"))) {
+          (e.currentTarget as HTMLImageElement).src = "/stockiq_23.gif";
         }
       }}
       initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
@@ -1317,11 +1320,41 @@ export default function App() {
   const [lang, setLang] = useState<'en' | 'fr' | 'es'>('en');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showFloatingVideo, setShowFloatingVideo] = useState(true);
+  const [stockiqAssetUrl, setStockiqAssetUrl] = useState(stockiqAnalyticsDashboard);
+  const [isEditingStockiqUrl, setIsEditingStockiqUrl] = useState(false);
+  const [stockiqInputUrl, setStockiqInputUrl] = useState('');
+  const [stockiqLinkSuccess, setStockiqLinkSuccess] = useState(false);
+
+  const parseGoogleDriveUrl = (input: string) => {
+    const trimmed = input.trim();
+    if (!trimmed) return "";
+    if (trimmed.includes("lh3.googleusercontent.com/d/")) return trimmed;
+    const fileMatch = trimmed.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+    if (fileMatch && fileMatch[1]) return `https://lh3.googleusercontent.com/d/${fileMatch[1]}`;
+    const idMatch = trimmed.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+    if (idMatch && idMatch[1]) return `https://lh3.googleusercontent.com/d/${idMatch[1]}`;
+    if (/^[a-zA-Z0-9_-]{20,}$/.test(trimmed)) return `https://lh3.googleusercontent.com/d/${trimmed}`;
+    return trimmed;
+  };
+
+  const handleApplyStockiqUrl = (urlToApply?: string) => {
+    const target = urlToApply !== undefined ? urlToApply : stockiqInputUrl;
+    const parsed = parseGoogleDriveUrl(target);
+    if (parsed) {
+      setStockiqAssetUrl(parsed);
+      setStockiqLinkSuccess(true);
+      setTimeout(() => {
+        setStockiqLinkSuccess(false);
+        setIsEditingStockiqUrl(false);
+      }, 1500);
+    }
+  };
 
   useEffect(() => {
     localStorage.removeItem('oneup_buydrop_locker');
     localStorage.removeItem('oneup_organic_unboxing');
     localStorage.removeItem('oneup_organic_retail');
+    localStorage.removeItem('oneup_stockiq_asset_url');
   }, []);
 
   // Dynamic Multi-lingual SEO Optimizer for Google Search Rankings
@@ -1622,6 +1655,7 @@ export default function App() {
         stockiqBrandImage,
         stockiqSystemImage,
         stockiqComponentsImage,
+        stockiqAssetUrl,
         stockiqOutcomeImage,
         stockiqGalleryImage
       ];
@@ -3079,6 +3113,38 @@ export default function App() {
                             src={stockiqGalleryImage} 
                             alt="StockIQ Ecosystem Design Overview"
                             cinematic={true}
+                          />
+                        </div>
+                      </div>
+
+                      {/* StockIQ Section 6: Live Predictive Analytics & Inventory Telemetry Dashboard */}
+                      <div className="space-y-8 pb-12">
+                        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                          <div className="max-w-3xl space-y-4">
+                            <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                              {lang === 'en' ? 'Predictive Telemetry & Motion Dashboard' : lang === 'fr' ? 'Télémétrie Prédictive & Dashboard Animé' : 'Telemetría Predictiva y Panel Animado'}
+                            </span>
+                            <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                              {lang === 'en' ? (
+                                "High-density data visualization and predictive AI telemetry empower merchandising teams to anticipate shortages, rebalance warehouse distribution, and track real-time SKU velocity."
+                              ) : lang === 'fr' ? (
+                                "La visualisation de données haute densité et la télémétrie IA prédictive permettent aux équipes de merchandising d'anticiper les ruptures et d'équilibrer la distribution."
+                              ) : (
+                                "La visualización de datos de alta densidad y la telemetría predictiva de IA permiten a los equipos de comercialización anticipar faltantes y equilibrar la distribución."
+                              )}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Image Showcase Container */}
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9] shadow-sm relative group border border-black/5"
+                          onClick={() => setFullscreenImage(stockiqAssetUrl)}
+                        >
+                          <SubtleMotionImage 
+                            src={stockiqAssetUrl} 
+                            alt="StockIQ Real-Time AI Predictive Analytics Dashboard Motion"
+                            cinematic={false}
                           />
                         </div>
                       </div>
