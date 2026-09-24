@@ -26,6 +26,7 @@ const organicPackagingSuiteOneBio = "https://lh3.googleusercontent.com/d/1hQHDDq
 const edereCinematicMotion = "https://lh3.googleusercontent.com/d/1VAN-GqZ2QduoqhcfJbiHR5nmT6ouaNti";
 const insurlyAirportPillar = "https://lh3.googleusercontent.com/d/1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x";
 const padeluxOnePackaging = "https://lh3.googleusercontent.com/d/1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR";
+const atelierTicketTurnstile = "https://lh3.googleusercontent.com/d/1NSflxMizq6EJQtnDxaypyCV3bsvoDWp-";
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg 
@@ -84,6 +85,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/insurly_airport_pillar.png";
         } else if (src && src.includes("1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR")) {
           (e.currentTarget as HTMLImageElement).src = "/padelux_one_packaging.png";
+        } else if (src && src.includes("1NSflxMizq6EJQtnDxaypyCV3bsvoDWp-")) {
+          (e.currentTarget as HTMLImageElement).src = "/atelier_dart_ticket.png";
         } else if (src && (src.includes("19EjOVnoD9DOxbKDMCZxta5EBo1TC7953") || src.includes("stockiq_analytics_dashboard"))) {
           (e.currentTarget as HTMLImageElement).src = "/stockiq_23.gif";
         }
@@ -1736,6 +1739,7 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/16PMa4p6HKCfzF56Ny_JoEGR6OBJqU-Jj",
         "https://lh3.googleusercontent.com/d/1T9CIXul6wnGY6caACLxwvlW1gAR-EDzi",
         "https://lh3.googleusercontent.com/d/1ceZ6NYiqfNKYtU9mfdn5tYWu6XSkAHN8",
+        atelierTicketTurnstile,
         "https://lh3.googleusercontent.com/d/1qvHCSLMNQTsa2R60U1-CqwLslI37IvFr"
       ];
     }
@@ -4454,7 +4458,35 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Atelier Section 6: Future Vision (Final Impact) */}
+                      {/* Atelier Section 6: Interactive Ticketing & Tangible Access */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage(atelierTicketTurnstile)}
+                        >
+                          <SubtleMotionImage 
+                            src={atelierTicketTurnstile} 
+                            alt="Atelier d'art Opera Interactive Ticketing & Electronic Turnstile Access"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
+                            {lang === 'en' ? 'Tangible Access & Interactive Ticketing' : lang === 'fr' ? 'Accès Tangible & Billetterie Interactive' : 'Acceso Tangible y Emisión de Boletos Interactiva'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Physical access meets digital precision: the commemorative festival tickets feature integrated QR code telemetry, allowing seamless entry through historic opera turnstiles while unlocking personalized digital program guides."
+                            ) : lang === 'fr' ? (
+                              "L'accès physique rencontre la précision numérique : les billets commémoratifs du festival intègrent une télémétrie par code QR, permettant une entrée fluide aux tourniquets de l'opéra tout en débloquant des guides de programme numériques personnalisés."
+                            ) : (
+                              "El acceso físico se une a la precisión digital: los boletos conmemorativos del festival cuentan con telemetría de código QR integrada, lo que permite una entrada fluida a través de los torniquetes de la ópera mientras desbloquea guías de programas digitales personalizadas."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Atelier Section 7: Future Vision (Final Impact) */}
                       <div className="space-y-12 pb-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
