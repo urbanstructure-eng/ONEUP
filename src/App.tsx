@@ -22,6 +22,7 @@ const organicUnboxingKit = "https://lh3.googleusercontent.com/d/1DsQa-afKu2rjs0C
 const organicRetailDisplay = "https://lh3.googleusercontent.com/d/1LKFztqh2TQ7RMYQrxkmIWjuZyIpea3aX";
 const organicPackagingMaterialsOneBio = "https://lh3.googleusercontent.com/d/1A3uKTKPfMVGSF9X5jCRA6MYBNcFP1qyK";
 const organicPackagingSuiteOneBio = "https://lh3.googleusercontent.com/d/1hQHDDq13LEZLRaK0nkzf-N8wFc7r-Z4a";
+const edereCinematicMotion = "https://lh3.googleusercontent.com/d/1VAN-GqZ2QduoqhcfJbiHR5nmT6ouaNti";
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg 
@@ -169,11 +170,13 @@ const StockIQDetailHeroCinematicMotion = ({ src, alt }: { src: string, alt: stri
 const SubtleVideoMotionImage = ({ 
   src, 
   alt, 
-  className = "" 
+  className = "",
+  tag = "Cinematic Slow-Mo • 4K"
 }: { 
   src: string; 
   alt: string; 
   className?: string; 
+  tag?: string;
 }) => {
   return (
     <div className={`relative w-full h-full overflow-hidden select-none bg-neutral-950 ${className}`}>
@@ -250,7 +253,7 @@ const SubtleVideoMotionImage = ({
           <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
         </span>
         <span className="text-[10px] font-mono tracking-[0.2em] text-white/80 uppercase backdrop-blur-md bg-black/40 px-2.5 py-1 rounded-full border border-white/10">
-          Cinematic Slow-Mo • 4K
+          {tag}
         </span>
       </div>
 
@@ -1687,7 +1690,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/19Gt0niVC8EL5JdpHNmsRdCLTrBeeIbcu",
         "https://lh3.googleusercontent.com/d/1KswSnGMZRZkyOOaVJXWTKkUqWwdzxTqB",
         "https://lh3.googleusercontent.com/d/1xwwm8qTPTaFktoSelqGyTUz5tYsOCK7W",
-        "https://lh3.googleusercontent.com/d/1nzAd11wQwe07yeFdZdSLS2-xexHfCIsa"
+        "https://lh3.googleusercontent.com/d/1nzAd11wQwe07yeFdZdSLS2-xexHfCIsa",
+        edereCinematicMotion
       ];
     }
     if (project.title === "Insurly") {
@@ -4978,6 +4982,32 @@ export default function App() {
                               "L'extension de l'identité visuelle sur différents supports garantit une présence de marque cohérente et puissante à chaque échelle."
                             ) : (
                               "Expandir el lenguaje visual a través de diversos puntos de contacto asegura una presencia de marca cohesiva y poderosa que resuena en cada escala."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Edere Restaurant Section 10: Cinematic Motion */}
+                      <div className="space-y-12 mb-24 md:mb-40">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9] shadow-sm relative group"
+                          onClick={() => setFullscreenImage(edereCinematicMotion)}
+                        >
+                          <SubtleVideoMotionImage 
+                            src={edereCinematicMotion} 
+                            alt="Edere Restaurant Cinematic Motion"
+                            tag="Cinematic Slow-Mo • 4K"
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Cinematic Motion</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Atmospheric motion and fluid visual cadence breathe life into the Edere dining experience—capturing the timeless beauty, artisanal warmth, and lively spirit of contemporary Rome."
+                            ) : lang === 'fr' ? (
+                              "Un mouvement atmosphérique et une cadence visuelle fluide donnent vie à l'expérience gastronomique d'Edere—capturant la beauté intemporelle et l'esprit chaleureux de Rome."
+                            ) : (
+                              "El movimiento atmosférico y una cadencia visual fluida dan vida a la experiencia gastronómica de Edere, capturando la belleza atemporal y la calidez artesanal de Roma."
                             )}
                           </p>
                         </div>
