@@ -171,12 +171,14 @@ const SubtleVideoMotionImage = ({
   src, 
   alt, 
   className = "",
-  tag = "Cinematic Slow-Mo • 4K"
+  tag = "Cinematic Slow-Mo • 4K",
+  showWatermark = true
 }: { 
   src: string; 
   alt: string; 
   className?: string; 
-  tag?: string;
+  tag?: string | null;
+  showWatermark?: boolean;
 }) => {
   return (
     <div className={`relative w-full h-full overflow-hidden select-none bg-neutral-950 ${className}`}>
@@ -247,23 +249,27 @@ const SubtleVideoMotionImage = ({
       <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/35 pointer-events-none z-10" />
 
       {/* Minimalist Cinematic HUD Tag */}
-      <div className="absolute top-4 left-4 z-20 flex items-center gap-2 pointer-events-none">
-        <span className="flex h-2 w-2 relative">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-        </span>
-        <span className="text-[10px] font-mono tracking-[0.2em] text-white/80 uppercase backdrop-blur-md bg-black/40 px-2.5 py-1 rounded-full border border-white/10">
-          {tag}
-        </span>
-      </div>
+      {tag && (
+        <div className="absolute top-4 left-4 z-20 flex items-center gap-2 pointer-events-none">
+          <span className="flex h-2 w-2 relative">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span className="text-[10px] font-mono tracking-[0.2em] text-white/80 uppercase backdrop-blur-md bg-black/40 px-2.5 py-1 rounded-full border border-white/10">
+            {tag}
+          </span>
+        </div>
+      )}
 
       {/* Subtle studio watermark */}
-      <div 
-        style={{ writingMode: 'vertical-rl' }} 
-        className="absolute bottom-6 right-3 md:right-4 text-[9px] md:text-[10px] text-white/70 font-mono uppercase tracking-[0.25em] select-none pointer-events-none z-20 mix-blend-difference"
-      >
-        ONEUP © 2025
-      </div>
+      {showWatermark && (
+        <div 
+          style={{ writingMode: 'vertical-rl' }} 
+          className="absolute bottom-6 right-3 md:right-4 text-[9px] md:text-[10px] text-white/70 font-mono uppercase tracking-[0.25em] select-none pointer-events-none z-20 mix-blend-difference"
+        >
+          ONEUP © 2025
+        </div>
+      )}
     </div>
   );
 };
@@ -4988,7 +4994,7 @@ export default function App() {
                       </div>
 
                       {/* Edere Restaurant Section 10: Cinematic Motion */}
-                      <div className="space-y-12 mb-24 md:mb-40">
+                      <div className="mb-24 md:mb-40">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9] shadow-sm relative group"
                           onClick={() => setFullscreenImage(edereCinematicMotion)}
@@ -4996,20 +5002,8 @@ export default function App() {
                           <SubtleVideoMotionImage 
                             src={edereCinematicMotion} 
                             alt="Edere Restaurant Cinematic Motion"
-                            tag="Cinematic Slow-Mo • 4K"
+                            tag={null}
                           />
-                        </div>
-                        <div className="max-w-3xl">
-                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Cinematic Motion</span>
-                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
-                            {lang === 'en' ? (
-                              "Atmospheric motion and fluid visual cadence breathe life into the Edere dining experience—capturing the timeless beauty, artisanal warmth, and lively spirit of contemporary Rome."
-                            ) : lang === 'fr' ? (
-                              "Un mouvement atmosphérique et une cadence visuelle fluide donnent vie à l'expérience gastronomique d'Edere—capturant la beauté intemporelle et l'esprit chaleureux de Rome."
-                            ) : (
-                              "El movimiento atmosférico y una cadencia visual fluida dan vida a la experiencia gastronómica de Edere, capturando la belleza atemporal y la calidez artesanal de Roma."
-                            )}
-                          </p>
                         </div>
                       </div>
                     </>
