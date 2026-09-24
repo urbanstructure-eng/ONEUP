@@ -23,6 +23,7 @@ const organicRetailDisplay = "https://lh3.googleusercontent.com/d/1LKFztqh2TQ7RM
 const organicPackagingMaterialsOneBio = "https://lh3.googleusercontent.com/d/1A3uKTKPfMVGSF9X5jCRA6MYBNcFP1qyK";
 const organicPackagingSuiteOneBio = "https://lh3.googleusercontent.com/d/1hQHDDq13LEZLRaK0nkzf-N8wFc7r-Z4a";
 const edereCinematicMotion = "https://lh3.googleusercontent.com/d/1VAN-GqZ2QduoqhcfJbiHR5nmT6ouaNti";
+const insurlyAirportPillar = "https://lh3.googleusercontent.com/d/1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x";
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg 
@@ -76,6 +77,11 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
       className={`${className || ''} w-full h-full ${contain ? 'object-contain p-8' : 'object-cover'}`}
       style={{ objectPosition, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
       referrerPolicy="no-referrer"
+      onError={(e) => {
+        if (src && src.includes("1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x")) {
+          (e.currentTarget as HTMLImageElement).src = "/insurly_airport_pillar.png";
+        }
+      }}
       initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
@@ -814,7 +820,13 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
           src={src}
           alt={alt}
           onLoad={() => setIsLoaded(true)}
-          onError={() => setError(true)}
+          onError={(e) => {
+            if (src && src.includes("1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x")) {
+              (e.currentTarget as HTMLImageElement).src = "/insurly_airport_pillar.png";
+              return;
+            }
+            setError(true);
+          }}
           className={`max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl`}
           referrerPolicy="no-referrer"
           initial={{ opacity: 0, scale: 0.95 }}
@@ -1710,7 +1722,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1WhPpMX954NfJUF-1ncQ5VfV__3Ao7FbX",
         "https://lh3.googleusercontent.com/d/1-pLYowWBDuGOLikvx_Qow6PN1AuxJUJj",
         "https://lh3.googleusercontent.com/d/1m8koR6xj0qa1Ijn53Le5HUiT1SjQDZHW",
-        "https://lh3.googleusercontent.com/d/1w_ctPlIrM484s3rr8ZT9hut7L-1QKE-3"
+        "https://lh3.googleusercontent.com/d/1w_ctPlIrM484s3rr8ZT9hut7L-1QKE-3",
+        insurlyAirportPillar
       ];
     }
     if (project.title === "organic cosmetic") {
@@ -4518,6 +4531,20 @@ export default function App() {
                               "Nuestra estrategia cinematográfica captura la naturaleza acelerada de los viajes modernos."
                             )}
                           </p>
+                        </div>
+                      </div>
+
+                      {/* Insurly Section 6: Airport Environmental Installation */}
+                      <div className="space-y-12 pb-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9] shadow-sm relative group"
+                          onClick={() => setFullscreenImage(insurlyAirportPillar)}
+                        >
+                          <SubtleMotionImage 
+                            src={insurlyAirportPillar} 
+                            alt="Insurly Airport Environmental Installation"
+                            cinematic={true}
+                          />
                         </div>
                       </div>
 
