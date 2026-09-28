@@ -27,6 +27,8 @@ const edereCinematicMotion = "https://lh3.googleusercontent.com/d/1VAN-GqZ2Qduoq
 const insurlyAirportPillar = "https://lh3.googleusercontent.com/d/1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x";
 const padeluxOnePackaging = "https://lh3.googleusercontent.com/d/1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR";
 const atelierTicketTurnstile = "https://lh3.googleusercontent.com/d/1NSflxMizq6EJQtnDxaypyCV3bsvoDWp-";
+const buydropNetworkLogistics = "https://lh3.googleusercontent.com/d/10ZGFhyalJLJUUzT2KHhAm5X4zion5niW";
+const buydropFleetTelemetry = "https://lh3.googleusercontent.com/d/1DBDauVyAnueTon1L6luHSuFjPHGYc8l8";
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg 
@@ -89,6 +91,10 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/atelier_dart_ticket.png";
         } else if (src && (src.includes("19EjOVnoD9DOxbKDMCZxta5EBo1TC7953") || src.includes("stockiq_analytics_dashboard"))) {
           (e.currentTarget as HTMLImageElement).src = "/stockiq_23.gif";
+        } else if (src && src.includes("10ZGFhyalJLJUUzT2KHhAm5X4zion5niW")) {
+          (e.currentTarget as HTMLImageElement).src = "/buydrop_detail_3.png";
+        } else if (src && src.includes("1DBDauVyAnueTon1L6luHSuFjPHGYc8l8")) {
+          (e.currentTarget as HTMLImageElement).src = "/buydrop_detail_1.png";
         }
       }}
       initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
@@ -1712,6 +1718,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1IYSW94E7ehfVzt6JxjUd3MYrvLGD8hg5",
         "https://lh3.googleusercontent.com/d/1NV4L745ah-lWi0pZtmULvNTiJHefN6J9",
         buydropSmartLocker,
+        buydropNetworkLogistics,
+        buydropFleetTelemetry,
         "https://lh3.googleusercontent.com/d/16nVARSrN4RZielAgzspDx6mkKm6VUs_3",
         "https://lh3.googleusercontent.com/d/1rxQVm2VX7vOD1Z0HPFx7DgVC1s5iwzXH",
         "https://lh3.googleusercontent.com/d/1qycuDnRFnPflsbLZ7G1Ys8C9eID-7RYQ"
@@ -4060,7 +4068,7 @@ export default function App() {
                       </div>
 
                       {/* BuyDrop Section 5: Strategic Overview */}
-                      <div className="space-y-12 pb-12">
+                      <div className="space-y-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1qycuDnRFnPflsbLZ7G1Ys8C9eID-7RYQ")}
@@ -4070,6 +4078,62 @@ export default function App() {
                             alt="BuyDrop Strategic Overview"
                             cinematic={true}
                           />
+                        </div>
+                      </div>
+
+                      {/* BuyDrop Section 6: Network Routing & Multimodal Dispatch */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[16/10]"
+                          onClick={() => setFullscreenImage(buydropNetworkLogistics)}
+                        >
+                          <SubtleMotionImage 
+                            src={buydropNetworkLogistics} 
+                            alt="BuyDrop Network Routing & Multimodal Dispatch"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
+                            {lang === 'en' ? 'Multimodal Coordination' : lang === 'fr' ? 'Coordination Multimodale' : 'Coordinación Multimodal'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Dynamic Route Optimization: Real-time intelligence dynamically plots multimodal freight paths across regional corridors—reducing transit latency, eliminating bottlenecks, and optimizing transport efficiency across interconnected distribution networks."
+                            ) : lang === 'fr' ? (
+                              "Optimisation Dynamique des Trajets : Une intelligence en temps réel calcule les itinéraires de fret multimodaux à travers les corridors régionaux, réduisant les délais de transit et maximisant l'efficacité globale."
+                            ) : (
+                              "Optimización Dinámica de Rutas: Inteligencia en tiempo real que traza rutas de carga multimodal a través de corredores regionales, reduciendo los tiempos de tránsito y maximizando la eficiencia operativa."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* BuyDrop Section 7: Fleet Telemetry & Transit Operations */}
+                      <div className="space-y-12 pb-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[16/10]"
+                          onClick={() => setFullscreenImage(buydropFleetTelemetry)}
+                        >
+                          <SubtleMotionImage 
+                            src={buydropFleetTelemetry} 
+                            alt="BuyDrop Fleet Telemetry & Transit Operations"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
+                            {lang === 'en' ? 'Fleet Telemetry & Manifest Controls' : lang === 'fr' ? 'Télémétrie de Flotte & Manifestes' : 'Telemática de Flota y Control de Manifiestos'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Automated Transit Oversight: Comprehensive telemetry telemetry relays cargo telemetry, thermal metrics, and automated manifest handshakes directly to distribution control, providing transparent oversight from point of origin to final drop."
+                            ) : lang === 'fr' ? (
+                              "Surveillance Automatisée du Transit : Une télémétrie complète transmet l'état du fret, les métriques environnementales et la validation automatisée des manifestes directement au centre de contrôle logistique."
+                            ) : (
+                              "Supervisión Automatizada del Tránsito: Telemática integral que transmite el estado de la carga, métricas térmicas y validación automatizada de manifiestos directement al centre de control logistique."
+                            )}
+                          </p>
                         </div>
                       </div>
                     </>
