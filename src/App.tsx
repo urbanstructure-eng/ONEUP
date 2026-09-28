@@ -27,8 +27,8 @@ const edereCinematicMotion = "https://lh3.googleusercontent.com/d/1VAN-GqZ2Qduoq
 const insurlyAirportPillar = "https://lh3.googleusercontent.com/d/1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x";
 const padeluxOnePackaging = "https://lh3.googleusercontent.com/d/1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR";
 const atelierTicketTurnstile = "https://lh3.googleusercontent.com/d/1NSflxMizq6EJQtnDxaypyCV3bsvoDWp-";
-const buydropNetworkLogistics = "https://lh3.googleusercontent.com/d/10ZGFhyalJLJUUzT2KHhAm5X4zion5niW";
-const buydropFleetTelemetry = "https://lh3.googleusercontent.com/d/1DBDauVyAnueTon1L6luHSuFjPHGYc8l8";
+const buydropNetworkLogistics = "/buydrop_detail_3.png";
+const buydropFleetTelemetry = "/buydrop_detail_1.png";
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg 
@@ -842,6 +842,18 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
             }
             if (src && src.includes("1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR")) {
               (e.currentTarget as HTMLImageElement).src = "/padelux_one_packaging.png";
+              return;
+            }
+            if (src && (src.includes("10ZGFhyalJLJUUzT2KHhAm5X4zion5niW") || src.includes("buydrop_detail_3"))) {
+              (e.currentTarget as HTMLImageElement).src = "/buydrop_detail_3.png";
+              return;
+            }
+            if (src && (src.includes("1DBDauVyAnueTon1L6luHSuFjPHGYc8l8") || src.includes("buydrop_detail_1"))) {
+              (e.currentTarget as HTMLImageElement).src = "/buydrop_detail_1.png";
+              return;
+            }
+            if (src && src.includes("1jZvRbt5s2XFYHf0bkQ3RxD9JpqRLST52")) {
+              (e.currentTarget as HTMLImageElement).src = "/buydrop_smart_locker.png";
               return;
             }
             setError(true);
@@ -1718,11 +1730,11 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1IYSW94E7ehfVzt6JxjUd3MYrvLGD8hg5",
         "https://lh3.googleusercontent.com/d/1NV4L745ah-lWi0pZtmULvNTiJHefN6J9",
         buydropSmartLocker,
-        buydropNetworkLogistics,
-        buydropFleetTelemetry,
         "https://lh3.googleusercontent.com/d/16nVARSrN4RZielAgzspDx6mkKm6VUs_3",
         "https://lh3.googleusercontent.com/d/1rxQVm2VX7vOD1Z0HPFx7DgVC1s5iwzXH",
-        "https://lh3.googleusercontent.com/d/1qycuDnRFnPflsbLZ7G1Ys8C9eID-7RYQ"
+        "https://lh3.googleusercontent.com/d/1qycuDnRFnPflsbLZ7G1Ys8C9eID-7RYQ",
+        buydropNetworkLogistics,
+        buydropFleetTelemetry
       ];
     }
     if (project.title === "UNITY Community Hub") {
