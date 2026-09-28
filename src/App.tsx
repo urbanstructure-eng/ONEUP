@@ -18,17 +18,8 @@ const stockiqGalleryImage = "https://lh3.googleusercontent.com/d/1L4gTgudZK7s3JQ
 const stockiqAnalyticsDashboard = "https://lh3.googleusercontent.com/d/19EjOVnoD9DOxbKDMCZxta5EBo1TC7953";
 const unitySubwayBillboard = "/unity_subway_billboard.png";
 const unityStreetKiosk = "/unity_street_kiosk.png";
-const buydropHeroImage = "/buydrop_hero.jpg";
-const buydropSec0 = "/buydrop_sec0.gif";
-const buydropSec1 = "/buydrop_sec1.jpg";
-const buydropSec2 = "/buydrop_sec2.png";
-const buydropSec2b = "/buydrop_sec2b.png";
-const buydropSmartLocker = "/buydrop_sec2c.png";
-const buydropSec3 = "/buydrop_sec3.jpg";
-const buydropSec4 = "/buydrop_sec4.png";
-const buydropSec5 = "/buydrop_sec5.gif";
-const buydropNetworkLogistics = "/buydrop_detail_3.png";
-const buydropFleetTelemetry = "/buydrop_detail_1.png";
+const buydropReception = "/buydrop_reception.jpg";
+const buydropSmartLocker = "https://lh3.googleusercontent.com/d/1jZvRbt5s2XFYHf0bkQ3RxD9JpqRLST52";
 const organicUnboxingKit = "https://lh3.googleusercontent.com/d/1DsQa-afKu2rjs0C4Wnp-ne4XZwrWWcrI";
 const organicRetailDisplay = "https://lh3.googleusercontent.com/d/1LKFztqh2TQ7RMYQrxkmIWjuZyIpea3aX";
 const organicPackagingMaterialsOneBio = "https://lh3.googleusercontent.com/d/1A3uKTKPfMVGSF9X5jCRA6MYBNcFP1qyK";
@@ -72,7 +63,7 @@ const PROJECTS: Project[] = [
   { id: 20, title: "StockIQ", category: "AI Retail Inventory / Branding & Product Design", image: stockiqHomeImage, heroImage: stockiqHero, colSpan: "md:col-span-12", location: "San Francisco, CA", year: "2026", role: "Multidisciplinary Designer" },
   { id: 11, title: "Voltique", category: "Service Design", image: "https://lh3.googleusercontent.com/d/1gusf69CAd1am1JcsIyc1qiGekzmZLEUP", colSpan: "md:col-span-12", year: "2024", role: "Lead Design" },
   { id: 12, title: "Pulso Health", category: "AI Health / Branding", image: "https://lh3.googleusercontent.com/d/1ONCooNfgYuYu5trUJrFZcZq1HxYSFZrr", colSpan: "md:col-span-4", year: "2023", role: "Brand Identity" },
-  { id: 13, title: "BuyDrop", category: "Logistic Company", image: buydropSec0, heroImage: buydropHeroImage, colSpan: "md:col-span-4", year: "2024", role: "Creative Direction" },
+  { id: 13, title: "BuyDrop", category: "Logistic Company", image: "https://lh3.googleusercontent.com/d/1qpd246hL-TbgCSgf9j2qxBk15FMW2FuF", heroImage: "https://lh3.googleusercontent.com/d/1nZNLMGhECM67AST6qbGCmYiXUhN0RF-C", colSpan: "md:col-span-4", year: "2024", role: "Creative Direction" },
   { id: 14, title: "UNITY Community Hub", category: "Community / Branding", image: "https://lh3.googleusercontent.com/d/1SaZAxfG-M0ouGb0w0wCRxmzKQ3U8S5uT", heroImage: "https://lh3.googleusercontent.com/d/1zBFr8LhCxzjxucFpkMMXeekayY2JLk9g", colSpan: "md:col-span-4", year: "2024", role: "Lead Design" },
   { id: 15, title: "Atelier d'art", category: "Art Direction / Branding", image: "https://lh3.googleusercontent.com/d/1sAcH9tLsKt9mXswTCynb7bnRcS5qAYJT", colSpan: "md:col-span-12", location: "Paris, France", year: "2024", role: "Art Direction" },
   { id: 16, title: "edere restaurant", category: "Branding / Environment", image: "https://lh3.googleusercontent.com/d/19Gt0niVC8EL5JdpHNmsRdCLTrBeeIbcu", colSpan: "md:col-span-12", location: "Rome, Italy", year: "2022", role: "Project Identity" },
@@ -99,7 +90,7 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/atelier_dart_ticket.png";
         } else if (src && (src.includes("19EjOVnoD9DOxbKDMCZxta5EBo1TC7953") || src.includes("stockiq_analytics_dashboard"))) {
           (e.currentTarget as HTMLImageElement).src = "/stockiq_23.gif";
-        } else if (src && (src.includes("10ZGFhyalJLJUUzT2KHhAm5X4zion5niW") || src.includes("buydrop_detail_3"))) {
+        } else if (src && (src.includes("10ZGFhya") || src.includes("buydrop_detail_3"))) {
           (e.currentTarget as HTMLImageElement).src = "/buydrop_detail_3.png";
         } else if (src && (src.includes("1DBDauVyAnueTon1L6luHSuFjPHGYc8l8") || src.includes("buydrop_detail_1"))) {
           (e.currentTarget as HTMLImageElement).src = "/buydrop_detail_1.png";
@@ -121,6 +112,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/buydrop_sec4.png";
         } else if (src && (src.includes("1qycuDnRFnPflsbLZ7G1Ys8C9eID-7RYQ") || src.includes("buydrop_sec5"))) {
           (e.currentTarget as HTMLImageElement).src = "/buydrop_sec5.gif";
+        } else if (src && (src.includes("1fy6OZmTWaJqgxeU9gj1-LcbrA_p71KvP") || src.includes("buydrop_detail_2") || src.includes("buydrop_autonomous_hub"))) {
+          (e.currentTarget as HTMLImageElement).src = "/buydrop_detail_2.png";
         }
       }}
       initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
@@ -840,107 +833,44 @@ const CompactVideoPlayer = ({ src, alt, className, useGif = false, onClick }: { 
 };
 
 const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: string, onNext: () => void }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    setIsLoaded(false);
-    setError(false);
-  }, [src]);
-
   return (
     <div className="relative w-full h-full flex items-center justify-center select-none bg-black/90">
-      {error && (
-        <div className="absolute inset-0 flex items-center justify-center text-[10px] uppercase tracking-[0.4em] text-white/20 z-10">
-          Preview unavailable
-        </div>
-      )}
       <div className="relative">
         <motion.img
           key={src}
           src={src}
           alt={alt}
-          onLoad={() => setIsLoaded(true)}
-          ref={(el) => {
-            if (el && el.complete && el.naturalWidth > 0 && !isLoaded) {
-              setIsLoaded(true);
-            }
-          }}
           onError={(e) => {
             const target = e.currentTarget as HTMLImageElement;
-            if (src && (src.includes("1nZNLMGhECM67AST6qbGCmYiXUhN0RF-C") || src.includes("buydrop_hero"))) {
-              target.src = "/buydrop_hero.jpg";
-              return;
-            }
-            if (src && (src.includes("1qpd246hL-TbgCSgf9j2qxBk15FMW2FuF") || src.includes("buydrop_sec0"))) {
-              target.src = "/buydrop_sec0.gif";
-              return;
-            }
-            if (src && (src.includes("1jxksiMAxUtLXBxGL8bNC7jcizLTyxXR0") || src.includes("buydrop_sec1"))) {
-              target.src = "/buydrop_sec1.jpg";
-              return;
-            }
-            if (src && (src.includes("1IYSW94E7ehfVzt6JxjUd3MYrvLGD8hg5") || src.includes("buydrop_sec2.png"))) {
-              target.src = "/buydrop_sec2.png";
-              return;
-            }
-            if (src && (src.includes("1NV4L745ah-lWi0pZtmULvNTiJHefN6J9") || src.includes("buydrop_sec2b"))) {
-              target.src = "/buydrop_sec2b.png";
-              return;
-            }
-            if (src && (src.includes("1jZvRbt5s2XFYHf0bkQ3RxD9JpqRLST52") || src.includes("buydrop_sec2c") || src.includes("buydrop_smart_locker"))) {
-              target.src = "/buydrop_sec2c.png";
-              return;
-            }
-            if (src && (src.includes("16nVARSrN4RZielAgzspDx6mkKm6VUs_3") || src.includes("buydrop_sec3"))) {
-              target.src = "/buydrop_sec3.jpg";
-              return;
-            }
-            if (src && (src.includes("1rxQVm2VX7vOD1Z0HPFx7DgVC1s5iwzXH") || src.includes("buydrop_sec4"))) {
-              target.src = "/buydrop_sec4.png";
-              return;
-            }
-            if (src && (src.includes("1qycuDnRFnPflsbLZ7G1Ys8C9eID-7RYQ") || src.includes("buydrop_sec5"))) {
-              target.src = "/buydrop_sec5.gif";
-              return;
-            }
-            if (src && (src.includes("10ZGFhyalJLJUUzT2KHhAm5X4zion5niW") || src.includes("buydrop_detail_3"))) {
+            if (src && (src.includes("10ZGFhya") || src.includes("buydrop_detail_3"))) {
               target.src = "/buydrop_detail_3.png";
-              return;
-            }
-            if (src && (src.includes("1DBDauVyAnueTon1L6luHSuFjPHGYc8l8") || src.includes("buydrop_detail_1"))) {
+            } else if (src && (src.includes("1DBDauVy") || src.includes("buydrop_detail_1"))) {
               target.src = "/buydrop_detail_1.png";
-              return;
-            }
-            if (src && src.includes("1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x")) {
+            } else if (src && (src.includes("1fy6OZm") || src.includes("buydrop_detail_2"))) {
+              target.src = "/buydrop_detail_2.png";
+            } else if (src && src.includes("1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x")) {
               target.src = "/insurly_airport_pillar.png";
-              return;
-            }
-            if (src && src.includes("1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR")) {
+            } else if (src && src.includes("1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR")) {
               target.src = "/padelux_one_packaging.png";
-              return;
             }
-            setError(true);
           }}
-          className={`max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl`}
+          className="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl"
           referrerPolicy="no-referrer"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 0.95 }}
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           onClick={(e) => {
             e.stopPropagation();
             onNext();
           }}
         />
-        {isLoaded && (
-          <div 
-            style={{ writingMode: 'vertical-rl' }} 
-            className="absolute bottom-6 right-4 text-[9px] md:text-[10px] text-white font-mono uppercase tracking-[0.25em] select-none pointer-events-none z-10 mix-blend-difference"
-          >
-            ONEUP © 2025
-          </div>
-        )}
+        <div 
+          style={{ writingMode: 'vertical-rl' }} 
+          className="absolute bottom-6 right-4 text-[9px] md:text-[10px] text-white font-mono uppercase tracking-[0.25em] select-none pointer-events-none z-10 mix-blend-difference"
+        >
+          ONEUP © 2025
+        </div>
       </div>
     </div>
   );
@@ -1788,17 +1718,18 @@ export default function App() {
     }
     if (project.title === "BuyDrop") {
       return [
-        buydropHeroImage,
-        buydropSec0,
-        buydropSec1,
-        buydropSec2,
-        buydropSec2b,
+        project.heroImage || project.image,
+        "https://lh3.googleusercontent.com/d/1qpd246hL-TbgCSgf9j2qxBk15FMW2FuF",
+        "https://lh3.googleusercontent.com/d/1jxksiMAxUtLXBxGL8bNC7jcizLTyxXR0",
+        "https://lh3.googleusercontent.com/d/1IYSW94E7ehfVzt6JxjUd3MYrvLGD8hg5",
+        "https://lh3.googleusercontent.com/d/1NV4L745ah-lWi0pZtmULvNTiJHefN6J9",
         buydropSmartLocker,
-        buydropSec3,
-        buydropSec4,
-        buydropSec5,
-        buydropNetworkLogistics,
-        buydropFleetTelemetry
+        "https://lh3.googleusercontent.com/d/16nVARSrN4RZielAgzspDx6mkKm6VUs_3",
+        "https://lh3.googleusercontent.com/d/1rxQVm2VX7vOD1Z0HPFx7DgVC1s5iwzXH",
+        "https://lh3.googleusercontent.com/d/1qycuDnRFnPflsbLZ7G1Ys8C9eID-7RYQ",
+        "https://lh3.googleusercontent.com/d/10ZGFhyalJLJUUzT2KHhAm5X4zioN5niW",
+        "https://lh3.googleusercontent.com/d/1DBDauVyAnueTon1L6luHSuFjPHGYc8l8",
+        buydropReception
       ];
     }
     if (project.title === "UNITY Community Hub") {
@@ -1896,16 +1827,24 @@ export default function App() {
   const nextFullscreenImage = () => {
     if (!selectedProject || !fullscreenImage) return;
     const images = Array.from(new Set(getProjectImages(selectedProject)));
-    const currentIndex = images.indexOf(fullscreenImage);
-    const nextIndex = (currentIndex + 1) % images.length;
+    let currentIndex = images.indexOf(fullscreenImage);
+    if (currentIndex === -1) {
+      const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')));
+    }
+    const nextIndex = ((currentIndex >= 0 ? currentIndex : 0) + 1) % images.length;
     setFullscreenImage(images[nextIndex]);
   };
 
   const prevFullscreenImage = () => {
     if (!selectedProject || !fullscreenImage) return;
     const images = Array.from(new Set(getProjectImages(selectedProject)));
-    const currentIndex = images.indexOf(fullscreenImage);
-    const prevIndex = (currentIndex - 1 + images.length) % images.length;
+    let currentIndex = images.indexOf(fullscreenImage);
+    if (currentIndex === -1) {
+      const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')));
+    }
+    const prevIndex = ((currentIndex >= 0 ? currentIndex : 0) - 1 + images.length) % images.length;
     setFullscreenImage(images[prevIndex]);
   };
 
@@ -3952,10 +3891,10 @@ export default function App() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
                           className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-square"
-                          onClick={() => setFullscreenImage(buydropSec0)}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1qpd246hL-TbgCSgf9j2qxBk15FMW2FuF")}
                         >
                           <SubtleMotionImage 
-                            src={buydropSec0} 
+                            src="https://lh3.googleusercontent.com/d/1qpd246hL-TbgCSgf9j2qxBk15FMW2FuF" 
                             alt="BuyDrop Ecosystem"
                           />
                         </div>
@@ -3977,10 +3916,10 @@ export default function App() {
                       <div className="space-y-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
-                          onClick={() => setFullscreenImage(buydropSec1)}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1jxksiMAxUtLXBxGL8bNC7jcizLTyxXR0")}
                         >
                           <SubtleMotionImage 
-                            src={buydropSec1} 
+                            src="https://lh3.googleusercontent.com/d/1jxksiMAxUtLXBxGL8bNC7jcizLTyxXR0" 
                             alt="BuyDrop Environment"
                             cinematic={true}
                           />
@@ -4003,10 +3942,10 @@ export default function App() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
                           className="order-2 md:order-1 overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/5]"
-                          onClick={() => setFullscreenImage(buydropSec2)}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1IYSW94E7ehfVzt6JxjUd3MYrvLGD8hg5")}
                         >
                           <SubtleMotionImage 
-                            src={buydropSec2} 
+                            src="https://lh3.googleusercontent.com/d/1IYSW94E7ehfVzt6JxjUd3MYrvLGD8hg5" 
                             alt="BuyDrop System"
                           />
                         </div>
@@ -4028,10 +3967,10 @@ export default function App() {
                       <div className="space-y-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
-                          onClick={() => setFullscreenImage(buydropSec2b)}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1NV4L745ah-lWi0pZtmULvNTiJHefN6J9")}
                         >
                           <SubtleMotionImage 
-                            src={buydropSec2b} 
+                            src="https://lh3.googleusercontent.com/d/1NV4L745ah-lWi0pZtmULvNTiJHefN6J9" 
                             alt="BuyDrop Infrastructure"
                             cinematic={true}
                           />
@@ -4095,10 +4034,10 @@ export default function App() {
                       <div className="space-y-12">
                         <div 
                           className="relative overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video group"
-                          onClick={() => setFullscreenImage(buydropSec3)}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/16nVARSrN4RZielAgzspDx6mkKm6VUs_3")}
                         >
                           <SubtleMotionImage 
-                            src={buydropSec3} 
+                            src="https://lh3.googleusercontent.com/d/16nVARSrN4RZielAgzspDx6mkKm6VUs_3" 
                             alt="BuyDrop Precision"
                             cinematic={true}
                           />
@@ -4121,10 +4060,10 @@ export default function App() {
                       <div className="space-y-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
-                          onClick={() => setFullscreenImage(buydropSec4)}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1rxQVm2VX7vOD1Z0HPFx7DgVC1s5iwzXH")}
                         >
                           <SubtleMotionImage 
-                            src={buydropSec4} 
+                            src="https://lh3.googleusercontent.com/d/1rxQVm2VX7vOD1Z0HPFx7DgVC1s5iwzXH" 
                             alt="BuyDrop Distribution"
                             cinematic={true}
                           />
@@ -4147,10 +4086,10 @@ export default function App() {
                       <div className="space-y-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
-                          onClick={() => setFullscreenImage(buydropSec5)}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1qycuDnRFnPflsbLZ7G1Ys8C9eID-7RYQ")}
                         >
                           <SubtleMotionImage 
-                            src={buydropSec5} 
+                            src="https://lh3.googleusercontent.com/d/1qycuDnRFnPflsbLZ7G1Ys8C9eID-7RYQ" 
                             alt="BuyDrop Strategic Overview"
                             cinematic={true}
                           />
@@ -4161,10 +4100,10 @@ export default function App() {
                       <div className="space-y-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[16/10]"
-                          onClick={() => setFullscreenImage(buydropNetworkLogistics)}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/10ZGFhyalJLJUUzT2KHhAm5X4zioN5niW")}
                         >
                           <SubtleMotionImage 
-                            src={buydropNetworkLogistics} 
+                            src="https://lh3.googleusercontent.com/d/10ZGFhyalJLJUUzT2KHhAm5X4zioN5niW" 
                             alt="BuyDrop Network Routing & Multimodal Dispatch"
                             cinematic={true}
                           />
@@ -4186,13 +4125,13 @@ export default function App() {
                       </div>
 
                       {/* BuyDrop Section 7: Fleet Telemetry & Transit Operations */}
-                      <div className="space-y-12 pb-12">
+                      <div className="space-y-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[16/10]"
-                          onClick={() => setFullscreenImage(buydropFleetTelemetry)}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1DBDauVyAnueTon1L6luHSuFjPHGYc8l8")}
                         >
                           <SubtleMotionImage 
-                            src={buydropFleetTelemetry} 
+                            src="https://lh3.googleusercontent.com/d/1DBDauVyAnueTon1L6luHSuFjPHGYc8l8" 
                             alt="BuyDrop Fleet Telemetry & Transit Operations"
                             cinematic={true}
                           />
@@ -4208,6 +4147,52 @@ export default function App() {
                               "Surveillance Automatisée du Transit : Une télémétrie complète transmet l'état du fret, les métriques environnementales et la validation automatisée des manifestes directement au centre de contrôle logistique."
                             ) : (
                               "Supervisión Automatizada del Tránsito: Telemática integral que transmite el estado de la carga, métricas térmicas y validación automatizada de manifiestos directement al centre de control logistique."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* BuyDrop Section 8: Autonomous Distribution Nodes & Cargo Fulfillment */}
+                      <div className="space-y-12">
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
+                            {lang === 'en' ? 'Autonomous Distribution Nodes' : lang === 'fr' ? 'Nœuds de Distribution Autonomes' : 'Nodos de Distribución Autónomos'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Modular Fulfillment Infrastructure: High-throughput automated sortation nodes interface between intermodal container networks and urban delivery vehicles, orchestrating seamless package staging and rapid dispatch."
+                            ) : lang === 'fr' ? (
+                              "Infrastructure Modulaire de Préparation : Des nœuds de tri automatisés assurent l'interface entre les réseaux de conteneurs intermodaux et les véhicules urbains, orchestrant un dispatching fluide et instantané."
+                            ) : (
+                              "Infraestructura Modular de Cumplimiento: Nodos de clasificación automatizados que conectan redes de contenedores intermodales con vehículos urbanos, orquestando una distribución ágil y continua."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* BuyDrop Section 9: Corporate Headquarters & Reception (Final Image) */}
+                      <div className="space-y-12 pb-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[16/9]"
+                          onClick={() => setFullscreenImage(buydropReception)}
+                        >
+                          <SubtleMotionImage 
+                            src={buydropReception} 
+                            alt="BuyDrop Corporate Headquarters & Reception"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
+                            {lang === 'en' ? 'Corporate Headquarters' : lang === 'fr' ? 'Siège Social' : 'Sede Corporativa'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Central Operations & Reception: Located at www.buydrop.co, the headquarters facility anchors the physical brand presence—uniting administrative governance, developer relations, and logistics management under a single cohesive spatial identity."
+                            ) : lang === 'fr' ? (
+                              "Commandement Central & Opérations : Situé sur www.buydrop.co, le siège incarne l'identité physique de la marque, unissant gouvernance administrative et gestion logistique sous une même identité spatiale."
+                            ) : (
+                              "Centro de Mando y Operaciones: Ubicado en www.buydrop.co, la sede corporativa materializa la presencia física de la marca, integrando gobernanza administrativa y gestión logística bajo una identidad espacial coherente."
                             )}
                           </p>
                         </div>
