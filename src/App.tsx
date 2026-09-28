@@ -18,7 +18,6 @@ const stockiqGalleryImage = "https://lh3.googleusercontent.com/d/1L4gTgudZK7s3JQ
 const stockiqAnalyticsDashboard = "https://lh3.googleusercontent.com/d/19EjOVnoD9DOxbKDMCZxta5EBo1TC7953";
 const unitySubwayBillboard = "/unity_subway_billboard.png";
 const unityStreetKiosk = "/unity_street_kiosk.png";
-const buydropReception = "/buydrop_reception.jpg";
 const buydropSmartLocker = "https://lh3.googleusercontent.com/d/1jZvRbt5s2XFYHf0bkQ3RxD9JpqRLST52";
 const organicUnboxingKit = "https://lh3.googleusercontent.com/d/1DsQa-afKu2rjs0C4Wnp-ne4XZwrWWcrI";
 const organicRetailDisplay = "https://lh3.googleusercontent.com/d/1LKFztqh2TQ7RMYQrxkmIWjuZyIpea3aX";
@@ -1728,8 +1727,7 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1rxQVm2VX7vOD1Z0HPFx7DgVC1s5iwzXH",
         "https://lh3.googleusercontent.com/d/1qycuDnRFnPflsbLZ7G1Ys8C9eID-7RYQ",
         "https://lh3.googleusercontent.com/d/10ZGFhyalJLJUUzT2KHhAm5X4zioN5niW",
-        "https://lh3.googleusercontent.com/d/1DBDauVyAnueTon1L6luHSuFjPHGYc8l8",
-        buydropReception
+        "https://lh3.googleusercontent.com/d/1DBDauVyAnueTon1L6luHSuFjPHGYc8l8"
       ];
     }
     if (project.title === "UNITY Community Hub") {
@@ -4153,7 +4151,7 @@ export default function App() {
                       </div>
 
                       {/* BuyDrop Section 8: Autonomous Distribution Nodes & Cargo Fulfillment */}
-                      <div className="space-y-12">
+                      <div className="pt-4 pb-12">
                         <div className="max-w-3xl">
                           <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
                             {lang === 'en' ? 'Autonomous Distribution Nodes' : lang === 'fr' ? 'Nœuds de Distribution Autonomes' : 'Nodos de Distribución Autónomos'}
@@ -4165,34 +4163,6 @@ export default function App() {
                               "Infrastructure Modulaire de Préparation : Des nœuds de tri automatisés assurent l'interface entre les réseaux de conteneurs intermodaux et les véhicules urbains, orchestrant un dispatching fluide et instantané."
                             ) : (
                               "Infraestructura Modular de Cumplimiento: Nodos de clasificación automatizados que conectan redes de contenedores intermodales con vehículos urbanos, orquestando una distribución ágil y continua."
-                            )}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* BuyDrop Section 9: Corporate Headquarters & Reception (Final Image) */}
-                      <div className="space-y-12 pb-12">
-                        <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[16/9]"
-                          onClick={() => setFullscreenImage(buydropReception)}
-                        >
-                          <SubtleMotionImage 
-                            src={buydropReception} 
-                            alt="BuyDrop Corporate Headquarters & Reception"
-                            cinematic={true}
-                          />
-                        </div>
-                        <div className="max-w-3xl">
-                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
-                            {lang === 'en' ? 'Corporate Headquarters' : lang === 'fr' ? 'Siège Social' : 'Sede Corporativa'}
-                          </span>
-                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
-                            {lang === 'en' ? (
-                              "Central Operations & Reception: Located at www.buydrop.co, the headquarters facility anchors the physical brand presence—uniting administrative governance, developer relations, and logistics management under a single cohesive spatial identity."
-                            ) : lang === 'fr' ? (
-                              "Commandement Central & Opérations : Situé sur www.buydrop.co, le siège incarne l'identité physique de la marque, unissant gouvernance administrative et gestion logistique sous une même identité spatiale."
-                            ) : (
-                              "Centro de Mando y Operaciones: Ubicado en www.buydrop.co, la sede corporativa materializa la presencia física de la marca, integrando gobernanza administrativa y gestión logística bajo una identidad espacial coherente."
                             )}
                           </p>
                         </div>
