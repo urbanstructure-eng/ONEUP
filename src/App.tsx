@@ -4123,7 +4123,7 @@ export default function App() {
                       </div>
 
                       {/* BuyDrop Section 7: Fleet Telemetry & Transit Operations */}
-                      <div className="space-y-12">
+                      <div className="pb-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[16/10]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1DBDauVyAnueTon1L6luHSuFjPHGYc8l8")}
@@ -4133,38 +4133,6 @@ export default function App() {
                             alt="BuyDrop Fleet Telemetry & Transit Operations"
                             cinematic={true}
                           />
-                        </div>
-                        <div className="max-w-3xl">
-                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
-                            {lang === 'en' ? 'Fleet Telemetry & Manifest Controls' : lang === 'fr' ? 'Télémétrie de Flotte & Manifestes' : 'Telemática de Flota y Control de Manifiestos'}
-                          </span>
-                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
-                            {lang === 'en' ? (
-                              "Automated Transit Oversight: Comprehensive telemetry telemetry relays cargo telemetry, thermal metrics, and automated manifest handshakes directly to distribution control, providing transparent oversight from point of origin to final drop."
-                            ) : lang === 'fr' ? (
-                              "Surveillance Automatisée du Transit : Une télémétrie complète transmet l'état du fret, les métriques environnementales et la validation automatisée des manifestes directement au centre de contrôle logistique."
-                            ) : (
-                              "Supervisión Automatizada del Tránsito: Telemática integral que transmite el estado de la carga, métricas térmicas y validación automatizada de manifiestos directement al centre de control logistique."
-                            )}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* BuyDrop Section 8: Autonomous Distribution Nodes & Cargo Fulfillment */}
-                      <div className="pt-4 pb-12">
-                        <div className="max-w-3xl">
-                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
-                            {lang === 'en' ? 'Autonomous Distribution Nodes' : lang === 'fr' ? 'Nœuds de Distribution Autonomes' : 'Nodos de Distribución Autónomos'}
-                          </span>
-                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
-                            {lang === 'en' ? (
-                              "Modular Fulfillment Infrastructure: High-throughput automated sortation nodes interface between intermodal container networks and urban delivery vehicles, orchestrating seamless package staging and rapid dispatch."
-                            ) : lang === 'fr' ? (
-                              "Infrastructure Modulaire de Préparation : Des nœuds de tri automatisés assurent l'interface entre les réseaux de conteneurs intermodaux et les véhicules urbains, orchestrant un dispatching fluide et instantané."
-                            ) : (
-                              "Infraestructura Modular de Cumplimiento: Nodos de clasificación automatizados que conectan redes de contenedores intermodales con vehículos urbanos, orquestando una distribución ágil y continua."
-                            )}
-                          </p>
                         </div>
                       </div>
                     </>
