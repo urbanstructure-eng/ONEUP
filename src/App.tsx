@@ -38,6 +38,254 @@ const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   </svg>
 );
 
+const AppleLogoIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
+  <svg 
+    viewBox="0 0 170 170" 
+    fill="currentColor" 
+    className={className}
+  >
+    <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.99-5.87-9.02-10.45-19.35-13.73-31-3.28-11.64-4.92-22.61-4.92-32.9 0-14.56 3.75-26.78 11.25-36.65 7.5-9.87 16.9-14.86 28.2-14.97 4.9 0 10.42 1.25 16.57 3.75 6.15 2.5 10.15 3.75 12 3.75 1.52 0 5.43-1.2 11.75-3.62 6.31-2.42 11.64-3.52 15.98-3.3 11.96.65 21.64 4.88 29.04 12.69-10.44 6.31-15.55 15.11-15.33 26.4.22 8.7 3.59 16 10.11 21.91 6.52 5.91 14.13 9.24 22.83 10-2.39 7.18-5.33 14.35-8.82 21.52zM119.22 33.15c0-6.85 2.5-13.15 7.5-18.91 5-5.76 11.2-9.78 18.6-12.06.33 1.52.44 2.83.33 3.91-.43 6.96-3.04 13.48-7.83 19.57-4.78 6.09-10.98 9.99-18.6 11.73z" />
+  </svg>
+);
+
+const AndroidLogoIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    fill="currentColor" 
+    className={className}
+  >
+    <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9993.4482.9993.9993.0001.5511-.4483.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5834 8.4116 13.8563 8.125 12 8.125s-3.5834.2866-5.1378.8247L4.84 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.343 14.6589 0 18.761h24c-.343-4.1021-2.6889-7.5743-6.1185-9.4396" />
+  </svg>
+);
+
+const OneDigitalParticlesCanvas = ({ className = "" }: { className?: string }) => {
+  const canvasRef = React.useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let width = 0;
+    let height = 0;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    const updateDimensions = () => {
+      const rect = canvas.getBoundingClientRect();
+      width = rect.width || canvas.parentElement?.clientWidth || window.innerWidth;
+      height = rect.height || canvas.parentElement?.clientHeight || 320;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.max(1, Math.floor(width * dpr));
+      canvas.height = Math.max(1, Math.floor(height * dpr));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    updateDimensions();
+
+    interface Particle {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      size: number;
+      life: number;
+      maxLife: number;
+      alpha: number;
+      kind: "apple" | "android";
+    }
+
+    const particles: Particle[] = [];
+    const totalCount = 45;
+
+    const drawApple = (x: number, y: number, size: number) => {
+      const scaleW = size * 0.85;
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(scaleW / 100, size / 118);
+      ctx.beginPath();
+      // leaf
+      ctx.moveTo(58, 0);
+      ctx.bezierCurveTo(70, 4, 76, 14, 74, 26);
+      ctx.bezierCurveTo(62, 26, 52, 14, 58, 0);
+      ctx.fill();
+      // body
+      ctx.beginPath();
+      ctx.moveTo(50, 34);
+      ctx.bezierCurveTo(62, 26, 78, 26, 86, 38);
+      ctx.bezierCurveTo(74, 46, 72, 62, 84, 74);
+      ctx.bezierCurveTo(92, 80, 88, 96, 78, 108);
+      ctx.bezierCurveTo(70, 118, 60, 116, 52, 112);
+      ctx.bezierCurveTo(46, 109, 40, 110, 32, 114);
+      ctx.bezierCurveTo(22, 118, 14, 108, 8, 92);
+      ctx.bezierCurveTo(0, 70, 6, 42, 24, 34);
+      ctx.bezierCurveTo(34, 29, 42, 32, 50, 34);
+      ctx.fill();
+      ctx.restore();
+    };
+
+    const drawAndroid = (x: number, y: number, size: number) => {
+      const scaleW = size * 0.95;
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(scaleW / 100, size / 100);
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = ctx.fillStyle;
+      ctx.lineCap = "round";
+      // antennae
+      ctx.beginPath();
+      ctx.moveTo(26, 2);
+      ctx.lineTo(34, 16);
+      ctx.moveTo(74, 2);
+      ctx.lineTo(66, 16);
+      ctx.stroke();
+      // head
+      ctx.beginPath();
+      ctx.moveTo(18, 40);
+      ctx.arc(50, 40, 32, Math.PI, 0);
+      ctx.closePath();
+      ctx.fill();
+      // eyes (clean fill matching dark bg, no destination-out)
+      ctx.fillStyle = "#1a1a1a";
+      ctx.beginPath();
+      ctx.arc(37, 30, 4, 0, Math.PI * 2);
+      ctx.arc(63, 30, 4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = ctx.strokeStyle; // restore fill
+      // torso
+      ctx.beginPath();
+      if (typeof ctx.roundRect === "function") {
+        ctx.roundRect(18, 46, 64, 44, [0, 0, 8, 8]);
+      } else {
+        ctx.rect(18, 46, 64, 44);
+      }
+      ctx.fill();
+      // limbs
+      ctx.beginPath();
+      if (typeof ctx.roundRect === "function") {
+        ctx.roundRect(2, 46, 12, 36, 6);
+        ctx.roundRect(86, 46, 12, 36, 6);
+        ctx.roundRect(30, 88, 12, 24, 6);
+        ctx.roundRect(58, 88, 12, 24, 6);
+      } else {
+        ctx.rect(2, 46, 12, 36);
+        ctx.rect(86, 46, 12, 36);
+        ctx.rect(30, 88, 12, 24);
+        ctx.rect(58, 88, 12, 24);
+      }
+      ctx.fill();
+      ctx.restore();
+    };
+
+    const spawnParticle = (isInitial = false, forceKind?: "apple" | "android"): Particle => {
+      const currentW = width > 0 ? width : 600;
+      const currentH = height > 0 ? height : 320;
+      const centerX = currentW / 2;
+      const centerY = currentH / 2;
+      const boxOriginX = centerX - Math.min(currentW * 0.1, 80);
+      
+      const maxLife = 300 + Math.random() * 340;
+      const kind: "apple" | "android" = forceKind ?? (Math.random() < 0.5 ? "apple" : "android");
+      // 10% smaller scale: delicate 12px-18px or crisp 19px-28px
+      const size = Math.random() < 0.65 ? 12 + Math.random() * 6 : 19 + Math.random() * 9;
+
+      if (isInitial) {
+        return {
+          x: boxOriginX + (Math.random() - 0.5) * Math.min(currentW * 0.85, 540),
+          y: centerY + (Math.random() - 0.5) * (currentH * 0.9),
+          vx: (Math.random() - 0.5) * 0.65,
+          vy: -0.22 - Math.random() * 0.38,
+          size,
+          life: Math.random() * maxLife,
+          maxLife,
+          alpha: 0.26 + Math.random() * 0.24,
+          kind,
+        };
+      }
+
+      // Spawns right behind the box body and floats out with more lateral space
+      return {
+        x: boxOriginX + (Math.random() - 0.5) * 95,
+        y: centerY - 10 + (Math.random() - 0.5) * 55,
+        vx: (Math.random() - 0.5) * 0.75,
+        vy: -0.22 - Math.random() * 0.38,
+        size,
+        life: 0,
+        maxLife,
+        alpha: 0.26 + Math.random() * 0.24,
+        kind,
+      };
+    };
+
+    for (let i = 0; i < totalCount; i++) {
+      particles.push(spawnParticle(true, i % 2 === 0 ? "apple" : "android"));
+    }
+
+    let animFrame = 0;
+    const animate = () => {
+      if (width === 0 || height === 0) {
+        updateDimensions();
+      }
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.life += 1;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy -= 0.0002;
+
+        const progress = p.life / p.maxLife;
+        // Never prematurely cancel: only recycle when finished lifetime or far outside view
+        const isDead = progress >= 1 || p.y < -40 || p.x < -60 || p.x > width + 60;
+
+        if (isDead) {
+          particles[i] = spawnParticle(false, p.kind === "apple" ? "android" : "apple");
+          continue;
+        }
+
+        // Visible throughout whole trajectory with smooth in/out fades
+        const fade = progress < 0.12 ? (progress / 0.12) : progress > 0.88 ? ((1 - progress) / 0.12) : 1;
+        ctx.globalAlpha = Math.max(0.18, p.alpha * fade);
+        ctx.fillStyle = "#ffffff";
+
+        if (p.kind === "apple") {
+          drawApple(p.x, p.y, p.size);
+        } else {
+          drawAndroid(p.x, p.y, p.size);
+        }
+      }
+
+      ctx.globalAlpha = 1;
+      animFrame = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateDimensions();
+    });
+    if (canvas.parentElement) {
+      resizeObserver.observe(canvas.parentElement);
+    }
+    window.addEventListener("resize", updateDimensions);
+
+    return () => {
+      cancelAnimationFrame(animFrame);
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", updateDimensions);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      aria-hidden="true"
+      className={`pointer-events-none absolute inset-0 w-full h-full ${className}`}
+    />
+  );
+};
+
 declare global {
   interface Window {
     onYouTubeIframeAPIReady: () => void;
@@ -2321,20 +2569,34 @@ export default function App() {
       </section>
 
       {/* Post-Contact Signature Image */}
-      <div className="relative z-10 flex justify-center py-24 bg-[#1a1a1a] border-t border-white/5">
-        <a 
-          href="https://www.onedigital.company/" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="block group"
-        >
-          <img 
-            src="https://lh3.googleusercontent.com/d/1M-EDoDT8Ex1EWXMUU8HaPfhECDSggPxq" 
-            alt="ONe Digital Experiences" 
-            className="h-32 md:h-48 w-auto transition-transform duration-700 group-hover:scale-105 rounded-2xl"
-            referrerPolicy="no-referrer"
-          />
-        </a>
+      <div className="relative z-10 flex justify-center py-24 md:py-32 bg-[#1a1a1a] border-t border-white/5 overflow-hidden select-none">
+        {/* Subtle Canvas Particle Background (Permanent Apple & Android watermarks flying from behind the takeout box) */}
+        <OneDigitalParticlesCanvas className="opacity-95" />
+
+        <div className="relative flex flex-col items-center justify-center">
+          {/* Takeout Box Link with subtle authentic floating motion - enlarged & attractive to click */}
+          <a 
+            href="https://www.onedigital.company/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="relative z-10 block group cursor-pointer"
+            title="Click to visit ONE Digital Experiences"
+          >
+            <motion.img 
+              src="https://lh3.googleusercontent.com/d/1M-EDoDT8Ex1EWXMUU8HaPfhECDSggPxq" 
+              alt="ONe Digital Experiences" 
+              className="h-44 md:h-64 w-auto transition-transform duration-700 group-hover:scale-105 will-change-transform drop-shadow-2xl"
+              referrerPolicy="no-referrer"
+              animate={{ y: [0, -8, 0], rotate: [0, -1.2, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            />
+            {/* Attractive hovering cue to invite click */}
+            <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none flex items-center gap-1.5 text-[10px] font-mono tracking-widest text-white/80 uppercase whitespace-nowrap bg-black/70 px-3 py-1 rounded-full border border-white/10 backdrop-blur-md shadow-lg shadow-black/50">
+              <span>Explore Digital Experiences</span>
+              <span>↗</span>
+            </div>
+          </a>
+        </div>
       </div>
 
       {/* Footer */}
