@@ -92,11 +92,12 @@ const OneDigitalParticlesCanvas = ({ className = "" }: { className?: string }) =
       life: number;
       maxLife: number;
       alpha: number;
-      kind: "apple" | "android";
+      kind: "apple" | "android" | "github";
     }
 
     const particles: Particle[] = [];
-    const totalCount = 45;
+    // Spaced out count so each individual logo has room to breathe and be easily noticed
+    const totalCount = 26;
 
     const drawApple = (x: number, y: number, size: number) => {
       const scaleW = size * 0.85;
@@ -177,48 +178,62 @@ const OneDigitalParticlesCanvas = ({ className = "" }: { className?: string }) =
       ctx.restore();
     };
 
-    const spawnParticle = (isInitial = false, forceKind?: "apple" | "android"): Particle => {
+    const githubPath = new Path2D(
+      "M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+    );
+
+    const drawGitHub = (x: number, y: number, size: number) => {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(size / 24, size / 24);
+      ctx.fill(githubPath);
+      ctx.restore();
+    };
+
+    const spawnParticle = (isInitial = false, forceKind?: "apple" | "android" | "github"): Particle => {
       const currentW = width > 0 ? width : 600;
       const currentH = height > 0 ? height : 320;
       const centerX = currentW / 2;
       const centerY = currentH / 2;
       const boxOriginX = centerX - Math.min(currentW * 0.1, 80);
       
-      const maxLife = 300 + Math.random() * 340;
-      const kind: "apple" | "android" = forceKind ?? (Math.random() < 0.5 ? "apple" : "android");
-      // 10% smaller scale: delicate 12px-18px or crisp 19px-28px
-      const size = Math.random() < 0.65 ? 12 + Math.random() * 6 : 19 + Math.random() * 9;
+      const maxLife = 320 + Math.random() * 360;
+      const kinds: ("apple" | "android" | "github")[] = ["apple", "android", "github"];
+      const kind: "apple" | "android" | "github" = forceKind ?? kinds[Math.floor(Math.random() * kinds.length)];
+      // Refined smaller scale: subtle 10px-14px or clear 16px-20px so each icon is crisp and defined
+      const size = Math.random() < 0.55 ? 10 + Math.random() * 4 : 16 + Math.random() * 5;
 
       if (isInitial) {
         return {
-          x: boxOriginX + (Math.random() - 0.5) * Math.min(currentW * 0.85, 540),
+          x: boxOriginX + (Math.random() - 0.5) * Math.min(currentW * 0.9, 650),
           y: centerY + (Math.random() - 0.5) * (currentH * 0.9),
-          vx: (Math.random() - 0.5) * 0.65,
-          vy: -0.22 - Math.random() * 0.38,
+          vx: (Math.random() - 0.5) * 0.7,
+          vy: -0.18 - Math.random() * 0.28,
           size,
           life: Math.random() * maxLife,
           maxLife,
-          alpha: 0.26 + Math.random() * 0.24,
+          alpha: 0.36 + Math.random() * 0.32,
           kind,
         };
       }
 
-      // Spawns right behind the box body and floats out with more lateral space
+      // Spawns nestled behind the box and fans out with wide lateral spacing so logos don't cluster
       return {
-        x: boxOriginX + (Math.random() - 0.5) * 95,
-        y: centerY - 10 + (Math.random() - 0.5) * 55,
-        vx: (Math.random() - 0.5) * 0.75,
-        vy: -0.22 - Math.random() * 0.38,
+        x: boxOriginX + (Math.random() - 0.5) * 80,
+        y: centerY - 10 + (Math.random() - 0.5) * 50,
+        vx: (Math.random() - 0.5) * 0.85,
+        vy: -0.18 - Math.random() * 0.30,
         size,
         life: 0,
         maxLife,
-        alpha: 0.26 + Math.random() * 0.24,
+        alpha: 0.36 + Math.random() * 0.32,
         kind,
       };
     };
 
     for (let i = 0; i < totalCount; i++) {
-      particles.push(spawnParticle(true, i % 2 === 0 ? "apple" : "android"));
+      const initialKind = i % 3 === 0 ? "apple" : i % 3 === 1 ? "android" : "github";
+      particles.push(spawnParticle(true, initialKind));
     }
 
     let animFrame = 0;
@@ -240,19 +255,22 @@ const OneDigitalParticlesCanvas = ({ className = "" }: { className?: string }) =
         const isDead = progress >= 1 || p.y < -40 || p.x < -60 || p.x > width + 60;
 
         if (isDead) {
-          particles[i] = spawnParticle(false, p.kind === "apple" ? "android" : "apple");
+          const nextKind = p.kind === "apple" ? "android" : p.kind === "android" ? "github" : "apple";
+          particles[i] = spawnParticle(false, nextKind);
           continue;
         }
 
-        // Visible throughout whole trajectory with smooth in/out fades
+        // Visible throughout whole trajectory with smooth in/out fades and crisp contrast
         const fade = progress < 0.12 ? (progress / 0.12) : progress > 0.88 ? ((1 - progress) / 0.12) : 1;
-        ctx.globalAlpha = Math.max(0.18, p.alpha * fade);
+        ctx.globalAlpha = Math.max(0.24, p.alpha * fade);
         ctx.fillStyle = "#ffffff";
 
         if (p.kind === "apple") {
           drawApple(p.x, p.y, p.size);
-        } else {
+        } else if (p.kind === "android") {
           drawAndroid(p.x, p.y, p.size);
+        } else {
+          drawGitHub(p.x, p.y, p.size);
         }
       }
 
