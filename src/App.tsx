@@ -889,15 +889,15 @@ const StockIQSkuLineGraphWatermark = () => {
         </motion.div>
       </div>
 
-      {/* Bottom right prominent all-white stock counter ticker */}
-      <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-30 pointer-events-none">
-        <div className="flex items-center gap-2.5 md:gap-3 px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-black/65 backdrop-blur-md border border-white/40 shadow-2xl text-white">
-          <span className="w-2 md:w-2.5 h-2 md:h-2.5 rounded-full bg-white animate-pulse shadow-[0_0_8px_rgba(255,255,255,1)]" />
-          <span className="text-[11px] md:text-xs font-mono font-semibold tracking-widest text-white">STOCK</span>
-          <span className="text-sm md:text-lg font-mono font-bold text-white tabular-nums tracking-wide">
+      {/* Bottom right refined all-white stock counter ticker */}
+      <div className="absolute bottom-3 right-3 md:bottom-5 md:right-5 z-30 pointer-events-none">
+        <div className="flex items-center gap-1.5 md:gap-2 px-2.5 py-1 md:px-3.5 md:py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/30 shadow-xl text-white">
+          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shadow-[0_0_6px_rgba(255,255,255,1)]" />
+          <span className="text-[9px] md:text-[10px] font-mono font-medium tracking-wider text-white/90">ITEM IN STOCK</span>
+          <span className="text-xs md:text-sm font-mono font-bold text-white tabular-nums tracking-tight">
             {stockCount.toLocaleString()}
           </span>
-          <span className="text-[10px] md:text-xs font-mono font-bold text-white bg-white/20 px-2 py-0.5 rounded-full tabular-nums">
+          <span className="text-[8px] md:text-[9px] font-mono font-semibold text-white/90 bg-white/20 px-1.5 py-0.5 rounded-full tabular-nums">
             {delta >= 0 ? `▲ +${delta}` : `▼ ${delta}`}
           </span>
         </div>
