@@ -2608,10 +2608,10 @@ export default function App() {
               animate={{ y: [0, -8, 0], rotate: [0, -1.2, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
-            {/* Attractive hovering cue to invite click */}
-            <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none flex items-center gap-1.5 text-[10px] font-mono tracking-widest text-white/80 uppercase whitespace-nowrap bg-black/70 px-3 py-1 rounded-full border border-white/10 backdrop-blur-md shadow-lg shadow-black/50">
+            {/* Hovering cue to invite click - pure all-white text with no dark frame */}
+            <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none flex items-center gap-1.5 text-[10px] md:text-[11px] font-mono tracking-[0.2em] font-medium text-white uppercase whitespace-nowrap drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
               <span>Explore Digital Experiences</span>
-              <span>↗</span>
+              <span className="text-xs">↗</span>
             </div>
           </a>
         </div>
