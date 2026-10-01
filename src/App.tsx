@@ -379,6 +379,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/buydrop_sec5.gif";
         } else if (src && (src.includes("1fy6OZmTWaJqgxeU9gj1-LcbrA_p71KvP") || src.includes("buydrop_detail_2") || src.includes("buydrop_autonomous_hub"))) {
           (e.currentTarget as HTMLImageElement).src = "/buydrop_detail_2.png";
+        } else if (src && (src.includes("1zg59fSC-J3U8gfLdj1scGQU2qzuhGPhk") || src.includes("voltique_infrastructure"))) {
+          (e.currentTarget as HTMLImageElement).src = "/voltique_infrastructure.jpg";
         }
       }}
       initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
@@ -1976,6 +1978,7 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1LP7r24WA012N3hkibYdehCPnKasGT4jB",
         "https://lh3.googleusercontent.com/d/1Ad-O2_nnkJHtfNLqVneCvzqufYPEpP-t",
         "https://lh3.googleusercontent.com/d/1C6c6M2Sf0EchjHqKsylmecO9Z__707lY",
+        "https://lh3.googleusercontent.com/d/1zg59fSC-J3U8gfLdj1scGQU2qzuhGPhk",
         "https://lh3.googleusercontent.com/d/1tJkKFKLTwo-zkp6K_EVdVRz7rCviD-F0",
         "https://lh3.googleusercontent.com/d/1RYRWf7_CSv27PD95PfnPPKLs534PhOQD",
         "https://lh3.googleusercontent.com/d/1IbhBUuJuXIiKMGleLfoHvwAlE78GdwG_"
@@ -4083,6 +4086,32 @@ export default function App() {
                             src="https://lh3.googleusercontent.com/d/1C6c6M2Sf0EchjHqKsylmecO9Z__707lY" 
                             alt="Voltique EV Infrastructure"
                           />
+                        </div>
+                      </div>
+
+                      {/* Voltique Story Section: Urban & Subterranean Infrastructure */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[3/2] md:aspect-[16/10]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1zg59fSC-J3U8gfLdj1scGQU2qzuhGPhk")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1zg59fSC-J3U8gfLdj1scGQU2qzuhGPhk" 
+                            alt="Voltique Urban & Underground EV Charging Infrastructure"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Urban & Subterranean Infrastructure</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "From high-traffic streetscapes to subterranean parking structures, Voltique's charging pedestals are engineered for seamless architectural integration across urban environments."
+                            ) : lang === 'fr' ? (
+                              "Des paysages urbains très fréquentés aux parkings souterrains, les bornes de recharge Voltique sont conçues pour une intégration architecturale harmonieuse."
+                            ) : (
+                              "Desde paisajes urbanos de alto tráfico hasta estructuras de estacionamiento subterráneo, los pedestales de carga de Voltique están diseñados para una integración arquitectónica perfecta."
+                            )}
+                          </p>
                         </div>
                       </div>
 
