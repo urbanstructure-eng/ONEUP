@@ -381,6 +381,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/buydrop_detail_2.png";
         } else if (src && (src.includes("1zg59fSC-J3U8gfLdj1scGQU2qzuhGPhk") || src.includes("voltique_infrastructure"))) {
           (e.currentTarget as HTMLImageElement).src = "/voltique_infrastructure.jpg";
+        } else if (src && (src.includes("1QMCMKwMuJeVwDJ8pWrNmUm3OxDIhHYS0") || src.includes("pulso_headquarters_atrium"))) {
+          (e.currentTarget as HTMLImageElement).src = "/pulso_headquarters_atrium.png";
         }
       }}
       initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
@@ -1951,6 +1953,7 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1JclpfUaRLdnfi-Y8bFiYZjgMoumw4E_U",
         "https://lh3.googleusercontent.com/d/14dOgWst9Yy4S-uenpiuTiJSF5owIrT6M",
         "https://lh3.googleusercontent.com/d/16PjI9KDz2z6IFWutld9YKRkwVTNw5Htk",
+        "https://lh3.googleusercontent.com/d/1QMCMKwMuJeVwDJ8pWrNmUm3OxDIhHYS0",
         "https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez",
         "https://lh3.googleusercontent.com/d/1490HNQUNQowTbcizbN6YKqIw7YNr3gxG",
         "https://lh3.googleusercontent.com/d/1ICOrOMmkoRu44W9sTV_SlHGHtOvROMld"
@@ -3621,6 +3624,32 @@ export default function App() {
                                "En se concentrant sur une visibilité à grande échelle via le design environnemental, Pulso assure la reconnaissance de la marque."
                             ) : (
                                "Centrándose en la visibilidad a gran escala a través del diseño ambiental, Pulso garantiza que la marca sea reconocible en cada punto de contacto."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Pulso Health Section: Environmental Architecture & Headquarters Atrium */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1QMCMKwMuJeVwDJ8pWrNmUm3OxDIhHYS0")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1QMCMKwMuJeVwDJ8pWrNmUm3OxDIhHYS0" 
+                            alt="Pulso Health Headquarters Atrium Environmental Architecture & Signage"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Environmental Architecture</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Translating the brand into monumental physical spaces: three-dimensional architectural signage and pure spatial branding seamlessly integrate within the corporate headquarters atrium."
+                            ) : lang === 'fr' ? (
+                              "Traduire la marque dans des espaces physiques monumentaux : signalétique architecturale tridimensionnelle et branding spatial intégrés dans l'atrium du siège social."
+                            ) : (
+                              "Traduciendo la marca a espacios físicos monumentales: señalización arquitectónica tridimensional y branding espacial integrados en el atrio de la sede corporativa."
                             )}
                           </p>
                         </div>
