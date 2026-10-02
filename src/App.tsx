@@ -195,7 +195,7 @@ const OneDigitalParticlesCanvas = ({ className = "" }: { className?: string }) =
       const currentH = height > 0 ? height : 320;
       const centerX = currentW / 2;
       const centerY = currentH / 2;
-      const boxOriginX = centerX - Math.min(currentW * 0.1, 80);
+      const boxOriginX = centerX - Math.min(currentW * 0.085, 68);
       
       const maxLife = 320 + Math.random() * 360;
       const kinds: ("apple" | "android" | "github")[] = ["apple", "android", "github"];
@@ -2606,7 +2606,7 @@ export default function App() {
             <motion.img 
               src="https://lh3.googleusercontent.com/d/1M-EDoDT8Ex1EWXMUU8HaPfhECDSggPxq" 
               alt="ONe Digital Experiences" 
-              className="h-44 md:h-64 w-auto transition-transform duration-700 group-hover:scale-105 will-change-transform drop-shadow-2xl"
+              className="h-[150px] md:h-[218px] w-auto transition-transform duration-700 group-hover:scale-105 will-change-transform drop-shadow-2xl"
               referrerPolicy="no-referrer"
               animate={{ y: [0, -8, 0], rotate: [0, -1.2, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
