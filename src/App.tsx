@@ -383,6 +383,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/voltique_infrastructure.jpg";
         } else if (src && (src.includes("1QMCMKwMuJeVwDJ8pWrNmUm3OxDIhHYS0") || src.includes("pulso_headquarters_atrium"))) {
           (e.currentTarget as HTMLImageElement).src = "/pulso_headquarters_atrium.png";
+        } else if (src && (src.includes("11SVx89LYfiUQWRnD82QvJhMLNR12-Nha") || src.includes("pulso_doctor_credentials"))) {
+          (e.currentTarget as HTMLImageElement).src = "/pulso_doctor_credentials.png";
         }
       }}
       initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
@@ -1953,6 +1955,7 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1JclpfUaRLdnfi-Y8bFiYZjgMoumw4E_U",
         "https://lh3.googleusercontent.com/d/14dOgWst9Yy4S-uenpiuTiJSF5owIrT6M",
         "https://lh3.googleusercontent.com/d/16PjI9KDz2z6IFWutld9YKRkwVTNw5Htk",
+        "https://lh3.googleusercontent.com/d/11SVx89LYfiUQWRnD82QvJhMLNR12-Nha",
         "https://lh3.googleusercontent.com/d/1QMCMKwMuJeVwDJ8pWrNmUm3OxDIhHYS0",
         "https://lh3.googleusercontent.com/d/1RVsPoBhYK0_TGE6UZB1GksNG0Nai43ez",
         "https://lh3.googleusercontent.com/d/1490HNQUNQowTbcizbN6YKqIw7YNr3gxG",
@@ -3624,6 +3627,32 @@ export default function App() {
                                "En se concentrant sur une visibilité à grande échelle via le design environnemental, Pulso assure la reconnaissance de la marque."
                             ) : (
                                "Centrándose en la visibilidad a gran escala a través del diseño ambiental, Pulso garantiza que la marca sea reconocible en cada punto de contacto."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Pulso Health Section: Clinical Identity & Professional Credentials */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[2/1] md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/11SVx89LYfiUQWRnD82QvJhMLNR12-Nha")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/11SVx89LYfiUQWRnD82QvJhMLNR12-Nha" 
+                            alt="Pulso Health Physician Credentials and Clinical Lanyard Identity"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Clinical Credentials</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "From digital health interfaces to physical clinical practice, Pulso's identity extends to staff credentials and physician badges, instilling trust and clarity in modern healthcare environments."
+                            ) : lang === 'fr' ? (
+                              "Des interfaces de santé numériques à la pratique clinique, l'identité de Pulso s'étend aux badges du personnel et des médecins, instaurant confiance et clarté."
+                            ) : (
+                              "Desde interfaces de salud digital hasta la práctica clínica física, la identidad de Pulso se extiende a credenciales de personal y gafetes médicos, infundiendo confianza y claridad."
                             )}
                           </p>
                         </div>
