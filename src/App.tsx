@@ -385,6 +385,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/pulso_headquarters_atrium.png";
         } else if (src && (src.includes("11SVx89LYfiUQWRnD82QvJhMLNR12-Nha") || src.includes("pulso_doctor_credentials"))) {
           (e.currentTarget as HTMLImageElement).src = "/pulso_doctor_credentials.png";
+        } else if (src && (src.includes("1OdXpfPKbeK969KWK2sTD3yVBn7Lh9Gwh") || src.includes("voltique_smart_cards"))) {
+          (e.currentTarget as HTMLImageElement).src = "/voltique_smart_cards.png";
         }
       }}
       initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
@@ -1123,6 +1125,14 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/insurly_airport_pillar.png";
             } else if (src && src.includes("1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR")) {
               target.src = "/padelux_one_packaging.png";
+            } else if (src && (src.includes("1OdXpfPKbeK969KWK2sTD3yVBn7Lh9Gwh") || src.includes("voltique_smart_cards"))) {
+              target.src = "/voltique_smart_cards.png";
+            } else if (src && (src.includes("1zg59fSC-J3U8gfLdj1scGQU2qzuhGPhk") || src.includes("voltique_infrastructure"))) {
+              target.src = "/voltique_infrastructure.jpg";
+            } else if (src && (src.includes("11SVx89LYfiUQWRnD82QvJhMLNR12-Nha") || src.includes("pulso_doctor_credentials"))) {
+              target.src = "/pulso_doctor_credentials.png";
+            } else if (src && (src.includes("1QMCMKwMuJeVwDJ8pWrNmUm3OxDIhHYS0") || src.includes("pulso_headquarters_atrium"))) {
+              target.src = "/pulso_headquarters_atrium.png";
             }
           }}
           className="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl"
@@ -1982,6 +1992,7 @@ export default function App() {
         project.heroImage || project.image,
         "https://lh3.googleusercontent.com/d/18okrA2Rgsx9gzhggIOu89nuz6QcWu-Hi",
         "https://lh3.googleusercontent.com/d/1LP7r24WA012N3hkibYdehCPnKasGT4jB",
+        "https://lh3.googleusercontent.com/d/1OdXpfPKbeK969KWK2sTD3yVBn7Lh9Gwh",
         "https://lh3.googleusercontent.com/d/1Ad-O2_nnkJHtfNLqVneCvzqufYPEpP-t",
         "https://lh3.googleusercontent.com/d/1C6c6M2Sf0EchjHqKsylmecO9Z__707lY",
         "https://lh3.googleusercontent.com/d/1zg59fSC-J3U8gfLdj1scGQU2qzuhGPhk",
@@ -4069,6 +4080,20 @@ export default function App() {
                               "Definiendo el lenguaje visual de los centros de servicio de próxima generación, combinando tecnología sostenible con estética arquitectónica de alta gama."
                             )}
                           </p>
+                        </div>
+                      </div>
+
+                      {/* Voltique Story Section: Contactless RFID Smart Cards */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1OdXpfPKbeK969KWK2sTD3yVBn7Lh9Gwh")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1OdXpfPKbeK969KWK2sTD3yVBn7Lh9Gwh" 
+                            alt="Voltique Contactless Smart Cards"
+                            cinematic={true}
+                          />
                         </div>
                       </div>
 
