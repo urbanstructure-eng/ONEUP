@@ -18,6 +18,7 @@ const stockiqGalleryImage = "https://lh3.googleusercontent.com/d/1L4gTgudZK7s3JQ
 const stockiqAnalyticsDashboard = "https://lh3.googleusercontent.com/d/19EjOVnoD9DOxbKDMCZxta5EBo1TC7953";
 const unitySubwayBillboard = "/unity_subway_billboard.png";
 const unityStreetKiosk = "/unity_street_kiosk.png";
+const unityDesktopMockup = "/unity_desktop_mockup.png";
 const buydropSmartLocker = "https://lh3.googleusercontent.com/d/1jZvRbt5s2XFYHf0bkQ3RxD9JpqRLST52";
 const organicUnboxingKit = "https://lh3.googleusercontent.com/d/1DsQa-afKu2rjs0C4Wnp-ne4XZwrWWcrI";
 const organicRetailDisplay = "https://lh3.googleusercontent.com/d/1LKFztqh2TQ7RMYQrxkmIWjuZyIpea3aX";
@@ -387,6 +388,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/pulso_doctor_credentials.png";
         } else if (src && (src.includes("1OdXpfPKbeK969KWK2sTD3yVBn7Lh9Gwh") || src.includes("voltique_smart_cards"))) {
           (e.currentTarget as HTMLImageElement).src = "/voltique_smart_cards.png";
+        } else if (src && (src.includes("1E1PXfT94c1-9QEzUH1ND8UMVnHYoQu8V") || src.includes("unity_desktop_mockup"))) {
+          (e.currentTarget as HTMLImageElement).src = "/unity_desktop_mockup.png";
         }
       }}
       initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
@@ -1133,6 +1136,8 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/pulso_doctor_credentials.png";
             } else if (src && (src.includes("1QMCMKwMuJeVwDJ8pWrNmUm3OxDIhHYS0") || src.includes("pulso_headquarters_atrium"))) {
               target.src = "/pulso_headquarters_atrium.png";
+            } else if (src && (src.includes("1E1PXfT94c1-9QEzUH1ND8UMVnHYoQu8V") || src.includes("unity_desktop_mockup"))) {
+              target.src = "/unity_desktop_mockup.png";
             }
           }}
           className="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl"
@@ -2024,6 +2029,7 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1M-1AUscx9JJ7guyEjAeF1ziTjLxrnbWK",
         unitySubwayBillboard,
         unityStreetKiosk,
+        unityDesktopMockup,
         "https://lh3.googleusercontent.com/d/1JL_vUWyn2sn9wFsdgCnL-XekDbMnzJ4t",
         "https://lh3.googleusercontent.com/d/178fpIdVUsFAnFVgY89ztj_hRTVaxAWsw",
         "https://lh3.googleusercontent.com/d/18gqdiRXLF7McIOK9DyD33TilFTV1OwYX",
@@ -4667,6 +4673,32 @@ export default function App() {
                               "Intégrés directement aux entrées de métro de plain-pied, les kiosques physiques agissent comme des passerelles accueillantes reliant la jeunesse depuis la rue vers la communauté numérique UNITY."
                             ) : (
                               "Integrados directamente en los accesos de metro a pie de calle, los quioscos físicos funcionan como puntos de contacto cercanos que conectan a los jóvenes directamente con la comunidad digital de UNITY."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* UNITY Section 4D: Digital Support Platform & Web Interface */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1E1PXfT94c1-9QEzUH1ND8UMVnHYoQu8V")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1E1PXfT94c1-9QEzUH1ND8UMVnHYoQu8V" 
+                            alt="UNITY Digital Mental Health Platform & Desktop Interface"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Digital Sanctuary</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "A warm, welcoming digital sanctuary designed for youth. The responsive platform provides immediate, confidential access to 24/7 crisis counselors and community care resources in an empathetic environment."
+                            ) : lang === 'fr' ? (
+                              "Un sanctuaire numérique chaleureux et bienveillant conçu pour les jeunes. La plateforme réactive offre un accès immédiat et confidentiel à des conseillers de crise 24h/24 et 7j/7 ainsi qu'à des ressources communautaires."
+                            ) : (
+                              "Un santuario digital cálido y acogedor diseñado para los jóvenes. La plataforma adaptativa brinda acceso inmediato y confidencial a consejeros de crisis las 24 horas y recursos comunitarios en un entorno empático."
                             )}
                           </p>
                         </div>
