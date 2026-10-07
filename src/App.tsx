@@ -27,6 +27,7 @@ const organicPackagingSuiteOneBio = "https://lh3.googleusercontent.com/d/1hQHDDq
 const edereCinematicMotion = "https://lh3.googleusercontent.com/d/1VAN-GqZ2QduoqhcfJbiHR5nmT6ouaNti";
 const insurlyAirportPillar = "https://lh3.googleusercontent.com/d/1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x";
 const padeluxOnePackaging = "https://lh3.googleusercontent.com/d/1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR";
+const padeluxCourtAmenity = "/padelux_court_amenity.png";
 const atelierTicketTurnstile = "https://lh3.googleusercontent.com/d/1NSflxMizq6EJQtnDxaypyCV3bsvoDWp-";
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
@@ -390,6 +391,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/voltique_smart_cards.png";
         } else if (src && (src.includes("1E1PXfT94c1-9QEzUH1ND8UMVnHYoQu8V") || src.includes("unity_desktop_mockup"))) {
           (e.currentTarget as HTMLImageElement).src = "/unity_desktop_mockup.png";
+        } else if (src && (src.includes("1J0rSppzwYyz9x3oc29W-EF2Snx16vcR0") || src.includes("padelux_court_amenity"))) {
+          (e.currentTarget as HTMLImageElement).src = "/padelux_court_amenity.png";
         }
       }}
       initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
@@ -1138,6 +1141,8 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/pulso_headquarters_atrium.png";
             } else if (src && (src.includes("1E1PXfT94c1-9QEzUH1ND8UMVnHYoQu8V") || src.includes("unity_desktop_mockup"))) {
               target.src = "/unity_desktop_mockup.png";
+            } else if (src && (src.includes("1J0rSppzwYyz9x3oc29W-EF2Snx16vcR0") || src.includes("padelux_court_amenity"))) {
+              target.src = "/padelux_court_amenity.png";
             }
           }}
           className="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl"
@@ -1987,6 +1992,7 @@ export default function App() {
         padeluxOnePackaging,
         "https://lh3.googleusercontent.com/d/169Pww9eoPuFuC3gU5bx9E02cOV7037zl",
         "https://lh3.googleusercontent.com/d/1KbD64ig98ArfbH_BLpk8aa_KtIWZ-rfv",
+        padeluxCourtAmenity,
         "https://lh3.googleusercontent.com/d/1Rnad3hTvqrKQCbcPPklfr2Qe6lOVPKqr",
         "https://lh3.googleusercontent.com/d/1D1d7VFqv7vsAjrPMwZAVlxNYHAkEWvsv",
         "https://lh3.googleusercontent.com/d/1PGGL6aKGts05H98M-r4Sn4ltEJVQMQ53"
@@ -3990,6 +3996,32 @@ export default function App() {
                               "Padelux est plus qu'un sport ; c'est une destination sociale. Nous avons organisé une expérience de style de vie qui résonne avec une communauté de passionnés."
                             ) : (
                               "Padelux es más que un deporte; es un destino social. Curamos una experiencia de estilo de vida que resuena con una comunidad de entusiastas."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Section 6B: Courtside Amenities & Environmental Design */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1J0rSppzwYyz9x3oc29W-EF2Snx16vcR0")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1J0rSppzwYyz9x3oc29W-EF2Snx16vcR0" 
+                            alt="Padelux Courtside Amenities and Environmental Design"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Courtside Amenities</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Every physical touchpoint around the court reflects uncompromising craftsmanship—from bespoke fluted oak and brass waste stations to integrated LED perimeter illumination."
+                            ) : lang === 'fr' ? (
+                              "Chaque point de contact physique autour du court reflète un savoir-faire sans compromis, des stations en chêne cannelé et laiton à l'éclairage périmétrique LED intégré."
+                            ) : (
+                              "Cada punto de contacto físico alrededor de la cancha refleja una artesanía impecable, desde estaciones de roble estriado y latón hasta iluminación perimetral LED integrada."
                             )}
                           </p>
                         </div>
