@@ -25,6 +25,8 @@ const organicRetailDisplay = "https://lh3.googleusercontent.com/d/1LKFztqh2TQ7RM
 const organicPackagingMaterialsOneBio = "https://lh3.googleusercontent.com/d/1A3uKTKPfMVGSF9X5jCRA6MYBNcFP1qyK";
 const organicPackagingSuiteOneBio = "https://lh3.googleusercontent.com/d/1hQHDDq13LEZLRaK0nkzf-N8wFc7r-Z4a";
 const edereCinematicMotion = "https://lh3.googleusercontent.com/d/1VAN-GqZ2QduoqhcfJbiHR5nmT6ouaNti";
+const edereDiningRoomSketch = "/edere_dining_room_sketch.png";
+const edereBarSketch = "/edere_bar_sketch.png";
 const insurlyAirportPillar = "https://lh3.googleusercontent.com/d/1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x";
 const padeluxOnePackaging = "https://lh3.googleusercontent.com/d/1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR";
 const padeluxCourtAmenity = "/padelux_court_amenity.png";
@@ -393,6 +395,10 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/unity_desktop_mockup.png";
         } else if (src && (src.includes("1J0rSppzwYyz9x3oc29W-EF2Snx16vcR0") || src.includes("padelux_court_amenity"))) {
           (e.currentTarget as HTMLImageElement).src = "/padelux_court_amenity.png";
+        } else if (src && (src.includes("1VeUqzwZ7hIqiq4hDuF8SvtWw8bYdb3Q9") || src.includes("edere_dining_room_sketch"))) {
+          (e.currentTarget as HTMLImageElement).src = "/edere_dining_room_sketch.png";
+        } else if (src && (src.includes("1zJZEuAaNNdadmyV4A_9AasNQm9N-tHb_") || src.includes("edere_bar_sketch"))) {
+          (e.currentTarget as HTMLImageElement).src = "/edere_bar_sketch.png";
         }
       }}
       initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
@@ -1143,6 +1149,10 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/unity_desktop_mockup.png";
             } else if (src && (src.includes("1J0rSppzwYyz9x3oc29W-EF2Snx16vcR0") || src.includes("padelux_court_amenity"))) {
               target.src = "/padelux_court_amenity.png";
+            } else if (src && (src.includes("1VeUqzwZ7hIqiq4hDuF8SvtWw8bYdb3Q9") || src.includes("edere_dining_room_sketch"))) {
+              target.src = "/edere_dining_room_sketch.png";
+            } else if (src && (src.includes("1zJZEuAaNNdadmyV4A_9AasNQm9N-tHb_") || src.includes("edere_bar_sketch"))) {
+              target.src = "/edere_bar_sketch.png";
             }
           }}
           className="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl"
@@ -2066,6 +2076,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1KswSnGMZRZkyOOaVJXWTKkUqWwdzxTqB",
         "https://lh3.googleusercontent.com/d/1xwwm8qTPTaFktoSelqGyTUz5tYsOCK7W",
         "https://lh3.googleusercontent.com/d/1nzAd11wQwe07yeFdZdSLS2-xexHfCIsa",
+        "https://lh3.googleusercontent.com/d/1VeUqzwZ7hIqiq4hDuF8SvtWw8bYdb3Q9",
+        "https://lh3.googleusercontent.com/d/1zJZEuAaNNdadmyV4A_9AasNQm9N-tHb_",
         edereCinematicMotion
       ];
     }
@@ -5651,6 +5663,42 @@ export default function App() {
                               "L'extension de l'identité visuelle sur différents supports garantit une présence de marque cohérente et puissante à chaque échelle."
                             ) : (
                               "Expandir el lenguaje visual a través de diversos puntos de contacto asegura una presencia de marca cohesiva y poderosa que resuena en cada escala."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Edere Restaurant Section 9B: Interior Architectural Studies */}
+                      <div className="space-y-12 mb-24 md:mb-40">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                          <div 
+                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/3] group relative"
+                            onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1VeUqzwZ7hIqiq4hDuF8SvtWw8bYdb3Q9")}
+                          >
+                            <SubtleMotionImage 
+                              src="https://lh3.googleusercontent.com/d/1VeUqzwZ7hIqiq4hDuF8SvtWw8bYdb3Q9" 
+                              alt="Edere Restaurant Dining Room Architectural Perspective Sketch"
+                            />
+                          </div>
+                          <div 
+                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/3] group relative"
+                            onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1zJZEuAaNNdadmyV4A_9AasNQm9N-tHb_")}
+                          >
+                            <SubtleMotionImage 
+                              src="https://lh3.googleusercontent.com/d/1zJZEuAaNNdadmyV4A_9AasNQm9N-tHb_" 
+                              alt="Edere Restaurant Bar Counter and Roman Mosaic Architectural Sketch"
+                            />
+                          </div>
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Interior Architecture</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Preliminary hand-drawn architectural perspectives capturing the dialogue between classical Roman grandeur and contemporary hospitality—framing the coffered dining hall and the centerpiece mosaic bar."
+                            ) : lang === 'fr' ? (
+                              "Perspectives architecturales dessinées à la main capturant le dialogue entre la grandeur romaine classique et l'hospitalité contemporaine."
+                            ) : (
+                              "Perspectivas arquitectónicas dibujadas a mano que capturan el diálogo entre la grandeza romana clásica y la hospitalidad contemporánea."
                             )}
                           </p>
                         </div>
