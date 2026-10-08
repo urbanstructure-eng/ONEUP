@@ -30,6 +30,7 @@ const edereBarSketch = "/edere_bar_sketch.png";
 const insurlyAirportPillar = "https://lh3.googleusercontent.com/d/1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x";
 const padeluxOnePackaging = "https://lh3.googleusercontent.com/d/1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR";
 const padeluxCourtAmenity = "/padelux_court_amenity.png";
+const retailDisplayUnitSketch = "/retail_display_unit_sketch.png";
 const atelierTicketTurnstile = "https://lh3.googleusercontent.com/d/1NSflxMizq6EJQtnDxaypyCV3bsvoDWp-";
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
@@ -399,6 +400,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/edere_dining_room_sketch.png";
         } else if (src && (src.includes("1zJZEuAaNNdadmyV4A_9AasNQm9N-tHb_") || src.includes("edere_bar_sketch"))) {
           (e.currentTarget as HTMLImageElement).src = "/edere_bar_sketch.png";
+        } else if (src && (src.includes("1s83UDHVsGK3TuwWB-FcdIeg0B1PanRux") || src.includes("retail_display_unit_sketch"))) {
+          (e.currentTarget as HTMLImageElement).src = "/retail_display_unit_sketch.png";
         }
       }}
       initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
@@ -1153,6 +1156,8 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/edere_dining_room_sketch.png";
             } else if (src && (src.includes("1zJZEuAaNNdadmyV4A_9AasNQm9N-tHb_") || src.includes("edere_bar_sketch"))) {
               target.src = "/edere_bar_sketch.png";
+            } else if (src && (src.includes("1s83UDHVsGK3TuwWB-FcdIeg0B1PanRux") || src.includes("retail_display_unit_sketch"))) {
+              target.src = "/retail_display_unit_sketch.png";
             }
           }}
           className="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl"
@@ -2115,6 +2120,7 @@ export default function App() {
       return [
         project.heroImage || project.image,
         "https://lh3.googleusercontent.com/d/1QRwzjvDFCvj300hn5OBdpjgYEOx626py",
+        "https://lh3.googleusercontent.com/d/1s83UDHVsGK3TuwWB-FcdIeg0B1PanRux",
         "https://lh3.googleusercontent.com/d/1SQmNFdF01PdC0wBREQlofEXLhd6i9XfT",
         organicPackagingMaterialsOneBio,
         organicPackagingSuiteOneBio,
@@ -5753,6 +5759,34 @@ export default function App() {
                             src="https://lh3.googleusercontent.com/d/1QRwzjvDFCvj300hn5OBdpjgYEOx626py" 
                             alt="Campaign Design Strategy"
                           />
+                        </div>
+                      </div>
+
+                      {/* Campaign Section 1B: Retail Architecture & Experiential Display */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/3] md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1s83UDHVsGK3TuwWB-FcdIeg0B1PanRux")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1s83UDHVsGK3TuwWB-FcdIeg0B1PanRux" 
+                            alt="Retail Display Unit Architectural Drawing and Experiential Spatial Design"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
+                            {lang === 'en' ? 'Retail Architecture' : lang === 'fr' ? 'Architecture Commerciale' : 'Arquitectura Comercial'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Detailed architectural drafting for custom stadium retail vitrines—featuring illuminated plinths, brushed stainless steel canopies, and integrated product storytelling within premier sports arenas."
+                            ) : lang === 'fr' ? (
+                              "Conception architecturale détaillée de vitrines commerciales sur mesure pour les stades, intégrant socles lumineux et auvents en acier brossé."
+                            ) : (
+                              "Diseño arquitectónico detallado para vitrinas comerciales personalizadas en estadios, integrando zócalos iluminados y marquesinas de acero inoxidable cepillado."
+                            )}
+                          </p>
                         </div>
                       </div>
 
