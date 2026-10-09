@@ -24,6 +24,7 @@ const organicUnboxingKit = "https://lh3.googleusercontent.com/d/1DsQa-afKu2rjs0C
 const organicRetailDisplay = "https://lh3.googleusercontent.com/d/1LKFztqh2TQ7RMYQrxkmIWjuZyIpea3aX";
 const organicRetailApothecary = "/organic_retail_apothecary.png";
 const organicStorefrontExterior = "/organic_storefront_exterior.png";
+const organicSocialCampaign = "/organic_social_campaign.png";
 const organicPackagingMaterialsOneBio = "https://lh3.googleusercontent.com/d/1A3uKTKPfMVGSF9X5jCRA6MYBNcFP1qyK";
 const organicPackagingSuiteOneBio = "https://lh3.googleusercontent.com/d/1hQHDDq13LEZLRaK0nkzf-N8wFc7r-Z4a";
 const edereCinematicMotion = "https://lh3.googleusercontent.com/d/1VAN-GqZ2QduoqhcfJbiHR5nmT6ouaNti";
@@ -408,6 +409,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/organic_retail_apothecary.png";
         } else if (src && (src.includes("1-44qtmLoUwh5rKvZopEvEXvYvD4jyCTN") || src.includes("organic_storefront_exterior"))) {
           (e.currentTarget as HTMLImageElement).src = "/organic_storefront_exterior.png";
+        } else if (src && (src.includes("1FlefteGfTgDoRuvnoK8GW8AIBQLMwdZB") || src.includes("organic_social_campaign"))) {
+          (e.currentTarget as HTMLImageElement).src = "/organic_social_campaign.png";
         }
       }}
       initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
@@ -1168,6 +1171,8 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/organic_retail_apothecary.png";
             } else if (src && (src.includes("1-44qtmLoUwh5rKvZopEvEXvYvD4jyCTN") || src.includes("organic_storefront_exterior"))) {
               target.src = "/organic_storefront_exterior.png";
+            } else if (src && (src.includes("1FlefteGfTgDoRuvnoK8GW8AIBQLMwdZB") || src.includes("organic_social_campaign"))) {
+              target.src = "/organic_social_campaign.png";
             }
           }}
           className="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl"
@@ -2124,6 +2129,7 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/17oO2Xu9QGfAgygzxJ7Z7-L8uCKBalvS9",
         "https://lh3.googleusercontent.com/d/1yTOuRj336bqdzjiHDddXK4cDcLPacMu7",
         "https://lh3.googleusercontent.com/d/1cJX-YdWCW_Fy6_yDvkIqk6VaWwao7qeR",
+        "https://lh3.googleusercontent.com/d/1FlefteGfTgDoRuvnoK8GW8AIBQLMwdZB",
         "https://lh3.googleusercontent.com/d/1nDeiDcSTHnTD_OGeDihtWtXxb_M3d-ak"
       ];
     }
@@ -5464,6 +5470,34 @@ export default function App() {
                             alt="Organic Cosmetic Tactile Material Integrity"
                             cinematic={true}
                           />
+                        </div>
+                      </div>
+
+                      {/* Organic Cosmetic Section 8b: Digital Experience & Social Campaign */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[16/10] md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1FlefteGfTgDoRuvnoK8GW8AIBQLMwdZB")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1FlefteGfTgDoRuvnoK8GW8AIBQLMwdZB" 
+                            alt="Organic Cosmetic Digital Experience and Social Media Campaign"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
+                            {lang === 'en' ? 'Digital Experience & Social' : lang === 'fr' ? 'Expérience Numérique & Réseaux Sociaux' : 'Experiencia Digital y Redes Sociales'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Extending the minimalist aesthetic into high-conversion digital storytelling. Cohesive social campaigns and direct-to-consumer mobile touchpoints highlight clinical efficacy and natural botanical rituals."
+                            ) : lang === 'fr' ? (
+                              "Extension de l'esthétique minimaliste vers un storytelling numérique percutant sur mobile et réseaux sociaux."
+                            ) : (
+                              "Extensión de la estética minimalista al storytelling digital de alta conversión en móviles y redes sociales."
+                            )}
+                          </p>
                         </div>
                       </div>
 
