@@ -22,6 +22,7 @@ const unityDesktopMockup = "/unity_desktop_mockup.png";
 const buydropSmartLocker = "https://lh3.googleusercontent.com/d/1jZvRbt5s2XFYHf0bkQ3RxD9JpqRLST52";
 const organicUnboxingKit = "https://lh3.googleusercontent.com/d/1DsQa-afKu2rjs0C4Wnp-ne4XZwrWWcrI";
 const organicRetailDisplay = "https://lh3.googleusercontent.com/d/1LKFztqh2TQ7RMYQrxkmIWjuZyIpea3aX";
+const organicRetailApothecary = "/organic_retail_apothecary.png";
 const organicPackagingMaterialsOneBio = "https://lh3.googleusercontent.com/d/1A3uKTKPfMVGSF9X5jCRA6MYBNcFP1qyK";
 const organicPackagingSuiteOneBio = "https://lh3.googleusercontent.com/d/1hQHDDq13LEZLRaK0nkzf-N8wFc7r-Z4a";
 const edereCinematicMotion = "https://lh3.googleusercontent.com/d/1VAN-GqZ2QduoqhcfJbiHR5nmT6ouaNti";
@@ -402,6 +403,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/edere_bar_sketch.png";
         } else if (src && (src.includes("1s83UDHVsGK3TuwWB-FcdIeg0B1PanRux") || src.includes("retail_display_unit_sketch"))) {
           (e.currentTarget as HTMLImageElement).src = "/retail_display_unit_sketch.png";
+        } else if (src && (src.includes("16ShaqE-wSzt8lsDYySPsevmFVHtPAspH") || src.includes("organic_retail_apothecary"))) {
+          (e.currentTarget as HTMLImageElement).src = "/organic_retail_apothecary.png";
         }
       }}
       initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
@@ -1158,6 +1161,8 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/edere_bar_sketch.png";
             } else if (src && (src.includes("1s83UDHVsGK3TuwWB-FcdIeg0B1PanRux") || src.includes("retail_display_unit_sketch"))) {
               target.src = "/retail_display_unit_sketch.png";
+            } else if (src && (src.includes("16ShaqE-wSzt8lsDYySPsevmFVHtPAspH") || src.includes("organic_retail_apothecary"))) {
+              target.src = "/organic_retail_apothecary.png";
             }
           }}
           className="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl"
@@ -2109,7 +2114,7 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1EtZot-anCp8jl1iTfBOlQ6j7wD7nx2q9",
         "https://lh3.googleusercontent.com/d/1ZBbLFTGD-0Lsn3fwnj4Q-MmdmoHC904o",
         organicRetailDisplay,
-        "https://lh3.googleusercontent.com/d/1LPXu6hViyRbN0Hw2hsqCA327AMuKjBrU",
+        "https://lh3.googleusercontent.com/d/16ShaqE-wSzt8lsDYySPsevmFVHtPAspH",
         "https://lh3.googleusercontent.com/d/17oO2Xu9QGfAgygzxJ7Z7-L8uCKBalvS9",
         "https://lh3.googleusercontent.com/d/1yTOuRj336bqdzjiHDddXK4cDcLPacMu7",
         "https://lh3.googleusercontent.com/d/1cJX-YdWCW_Fy6_yDvkIqk6VaWwao7qeR",
@@ -5309,15 +5314,15 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Organic Cosmetic Section 5: Packaging & Detail */}
+                      {/* Organic Cosmetic Section 5: Retail Environment & Store Architecture */}
                       <div className="space-y-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
-                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1LPXu6hViyRbN0Hw2hsqCA327AMuKjBrU")}
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/16ShaqE-wSzt8lsDYySPsevmFVHtPAspH")}
                         >
                           <SubtleMotionImage 
-                            src="https://lh3.googleusercontent.com/d/1LPXu6hViyRbN0Hw2hsqCA327AMuKjBrU" 
-                            alt="Organic Cosmetic Packaging Detail"
+                            src="https://lh3.googleusercontent.com/d/16ShaqE-wSzt8lsDYySPsevmFVHtPAspH" 
+                            alt="Organic Cosmetic Retail Store and Apothecary Interior"
                             cinematic={true}
                           />
                         </div>
