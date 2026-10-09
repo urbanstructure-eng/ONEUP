@@ -23,6 +23,7 @@ const buydropSmartLocker = "https://lh3.googleusercontent.com/d/1jZvRbt5s2XFYHf0
 const organicUnboxingKit = "https://lh3.googleusercontent.com/d/1DsQa-afKu2rjs0C4Wnp-ne4XZwrWWcrI";
 const organicRetailDisplay = "https://lh3.googleusercontent.com/d/1LKFztqh2TQ7RMYQrxkmIWjuZyIpea3aX";
 const organicRetailApothecary = "/organic_retail_apothecary.png";
+const organicStorefrontExterior = "/organic_storefront_exterior.png";
 const organicPackagingMaterialsOneBio = "https://lh3.googleusercontent.com/d/1A3uKTKPfMVGSF9X5jCRA6MYBNcFP1qyK";
 const organicPackagingSuiteOneBio = "https://lh3.googleusercontent.com/d/1hQHDDq13LEZLRaK0nkzf-N8wFc7r-Z4a";
 const edereCinematicMotion = "https://lh3.googleusercontent.com/d/1VAN-GqZ2QduoqhcfJbiHR5nmT6ouaNti";
@@ -405,6 +406,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/retail_display_unit_sketch.png";
         } else if (src && (src.includes("16ShaqE-wSzt8lsDYySPsevmFVHtPAspH") || src.includes("organic_retail_apothecary"))) {
           (e.currentTarget as HTMLImageElement).src = "/organic_retail_apothecary.png";
+        } else if (src && (src.includes("1-44qtmLoUwh5rKvZopEvEXvYvD4jyCTN") || src.includes("organic_storefront_exterior"))) {
+          (e.currentTarget as HTMLImageElement).src = "/organic_storefront_exterior.png";
         }
       }}
       initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
@@ -1163,6 +1166,8 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/retail_display_unit_sketch.png";
             } else if (src && (src.includes("16ShaqE-wSzt8lsDYySPsevmFVHtPAspH") || src.includes("organic_retail_apothecary"))) {
               target.src = "/organic_retail_apothecary.png";
+            } else if (src && (src.includes("1-44qtmLoUwh5rKvZopEvEXvYvD4jyCTN") || src.includes("organic_storefront_exterior"))) {
+              target.src = "/organic_storefront_exterior.png";
             }
           }}
           className="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl"
@@ -2114,6 +2119,7 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1EtZot-anCp8jl1iTfBOlQ6j7wD7nx2q9",
         "https://lh3.googleusercontent.com/d/1ZBbLFTGD-0Lsn3fwnj4Q-MmdmoHC904o",
         organicRetailDisplay,
+        "https://lh3.googleusercontent.com/d/1-44qtmLoUwh5rKvZopEvEXvYvD4jyCTN",
         "https://lh3.googleusercontent.com/d/16ShaqE-wSzt8lsDYySPsevmFVHtPAspH",
         "https://lh3.googleusercontent.com/d/17oO2Xu9QGfAgygzxJ7Z7-L8uCKBalvS9",
         "https://lh3.googleusercontent.com/d/1yTOuRj336bqdzjiHDddXK4cDcLPacMu7",
@@ -5369,8 +5375,34 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Organic Cosmetic Section 6b: Retail Boutique & Biophilic Flagship */}
+                      {/* Organic Cosmetic Section 6b: Environmental Brand Design & Storefront Architecture */}
                       <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1-44qtmLoUwh5rKvZopEvEXvYvD4jyCTN")}
+                        >
+                          <SubtleMotionImage 
+                            src="https://lh3.googleusercontent.com/d/1-44qtmLoUwh5rKvZopEvEXvYvD4jyCTN" 
+                            alt="Organic Cosmetic Flagship Storefront and Environmental Brand Design"
+                            cinematic={true}
+                          />
+                        </div>
+
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
+                            {lang === 'en' ? 'Environmental Brand Design' : lang === 'fr' ? 'Design de Marque Environnemental' : 'Diseño de Marca Ambiental'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Environmental Brand Design: Translating the pure organic visual language into exterior architecture. Natural fluted timber, warm vertical linear illumination, and seamless corner glass vitrines create an inviting streetscape presence that draws patrons into the retail sanctuary."
+                            ) : lang === 'fr' ? (
+                              "Design de Marque Environnemental : Traduction de l'identité visuelle organique dans l'architecture extérieure avec bois cannelé naturel et vitrines transparentes."
+                            ) : (
+                              "Diseño de Marca Ambiental: Traducción de la identidad visual orgánica en la arquitectura exterior con madera estriada natural y vitrinas transparentes."
+                            )}
+                          </p>
+                        </div>
+
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[16/10]"
                           onClick={() => setFullscreenImage(organicRetailDisplay)}
