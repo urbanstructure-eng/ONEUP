@@ -45,6 +45,7 @@ const nikeSohoAsset6 = "/nike_soho_asset_6.png";
 const nikeSohoAsset7 = "https://lh3.googleusercontent.com/d/1uU-Tjbr2t3gGHbiUgEmB46Qbjvt4QVCk";
 const nikeSohoAsset8 = "https://lh3.googleusercontent.com/d/1oBORiDq5VoqOwfzLwL3zXFGtnfBtpcC7";
 const nikeSohoAsset9 = "https://lh3.googleusercontent.com/d/1b5mhvbew9_1CPqMp_Na30x_wvcJehLGa";
+const nikeSohoAsset10 = "https://lh3.googleusercontent.com/d/1g3nIl_R1ptONj0l02RtHLusTBZx9RpnP";
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg 
@@ -452,6 +453,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_8.png";
         } else if (src && (src.includes("1b5mhvbew9_1CPqMp_Na30x_wvcJehLGa") || src.includes("nike_soho_asset_9"))) {
           (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_9.png";
+        } else if (src && (src.includes("1g3nIl_R1ptONj0l02RtHLusTBZx9RpnP") || src.includes("nike_soho_asset_10"))) {
+          (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_10.png";
         }
       }}
       initial={{ opacity: 1, scale: cinematic ? 1.02 : 1 }}
@@ -1233,6 +1236,8 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/nike_soho_asset_8.png";
             } else if (src && (src.includes("1b5mhvbew9_1CPqMp_Na30x_wvcJehLGa") || src.includes("nike_soho_asset_9"))) {
               target.src = "/nike_soho_asset_9.png";
+            } else if (src && (src.includes("1g3nIl_R1ptONj0l02RtHLusTBZx9RpnP") || src.includes("nike_soho_asset_10"))) {
+              target.src = "/nike_soho_asset_10.png";
             }
           }}
           className="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl"
@@ -2054,7 +2059,8 @@ export default function App() {
         nikeSohoAsset5,
         nikeSohoAsset6,
         nikeSohoAsset1,
-        nikeSohoAsset3
+        nikeSohoAsset3,
+        nikeSohoAsset10
       ];
     }
     if (project.title === "StockIQ") {
@@ -3547,6 +3553,37 @@ export default function App() {
                               "Un espace expérientiel multisensoriel conçu pour les essais sportifs, les sessions de running et la personnalisation locale."
                             ) : (
                               "Un espacio experiencial multisensorial diseñado para pruebas atléticas, sesiones de running y personalización local."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Nike SoHo Section: Final Spatial & Storefront Showcase */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl md:rounded-3xl aspect-[16/9] md:aspect-[21/10] group relative shadow-2xl"
+                          onClick={() => setFullscreenImage(nikeSohoAsset10)}
+                        >
+                          <SubtleMotionImage 
+                            src={nikeSohoAsset10} 
+                            alt="Nike SoHo 529 Broadway Spatial Architecture & Retail Experience"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-4xl space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'Spatial Architecture & Retail Showcase' : lang === 'fr' ? 'Architecture Spatiale & Vitrine Retail' : 'Arquitectura Espacial y Exhibición Comercial'}
+                          </span>
+                          <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-black">
+                            {lang === 'en' ? 'Flagship Storefront & Spatial Retail Execution' : lang === 'fr' ? 'Façade Flagship & Exécution Spatiale Retail' : 'Fachada Insignia y Ejecución Minorista Espacial'}
+                          </h3>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The culminating spatial realization at 529 Broadway—unifying cast-iron architectural context, high-voltage environmental branding, and athletic innovation into an unforgettable New York retail statement."
+                            ) : lang === 'fr' ? (
+                              "L'aboutissement spatial au 529 Broadway, associant architecture historique, branding environnemental haute intensité et innovation sportive au cœur de SoHo."
+                            ) : (
+                              "La culminación espacial en 529 Broadway, integrando arquitectura histórica, diseño de marca ambiental de alto impacto e innovación deportiva en Nueva York."
                             )}
                           </p>
                         </div>
