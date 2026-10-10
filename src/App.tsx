@@ -35,6 +35,16 @@ const padeluxOnePackaging = "https://lh3.googleusercontent.com/d/1jpSsqkP5rwe_1H
 const padeluxCourtAmenity = "/padelux_court_amenity.png";
 const retailDisplayUnitSketch = "/retail_display_unit_sketch.png";
 const atelierTicketTurnstile = "https://lh3.googleusercontent.com/d/1NSflxMizq6EJQtnDxaypyCV3bsvoDWp-";
+const nikeSohoCampaignImage = "/nike_soho_popup_campaign.png";
+const nikeSohoAsset1 = "/nike_soho_asset_1.png";
+const nikeSohoAsset2 = "/nike_soho_asset_2.png";
+const nikeSohoAsset3 = "/nike_soho_asset_3.png";
+const nikeSohoAsset4 = "/nike_soho_asset_4.png";
+const nikeSohoAsset5 = "/nike_soho_asset_5.png";
+const nikeSohoAsset6 = "/nike_soho_asset_6.png";
+const nikeSohoAsset7 = "https://lh3.googleusercontent.com/d/1uU-Tjbr2t3gGHbiUgEmB46Qbjvt4QVCk";
+const nikeSohoAsset8 = "https://lh3.googleusercontent.com/d/1oBORiDq5VoqOwfzLwL3zXFGtnfBtpcC7";
+const nikeSohoAsset9 = "https://lh3.googleusercontent.com/d/1b5mhvbew9_1CPqMp_Na30x_wvcJehLGa";
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg 
@@ -333,6 +343,17 @@ interface Project {
 }
 
 const PROJECTS: Project[] = [
+  { 
+    id: 21, 
+    title: "NIKE SOHO pop up store design", 
+    category: "Integrated Marketing", 
+    image: nikeSohoCampaignImage, 
+    heroImage: nikeSohoCampaignImage, 
+    colSpan: "md:col-span-12", 
+    location: "SoHo, New York", 
+    year: "2024", 
+    role: "Environmental Graphics & Campaign Design" 
+  },
   { id: 20, title: "StockIQ", category: "AI Retail Inventory / Branding & Product Design", image: stockiqHomeImage, heroImage: stockiqHero, colSpan: "md:col-span-12", location: "San Francisco, CA", year: "2026", role: "Multidisciplinary Designer" },
   { id: 11, title: "Voltique", category: "Service Design", image: "https://lh3.googleusercontent.com/d/1gusf69CAd1am1JcsIyc1qiGekzmZLEUP", colSpan: "md:col-span-12", year: "2024", role: "Lead Design" },
   { id: 12, title: "Pulso Health", category: "AI Health / Branding", image: "https://lh3.googleusercontent.com/d/1ONCooNfgYuYu5trUJrFZcZq1HxYSFZrr", colSpan: "md:col-span-4", year: "2023", role: "Brand Identity" },
@@ -411,12 +432,31 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/organic_storefront_exterior.png";
         } else if (src && (src.includes("1FlefteGfTgDoRuvnoK8GW8AIBQLMwdZB") || src.includes("organic_social_campaign"))) {
           (e.currentTarget as HTMLImageElement).src = "/organic_social_campaign.png";
+        } else if (src && (src.includes("1p2uYvz2g36sPFFUzhAxsSWUDVor20IPC") || src.includes("nike_soho_popup_campaign"))) {
+          (e.currentTarget as HTMLImageElement).src = "/nike_soho_popup_campaign.png";
+        } else if (src && (src.includes("1eJvFIkj07txQlmlhVpx98EWffqbHznaM") || src.includes("nike_soho_asset_1"))) {
+          (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_1.png";
+        } else if (src && (src.includes("1spfBWP6ToCI0vxDWBU31D53FwzMfJu7J") || src.includes("nike_soho_asset_2"))) {
+          (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_2.png";
+        } else if (src && (src.includes("15rKNDKkEqiupXBwKu8d-v9iZkbtCFkEA") || src.includes("nike_soho_asset_3"))) {
+          (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_3.png";
+        } else if (src && (src.includes("1vWS8pt37WpS7yQK7GmitdkHQ0WY2C_9q") || src.includes("nike_soho_asset_4"))) {
+          (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_4.png";
+        } else if (src && (src.includes("1rvR044VorpzUeDm7uzP12y5bAzqMK-2E") || src.includes("nike_soho_asset_5"))) {
+          (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_5.png";
+        } else if (src && (src.includes("1gB9qpBpm9BB7Rsu3Hwp3j237kPBY_4iO") || src.includes("nike_soho_asset_6"))) {
+          (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_6.png";
+        } else if (src && (src.includes("1uU-Tjbr2t3gGHbiUgEmB46Qbjvt4QVCk") || src.includes("nike_soho_asset_7"))) {
+          (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_7.png";
+        } else if (src && (src.includes("1oBORiDq5VoqOwfzLwL3zXFGtnfBtpcC7") || src.includes("nike_soho_asset_8"))) {
+          (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_8.png";
+        } else if (src && (src.includes("1b5mhvbew9_1CPqMp_Na30x_wvcJehLGa") || src.includes("nike_soho_asset_9"))) {
+          (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_9.png";
         }
       }}
-      initial={{ opacity: 0, scale: cinematic ? 1.05 : 1 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: cinematic ? 2.5 : 1, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 1, scale: cinematic ? 1.02 : 1 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: cinematic ? 1.5 : 0.6, ease: [0.22, 1, 0.36, 1] }}
     />
     <div 
       style={{ writingMode: 'vertical-rl' }} 
@@ -1173,6 +1213,26 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/organic_storefront_exterior.png";
             } else if (src && (src.includes("1FlefteGfTgDoRuvnoK8GW8AIBQLMwdZB") || src.includes("organic_social_campaign"))) {
               target.src = "/organic_social_campaign.png";
+            } else if (src && (src.includes("1p2uYvz2g36sPFFUzhAxsSWUDVor20IPC") || src.includes("nike_soho_popup_campaign"))) {
+              target.src = "/nike_soho_popup_campaign.png";
+            } else if (src && (src.includes("1eJvFIkj07txQlmlhVpx98EWffqbHznaM") || src.includes("nike_soho_asset_1"))) {
+              target.src = "/nike_soho_asset_1.png";
+            } else if (src && (src.includes("1spfBWP6ToCI0vxDWBU31D53FwzMfJu7J") || src.includes("nike_soho_asset_2"))) {
+              target.src = "/nike_soho_asset_2.png";
+            } else if (src && (src.includes("15rKNDKkEqiupXBwKu8d-v9iZkbtCFkEA") || src.includes("nike_soho_asset_3"))) {
+              target.src = "/nike_soho_asset_3.png";
+            } else if (src && (src.includes("1vWS8pt37WpS7yQK7GmitdkHQ0WY2C_9q") || src.includes("nike_soho_asset_4"))) {
+              target.src = "/nike_soho_asset_4.png";
+            } else if (src && (src.includes("1rvR044VorpzUeDm7uzP12y5bAzqMK-2E") || src.includes("nike_soho_asset_5"))) {
+              target.src = "/nike_soho_asset_5.png";
+            } else if (src && (src.includes("1gB9qpBpm9BB7Rsu3Hwp3j237kPBY_4iO") || src.includes("nike_soho_asset_6"))) {
+              target.src = "/nike_soho_asset_6.png";
+            } else if (src && (src.includes("1uU-Tjbr2t3gGHbiUgEmB46Qbjvt4QVCk") || src.includes("nike_soho_asset_7"))) {
+              target.src = "/nike_soho_asset_7.png";
+            } else if (src && (src.includes("1oBORiDq5VoqOwfzLwL3zXFGtnfBtpcC7") || src.includes("nike_soho_asset_8"))) {
+              target.src = "/nike_soho_asset_8.png";
+            } else if (src && (src.includes("1b5mhvbew9_1CPqMp_Na30x_wvcJehLGa") || src.includes("nike_soho_asset_9"))) {
+              target.src = "/nike_soho_asset_9.png";
             }
           }}
           className="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl"
@@ -1983,6 +2043,20 @@ export default function App() {
   };
 
   const getProjectImages = (project: typeof PROJECTS[0]) => {
+    if (project.title === "NIKE SOHO pop up store design") {
+      return [
+        nikeSohoCampaignImage,
+        nikeSohoAsset2,
+        nikeSohoAsset7,
+        nikeSohoAsset8,
+        nikeSohoAsset9,
+        nikeSohoAsset4,
+        nikeSohoAsset5,
+        nikeSohoAsset6,
+        nikeSohoAsset1,
+        nikeSohoAsset3
+      ];
+    }
     if (project.title === "StockIQ") {
       return [
         stockiqHero,
@@ -3201,7 +3275,284 @@ export default function App() {
 
                 {/* Alternating Content Sections */}
                 <div className="space-y-24 md:space-y-48">
-                  {selectedProject.title === "StockIQ" ? (
+                  {selectedProject.title === "NIKE SOHO pop up store design" ? (
+                    <>
+                      {/* Nike SoHo Section 1: Cinematic Storefront & Environmental Graphics */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl md:rounded-3xl aspect-[4/3] md:aspect-[16/10] group relative shadow-2xl"
+                          onClick={() => setFullscreenImage(nikeSohoAsset2)}
+                        >
+                          <SubtleMotionImage 
+                            src={nikeSohoAsset2} 
+                            alt="Nike SoHo Pop-Up Store Spatial & Retail Design — 529 Broadway, NYC"
+                            cinematic={true}
+                            objectPosition="center 35%"
+                          />
+                        </div>
+                        <div className="max-w-4xl space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'Spatial Design & Architectural Branding' : lang === 'fr' ? 'Design Spatial & Image Architecturale' : 'Diseño Espacial y Branding Arquitectónico'}
+                          </span>
+                          <h3 className="text-3xl md:text-5xl font-bold tracking-tight text-black">
+                            Nike SoHo Pop-Up Store — Environmental Graphics & Spatial Design
+                          </h3>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "We helped with the entire design of the Nike SoHo pop-up store, creating the environmental graphics, spatial retail architecture, and an integrated social media campaign for the landmark New York activation."
+                            ) : lang === 'fr' ? (
+                              "Nous avons conçu l'ensemble du projet pour le pop-up store Nike SoHo, réalisant les graphismes environnementaux, l'architecture spatiale du magasin et une campagne intégrée sur les réseaux sociaux pour cette activation new-yorkaise majeure."
+                            ) : (
+                              "Ayudamos con el diseño integral de la tienda pop-up de Nike en SoHo, creando los gráficos ambientales, la arquitectura espacial minorista y una campaña integrada en redes sociales para la histórica activación en Nueva York."
+                            )}
+                          </p>
+                          <p className="text-lg md:text-xl text-black/70 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Situated at 529 Broadway in the historic cast-iron district of SoHo, NYC, the pop-up concept bridged raw metropolitan street culture with high-performance athletic innovation."
+                            ) : lang === 'fr' ? (
+                              "Situé au 529 Broadway dans le quartier emblématique de SoHo, le concept éphémère a fusionné la culture urbaine new-yorkaise avec l'innovation sportive de pointe."
+                            ) : (
+                              "Ubicado en 529 Broadway en el emblemático distrito de SoHo, el concepto pop-up unió la cultura urbana neoyorquina con la innovación atlética de alto rendimiento."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Nike SoHo Section 2: Main Store Interior & Retail Experience */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl md:rounded-3xl aspect-[16/10] md:aspect-[21/10] group relative shadow-2xl"
+                          onClick={() => setFullscreenImage(nikeSohoAsset7)}
+                        >
+                          <SubtleMotionImage 
+                            src={nikeSohoAsset7} 
+                            alt="Nike SoHo 529 Broadway NYC Main Store Interior, Concrete Architecture & Display Plinths"
+                            cinematic={true}
+                            objectPosition="center 45%"
+                          />
+                        </div>
+                        <div className="max-w-4xl space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'Spatial Architecture & Product Staging' : lang === 'fr' ? 'Architecture Spatiale & Mise en Scène' : 'Arquitectura Espacial y Puesta en Escena'}
+                          </span>
+                          <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-black">
+                            {lang === 'en' ? 'Architectural Volume & Multisensory Retail Floors' : lang === 'fr' ? 'Volume Architectural & Espaces de Vente Immersifs' : 'Volumen Arquitectónico y Espacios Comerciales Inmersivos'}
+                          </h3>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Stripping back the building to expose raw structural concrete columns and industrial ceiling trusses, juxtaposed against warm natural oak wall slats, brushed stainless steel footwear shelving, and dedicated sneaker trial plinths."
+                            ) : lang === 'fr' ? (
+                              "Mise en valeur du béton brut et des poutres industrielles, contrastant avec des lattes de chêne naturel, des étagères en inox brossé et des socles d'essai pour sneakers."
+                            ) : (
+                              "Resaltando columnas de concreto expuesto y vigas industriales, contrastando con listones de roble natural, estanterías de acero inoxidable cepillado y pedestales de prueba."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Nike SoHo Section 3: Digital Monolith & Spatial Installation Concept */}
+                      <div className="space-y-12">
+                        <div className="max-w-4xl space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'Spatial Concept & Engineering' : lang === 'fr' ? 'Concept Spatial & Ingénierie' : 'Concepto Espacial e Ingeniería'}
+                          </span>
+                          <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-black">
+                            {lang === 'en' ? 'Digital Monolith — Brushed Metal & Sculptural Wall Studies' : lang === 'fr' ? 'Digital Monolith — Métal Brossé & Études de Paroi Sculpturale' : 'Digital Monolith — Metal Cepillado y Estudios de Pared Escultural'}
+                          </h3>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Technical architectural studies detailing the central 'Digital Monolith' installation: brushed metal architectural portals, parametric faceted sculptural walls, and low-profile display plinths that ground digital athletic narratives in tangible physical form."
+                            ) : lang === 'fr' ? (
+                              "Études architecturales détaillant le 'Digital Monolith' : portails en métal brossé, parois sculpturales facettées et socles de présentation intégrant les récits digitaux dans l'espace physique."
+                            ) : (
+                              "Estudios arquitectónicos detallando el 'Digital Monolith': pórticos de metal cepillado, paredes esculturales facetadas y pedestales de exhibición que integran la narrativa digital en el espacio físico."
+                            )}
+                          </p>
+                        </div>
+
+                        {/* Dual Concept & Render Showcase */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                          <div 
+                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[16/10] md:aspect-[4/3] group relative shadow-xl"
+                            onClick={() => setFullscreenImage(nikeSohoAsset8)}
+                          >
+                            <SubtleMotionImage 
+                              src={nikeSohoAsset8} 
+                              alt="Nike SoHo Digital Monolith Architectural Sketch & Concept Drafting Board"
+                              cinematic={true}
+                              contain={false}
+                            />
+                          </div>
+                          <div 
+                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[16/10] md:aspect-[4/3] group relative shadow-xl"
+                            onClick={() => setFullscreenImage(nikeSohoAsset9)}
+                          >
+                            <SubtleMotionImage 
+                              src={nikeSohoAsset9} 
+                              alt="Nike SoHo Digital Monolith Spatial Installation Rendering"
+                              cinematic={true}
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Nike SoHo Section 4: In-Store Spatial Architecture & Graphics */}
+                      <div className="space-y-12">
+                        <div className="max-w-4xl space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'Spatial Graphics & In-Store Experience' : lang === 'fr' ? 'Graphismes Spatiaux & Expérience en Boutique' : 'Gráficos Espaciales y Experiencia en Tienda'}
+                          </span>
+                          <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-black">
+                            {lang === 'en' ? 'Immersive Environmental Design & Brand Activations' : lang === 'fr' ? 'Design Environnemental Immersif & Activations de Marque' : 'Diseño Ambiental Inmersivo y Activaciones de Marca'}
+                          </h3>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "From kinetic court-inspired typography to custom modular vitrines, the internal environment was engineered for athletic product trials, localized customization workshops, and high-impact brand storytelling."
+                            ) : lang === 'fr' ? (
+                              "De la typographie cinétique inspirée des terrains de sport aux vitrines modulaires sur mesure, l'environnement intérieur a été conçu pour les essais de produits et la personnalisation locale."
+                            ) : (
+                              "Desde tipografía cinética inspirada en canchas hasta vitrinas modulares personalizadas, el entorno interior fue diseñado para pruebas de productos y talleres de personalización local."
+                            )}
+                          </p>
+                        </div>
+
+                        {/* Dual Spatial Studies Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                          <div 
+                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/3] group relative shadow-lg"
+                            onClick={() => setFullscreenImage(nikeSohoAsset4)}
+                          >
+                            <SubtleMotionImage 
+                              src={nikeSohoAsset4} 
+                              alt="Nike SoHo In-Store Environmental Graphic Installation"
+                            />
+                          </div>
+                          <div 
+                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/3] group relative shadow-lg"
+                            onClick={() => setFullscreenImage(nikeSohoAsset5)}
+                          >
+                            <SubtleMotionImage 
+                              src={nikeSohoAsset5} 
+                              alt="Nike SoHo Spatial Retail Interior Activation"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Widescreen Cinematic Retail Installation */}
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl md:rounded-3xl aspect-[16/9] md:aspect-[21/10] group relative shadow-xl"
+                          onClick={() => setFullscreenImage(nikeSohoAsset6)}
+                        >
+                          <SubtleMotionImage 
+                            src={nikeSohoAsset6} 
+                            alt="Nike SoHo In-Store Product Trial & Footwear Retail Architecture"
+                            cinematic={true}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Nike SoHo Section 3: Integrated Social Media Campaign & Visual Identity */}
+                      <div className="space-y-12">
+                        <div className="max-w-4xl space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'Integrated Social Media Campaign' : lang === 'fr' ? 'Campagne Réseaux Sociaux Intégrée' : 'Campaña Integrada en Redes Sociales'}
+                          </span>
+                          <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-black">
+                            9-Tile Digital Mosaic & Countdown Activation
+                          </h3>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "A synchronized digital mosaic orchestrated across the @NikeSoho social feed leading up to the grand opening. Monochromatic athlete portraiture was juxtaposed against bold international orange panels, basketball net geometry, and integrated QR portals to drive instant retail engagement and sneaker trial bookings."
+                            ) : lang === 'fr' ? (
+                              "Une mosaïque numérique synchronisée orchestrée sur le compte @NikeSoho jusqu'à l'inauguration, associant portraits d'athlètes en noir et blanc, typographie orange internationale et portails QR interactifs."
+                            ) : (
+                              "Un mosaico digital sincronizado orquestado en el perfil de @NikeSoho antes de la gran inauguración, combinando retratos de atletas en blanco y negro con tipografía naranja internacional y portales QR interactivos."
+                            )}
+                          </p>
+                        </div>
+
+                        {/* Campaign Graphic Assets */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                          <div 
+                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-square group relative"
+                            onClick={() => setFullscreenImage(nikeSohoAsset1)}
+                          >
+                            <SubtleMotionImage 
+                              src={nikeSohoAsset1} 
+                              alt="Nike SoHo Campaign Graphic Detail Study 1"
+                            />
+                          </div>
+                          <div 
+                            className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-square group relative"
+                            onClick={() => setFullscreenImage(nikeSohoAsset3)}
+                          >
+                            <SubtleMotionImage 
+                              src={nikeSohoAsset3} 
+                              alt="Nike SoHo Campaign Graphic Detail Study 2"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-4">
+                            {lang === 'en' ? 'Campaign Identity & Visual System' : lang === 'fr' ? 'Identité de Campagne & Système Visuel' : 'Identidad de Campaña y Sistema Visual'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Bespoke graphic assets designed for digital-first storytelling and localized retail activations—pairing dynamic athlete energy with the high-voltage international orange colorway."
+                            ) : lang === 'fr' ? (
+                              "Ressources graphiques sur mesure conçues pour un storytelling axé sur le digital et des activations commerciales locales."
+                            ) : (
+                              "Recursos gráficos personalizados diseñados para narrativa digital y activaciones comerciales locales."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Nike SoHo Section 4: Environmental Graphics & Spatial Synergy */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div className="p-8 rounded-2xl bg-black/[0.02] border border-black/5 space-y-4">
+                          <span className="text-xs font-mono uppercase tracking-widest text-accent font-semibold block">01 / Environmental Graphics</span>
+                          <h4 className="text-lg font-bold text-black">Architectural Supergraphics</h4>
+                          <p className="text-sm text-black/70 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Large-format vinyl typography, kinetic court floor markings, and dramatic window vitrines that turned 529 Broadway into an unmissable urban beacon."
+                            ) : lang === 'fr' ? (
+                              "Typographie monumentale en vinyle, marquages au sol inspirés des terrains de basket et vitrines spectaculaires au 529 Broadway."
+                            ) : (
+                              "Tipografía monumental en vinilo, marcas de cancha cinéticas y vitrinas espectaculares en 529 Broadway."
+                            )}
+                          </p>
+                        </div>
+                        <div className="p-8 rounded-2xl bg-black/[0.02] border border-black/5 space-y-4">
+                          <span className="text-xs font-mono uppercase tracking-widest text-accent font-semibold block">02 / Digital-to-Physical</span>
+                          <h4 className="text-lg font-bold text-black">Interactive QR Ecosystem</h4>
+                          <p className="text-sm text-black/70 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Seamless QR portals embedded directly into physical store touchpoints and social posts, granting instant access to limited product drops and athlete workshops."
+                            ) : lang === 'fr' ? (
+                              "Portails QR interactifs intégrés aux points de contact physiques et numériques, donnant accès aux lancements exclusifs et ateliers sportifs."
+                            ) : (
+                              "Portales QR interactivos integrados en puntos físicos y digitales, otorgando acceso a lanzamientos exclusivos y talleres de entrenamiento."
+                            )}
+                          </p>
+                        </div>
+                        <div className="p-8 rounded-2xl bg-black/[0.02] border border-black/5 space-y-4">
+                          <span className="text-xs font-mono uppercase tracking-widest text-accent font-semibold block">03 / Retail Community</span>
+                          <h4 className="text-lg font-bold text-black">SoHo Experience Hub</h4>
+                          <p className="text-sm text-black/70 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "A multisensory retail experience engineered for athletic trial, community runs, and localized customization, establishing a deep dialogue with New York creators."
+                            ) : lang === 'fr' ? (
+                              "Un espace expérientiel multisensoriel conçu pour les essais sportifs, les sessions de running et la personnalisation locale."
+                            ) : (
+                              "Un espacio experiencial multisensorial diseñado para pruebas atléticas, sesiones de running y personalización local."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  ) : selectedProject.title === "StockIQ" ? (
                     <>
                       {/* StockIQ Section 1: Overview & Multidisciplinary Role */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
