@@ -45,7 +45,7 @@ const nikeSohoAsset6 = "/nike_soho_asset_6.png";
 const nikeSohoAsset7 = "https://lh3.googleusercontent.com/d/1uU-Tjbr2t3gGHbiUgEmB46Qbjvt4QVCk";
 const nikeSohoAsset8 = "https://lh3.googleusercontent.com/d/1oBORiDq5VoqOwfzLwL3zXFGtnfBtpcC7";
 const nikeSohoAsset9 = "https://lh3.googleusercontent.com/d/1b5mhvbew9_1CPqMp_Na30x_wvcJehLGa";
-const nikeSohoAsset10 = "https://lh3.googleusercontent.com/d/1g3nIl_R1ptONj0l02RtHLusTBZx9RpnP";
+const nikeSohoAsset10 = "/nike_soho_asset_10.png";
 const nikeSohoAsset11 = "https://lh3.googleusercontent.com/d/1LygB3W8HUTFoRXengg523DHQmLiXntyI";
 const nikeSohoAsset12 = "/nike_soho_asset_12.png";
 
@@ -558,13 +558,19 @@ const SubtleVideoMotionImage = ({
   alt, 
   className = "",
   tag = "Cinematic Slow-Mo • 4K",
-  showWatermark = true
+  showWatermark = true,
+  objectPosition = "center",
+  scaleOffset = 0,
+  yOffset = 0
 }: { 
   src: string; 
   alt: string; 
   className?: string; 
   tag?: string | null;
   showWatermark?: boolean;
+  objectPosition?: string;
+  scaleOffset?: number;
+  yOffset?: number;
 }) => {
   return (
     <div className={`relative w-full h-full overflow-hidden select-none bg-neutral-950 ${className}`}>
@@ -581,13 +587,18 @@ const SubtleVideoMotionImage = ({
       <motion.img
         src={src}
         alt={alt}
-        className="w-full h-full object-cover transform-gpu will-change-transform scale-[1.03]"
+        className="w-full h-full object-cover transform-gpu will-change-transform"
         referrerPolicy="no-referrer"
-        initial={{ scale: 1.04, x: "-1%", y: "-0.8%" }}
+        onError={(e) => {
+          if (src && (src.includes("1g3nIl_R1ptONj0l02RtHLusTBZx9RpnP") || src.includes("nike_soho_asset_10"))) {
+            (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_10.png";
+          }
+        }}
+        initial={{ scale: 1.05 + scaleOffset, x: "-1%", y: `${yOffset - 0.8}%` }}
         animate={{
-          scale: [1.04, 1.11, 1.07, 1.13, 1.04],
+          scale: [1.05 + scaleOffset, 1.12 + scaleOffset, 1.08 + scaleOffset, 1.14 + scaleOffset, 1.05 + scaleOffset],
           x: ["-1%", "1.2%", "-0.8%", "1.4%", "-1%"],
-          y: ["-0.8%", "0.9%", "-0.4%", "0.7%", "-0.8%"],
+          y: [`${yOffset - 0.8}%`, `${yOffset + 1.2}%`, `${yOffset - 0.4}%`, `${yOffset + 1.0}%`, `${yOffset - 0.8}%`],
         }}
         transition={{
           duration: 32, // Extended 32s for authentic slow-motion frame pacing
@@ -595,6 +606,7 @@ const SubtleVideoMotionImage = ({
           ease: [0.37, 0, 0.63, 1], // Silky smooth sinusoidal acceleration
         }}
         style={{
+          objectPosition,
           backfaceVisibility: 'hidden',
           WebkitBackfaceVisibility: 'hidden',
           filter: 'contrast(1.04) brightness(0.98) saturate(1.02)',
@@ -3570,16 +3582,19 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Nike SoHo Section: Final Spatial & Storefront Showcase */}
+                      {/* Nike SoHo Section: Flagship Spatial Architecture & Cinematic Video Motion */}
                       <div className="space-y-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl md:rounded-3xl aspect-[16/9] md:aspect-[21/10] group relative shadow-2xl"
                           onClick={() => setFullscreenImage(nikeSohoAsset10)}
                         >
-                          <SubtleMotionImage 
+                          <SubtleVideoMotionImage 
                             src={nikeSohoAsset10} 
                             alt="Nike SoHo 529 Broadway Spatial Architecture & Retail Experience"
-                            cinematic={true}
+                            tag={null}
+                            objectPosition="center 30%"
+                            yOffset={3.5}
+                            scaleOffset={0.07}
                           />
                         </div>
                         <div className="max-w-4xl space-y-6">
