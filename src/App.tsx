@@ -47,6 +47,7 @@ const nikeSohoAsset8 = "https://lh3.googleusercontent.com/d/1oBORiDq5VoqOwfzLwL3
 const nikeSohoAsset9 = "https://lh3.googleusercontent.com/d/1b5mhvbew9_1CPqMp_Na30x_wvcJehLGa";
 const nikeSohoAsset10 = "https://lh3.googleusercontent.com/d/1g3nIl_R1ptONj0l02RtHLusTBZx9RpnP";
 const nikeSohoAsset11 = "https://lh3.googleusercontent.com/d/1LygB3W8HUTFoRXengg523DHQmLiXntyI";
+const nikeSohoAsset12 = "/nike_soho_asset_12.png";
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg 
@@ -458,6 +459,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_10.png";
         } else if (src && (src.includes("1LygB3W8HUTFoRXengg523DHQmLiXntyI") || src.includes("nike_soho_asset_11"))) {
           (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_11.png";
+        } else if (src && src.includes("nike_soho_asset_12")) {
+          (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_12.png";
         }
       }}
       initial={{ opacity: 1, scale: cinematic ? 1.02 : 1 }}
@@ -1243,6 +1246,8 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/nike_soho_asset_10.png";
             } else if (src && (src.includes("1LygB3W8HUTFoRXengg523DHQmLiXntyI") || src.includes("nike_soho_asset_11"))) {
               target.src = "/nike_soho_asset_11.png";
+            } else if (src && src.includes("nike_soho_asset_12")) {
+              target.src = "/nike_soho_asset_12.png";
             }
           }}
           className="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl"
@@ -2066,7 +2071,8 @@ export default function App() {
         nikeSohoAsset1,
         nikeSohoAsset3,
         nikeSohoAsset10,
-        nikeSohoAsset11
+        nikeSohoAsset11,
+        nikeSohoAsset12
       ];
     }
     if (project.title === "StockIQ") {
@@ -3621,6 +3627,38 @@ export default function App() {
                               "L'atmosphère architecturale achevée—unissant chorégraphie spatiale, agencements sur mesure et identité graphique percutante pour créer une destination emblématique à SoHo."
                             ) : (
                               "La atmósfera arquitectónica completa—integrando coreografía espacial, mobiliario a medida y una presencia gráfica distintiva para forjar un destino emblemático en SoHo."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Nike SoHo Section: Feature Sneaker Gallery & Footwear Innovation Showcase (Added Last) */}
+                      <div className="space-y-12 pt-8 border-t border-black/10">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl md:rounded-3xl aspect-[16/9] md:aspect-[21/10] group relative shadow-2xl"
+                          onClick={() => setFullscreenImage(nikeSohoAsset12)}
+                        >
+                          <SubtleMotionImage 
+                            src={nikeSohoAsset12} 
+                            alt="Nike SoHo 529 Broadway Sneaker Wall & Footwear Innovation Showcase"
+                            cinematic={true}
+                            objectPosition="center 40%"
+                          />
+                        </div>
+                        <div className="max-w-4xl space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'Footwear Innovation & Wall Gallery' : lang === 'fr' ? 'Innovation Chaussures & Galerie Murale' : 'Innovación en Calzado y Galería Mural'}
+                          </span>
+                          <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-black">
+                            {lang === 'en' ? 'Iconic Sneaker Showcase & Footwear Gallery Installation' : lang === 'fr' ? 'Mur Sneaker Iconique & Installation Galerie Chaussures' : 'Muro Icónico de Zapatillas e Instalación de Galería de Calzado'}
+                          </h3>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The signature sneaker wall installation—showcasing pinnacle performance silhouettes and lifestyle classics against a custom architectural backdrop designed to highlight Nike's design DNA."
+                            ) : lang === 'fr' ? (
+                              "L'installation emblématique du mur de sneakers—mettant en valeur les silhouettes de performance de pointe et les classiques lifestyle sur un fond architectural sur mesure."
+                            ) : (
+                              "La instalación emblemática del muro de zapatillas—destacando siluetas de máximo rendimiento y clásicos del estilo de vida sobre un fondo arquitectónico personalizado."
                             )}
                           </p>
                         </div>
