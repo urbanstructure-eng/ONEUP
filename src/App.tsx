@@ -48,6 +48,7 @@ const nikeSohoAsset9 = "https://lh3.googleusercontent.com/d/1b5mhvbew9_1CPqMp_Na
 const nikeSohoAsset10 = "/nike_soho_asset_10.png";
 const nikeSohoAsset11 = "https://lh3.googleusercontent.com/d/1LygB3W8HUTFoRXengg523DHQmLiXntyI";
 const nikeSohoAsset12 = "/nike_soho_asset_12.png";
+const nikeSohoAsset13 = "/nike_soho_asset_13.png";
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg 
@@ -461,6 +462,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_11.png";
         } else if (src && src.includes("nike_soho_asset_12")) {
           (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_12.png";
+        } else if (src && src.includes("nike_soho_asset_13")) {
+          (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_13.png";
         }
       }}
       initial={{ opacity: 1, scale: cinematic ? 1.02 : 1 }}
@@ -592,6 +595,8 @@ const SubtleVideoMotionImage = ({
         onError={(e) => {
           if (src && (src.includes("1g3nIl_R1ptONj0l02RtHLusTBZx9RpnP") || src.includes("nike_soho_asset_10"))) {
             (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_10.png";
+          } else if (src && src.includes("nike_soho_asset_13")) {
+            (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_13.png";
           }
         }}
         initial={{ scale: 1.05 + scaleOffset, x: "-1%", y: `${yOffset - 0.8}%` }}
@@ -1260,6 +1265,8 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/nike_soho_asset_11.png";
             } else if (src && src.includes("nike_soho_asset_12")) {
               target.src = "/nike_soho_asset_12.png";
+            } else if (src && src.includes("nike_soho_asset_13")) {
+              target.src = "/nike_soho_asset_13.png";
             }
           }}
           className="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl"
@@ -2084,7 +2091,8 @@ export default function App() {
         nikeSohoAsset3,
         nikeSohoAsset10,
         nikeSohoAsset11,
-        nikeSohoAsset12
+        nikeSohoAsset12,
+        nikeSohoAsset13
       ];
     }
     if (project.title === "StockIQ") {
@@ -3657,7 +3665,7 @@ export default function App() {
                             src={nikeSohoAsset12} 
                             alt="Nike SoHo 529 Broadway Sneaker Wall & Footwear Innovation Showcase"
                             cinematic={true}
-                            objectPosition="center 40%"
+                            objectPosition="center 30%"
                           />
                         </div>
                         <div className="max-w-4xl space-y-6">
@@ -3674,6 +3682,40 @@ export default function App() {
                               "L'installation emblématique du mur de sneakers—mettant en valeur les silhouettes de performance de pointe et les classiques lifestyle sur un fond architectural sur mesure."
                             ) : (
                               "La instalación emblemática del muro de zapatillas—destacando siluetas de máximo rendimiento y clásicos del estilo de vida sobre un fondo arquitectónico personalizado."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Nike SoHo Section: Customization Counter & Signature Bag Installation (Cinematic Video Motion) */}
+                      <div className="space-y-12 pt-8 border-t border-black/10">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl md:rounded-3xl aspect-[16/9] md:aspect-[21/10] group relative shadow-2xl"
+                          onClick={() => setFullscreenImage(nikeSohoAsset13)}
+                        >
+                          <SubtleVideoMotionImage 
+                            src={nikeSohoAsset13} 
+                            alt="Nike SoHo 529 Broadway Customization Counter & Signature Bag Installation"
+                            tag={null}
+                            objectPosition="center 32%"
+                            yOffset={3.8}
+                            scaleOffset={0.08}
+                          />
+                        </div>
+                        <div className="max-w-4xl space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'Retail Experience & Customization Hub' : lang === 'fr' ? 'Expérience Retail & Pôle de Personnalisation' : 'Experiencia Minorista y Centro de Personalización'}
+                          </span>
+                          <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-black">
+                            {lang === 'en' ? 'Signature Service Counter & Spatial Bag Installation' : lang === 'fr' ? 'Comptoir de Service Emblématique & Installation de Sacs' : 'Mostrador de Servicio Distintivo e Instalación de Bolsas'}
+                          </h3>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The bespoke retail checkout and customization counter—merging modular raw industrial materials with Nike's vibrant orange brand signifiers, creating an energetic tactile conclusion to the SoHo shopping journey."
+                            ) : lang === 'fr' ? (
+                              "Le comptoir de service et de personnalisation sur mesure—associant matériaux industriels bruts et touches orange emblématiques de Nike pour clore le parcours client avec dynamisme."
+                            ) : (
+                              "El mostrador personalizado de pago y personalización—fusionando materiales industriales modulares con los vibrantes detalles naranjas de Nike para un cierre enérgico del recorrido de compra en SoHo."
                             )}
                           </p>
                         </div>
