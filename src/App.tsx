@@ -30,6 +30,8 @@ const organicPackagingSuiteOneBio = "https://lh3.googleusercontent.com/d/1hQHDDq
 const edereCinematicMotion = "https://lh3.googleusercontent.com/d/1VAN-GqZ2QduoqhcfJbiHR5nmT6ouaNti";
 const edereDiningRoomSketch = "/edere_dining_room_sketch.png";
 const edereBarSketch = "/edere_bar_sketch.png";
+const edereDiningExperience = "https://lh3.googleusercontent.com/d/1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf";
+const edereDiningRoom = "/edere_dining_room.png";
 const insurlyAirportPillar = "https://lh3.googleusercontent.com/d/1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x";
 const padeluxOnePackaging = "https://lh3.googleusercontent.com/d/1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR";
 const padeluxCourtAmenity = "/padelux_court_amenity.png";
@@ -428,6 +430,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/edere_dining_room_sketch.png";
         } else if (src && (src.includes("1zJZEuAaNNdadmyV4A_9AasNQm9N-tHb_") || src.includes("edere_bar_sketch"))) {
           (e.currentTarget as HTMLImageElement).src = "/edere_bar_sketch.png";
+        } else if (src && (src.includes("1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf") || src.includes("1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ") || src.includes("1YXUecH3neE8CjmAtrcLZed0LRVvT-c7NZ") || src.includes("edere_dining_room") || src.includes("edere_dining_experience"))) {
+          (e.currentTarget as HTMLImageElement).src = "/edere_dining_room.png";
         } else if (src && (src.includes("1s83UDHVsGK3TuwWB-FcdIeg0B1PanRux") || src.includes("retail_display_unit_sketch"))) {
           (e.currentTarget as HTMLImageElement).src = "/retail_display_unit_sketch.png";
         } else if (src && (src.includes("16ShaqE-wSzt8lsDYySPsevmFVHtPAspH") || src.includes("organic_retail_apothecary"))) {
@@ -1231,6 +1235,8 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/edere_dining_room_sketch.png";
             } else if (src && (src.includes("1zJZEuAaNNdadmyV4A_9AasNQm9N-tHb_") || src.includes("edere_bar_sketch"))) {
               target.src = "/edere_bar_sketch.png";
+            } else if (src && (src.includes("1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf") || src.includes("1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ") || src.includes("1YXUecH3neE8CjmAtrcLZed0LRVvT-c7NZ") || src.includes("edere_dining_room") || src.includes("edere_dining_experience"))) {
+              target.src = "/edere_dining_room.png";
             } else if (src && (src.includes("1s83UDHVsGK3TuwWB-FcdIeg0B1PanRux") || src.includes("retail_display_unit_sketch"))) {
               target.src = "/retail_display_unit_sketch.png";
             } else if (src && (src.includes("16ShaqE-wSzt8lsDYySPsevmFVHtPAspH") || src.includes("organic_retail_apothecary"))) {
@@ -2210,7 +2216,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1nzAd11wQwe07yeFdZdSLS2-xexHfCIsa",
         "https://lh3.googleusercontent.com/d/1VeUqzwZ7hIqiq4hDuF8SvtWw8bYdb3Q9",
         "https://lh3.googleusercontent.com/d/1zJZEuAaNNdadmyV4A_9AasNQm9N-tHb_",
-        edereCinematicMotion
+        edereCinematicMotion,
+        edereDiningExperience
       ];
     }
     if (project.title === "Insurly") {
@@ -2273,7 +2280,7 @@ export default function App() {
     let currentIndex = images.indexOf(fullscreenImage);
     if (currentIndex === -1) {
       const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
-      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')));
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))));
     }
     const nextIndex = ((currentIndex >= 0 ? currentIndex : 0) + 1) % images.length;
     setFullscreenImage(images[nextIndex]);
@@ -2285,7 +2292,7 @@ export default function App() {
     let currentIndex = images.indexOf(fullscreenImage);
     if (currentIndex === -1) {
       const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
-      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')));
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))));
     }
     const prevIndex = ((currentIndex >= 0 ? currentIndex : 0) - 1 + images.length) % images.length;
     setFullscreenImage(images[prevIndex]);
@@ -6312,6 +6319,31 @@ export default function App() {
                             alt="Edere Restaurant Cinematic Motion"
                             tag={null}
                           />
+                        </div>
+                      </div>
+
+                      {/* Edere Restaurant Section 11: Realized Interior Atmosphere */}
+                      <div className="space-y-12 mb-24 md:mb-40">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[4/3] md:aspect-[16/10] shadow-sm relative group"
+                          onClick={() => setFullscreenImage(edereDiningExperience)}
+                        >
+                          <SubtleMotionImage 
+                            src={edereDiningExperience} 
+                            alt="Edere Restaurant Realized Dining & Bar Interior"
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">Interior Experience</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The fully realized dining hall harmonizes ancient Roman grandeur with contemporary hospitality—featuring a backlit classical mosaic bar, coffered timber ceilings, and an open culinary hearth."
+                            ) : lang === 'fr' ? (
+                              "La salle à manger concrétise l'harmonie entre grandeur romaine et hospitalité contemporaine avec un bar rétroéclairé en mosaïque classique et des plafonds à caissons chaleureux."
+                            ) : (
+                              "El salón comedor armoniza la grandeza clásica romana con la hospitalidad contemporánea, integrando una barra con mosaico iluminado, techos artesonados de madera y cocina a la vista."
+                            )}
+                          </p>
                         </div>
                       </div>
                     </>
