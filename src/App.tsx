@@ -55,6 +55,8 @@ const nikeSohoAsset10 = "/nike_soho_asset_10.png";
 const nikeSohoAsset11 = "https://lh3.googleusercontent.com/d/1LygB3W8HUTFoRXengg523DHQmLiXntyI";
 const nikeSohoAsset12 = "/nike_soho_asset_12.png";
 const nikeSohoAsset13 = "/nike_soho_asset_13.png";
+const nikeSohoRetailSpace = "https://lh3.googleusercontent.com/d/1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd";
+const nikeSohoRetailSpaceLocal = "/nike_soho_retail_space.png";
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg 
@@ -476,6 +478,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_12.png";
         } else if (src && src.includes("nike_soho_asset_13")) {
           (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_13.png";
+        } else if (src && (src.includes("1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd") || src.includes("1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd") || src.includes("nike_soho_retail_space"))) {
+          (e.currentTarget as HTMLImageElement).src = "/nike_soho_retail_space.png";
         }
       }}
       initial={{ opacity: 1, scale: cinematic ? 1.02 : 1 }}
@@ -1285,6 +1289,8 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/nike_soho_asset_12.png";
             } else if (src && src.includes("nike_soho_asset_13")) {
               target.src = "/nike_soho_asset_13.png";
+            } else if (src && (src.includes("1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd") || src.includes("1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd") || src.includes("nike_soho_retail_space"))) {
+              target.src = "/nike_soho_retail_space.png";
             }
           }}
           className="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl"
@@ -2110,7 +2116,8 @@ export default function App() {
         nikeSohoAsset10,
         nikeSohoAsset11,
         nikeSohoAsset12,
-        nikeSohoAsset13
+        nikeSohoAsset13,
+        nikeSohoRetailSpace
       ];
     }
     if (project.title === "StockIQ") {
@@ -2294,7 +2301,7 @@ export default function App() {
     let currentIndex = images.indexOf(fullscreenImage);
     if (currentIndex === -1) {
       const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
-      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')));
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))));
     }
     const nextIndex = ((currentIndex >= 0 ? currentIndex : 0) + 1) % images.length;
     setFullscreenImage(images[nextIndex]);
@@ -2306,7 +2313,7 @@ export default function App() {
     let currentIndex = images.indexOf(fullscreenImage);
     if (currentIndex === -1) {
       const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
-      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')));
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))));
     }
     const prevIndex = ((currentIndex >= 0 ? currentIndex : 0) - 1 + images.length) % images.length;
     setFullscreenImage(images[prevIndex]);
@@ -3737,6 +3744,36 @@ export default function App() {
                               "Le comptoir de service et de personnalisation sur mesure—associant matériaux industriels bruts et touches orange emblématiques de Nike pour clore le parcours client avec dynamisme."
                             ) : (
                               "El mostrador personalizado de pago y personalización—fusionando materiales industriales modulares con los vibrantes detalles naranjas de Nike para un cierre enérgico del recorrido de compra en SoHo."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Nike SoHo Section: Flagship Retail Environment & Digital Monolith Tower */}
+                      <div className="space-y-12 pt-8 border-t border-black/10">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl md:rounded-3xl aspect-[16/9] md:aspect-[21/10] group relative shadow-2xl"
+                          onClick={() => setFullscreenImage(nikeSohoRetailSpace)}
+                        >
+                          <SubtleMotionImage 
+                            src={nikeSohoRetailSpace} 
+                            alt="Nike SoHo Flagship Store Retail Environment & Digital Monolith Tower"
+                          />
+                        </div>
+                        <div className="max-w-4xl space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'Spatial Architecture & Retail Environment' : lang === 'fr' ? 'Architecture Spatiale & Environnement Retail' : 'Arquitectura Espacial y Entorno Comercial'}
+                          </span>
+                          <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-black">
+                            {lang === 'en' ? 'Flagship Store Experience & Digital Monolith Tower' : lang === 'fr' ? 'Expérience Flagship & Tour Monolithe Digitale' : 'Experiencia Flagship y Torre Monolítica Digital'}
+                          </h3>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "The main pop-up retail hall combines sweeping architectural LED cove lighting, tiered footwear display platforms, and an illuminated multi-story digital media column broadcasting dynamic campaign content."
+                            ) : lang === 'fr' ? (
+                              "L'espace retail principal associe un éclairage LED architectural incurvé, des plateformes de présentation de sneakers et une colonne média numérique diffusant du contenu dynamique."
+                            ) : (
+                              "El espacio comercial principal combina iluminación arquitectónica LED curvada, plataformas escalonadas de calzado y una columna digital que proyecta contenido dinámico de campaña."
                             )}
                           </p>
                         </div>
