@@ -32,6 +32,8 @@ const edereDiningRoomSketch = "/edere_dining_room_sketch.png";
 const edereBarSketch = "/edere_bar_sketch.png";
 const edereDiningExperience = "https://lh3.googleusercontent.com/d/1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf";
 const edereDiningRoom = "/edere_dining_room.png";
+const edereCulinaryDishes = "https://lh3.googleusercontent.com/d/10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js";
+const edereCulinaryDishesLocal = "/edere_culinary_dishes.png";
 const insurlyAirportPillar = "https://lh3.googleusercontent.com/d/1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x";
 const padeluxOnePackaging = "https://lh3.googleusercontent.com/d/1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR";
 const padeluxCourtAmenity = "/padelux_court_amenity.png";
@@ -432,6 +434,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/edere_bar_sketch.png";
         } else if (src && (src.includes("1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf") || src.includes("1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ") || src.includes("1YXUecH3neE8CjmAtrcLZed0LRVvT-c7NZ") || src.includes("edere_dining_room") || src.includes("edere_dining_experience"))) {
           (e.currentTarget as HTMLImageElement).src = "/edere_dining_room.png";
+        } else if (src && (src.includes("10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js") || src.includes("edere_culinary_dishes"))) {
+          (e.currentTarget as HTMLImageElement).src = "/edere_culinary_dishes.png";
         } else if (src && (src.includes("1s83UDHVsGK3TuwWB-FcdIeg0B1PanRux") || src.includes("retail_display_unit_sketch"))) {
           (e.currentTarget as HTMLImageElement).src = "/retail_display_unit_sketch.png";
         } else if (src && (src.includes("16ShaqE-wSzt8lsDYySPsevmFVHtPAspH") || src.includes("organic_retail_apothecary"))) {
@@ -1237,6 +1241,8 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/edere_bar_sketch.png";
             } else if (src && (src.includes("1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf") || src.includes("1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ") || src.includes("1YXUecH3neE8CjmAtrcLZed0LRVvT-c7NZ") || src.includes("edere_dining_room") || src.includes("edere_dining_experience"))) {
               target.src = "/edere_dining_room.png";
+            } else if (src && (src.includes("10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js") || src.includes("edere_culinary_dishes"))) {
+              target.src = "/edere_culinary_dishes.png";
             } else if (src && (src.includes("1s83UDHVsGK3TuwWB-FcdIeg0B1PanRux") || src.includes("retail_display_unit_sketch"))) {
               target.src = "/retail_display_unit_sketch.png";
             } else if (src && (src.includes("16ShaqE-wSzt8lsDYySPsevmFVHtPAspH") || src.includes("organic_retail_apothecary"))) {
@@ -2211,6 +2217,7 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1GY7keTnEI3Jayucac9QegpwS8rk-vOMJ",
         "https://lh3.googleusercontent.com/d/1Mux8yWx0pRNv-P3p1-92vHZH7nkO9rRh",
         "https://lh3.googleusercontent.com/d/19Gt0niVC8EL5JdpHNmsRdCLTrBeeIbcu",
+        edereCulinaryDishes,
         "https://lh3.googleusercontent.com/d/1KswSnGMZRZkyOOaVJXWTKkUqWwdzxTqB",
         "https://lh3.googleusercontent.com/d/1xwwm8qTPTaFktoSelqGyTUz5tYsOCK7W",
         "https://lh3.googleusercontent.com/d/1nzAd11wQwe07yeFdZdSLS2-xexHfCIsa",
@@ -2280,7 +2287,7 @@ export default function App() {
     let currentIndex = images.indexOf(fullscreenImage);
     if (currentIndex === -1) {
       const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
-      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))));
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')));
     }
     const nextIndex = ((currentIndex >= 0 ? currentIndex : 0) + 1) % images.length;
     setFullscreenImage(images[nextIndex]);
@@ -2292,7 +2299,7 @@ export default function App() {
     let currentIndex = images.indexOf(fullscreenImage);
     if (currentIndex === -1) {
       const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
-      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))));
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')));
     }
     const prevIndex = ((currentIndex >= 0 ? currentIndex : 0) - 1 + images.length) % images.length;
     setFullscreenImage(images[prevIndex]);
@@ -6191,6 +6198,19 @@ export default function App() {
                           <SubtleMotionImage 
                             src="https://lh3.googleusercontent.com/d/19Gt0niVC8EL5JdpHNmsRdCLTrBeeIbcu" 
                             alt="Edere Gastronomic Excellence"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Edere Restaurant Culinary Presentation */}
+                      <div className="mb-24 md:mb-40">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[16/7] md:aspect-[21/8] shadow-sm relative group"
+                          onClick={() => setFullscreenImage(edereCulinaryDishes)}
+                        >
+                          <SubtleMotionImage 
+                            src={edereCulinaryDishes} 
+                            alt="Edere Culinary Craft and Custom Branded Tableware"
                           />
                         </div>
                       </div>
