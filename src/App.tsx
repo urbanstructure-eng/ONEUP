@@ -4698,7 +4698,7 @@ export default function App() {
                       </div>
 
                       {/* Voltique Story Section: Contactless RFID Smart Cards */}
-                      <div className="space-y-12">
+                      <div className="space-y-12 mb-24 md:mb-40">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
                           onClick={() => setFullscreenImage("https://lh3.googleusercontent.com/d/1OdXpfPKbeK969KWK2sTD3yVBn7Lh9Gwh")}
@@ -4708,6 +4708,18 @@ export default function App() {
                             alt="Voltique Contactless Smart Cards"
                             cinematic={true}
                           />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">NFC Membership</span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Voltique NFC membership card for easy charging."
+                            ) : lang === 'fr' ? (
+                              "Carte de membre NFC Voltique pour une recharge facile."
+                            ) : (
+                              "Tarjeta de membresía NFC Voltique para una carga fácil."
+                            )}
+                          </p>
                         </div>
                       </div>
 
