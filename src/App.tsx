@@ -41,6 +41,8 @@ const padeluxOnePackaging = "https://lh3.googleusercontent.com/d/1jpSsqkP5rwe_1H
 const padeluxCourtAmenity = "/padelux_court_amenity.png";
 const retailDisplayUnitSketch = "/retail_display_unit_sketch.png";
 const atelierTicketTurnstile = "https://lh3.googleusercontent.com/d/1NSflxMizq6EJQtnDxaypyCV3bsvoDWp-";
+const atelierParisianBillboard = "https://lh3.googleusercontent.com/d/170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0";
+const atelierParisianBillboardLocal = "/atelier_dart_parisian_billboard.png";
 const nikeSohoCampaignImage = "/nike_soho_popup_campaign.png";
 const nikeSohoAsset1 = "/nike_soho_asset_1.png";
 const nikeSohoAsset2 = "/nike_soho_asset_2.png";
@@ -394,6 +396,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/padelux_one_packaging.png";
         } else if (src && src.includes("1NSflxMizq6EJQtnDxaypyCV3bsvoDWp-")) {
           (e.currentTarget as HTMLImageElement).src = "/atelier_dart_ticket.png";
+        } else if (src && (src.includes("170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0") || src.includes("atelier_dart_parisian_billboard"))) {
+          (e.currentTarget as HTMLImageElement).src = "/atelier_dart_parisian_billboard.png";
         } else if (src && (src.includes("19EjOVnoD9DOxbKDMCZxta5EBo1TC7953") || src.includes("stockiq_analytics_dashboard"))) {
           (e.currentTarget as HTMLImageElement).src = "/stockiq_23.gif";
         } else if (src && (src.includes("10ZGFhya") || src.includes("buydrop_detail_3"))) {
@@ -1231,6 +1235,8 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/insurly_airport_pillar.png";
             } else if (src && src.includes("1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR")) {
               target.src = "/padelux_one_packaging.png";
+            } else if (src && (src.includes("170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0") || src.includes("atelier_dart_parisian_billboard"))) {
+              target.src = "/atelier_dart_parisian_billboard.png";
             } else if (src && (src.includes("1OdXpfPKbeK969KWK2sTD3yVBn7Lh9Gwh") || src.includes("voltique_smart_cards"))) {
               target.src = "/voltique_smart_cards.png";
             } else if (src && (src.includes("1zg59fSC-J3U8gfLdj1scGQU2qzuhGPhk") || src.includes("voltique_infrastructure"))) {
@@ -2218,7 +2224,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1T9CIXul6wnGY6caACLxwvlW1gAR-EDzi",
         "https://lh3.googleusercontent.com/d/1ceZ6NYiqfNKYtU9mfdn5tYWu6XSkAHN8",
         atelierTicketTurnstile,
-        "https://lh3.googleusercontent.com/d/1qvHCSLMNQTsa2R60U1-CqwLslI37IvFr"
+        "https://lh3.googleusercontent.com/d/1qvHCSLMNQTsa2R60U1-CqwLslI37IvFr",
+        atelierParisianBillboard
       ];
     }
     if (project.title === "edere restaurant") {
@@ -2301,7 +2308,7 @@ export default function App() {
     let currentIndex = images.indexOf(fullscreenImage);
     if (currentIndex === -1) {
       const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
-      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))));
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')));
     }
     const nextIndex = ((currentIndex >= 0 ? currentIndex : 0) + 1) % images.length;
     setFullscreenImage(images[nextIndex]);
@@ -2313,7 +2320,7 @@ export default function App() {
     let currentIndex = images.indexOf(fullscreenImage);
     if (currentIndex === -1) {
       const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
-      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))));
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')));
     }
     const prevIndex = ((currentIndex >= 0 ? currentIndex : 0) - 1 + images.length) % images.length;
     setFullscreenImage(images[prevIndex]);
@@ -5640,6 +5647,34 @@ export default function App() {
                             alt="Atelier d'art Vision"
                             cinematic={true}
                           />
+                        </div>
+                      </div>
+
+                      {/* Atelier Section 8: Monumental Outdoor Campaign & Parisian Streetscape */}
+                      <div className="space-y-12 pb-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[16/9] shadow-2xl relative group"
+                          onClick={() => setFullscreenImage(atelierParisianBillboard)}
+                        >
+                          <SubtleMotionImage 
+                            src={atelierParisianBillboard} 
+                            alt="Atelier d'art Monumental Parisian Streetscape Billboard Campaign"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
+                            {lang === 'en' ? 'Urban Campaign & Environmental Scale' : lang === 'fr' ? 'Campagne Urbaine & Échelle Environnementale' : 'Campaña Urbana y Escala Ambiental'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Commanding Parisian streetscapes: monumental outdoor billboards place the classical poise of French ballet and the emblem of the 13 regions into dramatic, poetic dialogue with historic Haussmannian stone architecture."
+                            ) : lang === 'fr' ? (
+                              "Marquer les boulevards parisiens : l'affichage monumental met en scène la grâce du ballet classique français et l'emblème des 13 régions dans un dialogue poétique avec l'architecture haussmannienne."
+                            ) : (
+                              "Dominando el paisaje urbano parisino: vallas publicitarias monumentales ponen la gracia del ballet clásico francés y el emblema de las 13 regiones en diálogo poético con la arquitectura haussmanniana."
+                            )}
+                          </p>
                         </div>
                       </div>
                     </>
