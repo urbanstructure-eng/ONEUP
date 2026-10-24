@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, animate } from 'motion/react';
-import { Instagram, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu, Play, Pause, Volume2, VolumeX, Upload, Check, Link as LinkIcon } from 'lucide-react';
+import { Instagram, Linkedin, ChevronUp, X, ChevronLeft, ChevronRight, Send, ArrowUpRight, Smile, Menu, Play, Pause, Volume2, VolumeX, Upload, Check, Copy, ExternalLink, Maximize2 } from 'lucide-react';
 const stockiqHomeImage = "https://lh3.googleusercontent.com/d/115or6C4Imd0kOm2-lPIpXVdl1rvdyfNN";
 const stockiqHero = "https://lh3.googleusercontent.com/d/12y_h1qFMeTMrJovWZ6851wOYtcO982OX";
 const stockiqOverviewImage = "https://lh3.googleusercontent.com/d/1URFuOF_YAMhKNzgEUEnS_UuyczyxtUZ0";
@@ -36,6 +36,7 @@ const edereCulinaryDishes = "https://lh3.googleusercontent.com/d/10s5yuFfFd2tHbL
 const edereCulinaryDishesLocal = "/edere_culinary_dishes.png";
 const edereEmailConfirmation = "https://lh3.googleusercontent.com/d/1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir";
 const edereEmailConfirmationLocal = "/edere_email_confirmation.png";
+const edereVeniVidiVici = "/edere_veni_vidi_vici.png";
 const insurlyAirportPillar = "https://lh3.googleusercontent.com/d/1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x";
 const padeluxOnePackaging = "https://lh3.googleusercontent.com/d/1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR";
 const padeluxCourtAmenity = "/padelux_court_amenity.png";
@@ -61,6 +62,75 @@ const nikeSohoRetailSpace = "https://lh3.googleusercontent.com/d/1g7Tzn3pDkUTMB9
 const nikeSohoRetailSpaceLocal = "/nike_soho_retail_space.png";
 const nikeSohoPackagingBox = "https://lh3.googleusercontent.com/d/1WKusXi989ck6EI7oLbmnCeus5qGzl09m";
 const nikeSohoPackagingBoxLocal = "/nike_soho_packaging_box.jpg";
+// Louis Vuitton — Experimental Retail Experiences & Customer Retention Assets
+const lvRetailHeroWebp = "/lv_retail_experience.webp";
+const lvRetailHeroPng = "/lv_retail_experience.png";
+const lvRetailDriveLinkScreen = "/public/assets/aistudio/Screen_Shot_2026-10-23_at_4.40.24_PM_b6f58470.png";
+const lvRetailDriveLinkUrl = "https://drive.google.com/file/d/1bJ7TOBhlvqGCZaukcVJGteVqHQ9tfia3/view?usp=sharing";
+const lvVitrineBoxWebp = "/lv_usa_bubbles_vitrine.webp";
+const lvExperience1Webp = "/lv_experience_1.webp";
+const lvExperience1Png = "/lv_experience_1.png";
+const lvAtriumVitrinePng = "/lv_atrium_vitrine.png";
+const lvAtriumVitrineScreen = "/public/assets/aistudio/Screen_Shot_2026-10-23_at_4.21.55_PM_128aa7cc.png";
+const lvPrivilegeCardPng = "/lv_privilege_card.png";
+const lvPrivilegeCardScreen = "/public/assets/aistudio/Screen_Shot_2026-10-23_at_4.18.12_PM_ec5b908e.png";
+const lvScreenshot4Links = "/public/assets/aistudio/Screen_Shot_2026-10-23_at_5.03.41_PM_25b463be.png";
+const lvBagSculpture1 = "/lv_bag_sculpture_1.jpg";
+const lvBagSculpture2 = "/lv_bag_sculpture_2.jpg";
+const lvBagsDuo = "/lv_bags_duo.jpg";
+const lvTheVisionImage = "/lv_the_vision.gif";
+const lvTheVisionPoster = "/lv_the_vision_poster.png";
+
+const lvDriveAssets = [
+  {
+    num: "01",
+    id: "1xth8EQwQoAuy-LyvobjKuzz8V9mEQ8vn",
+    tag: "Concept 01 / Physical Display",
+    title: "Flagship Window & Splash Paint Installation",
+    subtitle: "Monumental Visual Intervention & Architectural Storefront Display",
+    description: "A monumental embossed white Louis Vuitton Keepall duffle surrounded by a multi-colored kinetic splash of acrylic pigment bursting through the flagship window.",
+    image: lvExperience1Webp,
+    fallbackImage: lvExperience1Png,
+    driveUrl: "https://drive.google.com/file/d/1xth8EQwQoAuy-LyvobjKuzz8V9mEQ8vn/view?usp=sharing",
+    directImage: "https://drive.google.com/thumbnail?id=1xth8EQwQoAuy-LyvobjKuzz8V9mEQ8vn&sz=w1600"
+  },
+  {
+    num: "02",
+    id: "1DElMyHbexJxiiYXiqlgC5RCec7YvockZ",
+    tag: "Concept 02 / Spatial Technology",
+    title: "In-Store Spatial Vitrine & Floating Product Box",
+    subtitle: "Interactive Display Technology & Contemporary Retail Savoir-Faire",
+    description: "An optical levitation retail vitrine featuring iridescent bubbles and dynamic lighting in a grand Parisian atrium with cascading greenery.",
+    image: lvAtriumVitrinePng,
+    fallbackImage: lvAtriumVitrineScreen,
+    driveUrl: "https://drive.google.com/file/d/1DElMyHbexJxiiYXiqlgC5RCec7YvockZ/view?usp=sharing",
+    directImage: "https://drive.google.com/thumbnail?id=1DElMyHbexJxiiYXiqlgC5RCec7YvockZ&sz=w1600"
+  },
+  {
+    num: "03",
+    id: "19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy",
+    tag: "Concept 03 / Client Retention",
+    title: "VIP Client Privilege & Retention Keepsake System",
+    subtitle: "Personalized Digital Membership & Embossed Leather Tag Activations",
+    description: "Bespoke monogrammed leather sleeve paired with the exclusive Carte Privilège Client (Code d'Enregistrement) and private concierge access.",
+    image: lvPrivilegeCardPng,
+    fallbackImage: lvPrivilegeCardScreen,
+    driveUrl: "https://drive.google.com/file/d/19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy/view?usp=sharing",
+    directImage: "https://drive.google.com/thumbnail?id=19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy&sz=w1600"
+  },
+  {
+    num: "04",
+    id: "1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp",
+    tag: "Concept 04 / Omnichannel Campaign",
+    title: "Integrated Omnichannel Campaign & Digital Storytelling",
+    subtitle: "Shareable Visual Narratives Extending Retail Touchpoints Beyond The Store",
+    description: "Unified cross-platform digital activations, AR extensions, and social amplification transforming physical store moments into viral global narratives.",
+    image: lvRetailHeroWebp,
+    fallbackImage: lvRetailHeroPng,
+    driveUrl: "https://drive.google.com/file/d/1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp/view?usp=sharing",
+    directImage: "https://drive.google.com/thumbnail?id=1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp&sz=w1600"
+  }
+];
 
 const TwitterXIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg 
@@ -379,8 +449,19 @@ const PROJECTS: Project[] = [
   { id: 16, title: "edere restaurant", category: "Branding / Environment", image: "https://lh3.googleusercontent.com/d/19Gt0niVC8EL5JdpHNmsRdCLTrBeeIbcu", colSpan: "md:col-span-12", location: "Rome, Italy", year: "2022", role: "Project Identity" },
   { id: 3, title: "Padelux", category: "Branding", image: "https://lh3.googleusercontent.com/d/1l4lV4DJ1v17tOBJxEC3l32mjxqTjTdH-", colSpan: "md:col-span-6", year: "2023", role: "Identity Design" },
   { id: 17, title: "Insurly", category: "Insurance / Platform", image: "https://lh3.googleusercontent.com/d/1Pv55tjArCkD6pSyKqgpmqBrAsIUyZCgJ", colSpan: "md:col-span-6", year: "2024", role: "Branding Design for Global Insurance Provider" },
+  { 
+    id: 22, 
+    title: "LOUIS VUITTON", 
+    category: "EXPERIMENTAL RETAIL EXPERIENCES & CUSTOMER RETENTION", 
+    image: lvExperience1Webp, 
+    heroImage: lvExperience1Webp, 
+    colSpan: "md:col-span-12", 
+    location: "Paris • New York • Global", 
+    year: "2026", 
+    role: "Experimental Design & Innovative Marketing" 
+  },
   { id: 18, title: "organic cosmetic", category: "Branding / Packaging", image: "https://lh3.googleusercontent.com/d/1DlAdlFYlYmujpUEC1uzvAu4EIc9uRiHu", colSpan: "md:col-span-12", year: "2021", role: "Creative Direction" },
-  { id: 19, title: "Integrated Marketing Campaign", category: "campaign", image: "https://lh3.googleusercontent.com/d/1oHOYP6MO2Fadp1BhAKnP8iCwCaMsoBlZ", colSpan: "md:col-span-12", location: "UK, England", year: "2025", role: "Campaign Design" },
+  { id: 19, title: "Integrated Marketing Campaign", category: "campaign", image: "https://lh3.googleusercontent.com/d/1oHOYP6MO2Fadp1BhAKnP8iCwCaMsoBlZ", colSpan: "md:col-span-12", location: "UK, England", year: "2025", role: "Campaign Design" }
 ];
 
 const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", contain = false, cinematic = false }: { src: string, alt: string, className?: string, objectPosition?: string, contain?: boolean, cinematic?: boolean }) => (
@@ -392,7 +473,25 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
       style={{ objectPosition, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
       referrerPolicy="no-referrer"
       onError={(e) => {
-        if (src && src.includes("1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x")) {
+        if (src && (src.includes("lv_bag_sculpture_1") || src.includes("bag_sculpture_1"))) {
+          (e.currentTarget as HTMLImageElement).src = lvBagSculpture1;
+        } else if (src && (src.includes("lv_bag_sculpture_2") || src.includes("bag_sculpture_2"))) {
+          (e.currentTarget as HTMLImageElement).src = lvBagSculpture2;
+        } else if (src && (src.includes("lv_bags_duo") || src.includes("LV-BAGS"))) {
+          (e.currentTarget as HTMLImageElement).src = lvBagsDuo;
+        } else if (src && (src.includes("lv_the_vision") || src.includes("1F1oJMXqdQCiy5hRJLDgbtUw8FnMbp_4w"))) {
+          (e.currentTarget as HTMLImageElement).src = lvTheVisionPoster;
+        } else if (src && (src.includes("lv_experience_1") || src.includes("1xth8EQwQoAuy"))) {
+          (e.currentTarget as HTMLImageElement).src = lvExperience1Png;
+        } else if (src && (src.includes("lv_atrium_vitrine") || src.includes("1DElMyHbexJxiiYXiqlgC5RCec7YvockZ") || src.includes("128aa7cc"))) {
+          (e.currentTarget as HTMLImageElement).src = lvAtriumVitrinePng;
+        } else if (src && (src.includes("lv_privilege_card") || src.includes("19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy") || src.includes("ec5b908e") || src.includes("8790e1fb"))) {
+          (e.currentTarget as HTMLImageElement).src = lvPrivilegeCardPng;
+        } else if (src && (src.includes("lv_retail_experience") || src.includes("1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp") || src.includes("d11b222c"))) {
+          (e.currentTarget as HTMLImageElement).src = lvRetailHeroPng;
+        } else if (src && (src.includes("Screen_Shot_2026-10-23_at_5.03.41") || src.includes("25b463be"))) {
+          (e.currentTarget as HTMLImageElement).src = lvScreenshot4Links;
+        } else if (src && src.includes("1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x")) {
           (e.currentTarget as HTMLImageElement).src = "/insurly_airport_pillar.png";
         } else if (src && src.includes("1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR")) {
           (e.currentTarget as HTMLImageElement).src = "/padelux_one_packaging.png";
@@ -448,6 +547,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/edere_culinary_dishes.png";
         } else if (src && (src.includes("1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir") || src.includes("edere_email_confirmation"))) {
           (e.currentTarget as HTMLImageElement).src = "/edere_email_confirmation.png";
+        } else if (src && (src.includes("edere_veni_vidi_vici") || src.includes("ebea0757"))) {
+          (e.currentTarget as HTMLImageElement).src = "/edere_veni_vidi_vici.png";
         } else if (src && (src.includes("1s83UDHVsGK3TuwWB-FcdIeg0B1PanRux") || src.includes("retail_display_unit_sketch"))) {
           (e.currentTarget as HTMLImageElement).src = "/retail_display_unit_sketch.png";
         } else if (src && (src.includes("16ShaqE-wSzt8lsDYySPsevmFVHtPAspH") || src.includes("organic_retail_apothecary"))) {
@@ -1228,6 +1329,20 @@ const CompactVideoPlayer = ({ src, alt, className, useGif = false, onClick }: { 
 };
 
 const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: string, onNext: () => void }) => {
+  if (src && src.endsWith('.mp4')) {
+    return (
+      <div className="relative w-full h-full flex items-center justify-center select-none bg-black/95 p-4">
+        <video 
+          src={src} 
+          autoPlay 
+          loop 
+          controls 
+          playsInline 
+          className="max-w-[90vw] max-h-[85vh] object-contain shadow-2xl rounded-2xl" 
+        />
+      </div>
+    );
+  }
   return (
     <div className="relative w-full h-full flex items-center justify-center select-none bg-black/90">
       <div className="relative">
@@ -1237,7 +1352,13 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
           alt={alt}
           onError={(e) => {
             const target = e.currentTarget as HTMLImageElement;
-            if (src && (src.includes("10ZGFhya") || src.includes("buydrop_detail_3"))) {
+            if (src && src.includes("bubbles_vitrine")) {
+              target.src = "/lv_usa_bubbles_vitrine.png";
+            } else if (src && (src.includes("76f4f8bd") || src.includes("5.29.22"))) {
+              target.src = "/lv_usa_proposal_link_1.png";
+            } else if (src && (src.includes("5d35f842") || src.includes("5.34.07"))) {
+              target.src = "/lv_usa_motion_drive_link_2.png";
+            } else if (src && (src.includes("10ZGFhya") || src.includes("buydrop_detail_3"))) {
               target.src = "/buydrop_detail_3.png";
             } else if (src && (src.includes("1DBDauVy") || src.includes("buydrop_detail_1"))) {
               target.src = "/buydrop_detail_1.png";
@@ -1271,6 +1392,8 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/edere_culinary_dishes.png";
             } else if (src && (src.includes("1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir") || src.includes("edere_email_confirmation"))) {
               target.src = "/edere_email_confirmation.png";
+            } else if (src && (src.includes("edere_veni_vidi_vici") || src.includes("ebea0757"))) {
+              target.src = "/edere_veni_vidi_vici.png";
             } else if (src && (src.includes("1s83UDHVsGK3TuwWB-FcdIeg0B1PanRux") || src.includes("retail_display_unit_sketch"))) {
               target.src = "/retail_display_unit_sketch.png";
             } else if (src && (src.includes("16ShaqE-wSzt8lsDYySPsevmFVHtPAspH") || src.includes("organic_retail_apothecary"))) {
@@ -1319,6 +1442,24 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/nike_soho_retail_space.png";
             } else if (src && (src.includes("1WKusXi989ck6EI7oLbmnCeus5qGzl09m") || src.includes("nike_soho_packaging_box") || src.includes("box.jpg"))) {
               target.src = "/nike_soho_packaging_box.jpg";
+            } else if (src && (src.includes("lv_bag_sculpture_1") || src.includes("bag_sculpture_1"))) {
+              target.src = "/lv_bag_sculpture_1.jpg";
+            } else if (src && (src.includes("lv_bag_sculpture_2") || src.includes("bag_sculpture_2"))) {
+              target.src = "/lv_bag_sculpture_2.jpg";
+            } else if (src && (src.includes("lv_bags_duo") || src.includes("LV-BAGS"))) {
+              target.src = "/lv_bags_duo.jpg";
+            } else if (src && (src.includes("lv_the_vision") || src.includes("1F1oJMXqdQCiy5hRJLDgbtUw8FnMbp_4w"))) {
+              target.src = "/lv_the_vision_poster.png";
+            } else if (src && (src.includes("1xth8EQwQoAuy") || src.includes("lv_experience_1"))) {
+              target.src = "/lv_experience_1.png";
+            } else if (src && (src.includes("1DElMyHbexJxiiYXiqlgC5RCec7YvockZ") || src.includes("lv_atrium_vitrine") || src.includes("128aa7cc"))) {
+              target.src = "/lv_atrium_vitrine.png";
+            } else if (src && (src.includes("19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy") || src.includes("lv_privilege_card") || src.includes("ec5b908e") || src.includes("8790e1fb"))) {
+              target.src = "/lv_privilege_card.png";
+            } else if (src && (src.includes("1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp") || src.includes("lv_retail_experience") || src.includes("d11b222c"))) {
+              target.src = "/lv_retail_experience.webp";
+            } else if (src && (src.includes("Screen_Shot_2026-10-23_at_5.03.41") || src.includes("25b463be"))) {
+              target.src = lvScreenshot4Links;
             }
           }}
           className="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-pointer rounded-2xl"
@@ -1806,6 +1947,17 @@ export default function App() {
   const [isEditingStockiqUrl, setIsEditingStockiqUrl] = useState(false);
   const [stockiqInputUrl, setStockiqInputUrl] = useState('');
   const [stockiqLinkSuccess, setStockiqLinkSuccess] = useState(false);
+  const [copiedLvUrl, setCopiedLvUrl] = useState<string | null>(null);
+
+  const handleCopyLvUrl = (url: string) => {
+    if (navigator?.clipboard?.writeText) {
+      navigator.clipboard.writeText(url).catch(() => {});
+    }
+    setCopiedLvUrl(url);
+    setTimeout(() => {
+      setCopiedLvUrl(null);
+    }, 2000);
+  };
 
   const parseGoogleDriveUrl = (input: string) => {
     const trimmed = input.trim();
@@ -2117,6 +2269,17 @@ export default function App() {
     };
 
     window.addEventListener('scroll', handleScroll);
+
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.toLowerCase();
+      const params = new URLSearchParams(window.location.search);
+      const workParam = params.get('work') || params.get('project');
+      if (hash.includes('louis-vuitton') || hash.includes('lv') || workParam === 'louis-vuitton' || workParam === 'lv') {
+        const lvProject = PROJECTS.find(p => p.id === 22 || p.title.toUpperCase().includes('LOUIS VUITTON'));
+        if (lvProject) setSelectedProject(lvProject);
+      }
+    }
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -2129,6 +2292,18 @@ export default function App() {
   };
 
   const getProjectImages = (project: typeof PROJECTS[0]) => {
+    if (project.id === 22 || project.title.toUpperCase().includes("LOUIS VUITTON")) {
+      return [
+        lvExperience1Webp,
+        lvBagSculpture1,
+        lvBagSculpture2,
+        lvBagsDuo,
+        lvAtriumVitrinePng,
+        lvPrivilegeCardPng,
+        lvRetailHeroWebp,
+        lvTheVisionImage
+      ];
+    }
     if (project.title === "NIKE SOHO pop up store design") {
       return [
         nikeSohoCampaignImage,
@@ -2268,7 +2443,8 @@ export default function App() {
         "https://lh3.googleusercontent.com/d/1VeUqzwZ7hIqiq4hDuF8SvtWw8bYdb3Q9",
         "https://lh3.googleusercontent.com/d/1zJZEuAaNNdadmyV4A_9AasNQm9N-tHb_",
         edereCinematicMotion,
-        edereDiningExperience
+        edereDiningExperience,
+        edereVeniVidiVici
       ];
     }
     if (project.title === "Insurly") {
@@ -2331,7 +2507,7 @@ export default function App() {
     let currentIndex = images.indexOf(fullscreenImage);
     if (currentIndex === -1) {
       const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
-      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')));
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')) || (fullscreenImage.includes('lv_experience_1') && img.includes('lv_experience_1')) || (fullscreenImage.includes('1xth8EQwQoAuy') && img.includes('lv_experience_1')) || (fullscreenImage.includes('lv_atrium_vitrine') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('1DElMyHbexJxiiYXiqlgC5RCec7YvockZ') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('128aa7cc') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('lv_privilege_card') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('ec5b908e') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('lv_retail_experience') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('25b463be') && img.includes('25b463be')));
     }
     const nextIndex = ((currentIndex >= 0 ? currentIndex : 0) + 1) % images.length;
     setFullscreenImage(images[nextIndex]);
@@ -2343,7 +2519,7 @@ export default function App() {
     let currentIndex = images.indexOf(fullscreenImage);
     if (currentIndex === -1) {
       const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
-      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')));
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')) || (fullscreenImage.includes('lv_experience_1') && img.includes('lv_experience_1')) || (fullscreenImage.includes('1xth8EQwQoAuy') && img.includes('lv_experience_1')) || (fullscreenImage.includes('lv_atrium_vitrine') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('1DElMyHbexJxiiYXiqlgC5RCec7YvockZ') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('128aa7cc') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('lv_privilege_card') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('ec5b908e') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('lv_retail_experience') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('25b463be') && img.includes('25b463be')));
     }
     const prevIndex = ((currentIndex >= 0 ? currentIndex : 0) - 1 + images.length) % images.length;
     setFullscreenImage(images[prevIndex]);
@@ -2416,6 +2592,8 @@ export default function App() {
       });
     }
   };
+
+  const isLvProject = false;
 
   return (
     <div className="min-h-[100dvh] bg-[#1a1a1a] text-white selection:bg-accent selection:text-black font-sans relative">
@@ -2681,6 +2859,13 @@ export default function App() {
                   }}
                   src={project.image} 
                   alt={project.title}
+                  loading="lazy"
+                  decoding="async"
+                  onError={(e) => {
+                    if (project.image && project.image.includes("lv_retail_experience")) {
+                      (e.currentTarget as HTMLImageElement).src = lvRetailHeroPng;
+                    }
+                  }}
                   referrerPolicy="no-referrer"
                   className={`w-full h-full transform-gpu ${project.contain ? 'object-contain p-8' : 'object-cover'} grayscale-0 brightness-100 transition-all duration-700`}
                 />
@@ -3271,10 +3456,10 @@ export default function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             id="project-modal"
-            className="fixed inset-0 z-[100] bg-white text-black overflow-y-auto motion-safe-gpu"
+            className={`fixed inset-0 z-[100] ${isLvProject ? 'bg-[#0a0a0a] text-white' : 'bg-white text-black'} overflow-y-auto motion-safe-gpu`}
           >
             <div className="min-h-full flex flex-col">
-              <nav className="sticky top-0 w-full px-4 py-4 md:px-12 md:py-8 flex justify-between items-center bg-white/80 backdrop-blur-md z-10 border-b border-black/5 safe-top">
+              <nav className={`sticky top-0 w-full px-4 py-4 md:px-12 md:py-8 flex justify-between items-center ${isLvProject ? 'bg-[#0a0a0a]/90 text-white border-white/10' : 'bg-white/80 text-black border-black/5'} backdrop-blur-md z-10 border-b safe-top`}>
                 <div 
                   onClick={() => setSelectedProject(null)}
                   className="flex items-center cursor-pointer group shrink-0"
@@ -3286,24 +3471,24 @@ export default function App() {
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
-                      e.currentTarget.parentElement!.innerHTML = '<span class="text-xl md:text-2xl font-bold tracking-tighter">oneup</span>';
+                      e.currentTarget.parentElement!.innerHTML = `<span class="text-xl md:text-2xl font-bold tracking-tighter ${isLvProject ? 'text-white' : 'text-black'}">oneup</span>`;
                     }}
                   />
                 </div>
                 
                 <div className="flex items-center gap-2 md:gap-8">
-                  <div className="flex items-center border border-black/10 rounded-full p-0.5 md:p-1 scale-90 md:scale-100">
+                  <div className={`flex items-center border ${isLvProject ? 'border-white/10 text-white' : 'border-black/10 text-black'} rounded-full p-0.5 md:p-1 scale-90 md:scale-100`}>
                     <button 
                       onClick={() => navigateProject('prev')}
-                      className="p-2 hover:bg-black/5 rounded-full transition-colors group"
+                      className={`p-2 ${isLvProject ? 'hover:bg-white/10' : 'hover:bg-black/5'} rounded-full transition-colors group`}
                       title="Previous Project"
                     >
                       <ChevronLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" />
                     </button>
-                    <div className="w-px h-4 bg-black/10 mx-1" />
+                    <div className={`w-px h-4 ${isLvProject ? 'bg-white/10' : 'bg-black/10'} mx-1`} />
                     <button 
                       onClick={() => navigateProject('next')}
-                      className="p-2 hover:bg-black/5 rounded-full transition-colors group"
+                      className={`p-2 ${isLvProject ? 'hover:bg-white/10' : 'hover:bg-black/5'} rounded-full transition-colors group`}
                       title="Next Project"
                     >
                       <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
@@ -3312,7 +3497,7 @@ export default function App() {
 
                   <button 
                     onClick={() => setSelectedProject(null)}
-                    className="p-2 hover:bg-black/5 rounded-full transition-colors group"
+                    className={`p-2 ${isLvProject ? 'hover:bg-white/10 text-white' : 'hover:bg-black/5 text-black'} rounded-full transition-colors group`}
                     title="Close"
                   >
                     <X className="w-8 h-8 group-hover:rotate-90 transition-transform duration-300" />
@@ -3328,22 +3513,22 @@ export default function App() {
                   </span>
                   <h2 className="text-5xl md:text-8xl font-bold tracking-tighter leading-none mb-12">
                     {selectedProject.title.split(' ')[0]} <br />
-                    <span className="text-black/10">
+                    <span className={isLvProject ? "text-white/20" : "text-black/10"}>
                       {selectedProject.title.split(' ').slice(1).join(' ') || (selectedProject.title === 'StockIQ' ? 'Retail Inventory' : '')}
                     </span>
                   </h2>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8 border-t border-black/10">
+                  <div className={`grid grid-cols-2 md:grid-cols-4 gap-8 pt-8 border-t ${isLvProject ? 'border-white/10' : 'border-black/10'}`}>
                     <div>
-                      <span className="text-[13px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">{t[lang].modal.year}</span>
-                      <span className="text-sm font-medium">{selectedProject.year || "2024"}</span>
+                      <span className={`text-[13px] uppercase tracking-[0.2em] font-bold ${isLvProject ? 'text-white/40' : 'text-black/30'} block mb-2`}>{t[lang].modal.year}</span>
+                      <span className={`text-sm font-medium ${isLvProject ? 'text-white' : 'text-black'}`}>{selectedProject.year || "2024"}</span>
                     </div>
                     <div>
-                      <span className="text-[13px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">{t[lang].modal.role}</span>
-                      <span className="text-sm font-medium">{selectedProject.role || "Lead Design"}</span>
+                      <span className={`text-[13px] uppercase tracking-[0.2em] font-bold ${isLvProject ? 'text-white/40' : 'text-black/30'} block mb-2`}>{t[lang].modal.role}</span>
+                      <span className={`text-sm font-medium ${isLvProject ? 'text-white' : 'text-black'}`}>{selectedProject.role || "Lead Design"}</span>
                     </div>
                     <div>
-                      <span className="text-[13px] uppercase tracking-[0.2em] font-bold text-black/30 block mb-2">Location</span>
-                      <span className="text-sm font-medium">{selectedProject.location || "Global"}</span>
+                      <span className={`text-[13px] uppercase tracking-[0.2em] font-bold ${isLvProject ? 'text-white/40' : 'text-black/30'} block mb-2`}>Location</span>
+                      <span className={`text-sm font-medium ${isLvProject ? 'text-white' : 'text-black'}`}>{selectedProject.location || "Global"}</span>
                     </div>
                   </div>
                 </div>
@@ -3353,7 +3538,7 @@ export default function App() {
                   initial={{ y: 40, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  className="aspect-video overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl mb-24 md:mb-40"
+                  className={`aspect-video overflow-hidden ${isLvProject ? 'bg-black/60 border border-white/10' : 'bg-black/5'} cursor-zoom-in rounded-2xl mb-24 md:mb-40`}
                   onClick={() => setFullscreenImage(selectedProject.heroImage || selectedProject.image)}
                 >
                   {selectedProject.title === "StockIQ" ? (
@@ -3371,7 +3556,207 @@ export default function App() {
 
                 {/* Alternating Content Sections */}
                 <div className="space-y-24 md:space-y-48">
-                  {selectedProject.title === "NIKE SOHO pop up store design" ? (
+                  {selectedProject.title.toUpperCase().includes("LOUIS VUITTON") || selectedProject.id === 22 ? (
+                    <>
+                      {/* Louis Vuitton Section 1: Brand Concept (Alternating 2-Column Grid) */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'Brand Concept' : lang === 'fr' ? 'Concept de Marque' : 'Concepto de Marca'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "We propose an innovative retail concept for Louis Vuitton that bridges physical shopping, experimental design, and digital engagement. By integrating sculpted in-store installations, interactive displays, and exclusive customer experiences, we transform traditional retail environments into memorable brand destinations."
+                            ) : lang === 'fr' ? (
+                              "Nous proposons un concept de vente innovant pour Louis Vuitton qui allie shopping physique, design expérimental et engagement numérique. En intégrant des sculptures en boutique et des parcours clients exclusifs, nous transformons l'espace de vente traditionnel en une destination de marque mémorable."
+                            ) : (
+                              "Proponemos un concepto de retail innovador para Louis Vuitton que une la compra física, el diseño experimental y el compromiso digital, transformando los entornos de retail tradicionales en destinos de marca memorables."
+                            )}
+                          </p>
+                        </div>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[16/10] sm:aspect-square"
+                          onClick={() => setFullscreenImage(lvBagSculpture1)}
+                        >
+                          <SubtleMotionImage 
+                            src={lvBagSculpture1} 
+                            alt="Louis Vuitton Sculpted Keepall Duffle with Kinetic Paint Splash"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Louis Vuitton Section 2: Visual Narrative & Sculptural Craftsmanship (2-Column Grid) */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div className="space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'Visual Narrative' : lang === 'fr' ? 'Narration Visuelle' : 'Narrativa Visual'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Reimagine the retail environment through striking visual sculptures, tactile material interventions, and unexpected creative installations. Each sculpted Keepall study explores raw plaster textures combined with vivid pigment drips, celebrating the dialogue between classical sculpture and contemporary streetwear culture."
+                            ) : lang === 'fr' ? (
+                              "Réinventer l'espace boutique à travers des sculptures visuelles saisissantes et des interventions matières inattendues. Chaque étude de Keepall sculpté explore la texture brute du plâtre alliée à des coulures de pigments vifs."
+                            ) : (
+                              "Reimaginar el entorno de la tienda a través de esculturas visuales impactantes e intervenciones materiales inesperadas, fusionando la textura del yeso con salpicaduras de pigmentos vívidos."
+                            )}
+                          </p>
+                        </div>
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[16/10] sm:aspect-square"
+                          onClick={() => setFullscreenImage(lvBagSculpture2)}
+                        >
+                          <SubtleMotionImage 
+                            src={lvBagSculpture2} 
+                            alt="Louis Vuitton Sculpted Keepall Duffle with Chiseled Texture & Dripping Paint"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Louis Vuitton Section 3: Dual Sculptural Keepall Panorama (Widescreen Cinematic Banner) */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage(lvBagsDuo)}
+                        >
+                          <SubtleMotionImage 
+                            src={lvBagsDuo} 
+                            alt="Louis Vuitton Dual Sculpted Keepall Installation Studies"
+                            cinematic={true}
+                          />
+                        </div>
+
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
+                            {lang === 'en' ? 'Sculptural Retail Interventions' : lang === 'fr' ? 'Interventions Sculpturales de Retail' : 'Intervenciones Esculturales de Retail'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Physical Brand Interventions: Transforming classic Monogram Keepall silhouettes into museum-grade plaster and marble sculptures adorned with kinetic acrylic splashes. These hand-finished display pieces serve as central retail focal points across global flagship vitrines."
+                            ) : lang === 'fr' ? (
+                              "Interventions Physiques de Marque : Transformer les silhouettes classiques du Keepall Monogram en sculptures de plâtre et marbre ornées d'éclaboussures acryliques cinétiques, pièces maîtresses des vitrines de flagships mondiaux."
+                            ) : (
+                              "Intervenciones Físicas de Marca: Transformando las siluetas clásicas del Keepall Monogram en esculturas de yeso y mármol con salpicaduras acrílicas cinéticas, piezas centrales de las vitrinas de las tiendas insignia."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Louis Vuitton Section 4: Spatial Architecture & Parisian Atrium Vitrine */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage(lvAtriumVitrinePng)}
+                        >
+                          <SubtleMotionImage 
+                            src={lvAtriumVitrinePng} 
+                            alt="Louis Vuitton Spatial Brand Integration in Parisian Flagship Atrium"
+                            cinematic={true}
+                          />
+                        </div>
+
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
+                            {lang === 'en' ? 'Atrium & Vitrine Architecture' : lang === 'fr' ? 'Architecture d\'Atrium & Vitrine' : 'Arquitectura de Atrio y Vitrina'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Spatial Brand Integration: Transforming the grand flagship atrium into a sculptural sanctuary. Geometric vitrine cubes suspended amidst cascading greenery contrast rich historical architectural moldings with avant-garde digital luminescence."
+                            ) : lang === 'fr' ? (
+                              "Intégration Spatiale de Marque : Transformer l'atrium monumental en sanctuaire sculptural où des vitrines géométriques suspendues rencontrent la végétation luxuriante et l'architecture haussmannienne."
+                            ) : (
+                              "Integración Espacial de Marca: Transformando el atrio principal en un santuario escultórico donde las vitrinas geométricas contrastan con la vegetación y la arquitectura clásica."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Louis Vuitton Section 5: Brand Excellence & Customer Retention (Reversed 2-Column Grid) */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[16/10] order-2 md:order-1"
+                          onClick={() => setFullscreenImage(lvPrivilegeCardPng)}
+                        >
+                          <SubtleMotionImage 
+                            src={lvPrivilegeCardPng} 
+                            alt="Louis Vuitton Carte Privilège Client & Monogram Leather Keepsake"
+                            contain={true}
+                          />
+                        </div>
+                        <div className="space-y-6 order-1 md:order-2">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'Customer Retention & VIP Loyalty' : lang === 'fr' ? 'Fidélisation Client & Privilège VIP' : 'Fidelización de Clientes y VIP'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Extend the experience beyond the store through exclusive digital campaigns, personalized content, VIP experiences, and private concierge activations. Connect in-store discoveries with online engagement to encourage repeat visits, strengthen client loyalty, and build lasting relationships."
+                            ) : lang === 'fr' ? (
+                              "Prolonger l'expérience au-delà de la boutique grâce à des campagnes numériques exclusives, du contenu personnalisé, des privilèges VIP et des activations conciergerie privées pour fidéliser la clientèle la plus prestigieuse."
+                            ) : (
+                              "Extender la experiencia más allá de la tienda a través de campañas digitales exclusivas, contenido personalizado y experiencias VIP para cultivar relaciones duraderas con los clientes."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Louis Vuitton Section 6: Integrated Experimental Marketing */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage(lvRetailHeroWebp)}
+                        >
+                          <SubtleMotionImage 
+                            src={lvRetailHeroWebp} 
+                            alt="Louis Vuitton Bespoke Keepall Trio and Experimental Retail Suite"
+                            cinematic={true}
+                          />
+                        </div>
+
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
+                            {lang === 'en' ? 'Integrated Experimental Marketing' : lang === 'fr' ? 'Marketing Expérientiel Intégré' : 'Marketing Experimental Integrado'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "We connect physical installations with digital campaigns, social media content, and shareable visual experiences—creating a unified journey that extends the impact of the retail experience beyond the store across physical and virtual realms."
+                            ) : lang === 'fr' ? (
+                              "Nous relions les installations physiques aux campagnes digitales et aux contenus sociaux partageables, créant un parcours unifié qui déploie l'impact de l'expérience boutique bien au-delà de ses murs."
+                            ) : (
+                              "Conectamos instalaciones físicas con campañas digitales y contenido en redes sociales, creando un recorrido unificado que expande el impacto del retail más allá de la tienda."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Louis Vuitton Section 7: The Vision */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage(lvTheVisionImage)}
+                        >
+                          <SubtleMotionImage 
+                            src={lvTheVisionImage} 
+                            alt="Louis Vuitton The Vision — Spatial & Retail Atmosphere"
+                            cinematic={true}
+                          />
+                        </div>
+
+                        <div className="max-w-3xl space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
+                            {lang === 'en' ? 'The Vision' : lang === 'fr' ? 'La Vision' : 'La Visión'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Create more than a shopping experience. Build a world of discovery, exclusivity, and cultural relevance that keeps customers connected to the brand."
+                            ) : lang === 'fr' ? (
+                              "Créer bien plus qu'une expérience d'achat. Bâtir un univers de découverte, d'exclusivité et de pertinence culturelle qui lie durablement les clients à la maison."
+                            ) : (
+                              "Crear más que una experiencia de compra. Construir un mundo de descubrimiento, exclusividad y relevancia cultural que mantenga a los clientes conectados a la marca."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  ) : selectedProject.title === "NIKE SOHO pop up store design" ? (
                     <>
                       {/* Nike SoHo Section 1: Cinematic Storefront & Environmental Graphics */}
                       <div className="space-y-12">
@@ -6518,6 +6903,34 @@ export default function App() {
                           </p>
                         </div>
                       </div>
+
+                      {/* Edere Restaurant Section 12: Roman Architectural Restroom & Veni Vidi Vici Basin */}
+                      <div className="space-y-12 mb-24 md:mb-40">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9] shadow-sm relative group"
+                          onClick={() => setFullscreenImage(edereVeniVidiVici)}
+                        >
+                          <SubtleMotionImage 
+                            src={edereVeniVidiVici} 
+                            alt="Edere Restaurant Roman Architectural Restroom — Veni, Vidi, Vici Fountain & Vanity"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
+                            {lang === 'en' ? 'Architectural Interior & Roman Heritage' : lang === 'fr' ? 'Architecture Intérieure & Héritage Romain' : 'Arquitectura Interior y Herencia Romana'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Veni, Vidi, Vici: Seamlessly intertwining Rome's classical antiquity with brutalist modern luxury. A hand-carved imperial marble bust doubles as an active fountain spout, anchoring a monolithic floating Nero Marquina vanity wall."
+                            ) : lang === 'fr' ? (
+                              "Veni, Vidi, Vici : Fusionner l'antiquité romaine classique avec le luxe moderne brutaliste. Un buste impérial en marbre sculpté fait office de fontaine au-dessus d'une vasque monolithique suspendue en marbre Nero Marquina."
+                            ) : (
+                              "Veni, Vidi, Vici: Fusionando la antigüedad clásica romana con el lujo moderno brutalista. Un busto imperial de mármol esculpido a mano funciona como fuente activa sobre un lavabo flotante monolítico de mármol Nero Marquina."
+                            )}
+                          </p>
+                        </div>
+                      </div>
                     </>
                   ) : selectedProject.title === "Integrated Marketing Campaign" ? (
                     <>
@@ -6812,7 +7225,7 @@ export default function App() {
                 </div>
               </main>
 
-              <footer className="px-6 md:px-12 py-12 border-t border-black/10 flex flex-col md:flex-row justify-between items-center gap-6">
+              <footer className={`px-6 md:px-12 py-12 border-t ${isLvProject ? 'border-white/10 text-white' : 'border-black/10 text-black'} flex flex-col md:flex-row justify-between items-center gap-6`}>
                 <div className="flex-1 flex justify-start w-full md:w-auto">
                   <button 
                     onClick={() => setSelectedProject(null)}
@@ -6827,25 +7240,25 @@ export default function App() {
                     href="https://www.instagram.com/onecx2026/" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="group p-2.5 border border-black/10 rounded-full hover:border-black hover:bg-black/5 transition-all inline-flex items-center justify-center bg-white"
+                    className={`group p-2.5 border ${isLvProject ? 'border-white/10 hover:border-white hover:bg-white/10 bg-transparent' : 'border-black/10 hover:border-black hover:bg-black/5 bg-white'} rounded-full transition-all inline-flex items-center justify-center`}
                     title="Instagram"
                   >
-                    <Instagram className="w-5 h-5 text-black/60 group-hover:text-black transition-colors" />
+                    <Instagram className={`w-5 h-5 ${isLvProject ? 'text-white/70 group-hover:text-white' : 'text-black/60 group-hover:text-black'} transition-colors`} />
                   </a>
 
                   <button 
                     onClick={() => {
                       document.getElementById("project-modal")?.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className="group p-2.5 border border-black/10 rounded-full hover:border-black hover:bg-black/5 transition-all inline-flex items-center justify-center bg-white"
+                    className={`group p-2.5 border ${isLvProject ? 'border-white/10 hover:border-white hover:bg-white/10 bg-transparent' : 'border-black/10 hover:border-black hover:bg-black/5 bg-white'} rounded-full transition-all inline-flex items-center justify-center`}
                     title={lang === 'en' ? "Back to top" : lang === 'fr' ? "Retour en haut" : "Volver arriba"}
                   >
-                    <ChevronUp className="w-5 h-5 text-black/60 group-hover:text-black transition-colors" />
+                    <ChevronUp className={`w-5 h-5 ${isLvProject ? 'text-white/70 group-hover:text-white' : 'text-black/60 group-hover:text-black'} transition-colors`} />
                   </button>
                 </div>
 
                 <div className="flex-1 flex justify-end w-full md:w-auto">
-                  <div className="text-[10px] uppercase tracking-[0.4em] font-bold text-black/20 text-center md:text-right w-full">
+                  <div className={`text-[10px] uppercase tracking-[0.4em] font-bold ${isLvProject ? 'text-white/30' : 'text-black/20'} text-center md:text-right w-full`}>
                     oneup © 2025 {lang === 'en' ? 'Graphic Design & Marketing Studio' : 'Studio de design / Atelier de création'}
                   </div>
                 </div>
