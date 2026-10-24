@@ -80,6 +80,8 @@ const lvBagSculpture2 = "/lv_bag_sculpture_2.jpg";
 const lvBagsDuo = "/lv_bags_duo.jpg";
 const lvTheVisionImage = "/lv_the_vision.gif";
 const lvTheVisionPoster = "/lv_the_vision_poster.png";
+const lvRotundaVitrine = "/lv_rotunda_vitrine.png";
+const lvMonumentalAtriumSculpture = "/lv_monumental_atrium_sculpture.png";
 
 const lvDriveAssets = [
   {
@@ -491,6 +493,10 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = lvRetailHeroPng;
         } else if (src && (src.includes("Screen_Shot_2026-10-23_at_5.03.41") || src.includes("25b463be"))) {
           (e.currentTarget as HTMLImageElement).src = lvScreenshot4Links;
+        } else if (src && (src.includes("lv_rotunda_vitrine") || src.includes("6bfd6aee"))) {
+          (e.currentTarget as HTMLImageElement).src = lvRotundaVitrine;
+        } else if (src && (src.includes("lv_monumental_atrium_sculpture") || src.includes("4515ea51"))) {
+          (e.currentTarget as HTMLImageElement).src = lvMonumentalAtriumSculpture;
         } else if (src && src.includes("1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x")) {
           (e.currentTarget as HTMLImageElement).src = "/insurly_airport_pillar.png";
         } else if (src && src.includes("1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR")) {
@@ -1354,6 +1360,10 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
             const target = e.currentTarget as HTMLImageElement;
             if (src && src.includes("bubbles_vitrine")) {
               target.src = "/lv_usa_bubbles_vitrine.png";
+            } else if (src && (src.includes("lv_rotunda_vitrine") || src.includes("6bfd6aee"))) {
+              target.src = "/lv_rotunda_vitrine.png";
+            } else if (src && (src.includes("lv_monumental_atrium_sculpture") || src.includes("4515ea51"))) {
+              target.src = "/lv_monumental_atrium_sculpture.png";
             } else if (src && (src.includes("76f4f8bd") || src.includes("5.29.22"))) {
               target.src = "/lv_usa_proposal_link_1.png";
             } else if (src && (src.includes("5d35f842") || src.includes("5.34.07"))) {
@@ -2298,6 +2308,8 @@ export default function App() {
         lvBagSculpture1,
         lvBagSculpture2,
         lvBagsDuo,
+        lvMonumentalAtriumSculpture,
+        lvRotundaVitrine,
         lvAtriumVitrinePng,
         lvPrivilegeCardPng,
         lvRetailHeroWebp,
@@ -2507,7 +2519,7 @@ export default function App() {
     let currentIndex = images.indexOf(fullscreenImage);
     if (currentIndex === -1) {
       const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
-      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')) || (fullscreenImage.includes('lv_experience_1') && img.includes('lv_experience_1')) || (fullscreenImage.includes('1xth8EQwQoAuy') && img.includes('lv_experience_1')) || (fullscreenImage.includes('lv_atrium_vitrine') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('1DElMyHbexJxiiYXiqlgC5RCec7YvockZ') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('128aa7cc') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('lv_privilege_card') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('ec5b908e') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('lv_retail_experience') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('25b463be') && img.includes('25b463be')));
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')) || (fullscreenImage.includes('lv_experience_1') && img.includes('lv_experience_1')) || (fullscreenImage.includes('1xth8EQwQoAuy') && img.includes('lv_experience_1')) || (fullscreenImage.includes('lv_atrium_vitrine') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('1DElMyHbexJxiiYXiqlgC5RCec7YvockZ') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('128aa7cc') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('lv_privilege_card') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('ec5b908e') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('lv_retail_experience') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('25b463be') && img.includes('25b463be')) || (fullscreenImage.includes('lv_monumental_atrium_sculpture') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('4515ea51') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('lv_rotunda_vitrine') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('6bfd6aee') && img.includes('lv_rotunda_vitrine')));
     }
     const nextIndex = ((currentIndex >= 0 ? currentIndex : 0) + 1) % images.length;
     setFullscreenImage(images[nextIndex]);
@@ -2519,7 +2531,7 @@ export default function App() {
     let currentIndex = images.indexOf(fullscreenImage);
     if (currentIndex === -1) {
       const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
-      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')) || (fullscreenImage.includes('lv_experience_1') && img.includes('lv_experience_1')) || (fullscreenImage.includes('1xth8EQwQoAuy') && img.includes('lv_experience_1')) || (fullscreenImage.includes('lv_atrium_vitrine') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('1DElMyHbexJxiiYXiqlgC5RCec7YvockZ') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('128aa7cc') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('lv_privilege_card') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('ec5b908e') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('lv_retail_experience') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('25b463be') && img.includes('25b463be')));
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')) || (fullscreenImage.includes('lv_experience_1') && img.includes('lv_experience_1')) || (fullscreenImage.includes('1xth8EQwQoAuy') && img.includes('lv_experience_1')) || (fullscreenImage.includes('lv_atrium_vitrine') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('1DElMyHbexJxiiYXiqlgC5RCec7YvockZ') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('128aa7cc') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('lv_privilege_card') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('ec5b908e') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('lv_retail_experience') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('25b463be') && img.includes('25b463be')) || (fullscreenImage.includes('lv_monumental_atrium_sculpture') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('4515ea51') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('lv_rotunda_vitrine') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('6bfd6aee') && img.includes('lv_rotunda_vitrine')));
     }
     const prevIndex = ((currentIndex >= 0 ? currentIndex : 0) - 1 + images.length) % images.length;
     setFullscreenImage(images[prevIndex]);
@@ -3641,7 +3653,65 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Louis Vuitton Section 4: Spatial Architecture & Parisian Atrium Vitrine */}
+                      {/* Louis Vuitton Section 4: Monumental Neoclassical Atrium Installation */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage(lvMonumentalAtriumSculpture)}
+                        >
+                          <SubtleMotionImage 
+                            src={lvMonumentalAtriumSculpture} 
+                            alt="Louis Vuitton Monumental Neoclassical Atrium Keepall Sculpture with Dripping Pigment"
+                            cinematic={true}
+                          />
+                        </div>
+
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
+                            {lang === 'en' ? 'Monumental Atrium Centerpiece' : lang === 'fr' ? 'Pièce Maîtresse d\'Atrium Monumental' : 'Pieza Central de Atrio Monumental'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Neoclassical Grandeur Meets Raw Contemporary Expression: Anchoring the multi-level flagship grand hall beneath a soaring skylight, a colossal sculpted white Keepall duffle commands the marble colonnade—drenched in kinetic cascades of vibrant blue, magenta, and yellow pigment that bleed onto the atrium floor."
+                            ) : lang === 'fr' ? (
+                              "Quand la grandeur néoclassique rencontre l'expression contemporaine brute : au cœur du grand hall à colonnades sous verrière, une sculpture monumentale du Keepall blanc domine l'espace, submergée de coulures de pigments vifs bleu, magenta et jaune se propageant sur le marbre."
+                            ) : (
+                              "La grandeza neoclásica se encuentra con la expresión contemporánea: dominando el atrio principal bajo una claraboya, una escultura colosal del Keepall blanco preside la columnata de mármol con cascadas cinéticas de pigmentos azul, magenta y amarillo."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Louis Vuitton Section 5: Rotunda Gallery & Kinetic Vitrine Architecture */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
+                          onClick={() => setFullscreenImage(lvRotundaVitrine)}
+                        >
+                          <SubtleMotionImage 
+                            src={lvRotundaVitrine} 
+                            alt="Louis Vuitton Rotunda Gallery Vitrine with Kinetic Swirling Pigment Ribbons"
+                            cinematic={true}
+                          />
+                        </div>
+
+                        <div className="max-w-3xl">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
+                            {lang === 'en' ? 'Rotunda Gallery & Vitrine Architecture' : lang === 'fr' ? 'Galerie Rotonde & Architecture de Vitrine' : 'Galería Rotonda y Arquitectura de Vitrinas'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Rotunda Spatial Vitrine: A circular museum-grade exhibition gallery framed by mezzanine balconies. At its epicenter, an illuminated glass vitrine presents a suspended Keepall embraced by kinetic, three-dimensional swirls of sculpted acrylic ribbon—creating a 360-degree experiential discovery for flagship patrons."
+                            ) : lang === 'fr' ? (
+                              "Vitrine Spatiale en Rotonde : Une galerie d'exposition circulaire muséale encadrée de coursives. En son centre, un cube de verre rétroéclairé présente un Keepall en lévitation enveloppé de rubans de pigments sculptés, offrant une découverte à 360 degrés aux visiteurs du flagship."
+                            ) : (
+                              "Vitrina Espacial en Rotonda: Una galería circular de exhibición museística enmarcada por balcones. En su epicentro, una vitrina de cristal iluminada presenta un Keepall suspendido envuelto en lazos tridimensionales de pigmento acrílico, creando una experiencia inmersiva de 360 grados."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Louis Vuitton Section 6: Spatial Architecture & Parisian Atrium Vitrine */}
                       <div className="space-y-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
@@ -3670,7 +3740,7 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Louis Vuitton Section 5: Brand Excellence & Customer Retention (Reversed 2-Column Grid) */}
+                      {/* Louis Vuitton Section 7: Brand Excellence & Customer Retention (Reversed 2-Column Grid) */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-[16/10] order-2 md:order-1"
@@ -3698,7 +3768,7 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Louis Vuitton Section 6: Integrated Experimental Marketing */}
+                      {/* Louis Vuitton Section 8: Integrated Experimental Marketing */}
                       <div className="space-y-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
@@ -3727,7 +3797,7 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Louis Vuitton Section 7: The Vision */}
+                      {/* Louis Vuitton Section 9: The Vision */}
                       <div className="space-y-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
