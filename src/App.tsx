@@ -84,6 +84,7 @@ const lvTheVisionImage = "/lv_the_vision.gif";
 const lvTheVisionPoster = "/lv_the_vision_poster.png";
 const lvRotundaVitrine = "/lv_rotunda_vitrine.png";
 const lvMonumentalAtriumSculpture = "/lv_monumental_atrium_sculpture.png";
+const lvFlagshipCornerBillboard = "/lv_flagship_corner_billboard.png";
 
 const lvDriveAssets = [
   {
@@ -499,6 +500,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = lvRotundaVitrine;
         } else if (src && (src.includes("lv_monumental_atrium_sculpture") || src.includes("4515ea51"))) {
           (e.currentTarget as HTMLImageElement).src = lvMonumentalAtriumSculpture;
+        } else if (src && (src.includes("lv_flagship_corner_billboard") || src.includes("1JSlLlV19yJECw7y7Hc3") || src.includes("4bde2245"))) {
+          (e.currentTarget as HTMLImageElement).src = lvFlagshipCornerBillboard;
         } else if (src && src.includes("1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x")) {
           (e.currentTarget as HTMLImageElement).src = "/insurly_airport_pillar.png";
         } else if (src && src.includes("1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR")) {
@@ -740,6 +743,8 @@ const SubtleVideoMotionImage = ({
             (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_10.png";
           } else if (src && src.includes("nike_soho_asset_13")) {
             (e.currentTarget as HTMLImageElement).src = "/nike_soho_asset_13.png";
+          } else if (src && (src.includes("lv_flagship_corner_billboard") || src.includes("1JSlLlV19yJECw7y7Hc3") || src.includes("4bde2245"))) {
+            (e.currentTarget as HTMLImageElement).src = "/lv_flagship_corner_billboard.png";
           }
         }}
         initial={{ scale: 1.05 + scaleOffset, x: "-1%", y: `${yOffset - 0.8}%` }}
@@ -1368,6 +1373,8 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/lv_rotunda_vitrine.png";
             } else if (src && (src.includes("lv_monumental_atrium_sculpture") || src.includes("4515ea51"))) {
               target.src = "/lv_monumental_atrium_sculpture.png";
+            } else if (src && (src.includes("lv_flagship_corner_billboard") || src.includes("1JSlLlV19yJECw7y7Hc3") || src.includes("4bde2245"))) {
+              target.src = "/lv_flagship_corner_billboard.png";
             } else if (src && (src.includes("76f4f8bd") || src.includes("5.29.22"))) {
               target.src = "/lv_usa_proposal_link_1.png";
             } else if (src && (src.includes("5d35f842") || src.includes("5.34.07"))) {
@@ -2319,7 +2326,8 @@ export default function App() {
         lvAtriumVitrinePng,
         lvPrivilegeCardPng,
         lvRetailHeroWebp,
-        lvTheVisionImage
+        lvTheVisionImage,
+        lvFlagshipCornerBillboard
       ];
     }
     if (project.title === "NIKE SOHO pop up store design") {
@@ -2526,7 +2534,7 @@ export default function App() {
     let currentIndex = images.indexOf(fullscreenImage);
     if (currentIndex === -1) {
       const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
-      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('edere_interior_experience_concept') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('9c0bc4ee') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')) || (fullscreenImage.includes('lv_experience_1') && img.includes('lv_experience_1')) || (fullscreenImage.includes('1xth8EQwQoAuy') && img.includes('lv_experience_1')) || (fullscreenImage.includes('lv_atrium_vitrine') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('1DElMyHbexJxiiYXiqlgC5RCec7YvockZ') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('128aa7cc') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('lv_privilege_card') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('ec5b908e') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('lv_retail_experience') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('25b463be') && img.includes('25b463be')) || (fullscreenImage.includes('lv_monumental_atrium_sculpture') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('4515ea51') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('lv_rotunda_vitrine') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('6bfd6aee') && img.includes('lv_rotunda_vitrine')));
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('edere_interior_experience_concept') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('9c0bc4ee') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')) || (fullscreenImage.includes('lv_experience_1') && img.includes('lv_experience_1')) || (fullscreenImage.includes('1xth8EQwQoAuy') && img.includes('lv_experience_1')) || (fullscreenImage.includes('lv_atrium_vitrine') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('1DElMyHbexJxiiYXiqlgC5RCec7YvockZ') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('128aa7cc') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('lv_privilege_card') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('ec5b908e') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('lv_retail_experience') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('25b463be') && img.includes('25b463be')) || (fullscreenImage.includes('lv_monumental_atrium_sculpture') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('4515ea51') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('lv_rotunda_vitrine') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('6bfd6aee') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('lv_flagship_corner_billboard') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('4bde2245') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('1JSlLlV19yJECw7y7Hc3') && img.includes('lv_flagship_corner_billboard')));
     }
     const nextIndex = ((currentIndex >= 0 ? currentIndex : 0) + 1) % images.length;
     setFullscreenImage(images[nextIndex]);
@@ -2538,7 +2546,7 @@ export default function App() {
     let currentIndex = images.indexOf(fullscreenImage);
     if (currentIndex === -1) {
       const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
-      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('edere_interior_experience_concept') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('9c0bc4ee') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')) || (fullscreenImage.includes('lv_experience_1') && img.includes('lv_experience_1')) || (fullscreenImage.includes('1xth8EQwQoAuy') && img.includes('lv_experience_1')) || (fullscreenImage.includes('lv_atrium_vitrine') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('1DElMyHbexJxiiYXiqlgC5RCec7YvockZ') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('128aa7cc') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('lv_privilege_card') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('ec5b908e') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('lv_retail_experience') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('25b463be') && img.includes('25b463be')) || (fullscreenImage.includes('lv_monumental_atrium_sculpture') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('4515ea51') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('lv_rotunda_vitrine') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('6bfd6aee') && img.includes('lv_rotunda_vitrine')));
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('edere_interior_experience_concept') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('9c0bc4ee') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')) || (fullscreenImage.includes('lv_experience_1') && img.includes('lv_experience_1')) || (fullscreenImage.includes('1xth8EQwQoAuy') && img.includes('lv_experience_1')) || (fullscreenImage.includes('lv_atrium_vitrine') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('1DElMyHbexJxiiYXiqlgC5RCec7YvockZ') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('128aa7cc') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('lv_privilege_card') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('ec5b908e') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('lv_retail_experience') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('25b463be') && img.includes('25b463be')) || (fullscreenImage.includes('lv_monumental_atrium_sculpture') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('4515ea51') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('lv_rotunda_vitrine') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('6bfd6aee') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('lv_flagship_corner_billboard') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('4bde2245') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('1JSlLlV19yJECw7y7Hc3') && img.includes('lv_flagship_corner_billboard')));
     }
     const prevIndex = ((currentIndex >= 0 ? currentIndex : 0) - 1 + images.length) % images.length;
     setFullscreenImage(images[prevIndex]);
@@ -3828,6 +3836,35 @@ export default function App() {
                               "Créer bien plus qu'une expérience d'achat. Bâtir un univers de découverte, d'exclusivité et de pertinence culturelle qui lie durablement les clients à la maison."
                             ) : (
                               "Crear más que una experiencia de compra. Construir un mundo de descubrimiento, exclusividad y relevancia cultural que mantenga a los clientes conectados a la marca."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Louis Vuitton Section 10: 3D Corner Digital Billboard & Flagship Presence */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9] shadow-sm relative group"
+                          onClick={() => setFullscreenImage(lvFlagshipCornerBillboard)}
+                        >
+                          <SubtleVideoMotionImage 
+                            src={lvFlagshipCornerBillboard} 
+                            alt="Louis Vuitton 3D Corner Digital Billboard & Flagship Architectural Integration"
+                            tag={null}
+                          />
+                        </div>
+
+                        <div className="max-w-3xl space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
+                            {lang === 'en' ? 'Urban Presence & 3D Anamorphic Billboard' : lang === 'fr' ? 'Présence Urbaine & Écran 3D Anamorphique' : 'Presencia Urbana y Valla Digital 3D Anamórfica'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Monumental Urban Presence: Extending the brand experience to the streets with an iconic wrap-around 3D anamorphic digital billboard above the Louis Vuitton flagship store. Dynamic kinetic splashes and sculpted Keepall visuals bridge high fashion with urban street culture."
+                            ) : lang === 'fr' ? (
+                              "Présence Urbaine Monumentale : Prolonger l'expérience de la maison au cœur de la ville grâce à un écran géant 3D anamorphique en angle au-dessus du flagship Louis Vuitton, alliant haute couture et culture urbaine contemporaine."
+                            ) : (
+                              "Presencia Urbana Monumental: Extendiendo la experiencia de la marca a las calles con una icónica valla digital 3D anamórfica sobre la tienda insignia de Louis Vuitton, uniendo la alta costura con la cultura urbana."
                             )}
                           </p>
                         </div>
