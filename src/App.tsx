@@ -3934,6 +3934,7 @@ export default function App() {
                             src={lvOmnichannelMobileBillboard} 
                             alt="Louis Vuitton Phygital Commerce & Mobile Drop Activation with 3D Billboard"
                             cinematic={true}
+                            className="scale-[1.03] -translate-y-1.5 md:-translate-y-2.5"
                           />
                         </div>
 
