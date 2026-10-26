@@ -3802,8 +3802,8 @@ export default function App() {
                           />
                         </div>
 
-                        <div className="max-w-3xl">
-                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block mb-6">
+                        <div className="max-w-3xl space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
                             {lang === 'en' ? 'Integrated Experimental Marketing' : lang === 'fr' ? 'Marketing Expérientiel Intégré' : 'Marketing Experimental Integrado'}
                           </span>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
@@ -3815,6 +3815,36 @@ export default function App() {
                               "Conectamos instalaciones físicas con campañas digitales y contenido en redes sociales, creando un recorrido unificado que expande el impacto del retail más allá de la tienda."
                             )}
                           </p>
+
+                          {/* ONE Biodegradable Zero Emission Packaging Link */}
+                          <div className="pt-2">
+                            <a 
+                              href="https://www.onebio.shop/" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="inline-flex items-center gap-3 group text-base text-black/60 hover:text-accent font-light border-b border-black/10 hover:border-accent pb-1 transition-all"
+                            >
+                              <img 
+                                src="https://lh3.googleusercontent.com/d/1FFUL1WsEw6OslEg-mizcFWSC4-e8lpqd" 
+                                alt="ONE Biodegradable Logo" 
+                                referrerPolicy="no-referrer"
+                                onError={(e) => {
+                                  (e.currentTarget as HTMLImageElement).src = "/one_biodegradable_logo.png";
+                                }}
+                                className="w-16 h-16 object-contain shrink-0 transition-transform duration-500 ease-out group-hover:scale-110 group-hover:-rotate-3 group-hover:-translate-y-0.5"
+                              />
+                              <span>
+                                {lang === 'en' ? (
+                                  "All packaging materials for Louis Vuitton were printed by ONE Biodegradable Zero Emission Packaging"
+                                ) : lang === 'fr' ? (
+                                  "Tous les matériaux d'emballage de Louis Vuitton ont été imprimés par ONE Biodegradable Zero Emission Packaging"
+                                ) : (
+                                  "Todos los materiales de embalaje de Louis Vuitton fueron impresos por ONE Biodegradable Zero Emission Packaging"
+                                )}
+                              </span>
+                              <ArrowUpRight className="w-4 h-4 text-black/40 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                            </a>
+                          </div>
                         </div>
 
                         {/* Retail Packaging & Omnichannel Shopping Bags */}
