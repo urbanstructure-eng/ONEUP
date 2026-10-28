@@ -42,6 +42,8 @@ const edereInteriorExperienceConceptPoster = "/edere_interior_experience_concept
 const insurlyAirportPillar = "https://lh3.googleusercontent.com/d/1wHF5LMytHpcJ4F8etErh7EmYdILEVh-x";
 const padeluxOnePackaging = "https://lh3.googleusercontent.com/d/1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR";
 const padeluxCourtAmenity = "/padelux_court_amenity.png";
+const padeluxAsset11 = "/padelux_asset_11.png";
+const padeluxAsset12 = "/padelux_asset_12.png";
 const retailDisplayUnitSketch = "/retail_display_unit_sketch.png";
 const atelierTicketTurnstile = "https://lh3.googleusercontent.com/d/1NSflxMizq6EJQtnDxaypyCV3bsvoDWp-";
 const atelierParisianBillboard = "https://lh3.googleusercontent.com/d/170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0";
@@ -512,6 +514,10 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = "/insurly_airport_pillar.png";
         } else if (src && src.includes("1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR")) {
           (e.currentTarget as HTMLImageElement).src = "/padelux_one_packaging.png";
+        } else if (src && (src.includes("padelux_asset_11") || src.includes("1dByrVFpxINTZ6Mj_isEAq4KeSjKzNlCy") || src.includes("1dByrVFpxINTZ6Mj_isEAq4KeSjKzNICy"))) {
+          (e.currentTarget as HTMLImageElement).src = padeluxAsset11;
+        } else if (src && (src.includes("padelux_asset_12") || src.includes("13eg32nDTWO3Y7uIn9knVSi3i4TX2IkAZ") || src.includes("13eg32nDTWO3Y7uln9knVSi3i4TX2lkAZ"))) {
+          (e.currentTarget as HTMLImageElement).src = padeluxAsset12;
         } else if (src && src.includes("1NSflxMizq6EJQtnDxaypyCV3bsvoDWp-")) {
           (e.currentTarget as HTMLImageElement).src = "/atelier_dart_ticket.png";
         } else if (src && (src.includes("170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0") || src.includes("atelier_dart_parisian_billboard"))) {
@@ -1399,6 +1405,10 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/insurly_airport_pillar.png";
             } else if (src && src.includes("1jpSsqkP5rwe_1H9ZcxeVUTP9JWtyhgUR")) {
               target.src = "/padelux_one_packaging.png";
+            } else if (src && (src.includes("padelux_asset_11") || src.includes("1dByrVFpxINTZ6Mj_isEAq4KeSjKzNlCy") || src.includes("1dByrVFpxINTZ6Mj_isEAq4KeSjKzNICy"))) {
+              target.src = "/padelux_asset_11.png";
+            } else if (src && (src.includes("padelux_asset_12") || src.includes("13eg32nDTWO3Y7uIn9knVSi3i4TX2IkAZ") || src.includes("13eg32nDTWO3Y7uln9knVSi3i4TX2lkAZ"))) {
+              target.src = "/padelux_asset_12.png";
             } else if (src && (src.includes("170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0") || src.includes("atelier_dart_parisian_billboard"))) {
               target.src = "/atelier_dart_parisian_billboard.png";
             } else if (src && (src.includes("1OdXpfPKbeK969KWK2sTD3yVBn7Lh9Gwh") || src.includes("voltique_smart_cards"))) {
@@ -2404,7 +2414,9 @@ export default function App() {
         padeluxCourtAmenity,
         "https://lh3.googleusercontent.com/d/1Rnad3hTvqrKQCbcPPklfr2Qe6lOVPKqr",
         "https://lh3.googleusercontent.com/d/1D1d7VFqv7vsAjrPMwZAVlxNYHAkEWvsv",
-        "https://lh3.googleusercontent.com/d/1PGGL6aKGts05H98M-r4Sn4ltEJVQMQ53"
+        "https://lh3.googleusercontent.com/d/1PGGL6aKGts05H98M-r4Sn4ltEJVQMQ53",
+        padeluxAsset11,
+        padeluxAsset12
       ];
     }
     if (project.title === "Voltique") {
@@ -2546,7 +2558,7 @@ export default function App() {
     let currentIndex = images.indexOf(fullscreenImage);
     if (currentIndex === -1) {
       const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
-      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('edere_interior_experience_concept') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('9c0bc4ee') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')) || (fullscreenImage.includes('lv_experience_1') && img.includes('lv_experience_1')) || (fullscreenImage.includes('1xth8EQwQoAuy') && img.includes('lv_experience_1')) || (fullscreenImage.includes('lv_atrium_vitrine') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('1DElMyHbexJxiiYXiqlgC5RCec7YvockZ') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('128aa7cc') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('lv_privilege_card') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('ec5b908e') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('lv_retail_experience') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('25b463be') && img.includes('25b463be')) || (fullscreenImage.includes('lv_monumental_atrium_sculpture') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('4515ea51') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('lv_rotunda_vitrine') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('6bfd6aee') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('lv_flagship_corner_billboard') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('4bde2245') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('1JSlLlV19yJECw7y7Hc3') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('lv_packaging_shopping_bags') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('b6f0d522') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('1ldju6Qe0') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('lv_omnichannel_mobile_billboard') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('4ace0732') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('1xGQn7To6hx12Yz8ylUAnWHYCYASSEGwj') && img.includes('lv_omnichannel_mobile_billboard')));
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('edere_interior_experience_concept') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('9c0bc4ee') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')) || (fullscreenImage.includes('lv_experience_1') && img.includes('lv_experience_1')) || (fullscreenImage.includes('1xth8EQwQoAuy') && img.includes('lv_experience_1')) || (fullscreenImage.includes('lv_atrium_vitrine') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('1DElMyHbexJxiiYXiqlgC5RCec7YvockZ') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('128aa7cc') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('lv_privilege_card') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('ec5b908e') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('lv_retail_experience') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('25b463be') && img.includes('25b463be')) || (fullscreenImage.includes('lv_monumental_atrium_sculpture') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('4515ea51') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('lv_rotunda_vitrine') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('6bfd6aee') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('lv_flagship_corner_billboard') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('4bde2245') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('1JSlLlV19yJECw7y7Hc3') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('lv_packaging_shopping_bags') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('b6f0d522') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('1ldju6Qe0') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('lv_omnichannel_mobile_billboard') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('4ace0732') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('1xGQn7To6hx12Yz8ylUAnWHYCYASSEGwj') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('padelux_asset_11') && img.includes('padelux_asset_11')) || (fullscreenImage.includes('padelux_asset_12') && img.includes('padelux_asset_12')) || (fullscreenImage.includes('1dByrVFpx') && img.includes('padelux_asset_11')) || (fullscreenImage.includes('13eg32nDTWO') && img.includes('padelux_asset_12')));
     }
     const nextIndex = ((currentIndex >= 0 ? currentIndex : 0) + 1) % images.length;
     setFullscreenImage(images[nextIndex]);
@@ -2558,7 +2570,7 @@ export default function App() {
     let currentIndex = images.indexOf(fullscreenImage);
     if (currentIndex === -1) {
       const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
-      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('edere_interior_experience_concept') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('9c0bc4ee') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')) || (fullscreenImage.includes('lv_experience_1') && img.includes('lv_experience_1')) || (fullscreenImage.includes('1xth8EQwQoAuy') && img.includes('lv_experience_1')) || (fullscreenImage.includes('lv_atrium_vitrine') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('1DElMyHbexJxiiYXiqlgC5RCec7YvockZ') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('128aa7cc') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('lv_privilege_card') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('ec5b908e') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('lv_retail_experience') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('25b463be') && img.includes('25b463be')) || (fullscreenImage.includes('lv_monumental_atrium_sculpture') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('4515ea51') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('lv_rotunda_vitrine') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('6bfd6aee') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('lv_flagship_corner_billboard') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('4bde2245') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('1JSlLlV19yJECw7y7Hc3') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('lv_packaging_shopping_bags') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('b6f0d522') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('1ldju6Qe0') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('lv_omnichannel_mobile_billboard') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('4ace0732') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('1xGQn7To6hx12Yz8ylUAnWHYCYASSEGwj') && img.includes('lv_omnichannel_mobile_billboard')));
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('edere_interior_experience_concept') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('9c0bc4ee') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')) || (fullscreenImage.includes('lv_experience_1') && img.includes('lv_experience_1')) || (fullscreenImage.includes('1xth8EQwQoAuy') && img.includes('lv_experience_1')) || (fullscreenImage.includes('lv_atrium_vitrine') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('1DElMyHbexJxiiYXiqlgC5RCec7YvockZ') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('128aa7cc') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('lv_privilege_card') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('ec5b908e') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('lv_retail_experience') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('25b463be') && img.includes('25b463be')) || (fullscreenImage.includes('lv_monumental_atrium_sculpture') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('4515ea51') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('lv_rotunda_vitrine') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('6bfd6aee') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('lv_flagship_corner_billboard') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('4bde2245') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('1JSlLlV19yJECw7y7Hc3') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('lv_packaging_shopping_bags') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('b6f0d522') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('1ldju6Qe0') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('lv_omnichannel_mobile_billboard') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('4ace0732') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('1xGQn7To6hx12Yz8ylUAnWHYCYASSEGwj') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('padelux_asset_11') && img.includes('padelux_asset_11')) || (fullscreenImage.includes('padelux_asset_12') && img.includes('padelux_asset_12')) || (fullscreenImage.includes('1dByrVFpx') && img.includes('padelux_asset_11')) || (fullscreenImage.includes('13eg32nDTWO') && img.includes('padelux_asset_12')));
     }
     const prevIndex = ((currentIndex >= 0 ? currentIndex : 0) - 1 + images.length) % images.length;
     setFullscreenImage(images[prevIndex]);
@@ -5294,7 +5306,7 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Section 9: Architectural Balance (Final) */}
+                      {/* Section 9: Architectural Balance */}
                       <div className="space-y-12">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9]"
@@ -5305,6 +5317,62 @@ export default function App() {
                             alt="Padelux Architectural Balance"
                             cinematic={true}
                           />
+                        </div>
+                      </div>
+
+                      {/* Section 10: Spatial Sanctuary & Court Architecture */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9] shadow-sm relative group"
+                          onClick={() => setFullscreenImage(padeluxAsset11)}
+                        >
+                          <SubtleMotionImage 
+                            src={padeluxAsset11} 
+                            alt="Padelux Spatial Sanctuary & Court Architecture"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'Spatial Sanctuary' : lang === 'fr' ? 'Sanctuaire Spatial' : 'Santuario Espacial'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Spatial Sanctuary: Architectural purity and athletic precision meet in harmony—defining high-performance glass-enclosed courts with warm, tactile architectural timber and understated luxury."
+                            ) : lang === 'fr' ? (
+                              "Sanctuaire Spatial : Pureté architecturale et précision athlétique s'unissent pour définir des courts vitrés haute performance aux finitions bois chaleureuses."
+                            ) : (
+                              "Santuario Espacial: La pureza arquitectónica y la precisión atlética se unen en armonía, definiendo canchas de alto rendimiento con maderas cálidas y lujo sutil."
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Section 11: Atmospheric Presence & Material Harmony (Final) */}
+                      <div className="space-y-12">
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl aspect-video md:aspect-[21/9] shadow-sm relative group"
+                          onClick={() => setFullscreenImage(padeluxAsset12)}
+                        >
+                          <SubtleMotionImage 
+                            src={padeluxAsset12} 
+                            alt="Padelux Atmospheric Presence & Material Harmony"
+                            cinematic={true}
+                          />
+                        </div>
+                        <div className="max-w-3xl space-y-6">
+                          <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                            {lang === 'en' ? 'Atmospheric Presence' : lang === 'fr' ? 'Présence Atmosphérique' : 'Presencia Atmosférica'}
+                          </span>
+                          <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
+                            {lang === 'en' ? (
+                              "Atmospheric Presence: A cohesive dialogue between brutalist raw concrete textures, refined bronze details, and soft daylight illumination across the club grounds."
+                            ) : lang === 'fr' ? (
+                              "Présence Atmosphérique : Un dialogue cohérent entre textures brutes, détails en bronze raffinés et lumière naturelle douce à travers les espaces du club."
+                            ) : (
+                              "Presencia Atmosférica: Un diálogo coherente entre texturas de hormigón visto, detalles en bronce refinado y suave luz natural en las instalaciones del club."
+                            )}
+                          </p>
                         </div>
                       </div>
                     </>
