@@ -70,6 +70,7 @@ const nikeSohoAsset12 = "/nike_soho_asset_12.png";
 const nikeSohoAsset13 = "/nike_soho_asset_13.png";
 const nikeSohoAsset14 = "/nike_soho_self_checkout_sign.png";
 const nikeSohoAsset15 = "/nike_soho_turnstile_gate.png";
+const nikeSohoQuickPickBoxes = "/nike_soho_quick_pick_boxes.gif";
 const nikeSohoRetailSpace = "https://lh3.googleusercontent.com/d/1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd";
 const nikeSohoRetailSpaceLocal = "/nike_soho_retail_space.png";
 const nikeSohoPackagingBox = "https://lh3.googleusercontent.com/d/1WKusXi989ck6EI7oLbmnCeus5qGzl09m";
@@ -642,6 +643,8 @@ const SubtleMotionImage = ({ src, alt, className, objectPosition = "center", con
           (e.currentTarget as HTMLImageElement).src = nikeSohoAsset14;
         } else if (src && (src.includes("nike_soho_turnstile_gate") || src.includes("46b8099d") || src.includes("nike_soho_asset_15"))) {
           (e.currentTarget as HTMLImageElement).src = nikeSohoAsset15;
+        } else if (src && (src.includes("nike_soho_quick_pick_boxes") || src.includes("14T2WXhgLrPh3Ajqrk7wD2UBxjqMKqvna"))) {
+          (e.currentTarget as HTMLImageElement).src = nikeSohoQuickPickBoxes;
         } else if (src && (src.includes("1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd") || src.includes("1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd") || src.includes("nike_soho_retail_space"))) {
           (e.currentTarget as HTMLImageElement).src = "/nike_soho_retail_space.png";
         } else if (src && (src.includes("1WKusXi989ck6EI7oLbmnCeus5qGzl09m") || src.includes("nike_soho_packaging_box") || src.includes("box.jpg"))) {
@@ -1521,6 +1524,8 @@ const FullscreenPreloaderImage = ({ src, alt, onNext }: { src: string, alt: stri
               target.src = "/nike_soho_self_checkout_sign.png";
             } else if (src && (src.includes("nike_soho_turnstile_gate") || src.includes("46b8099d") || src.includes("nike_soho_asset_15"))) {
               target.src = "/nike_soho_turnstile_gate.png";
+            } else if (src && (src.includes("nike_soho_quick_pick_boxes") || src.includes("14T2WXhgLrPh3Ajqrk7wD2UBxjqMKqvna"))) {
+              target.src = "/nike_soho_quick_pick_boxes.gif";
             } else if (src && (src.includes("1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd") || src.includes("1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd") || src.includes("nike_soho_retail_space"))) {
               target.src = "/nike_soho_retail_space.png";
             } else if (src && (src.includes("1WKusXi989ck6EI7oLbmnCeus5qGzl09m") || src.includes("nike_soho_packaging_box") || src.includes("box.jpg"))) {
@@ -2409,6 +2414,7 @@ export default function App() {
         nikeSohoAsset11,
         nikeSohoAsset12,
         nikeSohoAsset13,
+        nikeSohoQuickPickBoxes,
         nikeSohoAsset14,
         nikeSohoAsset15,
         nikeSohoRetailSpace
@@ -2606,7 +2612,7 @@ export default function App() {
     let currentIndex = images.indexOf(fullscreenImage);
     if (currentIndex === -1) {
       const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
-      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('edere_interior_experience_concept') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('9c0bc4ee') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')) || (fullscreenImage.includes('lv_experience_1') && img.includes('lv_experience_1')) || (fullscreenImage.includes('1xth8EQwQoAuy') && img.includes('lv_experience_1')) || (fullscreenImage.includes('lv_atrium_vitrine') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('1DElMyHbexJxiiYXiqlgC5RCec7YvockZ') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('128aa7cc') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('lv_privilege_card') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('ec5b908e') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('lv_retail_experience') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('25b463be') && img.includes('25b463be')) || (fullscreenImage.includes('lv_monumental_atrium_sculpture') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('4515ea51') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('lv_rotunda_vitrine') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('6bfd6aee') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('lv_flagship_corner_billboard') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('4bde2245') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('1JSlLlV19yJECw7y7Hc3') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('lv_packaging_shopping_bags') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('b6f0d522') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('1ldju6Qe0') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('lv_omnichannel_mobile_billboard') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('4ace0732') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('1xGQn7To6hx12Yz8ylUAnWHYCYASSEGwj') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('padelux_asset_11') && img.includes('padelux_asset_11')) || (fullscreenImage.includes('padelux_asset_12') && img.includes('padelux_asset_12')) || (fullscreenImage.includes('1dByrVFpx') && img.includes('padelux_asset_11')) || (fullscreenImage.includes('13eg32nDTWO') && img.includes('padelux_asset_12')) || (fullscreenImage.includes('padelux_history_heritage') && img.includes('padelux_history_heritage')) || (fullscreenImage.includes('1r2dV4Br') && img.includes('padelux_history_heritage')) || (fullscreenImage.includes('7c6b4d56') && img.includes('padelux_history_heritage')) || ((fullscreenImage.includes('padelux_court_amenity') || fullscreenImage.includes('1J0rSppzwYyz')) && (img.includes('padelux_court_amenity') || img.includes('1J0rSppzwYyz'))) || ((fullscreenImage.includes('padelux_courtside_craftsmanship') || fullscreenImage.includes('1o_9q6bM2rXsNOTFvulY') || fullscreenImage.includes('84c834bf')) && (img.includes('padelux_courtside_craftsmanship') || img.includes('1o_9q6bM2rXsNOTFvulY') || img.includes('84c834bf'))) || ((fullscreenImage.includes('padelux_court_1_signage') || fullscreenImage.includes('1Q8Aor5SB3Kj44yarM-ugScLoXMQsIOyX') || fullscreenImage.includes('45850681') || fullscreenImage.includes('709cb60c')) && (img.includes('padelux_court_1_signage') || img.includes('1Q8Aor5SB3Kj44yarM-ugScLoXMQsIOyX') || img.includes('45850681') || img.includes('709cb60c'))) || ((fullscreenImage.includes('insurly_terminal_billboard') || fullscreenImage.includes('ecbb2391')) && (img.includes('insurly_terminal_billboard') || img.includes('ecbb2391'))) || ((fullscreenImage.includes('insurly_global_reach_brochure') || fullscreenImage.includes('b283d17b') || fullscreenImage.includes('4.23.52')) && (img.includes('insurly_global_reach_brochure') || img.includes('b283d17b') || img.includes('4.23.52'))) || ((fullscreenImage.includes('nike_soho_self_checkout_sign') || fullscreenImage.includes('8d2d69be')) && (img.includes('nike_soho_self_checkout_sign') || img.includes('8d2d69be'))) || ((fullscreenImage.includes('nike_soho_turnstile_gate') || fullscreenImage.includes('46b8099d')) && (img.includes('nike_soho_turnstile_gate') || img.includes('46b8099d'))) || ((fullscreenImage.includes('stockiq_augmented_reality_store') || fullscreenImage.includes('16q7cLMjbMBDYrVntxXIUhiPa09Sxq3xx') || fullscreenImage.includes('3ec9e96b') || fullscreenImage.includes('231bd8ec')) && (img.includes('stockiq_augmented_reality_store') || img.includes('16q7cLMjbMBDYrVntxXIUhiPa09Sxq3xx') || img.includes('3ec9e96b') || img.includes('231bd8ec'))) || ((fullscreenImage.includes('stockiq_23') || fullscreenImage.includes('19EjOVno') || fullscreenImage.includes('stockiq_analytics_dashboard')) && (img.includes('stockiq_23') || img.includes('19EjOVno') || img.includes('stockiq_analytics_dashboard'))) || ((fullscreenImage.includes('115or6C4') || fullscreenImage.includes('12y_h1qF')) && (img.includes('115or6C4') || img.includes('12y_h1qF'))));
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('edere_interior_experience_concept') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('9c0bc4ee') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')) || (fullscreenImage.includes('lv_experience_1') && img.includes('lv_experience_1')) || (fullscreenImage.includes('1xth8EQwQoAuy') && img.includes('lv_experience_1')) || (fullscreenImage.includes('lv_atrium_vitrine') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('1DElMyHbexJxiiYXiqlgC5RCec7YvockZ') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('128aa7cc') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('lv_privilege_card') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('ec5b908e') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('lv_retail_experience') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('25b463be') && img.includes('25b463be')) || (fullscreenImage.includes('lv_monumental_atrium_sculpture') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('4515ea51') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('lv_rotunda_vitrine') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('6bfd6aee') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('lv_flagship_corner_billboard') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('4bde2245') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('1JSlLlV19yJECw7y7Hc3') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('lv_packaging_shopping_bags') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('b6f0d522') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('1ldju6Qe0') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('lv_omnichannel_mobile_billboard') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('4ace0732') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('1xGQn7To6hx12Yz8ylUAnWHYCYASSEGwj') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('padelux_asset_11') && img.includes('padelux_asset_11')) || (fullscreenImage.includes('padelux_asset_12') && img.includes('padelux_asset_12')) || (fullscreenImage.includes('1dByrVFpx') && img.includes('padelux_asset_11')) || (fullscreenImage.includes('13eg32nDTWO') && img.includes('padelux_asset_12')) || (fullscreenImage.includes('padelux_history_heritage') && img.includes('padelux_history_heritage')) || (fullscreenImage.includes('1r2dV4Br') && img.includes('padelux_history_heritage')) || (fullscreenImage.includes('7c6b4d56') && img.includes('padelux_history_heritage')) || ((fullscreenImage.includes('padelux_court_amenity') || fullscreenImage.includes('1J0rSppzwYyz')) && (img.includes('padelux_court_amenity') || img.includes('1J0rSppzwYyz'))) || ((fullscreenImage.includes('padelux_courtside_craftsmanship') || fullscreenImage.includes('1o_9q6bM2rXsNOTFvulY') || fullscreenImage.includes('84c834bf')) && (img.includes('padelux_courtside_craftsmanship') || img.includes('1o_9q6bM2rXsNOTFvulY') || img.includes('84c834bf'))) || ((fullscreenImage.includes('padelux_court_1_signage') || fullscreenImage.includes('1Q8Aor5SB3Kj44yarM-ugScLoXMQsIOyX') || fullscreenImage.includes('45850681') || fullscreenImage.includes('709cb60c')) && (img.includes('padelux_court_1_signage') || img.includes('1Q8Aor5SB3Kj44yarM-ugScLoXMQsIOyX') || img.includes('45850681') || img.includes('709cb60c'))) || ((fullscreenImage.includes('insurly_terminal_billboard') || fullscreenImage.includes('ecbb2391')) && (img.includes('insurly_terminal_billboard') || img.includes('ecbb2391'))) || ((fullscreenImage.includes('insurly_global_reach_brochure') || fullscreenImage.includes('b283d17b') || fullscreenImage.includes('4.23.52')) && (img.includes('insurly_global_reach_brochure') || img.includes('b283d17b') || img.includes('4.23.52'))) || ((fullscreenImage.includes('nike_soho_self_checkout_sign') || fullscreenImage.includes('8d2d69be')) && (img.includes('nike_soho_self_checkout_sign') || img.includes('8d2d69be'))) || ((fullscreenImage.includes('nike_soho_turnstile_gate') || fullscreenImage.includes('46b8099d')) && (img.includes('nike_soho_turnstile_gate') || img.includes('46b8099d'))) || ((fullscreenImage.includes('nike_soho_quick_pick_boxes') || fullscreenImage.includes('14T2WXhgLrPh3Ajqrk7wD2UBxjqMKqvna')) && (img.includes('nike_soho_quick_pick_boxes') || img.includes('14T2WXhgLrPh3Ajqrk7wD2UBxjqMKqvna'))) || ((fullscreenImage.includes('stockiq_augmented_reality_store') || fullscreenImage.includes('16q7cLMjbMBDYrVntxXIUhiPa09Sxq3xx') || fullscreenImage.includes('3ec9e96b') || fullscreenImage.includes('231bd8ec')) && (img.includes('stockiq_augmented_reality_store') || img.includes('16q7cLMjbMBDYrVntxXIUhiPa09Sxq3xx') || img.includes('3ec9e96b') || img.includes('231bd8ec'))) || ((fullscreenImage.includes('stockiq_23') || fullscreenImage.includes('19EjOVno') || fullscreenImage.includes('stockiq_analytics_dashboard')) && (img.includes('stockiq_23') || img.includes('19EjOVno') || img.includes('stockiq_analytics_dashboard'))) || ((fullscreenImage.includes('115or6C4') || fullscreenImage.includes('12y_h1qF')) && (img.includes('115or6C4') || img.includes('12y_h1qF'))));
     }
     const nextIndex = ((currentIndex >= 0 ? currentIndex : 0) + 1) % images.length;
     setFullscreenImage(images[nextIndex]);
@@ -2618,7 +2624,7 @@ export default function App() {
     let currentIndex = images.indexOf(fullscreenImage);
     if (currentIndex === -1) {
       const clean = (url: string) => url.split('/').pop()?.split('?')[0] || url;
-      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('edere_interior_experience_concept') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('9c0bc4ee') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')) || (fullscreenImage.includes('lv_experience_1') && img.includes('lv_experience_1')) || (fullscreenImage.includes('1xth8EQwQoAuy') && img.includes('lv_experience_1')) || (fullscreenImage.includes('lv_atrium_vitrine') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('1DElMyHbexJxiiYXiqlgC5RCec7YvockZ') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('128aa7cc') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('lv_privilege_card') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('ec5b908e') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('lv_retail_experience') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('25b463be') && img.includes('25b463be')) || (fullscreenImage.includes('lv_monumental_atrium_sculpture') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('4515ea51') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('lv_rotunda_vitrine') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('6bfd6aee') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('lv_flagship_corner_billboard') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('4bde2245') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('1JSlLlV19yJECw7y7Hc3') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('lv_packaging_shopping_bags') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('b6f0d522') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('1ldju6Qe0') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('lv_omnichannel_mobile_billboard') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('4ace0732') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('1xGQn7To6hx12Yz8ylUAnWHYCYASSEGwj') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('padelux_asset_11') && img.includes('padelux_asset_11')) || (fullscreenImage.includes('padelux_asset_12') && img.includes('padelux_asset_12')) || (fullscreenImage.includes('1dByrVFpx') && img.includes('padelux_asset_11')) || (fullscreenImage.includes('13eg32nDTWO') && img.includes('padelux_asset_12')) || (fullscreenImage.includes('padelux_history_heritage') && img.includes('padelux_history_heritage')) || (fullscreenImage.includes('1r2dV4Br') && img.includes('padelux_history_heritage')) || (fullscreenImage.includes('7c6b4d56') && img.includes('padelux_history_heritage')) || ((fullscreenImage.includes('padelux_court_amenity') || fullscreenImage.includes('1J0rSppzwYyz')) && (img.includes('padelux_court_amenity') || img.includes('1J0rSppzwYyz'))) || ((fullscreenImage.includes('padelux_courtside_craftsmanship') || fullscreenImage.includes('1o_9q6bM2rXsNOTFvulY') || fullscreenImage.includes('84c834bf')) && (img.includes('padelux_courtside_craftsmanship') || img.includes('1o_9q6bM2rXsNOTFvulY') || img.includes('84c834bf'))) || ((fullscreenImage.includes('padelux_court_1_signage') || fullscreenImage.includes('1Q8Aor5SB3Kj44yarM-ugScLoXMQsIOyX') || fullscreenImage.includes('45850681') || fullscreenImage.includes('709cb60c')) && (img.includes('padelux_court_1_signage') || img.includes('1Q8Aor5SB3Kj44yarM-ugScLoXMQsIOyX') || img.includes('45850681') || img.includes('709cb60c'))) || ((fullscreenImage.includes('insurly_terminal_billboard') || fullscreenImage.includes('ecbb2391')) && (img.includes('insurly_terminal_billboard') || img.includes('ecbb2391'))) || ((fullscreenImage.includes('insurly_global_reach_brochure') || fullscreenImage.includes('b283d17b') || fullscreenImage.includes('4.23.52')) && (img.includes('insurly_global_reach_brochure') || img.includes('b283d17b') || img.includes('4.23.52'))) || ((fullscreenImage.includes('nike_soho_self_checkout_sign') || fullscreenImage.includes('8d2d69be')) && (img.includes('nike_soho_self_checkout_sign') || img.includes('8d2d69be'))) || ((fullscreenImage.includes('nike_soho_turnstile_gate') || fullscreenImage.includes('46b8099d')) && (img.includes('nike_soho_turnstile_gate') || img.includes('46b8099d'))) || ((fullscreenImage.includes('stockiq_augmented_reality_store') || fullscreenImage.includes('16q7cLMjbMBDYrVntxXIUhiPa09Sxq3xx') || fullscreenImage.includes('3ec9e96b') || fullscreenImage.includes('231bd8ec')) && (img.includes('stockiq_augmented_reality_store') || img.includes('16q7cLMjbMBDYrVntxXIUhiPa09Sxq3xx') || img.includes('3ec9e96b') || img.includes('231bd8ec'))) || ((fullscreenImage.includes('stockiq_23') || fullscreenImage.includes('19EjOVno') || fullscreenImage.includes('stockiq_analytics_dashboard')) && (img.includes('stockiq_23') || img.includes('19EjOVno') || img.includes('stockiq_analytics_dashboard'))) || ((fullscreenImage.includes('115or6C4') || fullscreenImage.includes('12y_h1qF')) && (img.includes('115or6C4') || img.includes('12y_h1qF'))));
+      currentIndex = images.findIndex(img => clean(img) === clean(fullscreenImage) || (fullscreenImage.includes('buydrop_detail_3') && img.includes('10ZGFhya')) || (fullscreenImage.includes('buydrop_detail_1') && img.includes('1DBDauVy')) || (fullscreenImage.includes('buydrop_detail_2') && img.includes('1fy6OZm')) || (fullscreenImage.includes('edere_dining_room') && (img.includes('1xwyGhOLGCA5-66d2zFmLPYfbaAMabVWf') || img.includes('1YXUcH3neE8CjmAtrcLZed0LRVvT-c7NZ'))) || (fullscreenImage.includes('edere_culinary_dishes') && img.includes('10s5yuFfFd2tHbLsXsbWMKMFcpaG5u9js')) || (fullscreenImage.includes('edere_email_confirmation') && img.includes('1Oh5nUtdTSvyWoN1kB-kuNW1jGomUj1Ir')) || (fullscreenImage.includes('edere_interior_experience_concept') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('9c0bc4ee') && img.includes('edere_interior_experience_concept')) || (fullscreenImage.includes('nike_soho_retail_space') && (img.includes('1g7Tzn3pDkUTMB98WVgIqwPnNeOESMgqd') || img.includes('1g7Tzn3pDkUTMB98WVglqwPnNeOESMgqd'))) || (fullscreenImage.includes('atelier_dart_parisian_billboard') && img.includes('170eTg_lWIIYw0PDy7zvOw7C6v5Z_cHN0')) || (fullscreenImage.includes('nike_soho_packaging_box') && img.includes('1WKusXi989ck6EI7oLbmnCeus5qGzl09m')) || (fullscreenImage.includes('lv_experience_1') && img.includes('lv_experience_1')) || (fullscreenImage.includes('1xth8EQwQoAuy') && img.includes('lv_experience_1')) || (fullscreenImage.includes('lv_atrium_vitrine') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('1DElMyHbexJxiiYXiqlgC5RCec7YvockZ') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('128aa7cc') && img.includes('lv_atrium_vitrine')) || (fullscreenImage.includes('lv_privilege_card') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('19b_5yQ2oS0URsL-mBP-ApVYr68FlOwJy') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('ec5b908e') && img.includes('lv_privilege_card')) || (fullscreenImage.includes('lv_retail_experience') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('1WJMSINUGgHshDU3yQp7qZRdRFleCp2zp') && img.includes('lv_retail_experience')) || (fullscreenImage.includes('25b463be') && img.includes('25b463be')) || (fullscreenImage.includes('lv_monumental_atrium_sculpture') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('4515ea51') && img.includes('lv_monumental_atrium_sculpture')) || (fullscreenImage.includes('lv_rotunda_vitrine') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('6bfd6aee') && img.includes('lv_rotunda_vitrine')) || (fullscreenImage.includes('lv_flagship_corner_billboard') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('4bde2245') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('1JSlLlV19yJECw7y7Hc3') && img.includes('lv_flagship_corner_billboard')) || (fullscreenImage.includes('lv_packaging_shopping_bags') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('b6f0d522') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('1ldju6Qe0') && img.includes('lv_packaging_shopping_bags')) || (fullscreenImage.includes('lv_omnichannel_mobile_billboard') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('4ace0732') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('1xGQn7To6hx12Yz8ylUAnWHYCYASSEGwj') && img.includes('lv_omnichannel_mobile_billboard')) || (fullscreenImage.includes('padelux_asset_11') && img.includes('padelux_asset_11')) || (fullscreenImage.includes('padelux_asset_12') && img.includes('padelux_asset_12')) || (fullscreenImage.includes('1dByrVFpx') && img.includes('padelux_asset_11')) || (fullscreenImage.includes('13eg32nDTWO') && img.includes('padelux_asset_12')) || (fullscreenImage.includes('padelux_history_heritage') && img.includes('padelux_history_heritage')) || (fullscreenImage.includes('1r2dV4Br') && img.includes('padelux_history_heritage')) || (fullscreenImage.includes('7c6b4d56') && img.includes('padelux_history_heritage')) || ((fullscreenImage.includes('padelux_court_amenity') || fullscreenImage.includes('1J0rSppzwYyz')) && (img.includes('padelux_court_amenity') || img.includes('1J0rSppzwYyz'))) || ((fullscreenImage.includes('padelux_courtside_craftsmanship') || fullscreenImage.includes('1o_9q6bM2rXsNOTFvulY') || fullscreenImage.includes('84c834bf')) && (img.includes('padelux_courtside_craftsmanship') || img.includes('1o_9q6bM2rXsNOTFvulY') || img.includes('84c834bf'))) || ((fullscreenImage.includes('padelux_court_1_signage') || fullscreenImage.includes('1Q8Aor5SB3Kj44yarM-ugScLoXMQsIOyX') || fullscreenImage.includes('45850681') || fullscreenImage.includes('709cb60c')) && (img.includes('padelux_court_1_signage') || img.includes('1Q8Aor5SB3Kj44yarM-ugScLoXMQsIOyX') || img.includes('45850681') || img.includes('709cb60c'))) || ((fullscreenImage.includes('insurly_terminal_billboard') || fullscreenImage.includes('ecbb2391')) && (img.includes('insurly_terminal_billboard') || img.includes('ecbb2391'))) || ((fullscreenImage.includes('insurly_global_reach_brochure') || fullscreenImage.includes('b283d17b') || fullscreenImage.includes('4.23.52')) && (img.includes('insurly_global_reach_brochure') || img.includes('b283d17b') || img.includes('4.23.52'))) || ((fullscreenImage.includes('nike_soho_self_checkout_sign') || fullscreenImage.includes('8d2d69be')) && (img.includes('nike_soho_self_checkout_sign') || img.includes('8d2d69be'))) || ((fullscreenImage.includes('nike_soho_turnstile_gate') || fullscreenImage.includes('46b8099d')) && (img.includes('nike_soho_turnstile_gate') || img.includes('46b8099d'))) || ((fullscreenImage.includes('nike_soho_quick_pick_boxes') || fullscreenImage.includes('14T2WXhgLrPh3Ajqrk7wD2UBxjqMKqvna')) && (img.includes('nike_soho_quick_pick_boxes') || img.includes('14T2WXhgLrPh3Ajqrk7wD2UBxjqMKqvna'))) || ((fullscreenImage.includes('stockiq_augmented_reality_store') || fullscreenImage.includes('16q7cLMjbMBDYrVntxXIUhiPa09Sxq3xx') || fullscreenImage.includes('3ec9e96b') || fullscreenImage.includes('231bd8ec')) && (img.includes('stockiq_augmented_reality_store') || img.includes('16q7cLMjbMBDYrVntxXIUhiPa09Sxq3xx') || img.includes('3ec9e96b') || img.includes('231bd8ec'))) || ((fullscreenImage.includes('stockiq_23') || fullscreenImage.includes('19EjOVno') || fullscreenImage.includes('stockiq_analytics_dashboard')) && (img.includes('stockiq_23') || img.includes('19EjOVno') || img.includes('stockiq_analytics_dashboard'))) || ((fullscreenImage.includes('115or6C4') || fullscreenImage.includes('12y_h1qF')) && (img.includes('115or6C4') || img.includes('12y_h1qF'))));
     }
     const prevIndex = ((currentIndex >= 0 ? currentIndex : 0) - 1 + images.length) % images.length;
     setFullscreenImage(images[prevIndex]);
@@ -4026,9 +4032,9 @@ export default function App() {
                       </div>
                     </>
                   ) : selectedProject.title === "NIKE SOHO pop up store design" ? (
-                    <>
+                    <div className="space-y-12 md:space-y-16">
                       {/* Nike SoHo Section 1: Cinematic Storefront & Environmental Graphics */}
-                      <div className="space-y-12">
+                      <div className="space-y-6 md:space-y-8">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl md:rounded-3xl aspect-[4/3] md:aspect-[16/10] group relative shadow-2xl"
                           onClick={() => setFullscreenImage(nikeSohoAsset2)}
@@ -4350,7 +4356,7 @@ export default function App() {
                       </div>
 
                       {/* Nike SoHo Section: Culminating Architectural Experience & Spatial Environment Finale */}
-                      <div className="space-y-12 pt-8 border-t border-black/10">
+                      <div className="space-y-6 md:space-y-8 pt-10 border-t border-black/10">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl md:rounded-3xl aspect-[16/9] md:aspect-[21/10] group relative shadow-2xl"
                           onClick={() => setFullscreenImage(nikeSohoAsset11)}
@@ -4381,7 +4387,7 @@ export default function App() {
                       </div>
 
                       {/* Nike SoHo Section: Feature Sneaker Gallery & Footwear Innovation Showcase (Added Last) */}
-                      <div className="space-y-12 pt-8 border-t border-black/10">
+                      <div className="space-y-6 md:space-y-8 pt-10 border-t border-black/10">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl md:rounded-3xl aspect-[16/9] md:aspect-[21/10] group relative shadow-2xl"
                           onClick={() => setFullscreenImage(nikeSohoAsset12)}
@@ -4412,43 +4418,77 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Nike SoHo Section: Customization Counter & Signature Bag Installation (Cinematic Video Motion) */}
-                      <div className="space-y-12 pt-8 border-t border-black/10">
-                        <div 
-                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl md:rounded-3xl aspect-[16/9] md:aspect-[21/10] group relative shadow-2xl"
-                          onClick={() => setFullscreenImage(nikeSohoAsset13)}
-                        >
-                          <SubtleVideoMotionImage 
-                            src={nikeSohoAsset13} 
-                            alt="Nike SoHo 529 Broadway Customization Counter & Signature Bag Installation"
-                            tag={null}
-                            objectPosition="center 32%"
-                            yOffset={3.8}
-                            scaleOffset={0.08}
-                          />
+                      {/* Nike SoHo Section: Customization Counter & Signature Bag Installation */}
+                      <div className="pt-10 border-t border-black/10">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                          <div className="lg:col-span-5 space-y-5">
+                            <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
+                              {lang === 'en' ? 'Retail Experience & Customization Hub' : lang === 'fr' ? 'Expérience Retail & Pôle de Personnalisation' : 'Experiencia Minorista y Centro de Personalización'}
+                            </span>
+                            <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-black">
+                              {lang === 'en' ? 'Signature Service Counter & Spatial Bag Installation' : lang === 'fr' ? 'Comptoir de Service Emblématique & Installation de Sacs' : 'Mostrador de Servicio Distintivo e Instalación de Bolsas'}
+                            </h3>
+                            <p className="text-lg md:text-xl text-black/80 leading-relaxed font-light">
+                              {lang === 'en' ? (
+                                "The bespoke retail checkout and customization counter—merging modular raw industrial materials with Nike's vibrant orange brand signifiers, creating an energetic tactile conclusion to the SoHo shopping journey."
+                              ) : lang === 'fr' ? (
+                                "Le comptoir de service et de personnalisation sur mesure—associant matériaux industriels bruts et touches orange emblématiques de Nike pour clore le parcours client avec dynamisme."
+                              ) : (
+                                "El mostrador personalizado de pago y personalización—fusionando materiales industriales modulares con los vibrantes detalles naranjas de Nike para un cierre enérgico del recorrido de compra en SoHo."
+                              )}
+                            </p>
+                          </div>
+                          <div 
+                            className="lg:col-span-7 overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl md:rounded-3xl aspect-[4/3] group relative shadow-2xl"
+                            onClick={() => setFullscreenImage(nikeSohoAsset13)}
+                          >
+                            <SubtleVideoMotionImage 
+                              src={nikeSohoAsset13} 
+                              alt="Nike SoHo 529 Broadway Customization Counter & Signature Bag Installation"
+                              tag={null}
+                              objectPosition="center 32%"
+                              yOffset={3.8}
+                              scaleOffset={0.08}
+                            />
+                          </div>
                         </div>
-                        <div className="max-w-4xl space-y-6">
+                      </div>
+
+                      {/* Nike SoHo Section: In-Store Pick-Up Orders & Quick Pick Boxes */}
+                      <div className="space-y-6 pt-10 border-t border-black/10">
+                        <div className="max-w-4xl space-y-4">
                           <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
-                            {lang === 'en' ? 'Retail Experience & Customization Hub' : lang === 'fr' ? 'Expérience Retail & Pôle de Personnalisation' : 'Experiencia Minorista y Centro de Personalización'}
+                            {lang === 'en' ? 'Omnichannel Fulfillment & Express Pick-Up' : lang === 'fr' ? 'Retrait Omnicanal & Casiers Express' : 'Cumplimiento Omnicanal y Recogida Express'}
                           </span>
                           <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-black">
-                            {lang === 'en' ? 'Signature Service Counter & Spatial Bag Installation' : lang === 'fr' ? 'Comptoir de Service Emblématique & Installation de Sacs' : 'Mostrador de Servicio Distintivo e Instalación de Bolsas'}
+                            {lang === 'en' ? 'In-Store Pick-Up Orders Using Quick Pick Boxes' : lang === 'fr' ? 'Commandes Click & Collect via Quick Pick Boxes' : 'Pedidos de Recogida en Tienda con Quick Pick Boxes'}
                           </h3>
                           <p className="text-xl md:text-2xl text-black/80 leading-relaxed font-light">
                             {lang === 'en' ? (
-                              "The bespoke retail checkout and customization counter—merging modular raw industrial materials with Nike's vibrant orange brand signifiers, creating an energetic tactile conclusion to the SoHo shopping journey."
+                              "Streamlining online-to-offline fulfillment at 529 Broadway: customers retrieve digital orders directly from architectural Quick Pick Boxes integrated into the store wall—unlocking reserved footwear and apparel seamlessly via mobile pass."
                             ) : lang === 'fr' ? (
-                              "Le comptoir de service et de personnalisation sur mesure—associant matériaux industriels bruts et touches orange emblématiques de Nike pour clore le parcours client avec dynamisme."
+                              "Fluidification du retrait en boutique au 529 Broadway : les clients récupèrent leurs commandes en ligne directement dans les Quick Pick Boxes intégrés à l'architecture du magasin via leur pass mobile."
                             ) : (
-                              "El mostrador personalizado de pago y personalización—fusionando materiales industriales modulares con los vibrantes detalles naranjas de Nike para un cierre enérgico del recorrido de compra en SoHo."
+                              "Agilizando la entrega en tienda en 529 Broadway: los clientes recogen sus pedidos digitales directamente en las Quick Pick Boxes integradas en la tienda mediante su pase móvil."
                             )}
                           </p>
+                        </div>
+
+                        <div 
+                          className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl md:rounded-3xl aspect-[16/10] group relative shadow-2xl"
+                          onClick={() => setFullscreenImage(nikeSohoQuickPickBoxes)}
+                        >
+                          <SubtleMotionImage 
+                            src={nikeSohoQuickPickBoxes} 
+                            alt="Nike SoHo In-Store Pick-Up Orders Using Quick Pick Boxes"
+                            cinematic={true}
+                          />
                         </div>
                       </div>
 
                       {/* Nike SoHo Section: Frictionless Self-Checkout & Digital Turnstile Gate */}
-                      <div className="space-y-12 pt-8 border-t border-black/10">
-                        <div className="max-w-4xl space-y-6">
+                      <div className="space-y-6 pt-10 border-t border-black/10">
+                        <div className="max-w-4xl space-y-4">
                           <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
                             {lang === 'en' ? 'Frictionless Retail & Digital Checkout' : lang === 'fr' ? 'Retail Sans Friction & Paiement Numérique' : 'Comercio Sin Fricción y Pago Digital'}
                           </span>
@@ -4467,7 +4507,7 @@ export default function App() {
                         </div>
 
                         {/* Dual Side-by-Side Images */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                           <div 
                             className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl md:rounded-3xl aspect-[4/3] group relative shadow-xl"
                             onClick={() => setFullscreenImage(nikeSohoAsset14)}
@@ -4492,7 +4532,7 @@ export default function App() {
                       </div>
 
                       {/* Nike SoHo Section: Flagship Retail Environment & Digital Monolith Tower */}
-                      <div className="space-y-12 pt-8 border-t border-black/10">
+                      <div className="space-y-6 pt-10 border-t border-black/10">
                         <div 
                           className="overflow-hidden bg-black/5 cursor-zoom-in rounded-2xl md:rounded-3xl aspect-[16/9] md:aspect-[21/10] group relative shadow-2xl"
                           onClick={() => setFullscreenImage(nikeSohoRetailSpace)}
@@ -4500,9 +4540,10 @@ export default function App() {
                           <SubtleMotionImage 
                             src={nikeSohoRetailSpace} 
                             alt="Nike SoHo Flagship Store Retail Environment & Digital Monolith Tower"
+                            cinematic={true}
                           />
                         </div>
-                        <div className="max-w-4xl space-y-6">
+                        <div className="max-w-4xl space-y-4">
                           <span className="text-accent text-[13px] font-bold tracking-[0.3em] uppercase block">
                             {lang === 'en' ? 'Spatial Architecture & Retail Environment' : lang === 'fr' ? 'Architecture Spatiale & Environnement Retail' : 'Arquitectura Espacial y Entorno Comercial'}
                           </span>
@@ -4520,7 +4561,7 @@ export default function App() {
                           </p>
                         </div>
                       </div>
-                    </>
+                    </div>
                   ) : selectedProject.title === "StockIQ" ? (
                     <>
                       {/* StockIQ Section 1: Overview & Multidisciplinary Role */}
